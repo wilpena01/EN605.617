@@ -81,9 +81,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 
 void main_sub0()
 {
-
-
-	/* Declare  statically two arrays of ARRAY_SIZE each */
+	/* Declare  statically arrays of ARRAY_SIZE each */
 	unsigned int cpu_arr1[ARRAY_SIZE];
 	unsigned int cpu_arr2[ARRAY_SIZE];
 	unsigned int cpu_addResult[ARRAY_SIZE];
@@ -99,7 +97,6 @@ void main_sub0()
 	unsigned int cpu_modBlock[ARRAY_SIZE];
 	unsigned int cpu_modThread[ARRAY_SIZE];	
 	
-
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
 	unsigned int *gpu_arr2;
@@ -116,6 +113,7 @@ void main_sub0()
 	unsigned int *gpu_modBlock;
 	unsigned int *gpu_modThread;	
 
+	/* allocate memory for GPU based params */
 	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_addResult, ARRAY_SIZE_IN_BYTES);
@@ -130,7 +128,6 @@ void main_sub0()
 	cudaMalloc((void **)&gpu_mulThread, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_modBlock,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_modThread, ARRAY_SIZE_IN_BYTES);
-		
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
@@ -175,7 +172,7 @@ void main_sub0()
 	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_addBlock,  gpu_addBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_addThread, gpu_addThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_subResult, gpu_subResult, ARRAY_SIZE_IN_BYTES1, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_subResult, gpu_subResult, ARRAY_SIZE_IN_BYTES1,cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_subBlock,  gpu_subBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_subThread, gpu_subThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_mulResult, gpu_mulResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
@@ -184,8 +181,6 @@ void main_sub0()
 	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modBlock,  gpu_modBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modThread, gpu_modThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-
-
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
 	cudaFree(gpu_addResult);
@@ -208,9 +203,21 @@ void main_sub0()
 	cout<<"blocks = "<<num_blocks<<"\tThreads = "<<num_threads<<endl;
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
-		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
-		<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
-		<<"\tresult["<<i<<"] = "<<cpu_modBlock[i]<<endl;
+		cout<<"Array1["<<i<<"]  = "<<cpu_arr1[i]<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
+		
+		<<"\tSum["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
+		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]
+		
+		<<"\tSub["<<i<<"] = "<<cpu_subResult[i]<<"\tsubBock["<<i<<"] = "<<cpu_subBlock[i]
+		<<"\tsubThread["<<i<<"] = "<<cpu_subThread[i]
+		
+		<<"\tMul["<<i<<"] = "<<cpu_mulResult[i]<<"\tmulBock["<<i<<"] = "<<cpu_mulBlock[i]
+		<<"\tmulThread["<<i<<"] = "<<cpu_mulThread[i]
+		
+		<<"\tMod["<<i<<"] = "<<cpu_modResult[i]<<"\tmodBock["<<i<<"] = "<<cpu_modBlock[i]
+		<<"\tmodThread["<<i<<"] = "<<cpu_modThread[i]
+		
+		<<endl;
 	}
 	cout<<"######################################"<<endl;
 
