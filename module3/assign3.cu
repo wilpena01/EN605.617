@@ -14,22 +14,6 @@ using namespace std;
 #define ARRAY_SIZE_IN_BYTES (sizeof(unsigned int) * (ARRAY_SIZE))
 #define ARRAY_SIZE_IN_BYTES1 (sizeof(int) * (ARRAY_SIZE))
 
-	/* Declare  statically two arrays of ARRAY_SIZE each */
-	unsigned int cpu_arr1[ARRAY_SIZE];
-	unsigned int cpu_arr2[ARRAY_SIZE];
-	unsigned int cpu_addResult[ARRAY_SIZE];
-         	 int cpu_subResult[ARRAY_SIZE];
-	unsigned int cpu_mulResult[ARRAY_SIZE];
-	unsigned int cpu_modResult[ARRAY_SIZE];
-	unsigned int cpu_addBlock[ARRAY_SIZE];
-	unsigned int cpu_addThread[ARRAY_SIZE];	
-	unsigned int cpu_subBlock[ARRAY_SIZE];
-	unsigned int cpu_subThread[ARRAY_SIZE];	
-	unsigned int cpu_mulBlock[ARRAY_SIZE];
-	unsigned int cpu_mulThread[ARRAY_SIZE];	
-	unsigned int cpu_modBlock[ARRAY_SIZE];
-	unsigned int cpu_modThread[ARRAY_SIZE];	
-
 __global__
 void init(unsigned int *arr1, unsigned int *arr2, 
 		  unsigned int *r1, int *r2, unsigned int *r3, unsigned int *r4)
@@ -99,7 +83,22 @@ void main_sub0()
 {
 
 
-
+	/* Declare  statically two arrays of ARRAY_SIZE each */
+	unsigned int cpu_arr1[ARRAY_SIZE];
+	unsigned int cpu_arr2[ARRAY_SIZE];
+	unsigned int cpu_addResult[ARRAY_SIZE];
+         	 int cpu_subResult[ARRAY_SIZE];
+	unsigned int cpu_mulResult[ARRAY_SIZE];
+	unsigned int cpu_modResult[ARRAY_SIZE];
+	unsigned int cpu_addBlock[ARRAY_SIZE];
+	unsigned int cpu_addThread[ARRAY_SIZE];	
+	unsigned int cpu_subBlock[ARRAY_SIZE];
+	unsigned int cpu_subThread[ARRAY_SIZE];	
+	unsigned int cpu_mulBlock[ARRAY_SIZE];
+	unsigned int cpu_mulThread[ARRAY_SIZE];	
+	unsigned int cpu_modBlock[ARRAY_SIZE];
+	unsigned int cpu_modThread[ARRAY_SIZE];	
+	
 
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
@@ -152,12 +151,11 @@ void main_sub0()
 	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
-	/* Execute init kernel */
+	/* Execute kernels */
 	init<<<num_blocks, num_threads>>>(gpu_arr1,      gpu_arr2, 
 									  gpu_addResult, gpu_subResult,
 									  gpu_mulResult, gpu_modResult);
 									  
-	/* Execute init kernel */
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
 										 gpu_addBlock, gpu_addThread);
 										 
