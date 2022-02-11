@@ -108,14 +108,14 @@ void main_sub0()
 	         int *gpu_subResult;
 	unsigned int *gpu_mulResult;
 	unsigned int *gpu_modResult;
-	unsigned *int gpu_addBlock;
-	unsigned *int gpu_addThread;	
-	unsigned *int gpu_subBlock;
-	unsigned *int gpu_subThread;	
-	unsigned *int gpu_mulBlock;
-	unsigned *int gpu_mulThread;	
-	unsigned *int gpu_modBlock;
-	unsigned *int gpu_modThread;	
+	unsigned int *gpu_addBlock;
+	unsigned int *gpu_addThread;	
+	unsigned int *gpu_subBlock;
+	unsigned int *gpu_subThread;	
+	unsigned int *gpu_mulBlock;
+	unsigned int *gpu_mulThread;	
+	unsigned int *gpu_modBlock;
+	unsigned int *gpu_modThread;	
 
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
