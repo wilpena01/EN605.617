@@ -155,7 +155,7 @@ void main_sub0()
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
 	/* Execute init kernel */
-	init(cpu_arr1,cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);
+	//init(cpu_arr1,cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);
 									  
 	/* Execute init kernel */
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
