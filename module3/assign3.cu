@@ -78,8 +78,8 @@ void main_sub0()
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
-		<<"\tArray2["<<i<<"] = "<<cpu_arr1[i]
-		<<"result["<<i<<"] = "<<cpu_result[i]<<endl;
+		<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
+		<<"\tresult["<<i<<"] = "<<cpu_result[i]<<endl;
 	}
 	cout<<"######################################"<<endl;
 
