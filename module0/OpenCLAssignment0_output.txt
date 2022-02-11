@@ -1,0 +1,7 @@
+ddd_v1_w_k5v_1027379@runweb47378:~/module0$ gcc hello_world_cl.c -lOpenCL                                                                                            
+hello_world_cl.c: In function ‘main’:                                                                                                                                
+hello_world_cl.c:114:2: warning: implicit declaration of function ‘sleep’ [-Wimplicit-function-declaration]                                                          
+  sleep(1); // Leopard pty bug workaround.                                                                                                                           
+  ^                                                                                                                                                                  
+ddd_v1_w_k5v_1027379@runweb47378:~/module0$ ./a.out                                                                                                                  
+Hello World!                                                                             

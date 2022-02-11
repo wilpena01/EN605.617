@@ -1,0 +1,6 @@
+~/module0 ~                                                                                                                                                          
+ddd_v1_w_k5v_1027379@runweb47378:~/module0$ nvcc hello-world.cu                                                                                                      
+nvcc warning : The 'compute_20', 'sm_20', and 'sm_21' architectures are deprecated, and may be removed in a future release (Use -Wno-deprecated-gpu-targets to suppre
+ss warning).                                                                                                                                                         
+ddd_v1_w_k5v_1027379@runweb47378:~/module0$ ./a.out                                                                                                                  
+Hello World!                                                                                                                                                         
