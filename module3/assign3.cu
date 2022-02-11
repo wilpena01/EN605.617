@@ -5,6 +5,8 @@
 //  Created by Wilson on 2/10/22.
 //
 
+#include "assignment3.hpp"
+
 #include <iostream>
 
 using namespace std;
@@ -72,9 +74,9 @@ void main_sub0()
 {
 
 	/* Declare pointers for GPU based params */
-	unsigned int *gpu_arr1;
-	unsigned int *gpu_arr2;
-	unsigned int *gpu_result;
+	double *gpu_arr1;
+	double *gpu_arr2;
+	double *gpu_result;
 
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
