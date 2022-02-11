@@ -72,7 +72,7 @@ void mul_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result)
 }
 
 __global__
-void mul_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result)
+void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result)
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	result[thread_idx] = arr1[thread_idx] % arr2[thread_idx];
