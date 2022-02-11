@@ -113,7 +113,7 @@ void main_sub0()
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
 		<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
-		<<"\tresult["<<i<<"] = "<<gpu_addResult[i]<<endl;
+		<<"\tresult["<<i<<"] = "<<cpu_addResult[i]<<endl;
 	}
 	cout<<"######################################"<<endl;
 
