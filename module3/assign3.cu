@@ -100,9 +100,6 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 void main_sub0()
 {
 
-
-
-
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
 	unsigned int *gpu_arr2;
@@ -120,7 +117,7 @@ void main_sub0()
 	unsigned int *gpu_modThread;
 	
 	/* Execute init kernel */
-	init(cpu_arr1,cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);	
+	init(cpu_arr1, cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);	
 
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
