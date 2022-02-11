@@ -66,6 +66,12 @@ void main_sub0()
 	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_result, gpu_result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 
+
+	cudaFree(gpu_arr1);
+	cudaFree(gpu_arr2);
+	cudaFree(gpu_result);
+	
+	
 	/* Iterate through the arrays and print */
 	cout<<"######################################"<<endl;
 	cout<<"blocks = "<<num_blocks<<"\tThreads = "<<num_threads<<endl;
@@ -80,14 +86,6 @@ void main_sub0()
 	/* Execute init kernel */
 	//add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_result);
 
-	/* Free the arrays on the GPU as now we're done with them */
-	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_result, gpu_result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-
-	cudaFree(gpu_arr1);
-	cudaFree(gpu_arr2);
-	cudaFree(gpu_result);
 
 	/* Iterate through the arrays and print */
 	//for(unsigned int i = 0; i < ARRAY_SIZE; i++)
