@@ -10,8 +10,8 @@
 
 using namespace std;
 
-unsigned int ARRAY_SIZE = 64
-unsigned int ARRAY_SIZE_IN_BYTES = (sizeof(unsigned int) * (ARRAY_SIZE))
+#define ARRAY_SIZE 64
+#define ARRAY_SIZE_IN_BYTES (sizeof(unsigned int) * (ARRAY_SIZE))
 
 /* Declare  statically two arrays of ARRAY_SIZE each */
 unsigned int cpu_arr1[ARRAY_SIZE];
@@ -68,11 +68,12 @@ void main_sub0()
 
 	/* Iterate through the arrays and print */
 	cout<<"######################################"<<endl;
+	cout<<"blocks = "<<num_blocks<<"\tThreads = "<<num_threads<<endl;
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
-		cout<<"Array1["<<i<<"] = "<<gpu_arr1[i]
-		<<"\tArray2["<<i<<"] = "<<gpu_arr1[i]
-		<<"result["<<i<<"] = "<<gpu_result[i]<<endl;
+		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
+		<<"\tArray2["<<i<<"] = "<<cpu_arr1[i]
+		<<"result["<<i<<"] = "<<cpu_result[i]<<endl;
 	}
 	cout<<"######################################"<<endl;
 
