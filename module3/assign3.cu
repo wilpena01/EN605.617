@@ -15,6 +15,21 @@ using namespace std;
 #define ARRAY_SIZE_IN_BYTES (sizeof(unsigned int) * (ARRAY_SIZE))
 #define ARRAY_SIZE_IN_BYTES1 (sizeof(int) * (ARRAY_SIZE))
 
+	/* Declare  statically two arrays of ARRAY_SIZE each */
+	unsigned int cpu_arr1[ARRAY_SIZE];
+	unsigned int cpu_arr2[ARRAY_SIZE];
+	unsigned int cpu_addResult[ARRAY_SIZE];
+         	 int cpu_subResult[ARRAY_SIZE];
+	unsigned int cpu_mulResult[ARRAY_SIZE];
+	unsigned int cpu_modResult[ARRAY_SIZE];
+	unsigned int cpu_addBlock[ARRAY_SIZE];
+	unsigned int cpu_addThread[ARRAY_SIZE];	
+	unsigned int cpu_subBlock[ARRAY_SIZE];
+	unsigned int cpu_subThread[ARRAY_SIZE];	
+	unsigned int cpu_mulBlock[ARRAY_SIZE];
+	unsigned int cpu_mulThread[ARRAY_SIZE];	
+	unsigned int cpu_modBlock[ARRAY_SIZE];
+	unsigned int cpu_modThread[ARRAY_SIZE];	
 
 __global__
 void init(unsigned int *arr1, unsigned int *arr2, 
@@ -84,21 +99,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 void main_sub0()
 {
 
-	/* Declare  statically two arrays of ARRAY_SIZE each */
-	unsigned int cpu_arr1[ARRAY_SIZE];
-	unsigned int cpu_arr2[ARRAY_SIZE];
-	unsigned int cpu_addResult[ARRAY_SIZE];
-         	 int cpu_subResult[ARRAY_SIZE];
-	unsigned int cpu_mulResult[ARRAY_SIZE];
-	unsigned int cpu_modResult[ARRAY_SIZE];
-	unsigned int cpu_addBlock[ARRAY_SIZE];
-	unsigned int cpu_addThread[ARRAY_SIZE];	
-	unsigned int cpu_subBlock[ARRAY_SIZE];
-	unsigned int cpu_subThread[ARRAY_SIZE];	
-	unsigned int cpu_mulBlock[ARRAY_SIZE];
-	unsigned int cpu_mulThread[ARRAY_SIZE];	
-	unsigned int cpu_modBlock[ARRAY_SIZE];
-	unsigned int cpu_modThread[ARRAY_SIZE];	
+
 
 
 	/* Declare pointers for GPU based params */
