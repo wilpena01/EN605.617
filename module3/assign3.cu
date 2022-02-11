@@ -24,7 +24,7 @@ void init(unsigned int *arr1, unsigned int *arr2, unsigned int *result)
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	
 	arr1[thread_idx] = thread_idx;
-	arr2[thread_idx] = thread_idx % 3;
+	arr2[thread_idx] = thread_idx % 4;
 	result[thread_idx] = 0;
 	
 	
