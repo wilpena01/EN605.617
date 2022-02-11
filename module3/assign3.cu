@@ -30,16 +30,19 @@ using namespace std;
 	unsigned int cpu_modBlock[ARRAY_SIZE];
 	unsigned int cpu_modThread[ARRAY_SIZE];	
 
-
-void init(unsigned int *arr1, unsigned int *arr2)
+__global__
+void init(unsigned int *arr1, unsigned int *arr2, 
+		  unsigned int *r1, int *r2, unsigned int *r3, unsigned int *r4)
 {
-	for(unsigned int i=0 ; i<ARRAY_SIZE; ++i)
-	{
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	
-		arr1[i] = i;
-		arr2[i] = i % 4;	
-
-	}
+	arr1[thread_idx] = thread_idx;
+	arr2[thread_idx] = thread_idx % 4;	
+	
+	r1[thread_idx]   = 0;
+	r2[thread_idx]   = 0;
+	r3[thread_idx]   = 0;
+	r4[thread_idx]   = 0;
 
 	
 }
@@ -95,6 +98,9 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 void main_sub0()
 {
 
+
+
+
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
 	unsigned int *gpu_arr2;
@@ -109,9 +115,7 @@ void main_sub0()
 	unsigned int *gpu_mulBlock;
 	unsigned int *gpu_mulThread;	
 	unsigned int *gpu_modBlock;
-	unsigned int *gpu_modThread;
-	
-	
+	unsigned int *gpu_modThread;	
 
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
@@ -148,7 +152,10 @@ void main_sub0()
 	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
-	
+	/* Execute init kernel */
+	init<<<num_blocks, num_threads>>>(gpu_arr1,      gpu_arr2, 
+									  gpu_addResult, gpu_subResult,
+									  gpu_mulResult, gpu_modResult);
 									  
 	/* Execute init kernel */
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
@@ -206,7 +213,7 @@ void main_sub0()
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
 		<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
-		<<"\tresult["<<i<<"] = "<<cpu_modBlock[i]<<endl;
+		<<"\tresult["<<i<<"] = "<<gpu_modBlock[i]<<endl;
 	}
 	cout<<"######################################"<<endl;
 
@@ -222,8 +229,6 @@ void main_sub0()
 
 int main()
 {
-	/* Execute init kernel */
-	init(cpu_arr1, cpu_arr2);
 	main_sub0();
 
 	return EXIT_SUCCESS;
