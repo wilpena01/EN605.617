@@ -117,7 +117,10 @@ void main_sub0()
 	unsigned int *gpu_mulBlock;
 	unsigned int *gpu_mulThread;	
 	unsigned int *gpu_modBlock;
-	unsigned int *gpu_modThread;	
+	unsigned int *gpu_modThread;
+	
+	/* Execute init kernel */
+	init(cpu_arr1,cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);	
 
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
@@ -154,8 +157,7 @@ void main_sub0()
 	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
-	/* Execute init kernel */
-	//init(cpu_arr1,cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);
+	
 									  
 	/* Execute init kernel */
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
