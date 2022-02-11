@@ -112,7 +112,9 @@ void main_sub0()
 									  
 	/* Execute init kernel */
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult);
-	sub_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_subResult);								                
+	sub_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_subResult);	
+	mul_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_mulResult);								                
+							                
 									  
 	/* Free the arrays on the GPU as now we're done with them */
 
@@ -139,7 +141,7 @@ void main_sub0()
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
 		<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
-		<<"\tresult["<<i<<"] = "<<cpu_subResult[i]<<endl;
+		<<"\tresult["<<i<<"] = "<<cpu_mulResult[i]<<endl;
 	}
 	cout<<"######################################"<<endl;
 
