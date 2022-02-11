@@ -203,7 +203,7 @@ void main_sub0()
 	cout<<"blocks = "<<num_blocks<<"\tThreads = "<<num_threads<<endl;
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
-		cout<<"Array1["<<i<<"]  = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
+		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
 		
 		<<"\nAdd["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
 		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]<<"\n"
