@@ -40,6 +40,36 @@ void add_arr(double *arr1, double *arr2, double *result)
 	//thread[thread_idx] = threadIdx.x;
 }
 
+__global__
+void sub_arr(double *arr1, double *arr2, double *result)
+{
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	result[thread_idx] = arr1[thread_idx] - arr2[thread_idx];
+	
+	//block[thread_idx] = blockIdx.x;
+	//thread[thread_idx] = threadIdx.x;
+}
+
+__global__
+void mul_arr(double *arr1, double *arr2, double *result)
+{
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	result[thread_idx] = arr1[thread_idx] * arr2[thread_idx];
+	
+	//block[thread_idx] = blockIdx.x;
+	//thread[thread_idx] = threadIdx.x;
+}
+
+__global__
+void mod_arr(double *arr1, double *arr2, double *result)
+{
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	result[thread_idx] = arr1[thread_idx] % arr2[thread_idx];
+	
+	//block[thread_idx] = blockIdx.x;
+	//thread[thread_idx] = threadIdx.x;
+}
+
 void main_sub0()
 {
 
