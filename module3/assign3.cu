@@ -73,10 +73,10 @@ void main_sub0()
 	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	
-	cudaMemcpy(cpu_result, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_result, gpu_subResult, ARRAY_SIZE_IN_BYTES1, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_result, gpu_mulResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_result, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_subResult, gpu_subResult, ARRAY_SIZE_IN_BYTES1, cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_mulResult, gpu_mulResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 
 
 	const unsigned int numthread_per_block = 16;
@@ -93,10 +93,10 @@ void main_sub0()
 	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	
-	cudaMemcpy(cpu_result, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_result, gpu_subResult, ARRAY_SIZE_IN_BYTES1, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_result, gpu_mulResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_result, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_subResult, gpu_subResult, ARRAY_SIZE_IN_BYTES1, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_mulResult, gpu_mulResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
