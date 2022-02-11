@@ -30,19 +30,21 @@ using namespace std;
 	unsigned int cpu_modBlock[ARRAY_SIZE];
 	unsigned int cpu_modThread[ARRAY_SIZE];	
 
-__global__
+
 void init(unsigned int *arr1, unsigned int *arr2, 
 		  unsigned int *r1, int *r2, unsigned int *r3, unsigned int *r4)
 {
-	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	for(unsigned int i=0 ; i<ARRAY_SIZE; ++i)
+	{
 	
-	arr1[thread_idx] = thread_idx;
-	arr2[thread_idx] = thread_idx % 4;	
+		arr1[i] = i;
+		arr2[i] = i % 4;	
 	
-	r1[thread_idx]   = 0;
-	r2[thread_idx]   = 0;
-	r3[thread_idx]   = 0;
-	r4[thread_idx]   = 0;
+		r1[i]   = 0;
+		r2[i]   = 0;
+		r3[i]   = 0;
+		r4[i]   = 0;
+	}
 
 	
 }
@@ -153,9 +155,7 @@ void main_sub0()
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
 	/* Execute init kernel */
-	init<<<num_blocks, num_threads>>>(gpu_arr1,      gpu_arr2, 
-									  gpu_addResult, gpu_subResult,
-									  gpu_mulResult, gpu_modResult);
+	init(cpu_arr1,cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);
 									  
 	/* Execute init kernel */
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
