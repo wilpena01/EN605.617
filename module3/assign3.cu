@@ -7,7 +7,6 @@
 
 
 #include <iostream>
-#include <time.h>       /* time */
 
 using namespace std;
 
@@ -31,12 +30,6 @@ void init(unsigned int *arr1, unsigned int *arr2,
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	
-	/* initialize random seed: */
-    srand (time(NULL));
-
-    /* generate secret number between 1 and 10: */
-    int iSecret = rand() % 3 + 1;
-  
 	arr1[thread_idx] = thread_idx;
 	arr2[thread_idx] = thread_idx % 4;	
 	
