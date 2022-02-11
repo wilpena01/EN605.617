@@ -50,6 +50,16 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result)
 	//thread[thread_idx] = threadIdx.x;
 }
 
+__global__
+void sub_arr(unsigned int *arr1, unsigned int *arr2, int *result)
+{
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	result[thread_idx] = arr1[thread_idx] - arr2[thread_idx];
+	
+	//block[thread_idx] = blockIdx.x;
+	//thread[thread_idx] = threadIdx.x;
+}
+
 void main_sub0()
 {
 
@@ -89,7 +99,8 @@ void main_sub0()
 									  gpu_mulResult, gpu_modResult);
 									  
 	/* Execute init kernel */
-	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult);								                
+	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult);
+	sub_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_subResult);								                
 									  
 	/* Free the arrays on the GPU as now we're done with them */
 
@@ -116,7 +127,7 @@ void main_sub0()
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]
 		<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
-		<<"\tresult["<<i<<"] = "<<cpu_addResult[i]<<endl;
+		<<"\tresult["<<i<<"] = "<<cpu_subResult[i]<<endl;
 	}
 	cout<<"######################################"<<endl;
 
