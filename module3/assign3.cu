@@ -78,6 +78,8 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result)
 	
 	if(arr2[thread_idx]>0)
 		result[thread_idx] = arr1[thread_idx] % arr2[thread_idx];
+	else
+		result[thread_idx] = 999999999999;
 	
 	//block[thread_idx] = blockIdx.x;
 	//thread[thread_idx] = threadIdx.x;
