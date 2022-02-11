@@ -5,8 +5,6 @@
 //  Created by Wilson on 2/10/22.
 //
 
-#include "assignment3.hpp"
-
 #include <iostream>
 
 using namespace std;
