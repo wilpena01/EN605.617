@@ -206,18 +206,23 @@ void main_sub0()
 		cout<<"Array1["<<i<<"]  = "<<cpu_arr1[i]<<"\tArray2["<<i<<"] = "<<cpu_arr2[i]
 		
 		<<"\tSum["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
-		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]
+		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]<<endl;
+		
+		cout<<"######################################"<<endl;
 		
 		<<"\tSub["<<i<<"] = "<<cpu_subResult[i]<<"\tsubBock["<<i<<"] = "<<cpu_subBlock[i]
-		<<"\tsubThread["<<i<<"] = "<<cpu_subThread[i]
+		<<"\tsubThread["<<i<<"] = "<<cpu_subThread[i]<<endl;
+		
+		cout<<"######################################"<<endl;
 		
 		<<"\tMul["<<i<<"] = "<<cpu_mulResult[i]<<"\tmulBock["<<i<<"] = "<<cpu_mulBlock[i]
-		<<"\tmulThread["<<i<<"] = "<<cpu_mulThread[i]
+		<<"\tmulThread["<<i<<"] = "<<cpu_mulThread[i]<<endl;
+		
+		cout<<"######################################"<<endl;
 		
 		<<"\tMod["<<i<<"] = "<<cpu_modResult[i]<<"\tmodBock["<<i<<"] = "<<cpu_modBlock[i]
-		<<"\tmodThread["<<i<<"] = "<<cpu_modThread[i]
-		
-		<<endl;
+		<<"\tmodThread["<<i<<"] = "<<cpu_modThread[i]<<endl;
+
 	}
 	cout<<"######################################"<<endl;
 
