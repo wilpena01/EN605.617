@@ -31,19 +31,14 @@ using namespace std;
 	unsigned int cpu_modThread[ARRAY_SIZE];	
 
 
-void init(unsigned int *arr1, unsigned int *arr2, 
-		  unsigned int *r1, int *r2, unsigned int *r3, unsigned int *r4)
+void init(unsigned int *arr1, unsigned int *arr2)
 {
 	for(unsigned int i=0 ; i<ARRAY_SIZE; ++i)
 	{
 	
 		arr1[i] = i;
 		arr2[i] = i % 4;	
-	
-		r1[i]   = 0;
-		r2[i]   = 0;
-		r3[i]   = 0;
-		r4[i]   = 0;
+
 	}
 
 	
@@ -228,7 +223,7 @@ void main_sub0()
 int main()
 {
 	/* Execute init kernel */
-	init(cpu_arr1, cpu_arr2, cpu_addResult, cpu_subResult, cpu_mulResult, cpu_modResult);
+	init(cpu_arr1, cpu_arr2);
 	main_sub0();
 
 	return EXIT_SUCCESS;
