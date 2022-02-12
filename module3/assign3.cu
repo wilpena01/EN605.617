@@ -211,8 +211,8 @@ void main_sub0()
 	/* Iterate through the arrays and print */
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
-	      <<"Total # of blocks = "<<num_blocks
-	      <<"Elapsed time is = "<< ms.count() << " milliseconds\n"
+	      <<"\nTotal # of blocks = "<<num_blocks
+	      <<"\nElapsed time is = "<< ms.count() << " milliseconds\n"
 	      <<"\n######################################\n";
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
