@@ -149,7 +149,7 @@ void main_sub0()
 	cudaMemcpy(cpu_modThread, gpu_modThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 
 
-	const unsigned int numthread_per_block = 16;
+	const unsigned int numthread_per_block = 64;
 	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
