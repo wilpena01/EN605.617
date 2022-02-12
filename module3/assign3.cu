@@ -84,6 +84,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 void main_sub0()
 {
 	typedef std::chrono::high_resolution_clock Clock;
+	typedef std::chrono::milliseconds milliseconds;
 
 	/* Declare  statically arrays of ARRAY_SIZE each */
 	unsigned int cpu_arr1[ARRAY_SIZE];
@@ -172,7 +173,7 @@ void main_sub0()
 										 
 	static Clock::time_point t1 = Clock::now();	
 	
-	static Clock::time_point t = t1 - t0;	
+	milliseconds ms = std::chrono::duration_cast<milliseconds>(t1 - t0);
 	  
 	/* Free the arrays on the GPU as now we're done with them */
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
@@ -211,7 +212,7 @@ void main_sub0()
 	output<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"Total # of blocks = "<<num_blocks
-	      <<"Elapse Time = "<<t
+	      <<"Elapsed time is "<< ms.count() << " milliseconds\n"
 	      <<"\n######################################\n";
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
