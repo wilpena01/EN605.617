@@ -171,7 +171,7 @@ void main_sub0()
 										 								                
 	mod_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_modResult, 
 										 gpu_modBlock, gpu_modThread);
-	//cudaDeviceSynchronize();
+	cudaDeviceSynchronize();
 										 
 	auto stop = high_resolution_clock::now();
 	
