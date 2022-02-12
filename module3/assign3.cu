@@ -201,7 +201,9 @@ void main_sub0()
 	ofstream output("out1.txt", std::ofstream::out);
 	
 	/* Iterate through the arrays and print */
-	output<<"Total # of blocks = "<<num_blocks<<"\nTotal # of Threads = "<<num_threads<<endl;
+	output<<"Total # of blocks = "<<num_blocks
+	<<"\nTotal # of Threads = "<<num_threads
+	<<"\nNumber of threads per block = "<<numthread_per_block<<endl;
 	output<<"######################################"<<endl;
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
