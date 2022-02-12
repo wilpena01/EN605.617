@@ -209,12 +209,12 @@ void main_sub0()
 	
 	ofstream output("out1.txt", std::ofstream::out);
 	
-	/* Iterate through the arrays and print */
+	/* Iterate through the arrays and print 
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"\nTotal # of blocks = "<<num_blocks
 	      <<"\nElapsed time is = "<< ms.count() << " milliseconds\n"
-	      <<"\n######################################\n";
+	      <<"\n######################################\n";*/
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
@@ -244,7 +244,12 @@ void main_sub0()
 	
 	output.close();
 
-	
+		/* Iterate through the arrays and print */
+	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
+	      <<"\nNumber of threads per block = "<<numthread_per_block
+	      <<"\nTotal # of blocks = "<<num_blocks
+	      <<"\nElapsed time is = "<< ms.count() << " milliseconds\n"
+	      <<"\n######################################\n";
 
 
 	/* Iterate through the arrays and print */
