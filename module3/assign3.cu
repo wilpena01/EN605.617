@@ -212,7 +212,7 @@ void main_sub0()
 	output<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"Total # of blocks = "<<num_blocks
-	      <<"Elapsed time is "<< ms.count() << " milliseconds\n"
+	      <<"Elapsed time is = "<< ms.count() << " milliseconds\n"
 	      <<"\n######################################\n";
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
