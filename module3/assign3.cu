@@ -7,6 +7,7 @@
 
 
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -197,13 +198,14 @@ void main_sub0()
 	cudaFree(gpu_modThread);
 	
 	
+	ofstream output("out1.txt", std::ofstream::out);
 	
 	/* Iterate through the arrays and print */
-	cout<<"######################################"<<endl;
-	cout<<"blocks = "<<num_blocks<<"\tThreads = "<<num_threads<<endl;
+	output<<"######################################"<<endl;
+	output<<"blocks = "<<num_blocks<<"\tThreads = "<<num_threads<<endl;
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
-		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
+		output<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
 		
 		<<"\nAdd["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
 		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]<<"\n"
@@ -226,7 +228,8 @@ void main_sub0()
 		<<"\n######################################\n";
 
 	}
-	cout<<"######################################"<<endl;
+	
+	output.close();
 
 	
 
