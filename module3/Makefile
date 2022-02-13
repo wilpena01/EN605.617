@@ -1,2 +1,2 @@
 all: assignment.c
-	gcc assignment.c -o assignment.exe 256 4
+	gcc assignment.c 256 4 -o assignment.exe
