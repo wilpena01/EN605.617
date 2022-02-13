@@ -221,9 +221,9 @@ int main()
 	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modBlock,  gpu_modBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modThread, gpu_modThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_modResult, gpu_brResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_modBlock,  gpu_brBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_modThread, gpu_brThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_brResult, gpu_brResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_brBlock,  gpu_brBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_brThread, gpu_brThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
 	cudaFree(gpu_addResult);
