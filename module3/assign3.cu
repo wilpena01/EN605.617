@@ -88,7 +88,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	
-	if(arr2[thread_idx]>0)
+	if(arr2[thread_idx] != 0)
 		result[thread_idx] = arr1[thread_idx] % arr2[thread_idx];
 	else
 		result[thread_idx] = 99999999;
@@ -259,23 +259,21 @@ int main()
 		<<"\nAdd["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
 		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]<<"\n"
 		
-	
 		
 		<<"Sub["<<i<<"] = "<<cpu_subResult[i]<<"\tsubBock["<<i<<"] = "<<cpu_subBlock[i]
 		<<"\tsubThread["<<i<<"] = "<<cpu_subThread[i]<<"\n"
 		
-	
 		
 		<<"Mul["<<i<<"] = "<<cpu_mulResult[i]<<"\tmulBock["<<i<<"] = "<<cpu_mulBlock[i]
 		<<"\tmulThread["<<i<<"] = "<<cpu_mulThread[i]<<"\n"
 		
-		<<"MulBranch["<<i<<"] = "<<cpu_brResult[i]<<"\tBranchBock["<<i<<"] = "<<cpu_brBlock[i]
-		<<"\tBranchThread["<<i<<"] = "<<cpu_brThread[i]<<"\n"
-		
-
 		
 		<<"Mod["<<i<<"] = "<<cpu_modResult[i]<<"\tmodBock["<<i<<"] = "<<cpu_modBlock[i]
 		<<"\tmodThread["<<i<<"] = "<<cpu_modThread[i]<<"\n"
+		
+		
+		<<"MulBranch["<<i<<"] = "<<cpu_brResult[i]<<"\tBranchBock["<<i<<"] = "<<cpu_brBlock[i]
+		<<"\tBranchThread["<<i<<"] = "<<cpu_brThread[i]<<"\n"
 		
 		<<"\n######################################\n";
 
