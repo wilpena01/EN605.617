@@ -68,6 +68,17 @@ void mul_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 }
 
 __global__
+void mul_branch(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
+			 unsigned int *block, unsigned int *thread)
+{
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	result[thread_idx] = arr1[thread_idx] * arr2[thread_idx];
+	
+	block[thread_idx] = blockIdx.x;
+	thread[thread_idx] = threadIdx.x;
+}
+
+__global__
 void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 			 unsigned int *block, unsigned int *thread)
 {
@@ -82,57 +93,68 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	thread[thread_idx] = threadIdx.x;
 }
 
-void main_sub0()
+int main()
 {
-
+	const unsigned int numthread_per_block = 64;
+	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
+	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
 	unsigned int cpu_arr1[ARRAY_SIZE];
 	unsigned int cpu_arr2[ARRAY_SIZE];
 	unsigned int cpu_addResult[ARRAY_SIZE];
-         	 int cpu_subResult[ARRAY_SIZE];
-	unsigned int cpu_mulResult[ARRAY_SIZE];
-	unsigned int cpu_modResult[ARRAY_SIZE];
 	unsigned int cpu_addBlock[ARRAY_SIZE];
 	unsigned int cpu_addThread[ARRAY_SIZE];	
-	unsigned int cpu_subBlock[ARRAY_SIZE];
+         	 int cpu_subResult[ARRAY_SIZE];
+    unsigned int cpu_subBlock[ARRAY_SIZE];
 	unsigned int cpu_subThread[ARRAY_SIZE];	
+	unsigned int cpu_mulResult[ARRAY_SIZE];
 	unsigned int cpu_mulBlock[ARRAY_SIZE];
 	unsigned int cpu_mulThread[ARRAY_SIZE];	
+	unsigned int cpu_modResult[ARRAY_SIZE];
 	unsigned int cpu_modBlock[ARRAY_SIZE];
 	unsigned int cpu_modThread[ARRAY_SIZE];	
+	unsigned int cpu_brResult[ARRAY_SIZE];
+	unsigned int cpu_brBlock[ARRAY_SIZE];
+	unsigned int cpu_brThread[ARRAY_SIZE];	
 	
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
 	unsigned int *gpu_arr2;
 	unsigned int *gpu_addResult;
-	         int *gpu_subResult;
-	unsigned int *gpu_mulResult;
-	unsigned int *gpu_modResult;
 	unsigned int *gpu_addBlock;
-	unsigned int *gpu_addThread;	
+	unsigned int *gpu_addThread;
+	         int *gpu_subResult;
 	unsigned int *gpu_subBlock;
-	unsigned int *gpu_subThread;	
+	unsigned int *gpu_subThread;
+	unsigned int *gpu_mulResult;
 	unsigned int *gpu_mulBlock;
 	unsigned int *gpu_mulThread;	
+	unsigned int *gpu_modResult;
 	unsigned int *gpu_modBlock;
 	unsigned int *gpu_modThread;	
+	unsigned int *gpu_brResult;
+	unsigned int *gpu_brBlock;
+	unsigned int *gpu_brThread;		
 
 	/* allocate memory for GPU based params */
 	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_addResult, ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_subResult, ARRAY_SIZE_IN_BYTES1);
-	cudaMalloc((void **)&gpu_mulResult, ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_modResult, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_addBlock,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_addThread, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_subResult, ARRAY_SIZE_IN_BYTES1);
 	cudaMalloc((void **)&gpu_subBlock,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_subThread, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_mulResult, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_mulBlock,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_mulThread, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_modResult, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_modBlock,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_modThread, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_brResult,  ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_brBlock,   ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_brThread,  ARRAY_SIZE_IN_BYTES);
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
@@ -147,11 +169,11 @@ void main_sub0()
 	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_modBlock,  gpu_modBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_modThread, gpu_modThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_subResult, gpu_brResult,  ARRAY_SIZE_IN_BYTES1,cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_modBlock,  gpu_brBlock,   ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(cpu_modThread, gpu_brThread,  ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 
 
-	const unsigned int numthread_per_block = 64;
-	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
-	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
  	auto start = high_resolution_clock::now();
  	
@@ -258,11 +280,7 @@ void main_sub0()
 	//{
 	//	cout<<("Thread: %2u - Block: %2u\n",cpu_thread[i],cpu_block[i]);
 	//}
-}
-
-int main()
-{
-	main_sub0();
-
+	
+	
 	return EXIT_SUCCESS;
 }
