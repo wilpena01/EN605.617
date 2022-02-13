@@ -8,10 +8,11 @@ int main(int argc, char** argv)
 	int blockSize = 256;
 	
 	if (argc >= 2) {
-		totalThreads = atoi(argv[1]);
+        
+        sscanf(argv[1], "%d", &totalThreads);
 	}
 	if (argc >= 3) {
-		blockSize = atoi(argv[2]);
+        sscanf(argv[2], "%d", &blockSize);
 	}
 
 	int numBlocks = totalThreads/blockSize;
