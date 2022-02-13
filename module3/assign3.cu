@@ -290,8 +290,8 @@ int main()
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"\nTotal # of blocks = "<<num_blocks
-	      <<"\nElapsed time is = "<< duration1.count() << " milliseconds"
-	      <<"\nElapsed time is = "<< duration2.count() << " milliseconds\n"
+	      <<"\nElapsed Mul time is = "<< duration1.count() << " milliseconds"
+	      <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds\n"
 	      <<"\n######################################\n";
 
 
