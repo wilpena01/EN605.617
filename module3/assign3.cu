@@ -240,7 +240,7 @@ int main()
 	ofstream output("out1.txt", std::ofstream::out);
 	
 	/* Iterate through the arrays and print 
-	output<<"\nTotal # of Threads = "<<ARRAY_SIZE
+	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"\nTotal # of blocks = "<<num_blocks
 	      <<"\nElapsed time is = "<< ms.count() << " milliseconds\n"
@@ -248,7 +248,7 @@ int main()
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
-		output<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
+		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
 		
 		<<"\nAdd["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
 		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]<<"\n"
