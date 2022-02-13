@@ -221,6 +221,9 @@ int main()
 	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modBlock,  gpu_modBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modThread, gpu_modThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_modResult, gpu_brResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_modBlock,  gpu_brBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_modThread, gpu_brThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
 	cudaFree(gpu_addResult);
@@ -235,6 +238,9 @@ int main()
 	cudaFree(gpu_modResult);
 	cudaFree(gpu_modBlock);
 	cudaFree(gpu_modThread);
+	cudaFree(gpu_brResult);
+	cudaFree(gpu_brBlock);
+	cudaFree(gpu_brThread);
 	
 	
 	ofstream output("out1.txt", std::ofstream::out);
