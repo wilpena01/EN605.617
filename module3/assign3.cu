@@ -97,7 +97,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	thread[thread_idx] = threadIdx.x;
 }
 
-int main_sub0()
+void main_sub0()
 {
 	const unsigned int numthread_per_block = 64;
 	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
