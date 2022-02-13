@@ -1,5 +1,5 @@
 //
-//  assignment3.cpp
+//  assignment3.cu
 //  assignment3
 //
 //  Created by Wilson on 2/10/22.
@@ -192,15 +192,19 @@ int main()
 	sub_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_subResult, 
 										 gpu_subBlock, gpu_subThread);
 										 
-	auto start1 = high_resolution_clock::now();									 	
+	auto start1 = high_resolution_clock::now();	
+									 	
 	mul_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_mulResult, 
 										 gpu_mulBlock, gpu_mulThread);
+										 
 	auto stop1 = high_resolution_clock::now();	
-	auto start2 = high_resolution_clock::now();									 
+	auto start2 = high_resolution_clock::now();		
+								 
 	mul_branch<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_brResult, 
 										 gpu_brBlock, gpu_brThread);
 	
-	auto stop2 = high_resolution_clock::now();									 								                
+	auto stop2 = high_resolution_clock::now();			
+							 								                
 	mod_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_modResult, 
 										 gpu_modBlock, gpu_modThread);
 	cudaDeviceSynchronize();
@@ -259,7 +263,7 @@ int main()
 	
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
-		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"] = "<<cpu_arr2[i]
+		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"]  = "<<cpu_arr2[i]
 		
 		<<"\nAdd["<<i<<"] = "<<cpu_addResult[i]<<"\taddBock["<<i<<"] = "<<cpu_addBlock[i]
 		<<"\taddThread["<<i<<"] = "<<cpu_addThread[i]<<"\n"
