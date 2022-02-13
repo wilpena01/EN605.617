@@ -263,6 +263,9 @@ int main()
 		<<"Mul["<<i<<"] = "<<cpu_mulResult[i]<<"\tmulBock["<<i<<"] = "<<cpu_mulBlock[i]
 		<<"\tmulThread["<<i<<"] = "<<cpu_mulThread[i]<<"\n"
 		
+		<<"MulBranch["<<i<<"] = "<<cpu_brResult[i]<<"\tBranchBock["<<i<<"] = "<<cpu_brBlock[i]
+		<<"\tBranchThread["<<i<<"] = "<<cpu_brThread[i]<<"\n"
+		
 
 		
 		<<"Mod["<<i<<"] = "<<cpu_modResult[i]<<"\tmodBock["<<i<<"] = "<<cpu_modBlock[i]
