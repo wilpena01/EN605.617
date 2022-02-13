@@ -13,7 +13,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define ARRAY_SIZE 64
+#define ARRAY_SIZE 256
 #define ARRAY_SIZE_IN_BYTES (sizeof(unsigned int) * (ARRAY_SIZE))
 #define ARRAY_SIZE_IN_BYTES1 (sizeof(int) * (ARRAY_SIZE))
 
