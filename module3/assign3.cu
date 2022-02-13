@@ -179,7 +179,7 @@ int main()
 
 
 
- 	auto start = high_resolution_clock::now();
+ 	
  	
 	/* Execute kernels */
 	init<<<num_blocks, num_threads>>>(gpu_arr1,      gpu_arr2, 
@@ -191,20 +191,24 @@ int main()
 										 
 	sub_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_subResult, 
 										 gpu_subBlock, gpu_subThread);
-										 	
+										 
+	auto start1 = high_resolution_clock::now();									 	
 	mul_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_mulResult, 
 										 gpu_mulBlock, gpu_mulThread);
-										 
+	auto stop1 = high_resolution_clock::now();	
+	auto start2 = high_resolution_clock::now();									 
 	mul_branch<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_brResult, 
 										 gpu_brBlock, gpu_brThread);
-										 								                
+	
+	auto stop2 = high_resolution_clock::now();									 								                
 	mod_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_modResult, 
 										 gpu_modBlock, gpu_modThread);
 	cudaDeviceSynchronize();
 										 
-	auto stop = high_resolution_clock::now();
 	
-	auto duration = duration_cast<microseconds>(stop - start);
+	
+	auto duration1 = duration_cast<microseconds>(stop1 - start1);
+	auto duration2 = duration_cast<microseconds>(stop2 - start2);
 	  
 	/* Free the arrays on the GPU as now we're done with them */
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
@@ -249,6 +253,7 @@ int main()
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"\nTotal # of blocks = "<<num_blocks
+	      <<"\nElapsed Mul time is = "<< ms.count() << " milliseconds\n"
 	      <<"\nElapsed time is = "<< ms.count() << " milliseconds\n"
 	      <<"\n######################################\n";*/
 	
@@ -272,8 +277,8 @@ int main()
 		<<"\tmodThread["<<i<<"] = "<<cpu_modThread[i]<<"\n"
 		
 		
-		<<"MulB["<<i<<"] = "<<cpu_brResult[i]<<"\tB_Bock["<<i<<"] = "<<cpu_brBlock[i]
-		<<"\tB_Thread["<<i<<"] = "<<cpu_brThread[i]<<"\n"
+		<<"MulB["<<i<<"] = "<<cpu_brResult[i]<<"\tBr_Bock["<<i<<"] = "<<cpu_brBlock[i]
+		<<"\tBr_Thread["<<i<<"] = "<<cpu_brThread[i]<<"\n"
 		
 		<<"\n######################################\n";
 
@@ -285,7 +290,8 @@ int main()
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
 	      <<"\nNumber of threads per block = "<<numthread_per_block
 	      <<"\nTotal # of blocks = "<<num_blocks
-	      <<"\nElapsed time is = "<< duration.count() << " milliseconds\n"
+	      <<"\nElapsed time is = "<< duration1.count() << " milliseconds\n"
+	      <<"\nElapsed time is = "<< duration2.count() << " milliseconds\n"
 	      <<"\n######################################\n";
 
 
