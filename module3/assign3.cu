@@ -72,7 +72,11 @@ void mul_branch(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 			 unsigned int *block, unsigned int *thread)
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-	result[thread_idx] = arr1[thread_idx] * arr2[thread_idx];
+	
+	if (thread_idx%2 == 0)
+		result[thread_idx] = arr1[thread_idx] * arr2[thread_idx];
+	else
+		result[thread_idx] = 99999999;
 	
 	block[thread_idx] = blockIdx.x;
 	thread[thread_idx] = threadIdx.x;
@@ -190,6 +194,9 @@ int main()
 										 	
 	mul_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_mulResult, 
 										 gpu_mulBlock, gpu_mulThread);
+										 
+	mul_branch<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_brResult, 
+										 gpu_brBlock, gpu_brThread);
 										 								                
 	mod_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_modResult, 
 										 gpu_modBlock, gpu_modThread);
