@@ -1,6 +1,6 @@
 This is an explanation about the report of assignment 3.
 
-There should be 7 files here:
+There should be 8 files here:
 	assignment.cu
 	Makefile
 	TwoAdditionNumberOfThreads.txt
