@@ -7,7 +7,6 @@
 
 
 #include <iostream>
-#include <fstream>
 #include <chrono>
 
 using namespace std;
@@ -248,17 +247,7 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	cudaFree(gpu_brBlock);
 	cudaFree(gpu_brThread);
 	
-	
-	ofstream output("out1.txt", std::ofstream::out);
-	
-	/* Iterate through the arrays and print 
-	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
-	      <<"\nNumber of threads per block = "<<numthread_per_block
-	      <<"\nTotal # of blocks = "<<num_blocks
-	      <<"\nElapsed Mul time is = "<< ms.count() << " milliseconds\n"
-	      <<"\nElapsed time is = "<< ms.count() << " milliseconds\n"
-	      <<"\n######################################\n";*/
-	
+		
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"]  = "<<cpu_arr2[i]
@@ -286,7 +275,7 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 
 	}
 	
-	output.close();
+	
 
 		/* Iterate through the arrays and print */
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
@@ -297,16 +286,8 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	      <<"\n######################################\n";
 
 
-	/* Iterate through the arrays and print */
-	//for(unsigned int i = 0; i < ARRAY_SIZE; i++)
-	//{
-	//	cout<<("Thread: %2u - Block: %2u\n",cpu_thread[i],cpu_block[i]);
-	//}
-	
-	
-
 }
-//
+
 int main(int argc, char** argv)
 {
 	// read command line arguments
