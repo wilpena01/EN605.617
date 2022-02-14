@@ -325,11 +325,12 @@ int main(int argc, char** argv)
 	numBlocks = totalThreads/blockSize;
 
 	// validate command line arguments
-	if (totalThreads % blockSize != 0) {
+	if (totalThreads % blockSize != 0) 
+	{
 		++numBlocks;
 		totalThreads = numBlocks*blockSize;
 		
-		cout<<"Warning: Total thread count is not evenly divisible by the block size\n");
+		cout<<"Warning: Total thread count is not evenly divisible by the block size\n";
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
