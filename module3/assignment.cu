@@ -13,9 +13,6 @@
 using namespace std;
 using namespace std::chrono;
 
-unsigned int ARRAY_SIZE = 256
-#define ARRAY_SIZE_IN_BYTES (sizeof(unsigned int) * (ARRAY_SIZE))
-#define ARRAY_SIZE_IN_BYTES1 (sizeof(int) * (ARRAY_SIZE))
 
 __global__
 void init(unsigned int *arr1, unsigned int *arr2, 
@@ -97,11 +94,12 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	thread[thread_idx] = threadIdx.x;
 }
 
-void main_sub0(unsigned int, unsigned int)
+void main_sub0(const unsigned int ARRAY_SIZE, unsigned int num_blocks)
 {
-	const unsigned int numthread_per_block = 64;
-	const unsigned int num_blocks = ARRAY_SIZE/numthread_per_block;
 	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
+
+	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
+	unsigned int ARRAY_SIZE_IN_BYTES1 = (sizeof(int) * (ARRAY_SIZE));
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
 	unsigned int cpu_arr1[ARRAY_SIZE];
@@ -292,7 +290,7 @@ void main_sub0(unsigned int, unsigned int)
 
 		/* Iterate through the arrays and print */
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
-	      <<"\nNumber of threads per block = "<<numthread_per_block
+	      <<"\nNumber of threads per block = "<<num_threads
 	      <<"\nTotal # of blocks = "<<num_blocks
 	      <<"\nElapsed Mul time is = "<< duration1.count() << " milliseconds"
 	      <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds\n"
