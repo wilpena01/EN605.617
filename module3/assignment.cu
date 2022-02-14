@@ -334,8 +334,6 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	ARRAY_SIZE = totalThreads;
-	
 	main_sub0(totalThreads, numBlocks);
 	
 	return EXIT_SUCCESS;
