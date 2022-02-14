@@ -311,7 +311,28 @@ void main_sub0()
 //
 int main(int argc, char** argv)
 {
+	// read command line arguments
+	int totalThreads = (1 << 20);
+	int blockSize = 256;
+	
+	if (argc >= 2) {
+        
+        sscanf(argv[1], "%d", &totalThreads);
+	}
+	if (argc >= 3) {
+        sscanf(argv[2], "%d", &blockSize);
+	}
 
+	int numBlocks = totalThreads/blockSize;
+
+	// validate command line arguments
+	if (totalThreads % blockSize != 0) {
+		++numBlocks;
+		totalThreads = numBlocks*blockSize;
+		
+		printf("Warning: Total thread count is not evenly divisible by the block size\n");
+		printf("The total number of threads will be rounded up to %d\n", totalThreads);
+	}
 	main_sub0();
 	return EXIT_SUCCESS;
 }
