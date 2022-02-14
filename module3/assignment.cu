@@ -72,7 +72,7 @@ void mul_branch(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	if (thread_idx%2 == 0)
 		result[thread_idx] = arr1[thread_idx] * arr2[thread_idx];
 	else
-		result[thread_idx] = 99999999;
+		result[thread_idx] = 99999999;  //invalid number
 	
 	block[thread_idx] = blockIdx.x;
 	thread[thread_idx] = threadIdx.x;
@@ -87,7 +87,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	if(arr2[thread_idx] != 0)
 		result[thread_idx] = arr1[thread_idx] % arr2[thread_idx];
 	else
-		result[thread_idx] = 99999999;
+		result[thread_idx] = 99999999;  //invalid number
 	
 	block[thread_idx] = blockIdx.x;
 	thread[thread_idx] = threadIdx.x;
@@ -226,9 +226,9 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	cudaMemcpy(cpu_modResult, gpu_modResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modBlock,  gpu_modBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_modThread, gpu_modThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_brResult, gpu_brResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_brBlock,  gpu_brBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_brThread, gpu_brThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_brResult,  gpu_brResult,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_brBlock,   gpu_brBlock,   ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_brThread,  gpu_brThread,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
 	cudaFree(gpu_addResult);
@@ -248,6 +248,7 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	cudaFree(gpu_brThread);
 	
 		
+	//output the capture data
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
 		cout<<"Array1["<<i<<"] = "<<cpu_arr1[i]<<"\nArray2["<<i<<"]  = "<<cpu_arr2[i]
@@ -274,8 +275,6 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 		<<"\n######################################\n";
 
 	}
-	
-	
 
 		/* Iterate through the arrays and print */
 	cout<<"\nTotal # of Threads = "<<ARRAY_SIZE
@@ -284,8 +283,6 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	      <<"\nElapsed Mul time is = "<< duration1.count() << " milliseconds"
 	      <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds\n"
 	      <<"\n######################################\n";
-
-
 }
 
 int main(int argc, char** argv)
