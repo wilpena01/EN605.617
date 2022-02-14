@@ -308,8 +308,8 @@ void main_sub0()
 	
 
 }
-//int argc, char** argv
-int main()
+//
+int main(int argc, char** argv)
 {
 
 	main_sub0();
