@@ -94,9 +94,9 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	thread[thread_idx] = threadIdx.x;
 }
 
-void main_sub0(const unsigned int ARRAY_SIZE, unsigned int num_blocks)
+void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads, 
+               const unsigned int num_blocks)
 {
-	const unsigned int num_threads = ARRAY_SIZE/num_blocks;
 
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	unsigned int ARRAY_SIZE_IN_BYTES1 = (sizeof(int) * (ARRAY_SIZE));
@@ -334,7 +334,7 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	main_sub0(totalThreads, numBlocks);
+	main_sub0(totalThreads, blockSize, numBlocks);
 	
 	return EXIT_SUCCESS;
 }
