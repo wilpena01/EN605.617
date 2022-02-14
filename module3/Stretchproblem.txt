@@ -1,0 +1,11 @@
+Good:
+- good initialization if no input is passed.
+- The way he measure the execution time
+
+Bad:
+does not check for invalid inputs.
+
+assuming N has been defined previously, I assumbe N is a very large number
+because it is probably there to compensate for any input. This means that
+if you dont use all the array size based on the input parameters,
+the host allocate a lot of memory that will be unused both on the CPU and GPU.

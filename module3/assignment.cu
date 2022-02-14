@@ -288,9 +288,9 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 int main(int argc, char** argv)
 {
 	// read command line arguments
-	unsigned int totalThreads = 0;
-	unsigned int blockSize    = 0;
-	unsigned int numBlocks    = 0;
+	unsigned int totalThreads = 256;
+	unsigned int blockSize    = 32;
+	unsigned int numBlocks    = 8;
 	
 	if (argc >= 2) {
         
