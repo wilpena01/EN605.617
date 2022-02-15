@@ -262,7 +262,7 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	cudaFree(gpu_brThread);
 	
 	auto stop3     = high_resolution_clock::now();	
-	host_mul_branch(cpu_arr1, cpu_arr2, cpu_hostbrResult, ARRAY_SIZE)
+	host_mul_branch(cpu_arr1, cpu_arr2, cpu_hostbrResult, ARRAY_SIZE);
 	auto start3    = high_resolution_clock::now();	
 	auto duration3 = duration_cast<microseconds>(stop2 - start2);
 
