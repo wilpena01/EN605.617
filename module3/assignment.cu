@@ -93,6 +93,18 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
 	thread[thread_idx] = threadIdx.x;
 }
 
+void host_mul_branch(unsigned int *arr1, unsigned int *arr2, unsigned int *result,
+			 unsigned int arraySize)
+{
+	for (int i=0; i<arraySize; i++)	
+	{
+		if (i%2 == 0)
+			result[i] = arr1[i] * arr2[i];
+		else
+			result[i] = 99999999;  //invalid number
+	}
+}
+
 void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads, 
                const unsigned int num_blocks)
 {
@@ -118,6 +130,8 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	unsigned int cpu_brResult[ARRAY_SIZE];
 	unsigned int cpu_brBlock[ARRAY_SIZE];
 	unsigned int cpu_brThread[ARRAY_SIZE];	
+
+	unsigned int cpu_hostbrResult[ARRAY_SIZE];	
 	
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
@@ -247,7 +261,11 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	cudaFree(gpu_brBlock);
 	cudaFree(gpu_brThread);
 	
-		
+	auto stop3     = high_resolution_clock::now();	
+	host_mul_branch(cpu_arr1, cpu_arr2, cpu_hostbrResult, ARRAY_SIZE)
+	auto start3    = high_resolution_clock::now();	
+	auto duration3 = duration_cast<microseconds>(stop2 - start2);
+
 	//output the capture data
 	for(unsigned int i = 0; i < ARRAY_SIZE; i++)
 	{
@@ -281,7 +299,8 @@ void main_sub0(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 	      <<"\nNumber of threads per block = "<<num_threads
 	      <<"\nTotal # of blocks = "<<num_blocks
 	      <<"\nElapsed Mul time is = "<< duration1.count() << " milliseconds"
-	      <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds\n"
+	      <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds"
+	      <<"\nElapsed Host Mul time is = "<< duration3.count() << " milliseconds\n"
 	      <<"\n######################################\n";
 }
 
