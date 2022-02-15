@@ -9,6 +9,7 @@ There should be 9 files here:
 	FirstHalfOfProblem.txt
 	branchingvsNonBranching.xslx
 	Stretchproblem.txt
+	latestOutput.txt
 	README.txt
 	
 
@@ -51,3 +52,7 @@ while one of them is branching half the time and the other do not.
 
 Stretchproblem.txt:
 Say the some of the good and bad things the stretch problem have.
+
+
+latestOutput.txt:
+it has the latest output from the cuda file.
