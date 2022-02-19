@@ -43,8 +43,8 @@ void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESU
     unsigned int *in1, *in2;
     unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (arraySize));
 
-    in1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-	in2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
+    //in1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
+	//in2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
 
     cudaMemcpy(in1, gpu_arr1 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(in2, gpu_arr2 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
@@ -72,8 +72,8 @@ void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESU
 		<<"\n######################################\n";
 
 	}
-    free(in1);
-    free(in2);
+    //free(in1);
+    //free(in2);
 }
 
 #endif
