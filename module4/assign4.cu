@@ -91,7 +91,7 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 
 	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
 	{
-		cout<<"in1["<<i<<"] = "<<cpu_arr1[i]<<"in2["<<i<<"] = "<<cpu_arr2[i]<<endl;
+		cout<<"in1["<<i<<"] = "<<cpu_arr1[i]<<"\tin2["<<i<<"] = "<<cpu_arr2[i]<<endl;
 
 	}
 
