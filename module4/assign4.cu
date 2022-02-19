@@ -142,6 +142,6 @@ int main(int argc, char** argv)
 	auto duration2 = duration_cast<microseconds>(stop2 - start2);
 	
 	
-	outputTime(duration1,duration2);
+	outputTime(duration2,duration1);
 	return EXIT_SUCCESS;
 }
