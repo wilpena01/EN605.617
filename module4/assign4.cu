@@ -70,8 +70,8 @@ void main_Pinned(unsigned int totalThreads, unsigned int  blockSize,
 	/* Declare  statically arrays of ARRAY_SIZE each */
 	unsigned int *cpu_arr1, *cpu_arr2;
 
-	cudaHostAlloc((unsigned int **)&cpu_arr1, ARRAY_SIZE_IN_BYTES);
-	cudaHostAlloc((unsigned int **)&cpu_arr2, ARRAY_SIZE_IN_BYTES);
+	cudaMallocHost((unsigned int **)&cpu_arr1, ARRAY_SIZE_IN_BYTES);
+	cudaMallocHost((unsigned int **)&cpu_arr2, ARRAY_SIZE_IN_BYTES);
 
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
