@@ -92,9 +92,10 @@ void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_bloc
 }
 
 void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2, 
-         unsigned int numBlocks, unsigned int blockSize)
+         unsigned int ç, unsigned int blockSize)
 {
-	RESULT addR;
+	RESULT addR; const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
+	
 	Topadd(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
 
 
