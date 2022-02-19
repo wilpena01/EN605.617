@@ -31,6 +31,16 @@ unsigned int *cpu_addThread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 	}
 
 }
+void output(RESULT *outadd, unsigned int arraySize)
+{
+	for(int i=0; i<arraySize; i++)
+	{
+		cout<<"Add["<<i<<"] = "<<outadd->result.pop_back()
+		    <<"\tBlockId["<<i<<"] = "<<outadd->blockId.pop_back()
+			<<"\tThreadId["<<i<<"] = "<<outadd->threadId.pop_back()
+			<<endl;
+	}
+}
 
 __global__
 void init(unsigned int *arr1, unsigned int *arr2)
@@ -85,8 +95,11 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
          unsigned int numBlocks, unsigned int blockSize)
 {
 	RESULT addR;
-
 	Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize, &addR);
+
+
+
+	output(&addR)
 
 }
 
