@@ -15,14 +15,7 @@
 using namespace std;
 using namespace std::chrono;
 
-void init(unsigned int *arr1, unsigned int *arr2, unsigned int ARRAY_SIZE)
-{
-	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
-	{
-		arr1[i] = i;
-		arr2[i] = i % 4;	
-	}
-}
+
 
 void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2, 
          unsigned int numBlocks, unsigned int blockSize)
@@ -34,7 +27,38 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 
 }
 
-void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int numBlocks)
+void main_Pegeable(unsigned int totalThreads, unsigned int  blockSize, unsigned int numBlocks)
+{
+	const unsigned int ARRAY_SIZE = totalThreads;
+	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
+	
+	/* Declare  statically arrays of ARRAY_SIZE each */
+	unsigned int *cpu_arr1, cpu_arr2;
+
+	cpu_arr1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
+	cpu_arr2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES)
+	
+	/* Declare pointers for GPU based params */
+	unsigned int *gpu_arr1;
+	unsigned int *gpu_arr2;
+	
+	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
+
+	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
+
+	cudaMemcpy(gpu_arr1,  cpu_arr1,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr2,  cpu_arr2,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+					  
+	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
+
+	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
+	cudaFree(gpu_arr1);
+	cudaFree(gpu_arr2);
+}
+
+void main_Pinned(unsigned int totalThreads, unsigned int  blockSize, unsigned int numBlocks)
 {
 	const unsigned int ARRAY_SIZE = totalThreads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
@@ -90,7 +114,7 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	submain(totalThreads, blockSize, numBlocks);
+	main_Pegeable(totalThreads, blockSize, numBlocks);
 
 	
 	return EXIT_SUCCESS;

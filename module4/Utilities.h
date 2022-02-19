@@ -11,6 +11,15 @@ struct RESULT
 	vector<unsigned int> threadId;
 };
 
+void init(unsigned int *arr1, unsigned int *arr2, unsigned int ARRAY_SIZE)
+{
+	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
+	{
+		arr1[i] = i;
+		arr2[i] = i % 4;	
+	}
+}
+
 void pushResult(unsigned int *cpu_addResult, unsigned int *cpu_addBlock, 
 unsigned int *cpu_addThread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 {
@@ -33,5 +42,7 @@ void output(RESULT *outadd, unsigned int arraySize)
 			<<endl;
 	}
 }
+
+
 
 #endif
