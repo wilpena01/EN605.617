@@ -1,5 +1,5 @@
-#ifndef ADD_H
-#define ADD_H
+#ifndef SUB_H
+#define SUB_H
 
 #include "Utilities.h"
 
@@ -18,29 +18,29 @@ void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_bloc
 {
 	const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
-	unsigned int cpu_addResult[ARRAY_SIZE];
-	unsigned int cpu_addBlock[ARRAY_SIZE];
-	unsigned int cpu_addThread[ARRAY_SIZE];	
+	unsigned int cpu_Result[ARRAY_SIZE];
+	unsigned int cpu_Block[ARRAY_SIZE];
+	unsigned int cpu_Thread[ARRAY_SIZE];	
 	
-	unsigned int *gpu_addResult;
-	unsigned int *gpu_addBlock;
-	unsigned int *gpu_addThread;
+	unsigned int *gpu_Result;
+	unsigned int *gpu_Block;
+	unsigned int *gpu_Thread;
 
-	cudaMalloc((void **)&gpu_addResult, ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_addBlock,  ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_addThread, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
-										 gpu_addBlock, gpu_addThread);
+	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
 
-	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_addBlock,  gpu_addBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_addThread, gpu_addThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaFree(gpu_addResult);
-	cudaFree(gpu_addBlock);
-	cudaFree(gpu_addThread);
+	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaFree(gpu_Result);
+	cudaFree(gpu_Block);
+	cudaFree(gpu_Thread);
 
-	pushResult(cpu_addResult, cpu_addBlock, cpu_addThread, finalResult, ARRAY_SIZE);
+	pushResult(cpu_Result, cpu_Block, cpu_Thread, finalResult, ARRAY_SIZE);
 }
 
 #endif
