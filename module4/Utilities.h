@@ -20,14 +20,14 @@ void init(unsigned int *arr1, unsigned int *arr2, unsigned int ARRAY_SIZE)
 	}
 }
 
-void pushResult(unsigned int *cpu_addResult, unsigned int *cpu_addBlock, 
-unsigned int *cpu_addThread, RESULT *finalResult, unsigned int ARRAY_SIZE)
+void pushResult(unsigned int *cpu_Result, unsigned int *cpu_Block, 
+unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 {
 	for(int i=0; i< ARRAY_SIZE; i++)
 	{
-		finalResult->result.push_back(cpu_addResult[i]);
-		finalResult->blockId.push_back(cpu_addBlock[i]);
-		finalResult->threadId.push_back(cpu_addThread[i]);
+		finalResult->result.insert(i,cpu_addResult[i]);
+		finalResult->blockId.insert(i,cpu_addBlock[i]);
+		finalResult->threadId.insert(i,cpu_addThread[i]);
 	}
 
 }
