@@ -129,10 +129,8 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	auto start1    = high_resolution_clock::now();	
 	main_Pinned(totalThreads, numBlocks, blockSize); 
-	auto stop1     = high_resolution_clock::now();	
-	auto duration1 = duration_cast<microseconds>(stop1 - start1);
+
 
 	auto start1    = high_resolution_clock::now();	
 	main_Pinned(totalThreads, numBlocks, blockSize); 
