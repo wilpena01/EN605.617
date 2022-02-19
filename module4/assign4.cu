@@ -30,10 +30,9 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
-	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR);
+	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR); 
+	cudaDeviceSynchronize();
 	output(gpu_arr1, gpu_arr2, &addR, &subR, &mulR, &modR, ARRAY_SIZE);
-	//outputTemp(gpu_arr1, gpu_arr2, &addR, ARRAY_SIZE);
-
 }
 
 void main_Pegeable(unsigned int totalThreads, unsigned int numBlocks, 
@@ -131,13 +130,13 @@ int main(int argc, char** argv)
 	}
 	
 	auto start1    = high_resolution_clock::now();	
-	main_Pegeable(totalThreads, numBlocks, blockSize); cudaDeviceSynchronize();
+	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	auto stop1     = high_resolution_clock::now();	
 	auto duration1 = duration_cast<microseconds>(stop1 - start1);
 
 	
 	auto start2    = high_resolution_clock::now();	
-	main_Pegeable(totalThreads, numBlocks, blockSize); cudaDeviceSynchronize();
+	main_Pegeable(totalThreads, numBlocks, blockSize);
 	auto stop2     = high_resolution_clock::now();	
 	auto duration2 = duration_cast<microseconds>(stop2 - start2);
 	
