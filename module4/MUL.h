@@ -7,7 +7,7 @@ __global__
 void mul_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 			 unsigned int *Block, unsigned int *Thread)
 {
-	const unsigned int thread_idx = (blockIdx.x * blockDim.x) - threadIdx.x;
+	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	Result[thread_idx] = arr1[thread_idx] * arr2[thread_idx];
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;
