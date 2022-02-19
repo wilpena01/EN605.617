@@ -122,7 +122,7 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	main_Pegeable(totalThreads, blockSize, numBlocks);
+	main_Pinned(totalThreads, blockSize, numBlocks);
 
 	
 	return EXIT_SUCCESS;
