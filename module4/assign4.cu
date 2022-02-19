@@ -133,7 +133,7 @@ int main(int argc, char** argv)
 
 
 	auto start1    = high_resolution_clock::now();	
-	main_Pinned(totalThreads, numBlocks, blockSize); 
+	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	auto stop1     = high_resolution_clock::now();	
 	auto duration1 = duration_cast<microseconds>(stop1 - start1);
 
