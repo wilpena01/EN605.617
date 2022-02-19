@@ -128,17 +128,18 @@ int main(int argc, char** argv)
 		cout<<"Warning: Total thread count is not evenly divisible by the block size\n";
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
+		
+	auto start2    = high_resolution_clock::now();	
+	main_Pegeable(totalThreads, numBlocks, blockSize);
+	auto stop2     = high_resolution_clock::now();	
+	auto duration2 = duration_cast<microseconds>(stop2 - start2);
 	
 	auto start1    = high_resolution_clock::now();	
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	auto stop1     = high_resolution_clock::now();	
 	auto duration1 = duration_cast<microseconds>(stop1 - start1);
 
-	
-	auto start2    = high_resolution_clock::now();	
-	main_Pegeable(totalThreads, numBlocks, blockSize);
-	auto stop2     = high_resolution_clock::now();	
-	auto duration2 = duration_cast<microseconds>(stop2 - start2);
+
 	
 	outputTime(duration1,duration2);
 	return EXIT_SUCCESS;
