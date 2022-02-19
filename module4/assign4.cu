@@ -49,13 +49,11 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 	
 	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
-	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	
+
 	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
 
-	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr1,  cpu_arr1,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr2,  cpu_arr2,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 					  
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
 
