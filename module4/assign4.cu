@@ -13,7 +13,7 @@
 using namespace std;
 using namespace std::chrono;
 
-struct RESULT
+class RESULT
 {
 	vector<int> result;
 	vector<unsigned int> blockId;
@@ -114,7 +114,7 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 	/* Execute kernels */
 	init<<<numBlocks, blockSize>>>(gpu_arr1, gpu_arr2);
 									  
-	run_Funs(gpu_arr1, gpu_arr2, num_blocks, blockSize);
+	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);
 									  
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
