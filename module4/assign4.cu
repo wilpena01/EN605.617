@@ -9,28 +9,12 @@
 #include <iostream>
 #include <chrono>
 #include <vector>
+#include "Utilities.h"
 
 using namespace std;
 using namespace std::chrono;
 
-struct RESULT
-{
-	vector<int> result;
-	vector<unsigned int> blockId;
-	vector<unsigned int> threadId;
-};
 
-void pushResult(unsigned int *cpu_addResult, unsigned int *cpu_addBlock, 
-unsigned int *cpu_addThread, RESULT *finalResult, unsigned int ARRAY_SIZE)
-{
-	for(int i=0; i< ARRAY_SIZE; i++)
-	{
-		finalResult->result.push_back(cpu_addResult[i]);
-		finalResult->blockId.push_back(cpu_addBlock[i]);
-		finalResult->threadId.push_back(cpu_addThread[i]);
-	}
-
-}
 void output(RESULT *outadd, unsigned int arraySize)
 {
 	for(int i=0; i<arraySize; i++)
@@ -122,10 +106,8 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	
 	/* Execute kernels */
-	init<<<numBlocks, blockSize>>>(gpu_arr1, gpu_arr2);
-									  
-	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);
-									  
+	init<<<numBlocks, blockSize>>>(gpu_arr1, gpu_arr2);						  
+	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);							  
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
 	cudaFree(gpu_arr1);
