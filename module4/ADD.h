@@ -1,6 +1,8 @@
 #ifndef ADD_H
 #define ADD_H
 
+#include "Utilities.h"
+
 __global__
 void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 			 unsigned int *Block, unsigned int *Thread)

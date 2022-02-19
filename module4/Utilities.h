@@ -23,4 +23,15 @@ unsigned int *cpu_addThread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
+void output(RESULT *outadd, unsigned int arraySize)
+{
+	for(int i=0; i<arraySize; i++)
+	{
+		cout<<"Add["<<i<<"] = "<<outadd->result.at(i)
+		    <<"\tBlockId["<<i<<"] = "<<outadd->blockId.at(i)
+			<<"\tThreadId["<<i<<"] = "<<outadd->threadId.at(i)
+			<<endl;
+	}
+}
+
 #endif
