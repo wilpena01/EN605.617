@@ -8,6 +8,7 @@ void mod_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 			 unsigned int *Block, unsigned int *Thread)
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) - threadIdx.x;
+    
     if(arr2[thread_idx] != 0)
 	    Result[thread_idx] = arr1[thread_idx] % arr2[thread_idx];
     else

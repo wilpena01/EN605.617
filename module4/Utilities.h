@@ -17,8 +17,6 @@ void init(unsigned int *arr1, unsigned int *arr2 , unsigned int ARRAY_SIZE)
 	{
 		arr1[i] = i;
 		arr2[i] = i % 4;
-
-        cout<<"in1["<<i<<"] = "<<arr1[i]<<"in2["<<i<<"] = "<<arr2[i]<<endl;
 	}
 }
 
@@ -39,7 +37,7 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(unsigned int *inp1, unsigned int *inp2, RESULT *outadd, RESULT *outsub, 
+void output(unsigned int *gpu_arr1, unsigned int *gpu_arr1, RESULT *outadd, RESULT *outsub, 
             RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
     //unsigned int *in1, *in2;

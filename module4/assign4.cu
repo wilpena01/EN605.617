@@ -30,7 +30,7 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
 	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR);
-	//output(gpu_arr1, gpu_arr2, &addR, &subR, &mulR, &modR, ARRAY_SIZE);
+	output(gpu_arr1, gpu_arr2, &addR, &subR, &mulR, &modR, ARRAY_SIZE);
 
 }
 
@@ -81,19 +81,12 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 	cudaMallocHost((unsigned int **)&cpu_arr2, ARRAY_SIZE_IN_BYTES);
 
 	/* Declare pointers for GPU based params */
-	unsigned int *gpu_arr1;
-	unsigned int *gpu_arr2;
+	unsigned int *gpu_arr1, *gpu_arr2;
 	
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
 
 	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
-
-	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
-	{
-		cout<<"in1["<<i<<"] = "<<cpu_arr1[i]<<"\tin2["<<i<<"] = "<<cpu_arr2[i]<<endl;
-
-	}
 
 	cudaMemcpy(gpu_arr1, cpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
