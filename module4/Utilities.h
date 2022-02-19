@@ -82,7 +82,7 @@ void outputTime(T1 duration1, T2 duration2)
 {
     /* Iterate through the arrays and print */
 	cout<<"\nElapsed time with Pegable Memory = "<< duration1.count()/1000.0 << " seconds"
-	    <<"\nElapsed time with Pinned  Memory = "<< duration2.count()/1000.0 << " econds"
+	    <<"\nElapsed time with Pinned  Memory = "<< duration2.count()/1000.0 << " seconds"
 	    <<"\n######################################\n";
 }
 
