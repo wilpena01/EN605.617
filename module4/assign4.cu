@@ -42,23 +42,18 @@ void init(unsigned int *arr1, unsigned int *arr2)
 }
 
 __global__
-void add_arr(unsigned int *arr1, unsigned int *arr2, RESULT *R)
+void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
+			 unsigned int *Block, unsigned int *Thread)
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-	R->result[thread_idx] = arr1[thread_idx] + arr2[thread_idx];
-	
-	R->blockId[thread_idx] = blockIdx.x;
-	R->threadId[thread_idx] = threadIdx.x;
+	Result[thread_idx] = arr1[thread_idx] + arr2[thread_idx];
+	Block[thread_idx]  = blockIdx.x;
+	Thread[thread_idx] = threadIdx.x;
 }
 
-RESULT Topadd(unsigned int *arr1, unsigned int *arr2,unsigned int num_blocks, 
-              unsigned int num_threads)
+RESULT Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
+              unsigned int num_threads, RESULT finalResult)
 {
-	RESULT finalResult;
-	const unsigned int ARRAY_SIZE     = num_threads * num_blocks;
-	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
-	unsigned int ARRAY_SIZE_IN_BYTES1 = (sizeof(int) * (ARRAY_SIZE));
-	
 	unsigned int cpu_addResult[ARRAY_SIZE];
 	unsigned int cpu_addBlock[ARRAY_SIZE];
 	unsigned int cpu_addThread[ARRAY_SIZE];	
@@ -66,18 +61,14 @@ RESULT Topadd(unsigned int *arr1, unsigned int *arr2,unsigned int num_blocks,
 	unsigned int *gpu_addResult;
 	unsigned int *gpu_addBlock;
 	unsigned int *gpu_addThread;
-	
+
 	cudaMalloc((void **)&gpu_addResult, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_addBlock,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_addThread, ARRAY_SIZE_IN_BYTES);
-	
-	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_addBlock,  gpu_addBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(cpu_addThread, gpu_addThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	
+
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
 										 gpu_addBlock, gpu_addThread);
-										 
+
 	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_addBlock,  gpu_addBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_addThread, gpu_addThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
@@ -86,7 +77,6 @@ RESULT Topadd(unsigned int *arr1, unsigned int *arr2,unsigned int num_blocks,
 	cudaFree(gpu_addThread);
 
 	pushResult(cpu_addResult, cpu_addBlock, cpu_addThread, &finalResult, ARRAY_SIZE)
-
 	return finalResult;
 }
 
@@ -95,7 +85,7 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 {
 	RESULT addR;
 
-	addR = Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize);
+	addR = Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize, &addR);
 
 }
 
