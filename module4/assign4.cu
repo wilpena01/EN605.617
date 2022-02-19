@@ -35,9 +35,9 @@ void output(RESULT *outadd, unsigned int arraySize)
 {
 	for(int i=0; i<arraySize; i++)
 	{
-		cout<<"Add["<<i<<"] = "<<outadd->result.pop_back()
-		    <<"\tBlockId["<<i<<"] = "<<outadd->blockId.pop_back()
-			<<"\tThreadId["<<i<<"] = "<<outadd->threadId.pop_back()
+		cout<<"Add["<<i<<"] = "<<outadd->result.at(i)
+		    <<"\tBlockId["<<i<<"] = "<<outadd->blockId.at(i)
+			<<"\tThreadId["<<i<<"] = "<<outadd->threadId.at(i)
 			<<endl;
 	}
 }
