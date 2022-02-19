@@ -50,12 +50,12 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, RESULT *R)
 	R->blockId[thread_idx] = blockIdx.x;
 	R->threadId[thread_idx] = threadIdx.x;
 }
-__global__
-RESULT Topadd(const unsigned int ARRAY_SIZE, const unsigned int num_threads, 
-               const unsigned int num_blocks)
+
+RESULT Topadd(unsigned int *arr1, unsigned int *arr2,unsigned int num_blocks, 
+              unsigned int num_threads)
 {
 	RESULT finalResult;
-	const unsigned int ARRAY_SIZE     = num_threads * num_blocks
+	const unsigned int ARRAY_SIZE     = num_threads * num_blocks;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	unsigned int ARRAY_SIZE_IN_BYTES1 = (sizeof(int) * (ARRAY_SIZE));
 	
@@ -91,11 +91,11 @@ RESULT Topadd(const unsigned int ARRAY_SIZE, const unsigned int num_threads,
 }
 
 void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2, 
-         unsigned int  blockSize, unsigned int numBlocks)
+         unsigned int numBlocks, unsigned int blockSize)
 {
 	RESULT addR;
 
-	addR = Topadd(gpu_arr1,gpu_arr1, blockSize, numBlocks);
+	addR = Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize);
 
 }
 
@@ -122,7 +122,7 @@ submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int numBloc
 	/* Execute kernels */
 	init<<<num_blocks, blockSize>>>(gpu_arr1, gpu_arr2);
 									  
-	run_Funs(gpu_arr1, gpu_arr2);
+	run_Funs(gpu_arr1, gpu_arr2, num_blocks, blockSize);
 									  
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
