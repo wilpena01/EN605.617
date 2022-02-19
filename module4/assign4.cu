@@ -47,8 +47,8 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, RESULT *R)
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	R->result[thread_idx] = arr1[thread_idx] + arr2[thread_idx];
 	
-	R->block[thread_idx] = blockIdx.x;
-	R->thread[thread_idx] = threadIdx.x;
+	R->blockId[thread_idx] = blockIdx.x;
+	R->threadId[thread_idx] = threadIdx.x;
 }
 __global__
 RESULT Topadd(const unsigned int ARRAY_SIZE, const unsigned int num_threads, 
