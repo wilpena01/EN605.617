@@ -37,7 +37,7 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(unsigned int *in1, unsigned int *in2, RESULT *outadd, RESULT *outsub, 
+void output(auto *in1, unsigned int *in2, RESULT *outadd, RESULT *outsub, 
             RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
     	//output the capture data
