@@ -138,7 +138,7 @@ int main(int argc, char** argv)
 	auto start2    = high_resolution_clock::now();	
 	main_Pegeable(totalThreads, numBlocks, blockSize);
 	auto stop2     = high_resolution_clock::now();	
-	auto duration2 = duration_cast<microseconds>(stop2 - start2);
+	auto duration2 = duration_cast<microseconds>(stop1 - start1);
 	
 	outputTime(duration1,duration2);
 	return EXIT_SUCCESS;
