@@ -81,7 +81,7 @@ template <typename T>
 void outputTime(T duration1, T duration2)
 {
     /* Iterate through the arrays and print */
-	cout<<"\nElapsed Mul time is = "<< duration1.count()/1000.0 << "seconds"
+	cout<<"\nElapsed Mul time is = "<< duration1.count()/1000000.0 << "seconds"
 	    <<"\nElapsed Mul Branched time is = "<< duration2.count()/1000.0 << "seconds"
 	    <<"\n######################################\n";
 }
