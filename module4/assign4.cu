@@ -12,6 +12,8 @@
 #include "Utilities.h"
 #include "ADD.h"
 #include "SUB.h"
+#include "MUL.h"
+#include "MOD.h"
 
 using namespace std;
 using namespace std::chrono;
