@@ -40,17 +40,21 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESULT *outsub, 
             RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
-    //unsigned int *in1, *in2;
-    //unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (arraySize));
-    //cudaMemcpy(in1, inp1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	//cudaMemcpy(in2, inp2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+    unsigned int *in1, *in2;
+    unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (arraySize));
+
+    in1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
+	in2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
+
+    cudaMemcpy(in1, gpu_arr1 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(in2, gpu_arr2 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 
     	//output the capture data
 	for(unsigned int i = 0; i < arraySize; i++)
 	{
-		//cout<<"Array1["<<i<<"] = "<<in1[i]<<"\nArray2["<<i<<"]  = "<<in2[i]
+		cout<<"Array1["<<i<<"] = "<<in1[i]<<"\nArray2["<<i<<"]  = "<<in2[i]
 		
-		cout <<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
+		<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
 		<<"\taddThread["<<i<<"] = "<<outadd->threadId.at(i)<<"\n"
 		
 		
