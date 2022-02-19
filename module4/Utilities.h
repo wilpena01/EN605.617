@@ -78,8 +78,8 @@ void outputTemp(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, 
     in1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
 	in2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
 
-    cudaMemcpy(in1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(in2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+    cudaMemcpy(gpu_arr1, in1 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(gpu_arr2, in2 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 
     	//output the capture data
 	for(unsigned int i = 0; i < arraySize; i++)
