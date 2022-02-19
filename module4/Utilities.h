@@ -1,6 +1,7 @@
 #ifndef UTILITIES_H
 #define UTILITIES_H
 #include <iostream>
+#include <chrono>
 
 using namespace std;
 
@@ -81,7 +82,7 @@ void outputTime(auto duration1, auto duration2)
     /* Iterate through the arrays and print */
 	cout<<"\nElapsed Mul time is = "<< duration1.count() << " milliseconds"
 	    <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds"
-	    <<"\n######################################\n";)
+	    <<"\n######################################\n";
 }
 
 #endif
