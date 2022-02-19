@@ -76,4 +76,12 @@ void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESU
     free(in2);
 }
 
+void outputTime(auto duration1, auto duration2)
+{
+    /* Iterate through the arrays and print */
+	cout<<"\nElapsed Mul time is = "<< duration1.count() << " milliseconds"
+	    <<"\nElapsed Mul Branched time is = "<< duration2.count() << " milliseconds"
+	    <<"\n######################################\n";)
+}
+
 #endif
