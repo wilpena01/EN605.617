@@ -37,11 +37,11 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(auto *in1, unsigned int *in2, RESULT *outadd, RESULT *outsub, 
+void output(unsigned int *in1, unsigned int *in2, RESULT *outadd, RESULT *outsub, 
             RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
     	//output the capture data
-	for(unsigned int i = outadd->blockId.begin(); i != outadd->blockId.end(); i++)
+	for(unsigned int i = 0; i < arraySize; i++)
 	{
 		cout<<"Array1["<<i<<"] = "<<in1[i]<<"\nArray2["<<i<<"]  = "<<in2[i]
 		
