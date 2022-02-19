@@ -91,7 +91,9 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 
 	cudaMemcpy(gpu_arr1, cpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-					  
+
+	outputTemp1(gpu_arr1, cpu_arr2,ARRAY_SIZE);		
+
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
 
 	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
