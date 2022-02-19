@@ -82,7 +82,7 @@ void outputTemp(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, 
 	{
 		cout<<"Array1["<<i<<"] = "<<gpu_arr1[i]<<"\nArray2["<<i<<"]  = "<<gpu_arr2[i]
 		
-		cout<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
+		<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
 		<<"\taddThread["<<i<<"] = "<<outadd->threadId.at(i)<<"\n"
 
 		<<"\n######################################\n";
