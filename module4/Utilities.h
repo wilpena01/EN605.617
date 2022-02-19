@@ -72,59 +72,8 @@ void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESU
 		<<"\n######################################\n";
 
 	}
-}
-
-void outputTemp(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, unsigned int arraySize)
-{
-    unsigned int *in1, *in2;
-    unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (arraySize));
-
-    in1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-	in2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-
-    cudaMemcpy(in1, gpu_arr1 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(in2, gpu_arr2 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-
-    	//output the capture data
-	for(unsigned int i = 0; i < arraySize; i++)
-	{
-		cout<<"Array1["<<i<<"] = "<<in1[i]<<"\tArray2["<<i<<"]  = "<<in2[i]
-		
-		//<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
-		//<<"\taddThread["<<i<<"] = "<<outadd->threadId.at(i)<<"\n"
-
-		<<"\n######################################\n";
-
-	}
     free(in1);
-	free(in2);
-}
-
-
-void outputTemp1(unsigned int *gpu_arr1, unsigned int *gpu_arr2, unsigned int arraySize)
-{
-    unsigned int *in1, *in2;
-    unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (arraySize));
-
-    in1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-	in2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-
-    cudaMemcpy(in1, gpu_arr1 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(in2, gpu_arr2 , ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-
-    	//output the capture data
-	for(unsigned int i = 0; i < arraySize; i++)
-	{
-		cout<<"Array1["<<i<<"] = "<<in1[i]<<"\tArray2["<<i<<"]  = "<<in2[i]
-		
-		//<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
-		//<<"\taddThread["<<i<<"] = "<<outadd->threadId.at(i)<<"\n"
-
-		<<"\n######################################\n";
-
-	}
-    free(in1);
-	free(in2);
+    free(in2);
 }
 
 #endif
