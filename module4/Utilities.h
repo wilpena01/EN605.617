@@ -37,9 +37,13 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(unsigned int *in1, unsigned int *in2, RESULT *outadd, RESULT *outsub, 
+void output(unsigned int *inp1, unsigned int *inp2, RESULT *outadd, RESULT *outsub, 
             RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
+    unsigned int *in1, *in2;
+    cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+
     	//output the capture data
 	for(unsigned int i = 0; i < arraySize; i++)
 	{
