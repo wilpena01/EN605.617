@@ -13,7 +13,7 @@
 using namespace std;
 using namespace std::chrono;
 
-class RESULT
+struct RESULT
 {
 	vector<int> result;
 	vector<unsigned int> blockId;
@@ -51,7 +51,7 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 	Thread[thread_idx] = threadIdx.x;
 }
 
-RESULT Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
+void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
               unsigned int num_threads, RESULT finalResult)
 {
 	const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
@@ -87,7 +87,7 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 {
 	RESULT addR;
 
-	addR = Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize, &addR);
+	Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize, &addR);
 
 }
 
