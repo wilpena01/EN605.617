@@ -52,7 +52,7 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 }
 
 void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
-              unsigned int num_threads, RESULT finalResult)
+              unsigned int num_threads, RESULT *finalResult)
 {
 	const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
@@ -78,8 +78,7 @@ void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_bloc
 	cudaFree(gpu_addBlock);
 	cudaFree(gpu_addThread);
 
-	pushResult(cpu_addResult, cpu_addBlock, cpu_addThread, &finalResult, ARRAY_SIZE);
-	return finalResult;
+	pushResult(cpu_addResult, cpu_addBlock, cpu_addThread, finalResult, ARRAY_SIZE);
 }
 
 void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2, 
