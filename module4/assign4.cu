@@ -34,8 +34,8 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 
 }
 
-void main_Pegeable(unsigned int totalThreads, unsigned int  blockSize, 
-				   unsigned int numBlocks)
+void main_Pegeable(unsigned int totalThreads, unsigned int numBlocks, 
+				   unsigned int blockSize)
 {
 	const unsigned int ARRAY_SIZE = totalThreads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
@@ -68,8 +68,8 @@ void main_Pegeable(unsigned int totalThreads, unsigned int  blockSize,
 	free(cpu_arr2);
 }
 
-void main_Pinned(unsigned int totalThreads, unsigned int  blockSize, 
-				 unsigned int numBlocks)
+void main_Pinned(unsigned int totalThreads, unsigned int numBlocks, 
+				 unsigned int blockSize)
 {
 	const unsigned int ARRAY_SIZE = totalThreads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
@@ -129,7 +129,7 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	main_Pinned(totalThreads, blockSize, numBlocks);
+	main_Pinned(totalThreads, numBlocks, blockSize);
 
 	
 	return EXIT_SUCCESS;
