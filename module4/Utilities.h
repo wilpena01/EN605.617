@@ -32,14 +32,31 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(RESULT *outadd, unsigned int arraySize)
+void output(unsigned int *in1, unsigned int *in2, RESULT *outadd, RESULT *outsub, 
+            RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
-	for(int i=0; i<arraySize; i++)
+    	//output the capture data
+	for(unsigned int i = 0; i < arraySize; i++)
 	{
-		cout<<"Add["<<i<<"] = "<<outadd->result.at(i)
-		    <<"\tBlockId["<<i<<"] = "<<outadd->blockId.at(i)
-			<<"\tThreadId["<<i<<"] = "<<outadd->threadId.at(i)
-			<<endl;
+		cout<<"Array1["<<i<<"] = "<<in1[i]<<"\nArray2["<<i<<"]  = "<<in2[i]
+		
+		<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
+		<<"\taddThread["<<i<<"] = "<<outadd->threadId.at(i)<<"\n"
+		
+		
+		<<"Sub["<<i<<"] = "<<outsub->result.at(i)<<"\tsubBock["<<i<<"] = "<<outsub->blockId.at(i)
+		<<"\tsubThread["<<i<<"] = "<<outsub->threadId.at(i)<<"\n"
+		
+		
+		<<"Mul["<<i<<"] = "<<outmul->result.at(i)<<"\tmulBock["<<i<<"] = "<<outmul->blockId.at(i)
+		<<"\tmulThread["<<i<<"] = "<<outmul->threadId.at(i)<<"\n"
+		
+		
+		<<"Mod["<<i<<"] = "<<outmod->result.at(i)<<"\tmodBock["<<i<<"] = "<<outmod->blockId.at(i)
+		<<"\tmodThread["<<i<<"] = "<<outmod->threadId.at(i)<<"\n"
+		
+		<<"\n######################################\n";
+
 	}
 }
 
