@@ -50,7 +50,7 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
 
-	init(cpu_arr1, cpu_arr2);	
+	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
 
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
