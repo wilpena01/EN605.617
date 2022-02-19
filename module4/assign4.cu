@@ -25,9 +25,9 @@ unsigned int cpu_addThread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 {
 	for(int i =0; i< ARRAY_SIZE; i++)
 	{
-		finalResult->result->push_back(cpu_addResult[i]);
-		finalResult->blockId->push_back(cpu_addBlock[i]);
-		finalResult->threadId->push_back(cpu_addThread[i]);
+		finalResult->result.push_back(cpu_addResult[i]);
+		finalResult->blockId.push_back(cpu_addBlock[i]);
+		finalResult->threadId.push_back(cpu_addThread[i]);
 	}
 
 }
