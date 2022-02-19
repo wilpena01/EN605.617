@@ -135,7 +135,7 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 int main(int argc, char** argv)
 {
 	// read command line arguments
-	unsigned int totalThreads = 256;
+	unsigned int totalThreads = 64;
 	unsigned int blockSize    = 32;
 	unsigned int numBlocks    = 8;
 	
