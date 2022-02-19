@@ -93,8 +93,6 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 	cudaMemcpy(gpu_arr1, cpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 
-	//outputTemp1(gpu_arr1, gpu_arr2,ARRAY_SIZE);		
-
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
 
 	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
@@ -132,7 +130,7 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	main_Pinned(totalThreads, numBlocks, blockSize);
+	main_Pegeable(totalThreads, numBlocks, blockSize);
 
 	
 	return EXIT_SUCCESS;
