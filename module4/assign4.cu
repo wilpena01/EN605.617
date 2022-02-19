@@ -89,6 +89,12 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 
 	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
 
+	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
+	{
+		cout<<"in1["<<i<<"] = "<<cpu_arr1[i]<<"in2["<<i<<"] = "<<cpu_arr2[i]<<endl;
+
+	}
+
 	cudaMemcpy(gpu_arr1, cpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 					  
