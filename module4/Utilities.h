@@ -50,7 +50,7 @@ void output(unsigned int *inp1, unsigned int *inp2, RESULT *outadd, RESULT *outs
 	{
 		//cout<<"Array1["<<i<<"] = "<<in1[i]<<"\nArray2["<<i<<"]  = "<<in2[i]
 		
-		<<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
+		cout <<"\nAdd["<<i<<"] = "<<outadd->result.at(i)<<"\taddBock["<<i<<"] = "<<outadd->blockId.at(i)
 		<<"\taddThread["<<i<<"] = "<<outadd->threadId.at(i)<<"\n"
 		
 		
