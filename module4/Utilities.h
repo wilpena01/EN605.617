@@ -25,9 +25,14 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 {
 	for(int i=0; i< ARRAY_SIZE; i++)
 	{
-		finalResult->result.insert(i,cpu_Result[i]);
-		finalResult->blockId.insert(i, cpu_Block[i]);
-		finalResult->threadId.insert(i,cpu_Thread[i]);
+		finalResult->result.insert(i+1,cpu_Result[i]);
+		finalResult->blockId.insert(i+1, cpu_Block[i]);
+		finalResult->threadId.insert(i+1,cpu_Thread[i]);
+        /*
+        finalResult->result.insert(finalResult->result.begin()     + i,cpu_Result[i]);
+		finalResult->blockId.insert(finalResult->blockId.begin()   + i, cpu_Block[i]);
+		finalResult->threadId.insert(finalResult->threadId.begin() + i,cpu_Thread[i]);
+        */
 	}
 
 }
