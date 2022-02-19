@@ -33,7 +33,7 @@ void main_Pegeable(unsigned int totalThreads, unsigned int  blockSize, unsigned 
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
-	unsigned int *cpu_arr1, cpu_arr2;
+	unsigned int *cpu_arr1, *cpu_arr2;
 
 	cpu_arr1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
 	cpu_arr2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
