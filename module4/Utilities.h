@@ -11,12 +11,14 @@ struct RESULT
 	vector<unsigned int> threadId;
 };
 
-void init(unsigned int *arr1, unsigned int *arr2, unsigned int ARRAY_SIZE)
+void init(unsigned int *arr1, unsigned int * , unsigned int ARRAY_SIZE)
 {
 	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
 	{
 		arr1[i] = i;
-		arr2[i] = i % 4;	
+		arr2[i] = i % 4;
+
+        cout<<"in1["<<i<<"] = "<<arr1[i]<<"in2["<<i<<"] = "<<arr2[i]<<endl;
 	}
 }
 
