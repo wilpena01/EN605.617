@@ -77,8 +77,8 @@ void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESU
     free(in2);
 }
 
-template <typename T1,typename T2>
-void outputTime(T1 duration1, T2 duration2)
+template <typename T>
+void outputTime(T duration1, T duration2)
 {
     /* Iterate through the arrays and print */
 	cout<<"\nElapsed time with Pegable Memory = "<< duration1.count()/1000.0 << " seconds"
