@@ -29,7 +29,7 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 {
 	RESULT addR; const unsigned int ARRAY_SIZE = numBlocks * blockSize;
 	
-	TopaddPageable(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
+	Topadd(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
 	output(&addR, ARRAY_SIZE);
 
 }
