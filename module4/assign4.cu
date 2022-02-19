@@ -24,8 +24,8 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 	RESULT addR, subR, mulR, modR; 
 	const unsigned int ARRAY_SIZE = numBlocks * blockSize;
 	
-	Topadd(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
-	Topsub(gpu_arr1, gpu_arr1, numBlocks, blockSize, &subR);
+	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
+	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	output(&subR, ARRAY_SIZE);
 
 }
