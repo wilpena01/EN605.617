@@ -10,21 +10,10 @@
 #include <chrono>
 #include <vector>
 #include "Utilities.h"
+#include "ADD.h"
 
 using namespace std;
 using namespace std::chrono;
-
-
-void output(RESULT *outadd, unsigned int arraySize)
-{
-	for(int i=0; i<arraySize; i++)
-	{
-		cout<<"Add["<<i<<"] = "<<outadd->result.at(i)
-		    <<"\tBlockId["<<i<<"] = "<<outadd->blockId.at(i)
-			<<"\tThreadId["<<i<<"] = "<<outadd->threadId.at(i)
-			<<endl;
-	}
-}
 
 __global__
 void init(unsigned int *arr1, unsigned int *arr2)
@@ -33,46 +22,6 @@ void init(unsigned int *arr1, unsigned int *arr2)
 	
 	arr1[thread_idx] = thread_idx;
 	arr2[thread_idx] = thread_idx % 4;	
-}
-
-__global__
-void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
-			 unsigned int *Block, unsigned int *Thread)
-{
-	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-	Result[thread_idx] = arr1[thread_idx] + arr2[thread_idx];
-	Block[thread_idx]  = blockIdx.x;
-	Thread[thread_idx] = threadIdx.x;
-}
-
-void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
-              unsigned int num_threads, RESULT *finalResult)
-{
-	const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
-	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
-	unsigned int cpu_addResult[ARRAY_SIZE];
-	unsigned int cpu_addBlock[ARRAY_SIZE];
-	unsigned int cpu_addThread[ARRAY_SIZE];	
-	
-	unsigned int *gpu_addResult;
-	unsigned int *gpu_addBlock;
-	unsigned int *gpu_addThread;
-
-	cudaMalloc((void **)&gpu_addResult, ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_addBlock,  ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_addThread, ARRAY_SIZE_IN_BYTES);
-
-	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_addResult, 
-										 gpu_addBlock, gpu_addThread);
-
-	cudaMemcpy(cpu_addResult, gpu_addResult, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_addBlock,  gpu_addBlock,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_addThread, gpu_addThread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaFree(gpu_addResult);
-	cudaFree(gpu_addBlock);
-	cudaFree(gpu_addThread);
-
-	pushResult(cpu_addResult, cpu_addBlock, cpu_addThread, finalResult, ARRAY_SIZE);
 }
 
 void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2, 
@@ -84,7 +33,6 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 	output(&addR,ARRAY_SIZE);
 
 }
-
 
 void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int numBlocks)
 {
