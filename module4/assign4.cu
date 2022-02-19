@@ -47,15 +47,17 @@ void main_Pegeable(unsigned int totalThreads, unsigned int  blockSize, unsigned 
 
 	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
 
-	cudaMemcpy(gpu_arr1,  cpu_arr1,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(gpu_arr2,  cpu_arr2,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr1, cpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 					  
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
 
-	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
+	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
+	free(cpu_arr1);
+	free(cpu_arr2);
 }
 
 void main_Pinned(unsigned int totalThreads, unsigned int  blockSize, unsigned int numBlocks)
@@ -64,27 +66,31 @@ void main_Pinned(unsigned int totalThreads, unsigned int  blockSize, unsigned in
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
-	unsigned int cpu_arr1[ARRAY_SIZE];
-	unsigned int cpu_arr2[ARRAY_SIZE];
-	
+	unsigned int *cpu_arr1, *cpu_arr2;
+
+	cudaHostAlloc((unsigned int *)&cpu_arr1, ARRAY_SIZE_IN_BYTES);
+	cudaHostAlloc((unsigned int *)&cpu_arr2, ARRAY_SIZE_IN_BYTES);
+
 	/* Declare pointers for GPU based params */
 	unsigned int *gpu_arr1;
 	unsigned int *gpu_arr2;
 	
-	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
 
 	init(cpu_arr1, cpu_arr2, ARRAY_SIZE);	
 
-	cudaMemcpy(gpu_arr1,  cpu_arr1,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	cudaMemcpy(gpu_arr2,  cpu_arr2,    ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr1, cpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 					  
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
 
-	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
+	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
 	cudaFree(gpu_arr1);
 	cudaFree(gpu_arr2);
+	cudaFreeHost(cpu_arr1);
+	cudaFreeHost(cpu_arr2);
 }
 
 int main(int argc, char** argv)
