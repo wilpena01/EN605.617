@@ -37,7 +37,7 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(unsigned int *gpu_arr1, unsigned int *gpu_arr1, RESULT *outadd, RESULT *outsub, 
+void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESULT *outsub, 
             RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
     //unsigned int *in1, *in2;
