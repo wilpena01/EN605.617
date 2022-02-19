@@ -99,7 +99,7 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 
 
 
-	output(&addR);
+	output(&addR,ARRAY_SIZE);
 
 }
 
