@@ -95,11 +95,11 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
          unsigned int numBlocks, unsigned int blockSize)
 {
 	RESULT addR;
-	Topadd(gpu_arr1,gpu_arr1, numBlocks, blockSize, &addR);
+	Topadd(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
 
 
 
-	output(&addR)
+	output(&addR);
 
 }
 
