@@ -133,13 +133,13 @@ int main(int argc, char** argv)
 	auto start1    = high_resolution_clock::now();	
 	main_Pegeable(totalThreads, numBlocks, blockSize);
 	auto stop1     = high_resolution_clock::now();	
-	auto duration1 = duration_cast<microseconds>(stop1 - start1);
+	auto duration1 = duration_cast<milliseconds>(stop1 - start1);
 
 	
 	auto start2    = high_resolution_clock::now();	
 	main_Pinned(totalThreads, numBlocks, blockSize);
 	auto stop2     = high_resolution_clock::now();	
-	auto duration2 = duration_cast<microseconds>(stop2 - start2);
+	auto duration2 = duration_cast<milliseconds>(stop2 - start2);
 	
 	
 	outputTime(duration1,duration2);
