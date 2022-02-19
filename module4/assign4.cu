@@ -15,13 +15,13 @@
 using namespace std;
 using namespace std::chrono;
 
-__global__
-void init(unsigned int *arr1, unsigned int *arr2)
+void init(unsigned int *arr1, unsigned int *arr2, unsigned int ARRAY_SIZE)
 {
-	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-	
-	arr1[thread_idx] = thread_idx;
-	arr2[thread_idx] = thread_idx % 4;	
+	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
+	{
+		arr1[i] = i;
+		arr2[i] = i % 4;	
+	}
 }
 
 void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2, 
@@ -29,7 +29,7 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 {
 	RESULT addR; const unsigned int ARRAY_SIZE = numBlocks * blockSize;
 	
-	Topadd(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
+	TopaddPageable(gpu_arr1, gpu_arr1, numBlocks, blockSize, &addR);
 	output(&addR, ARRAY_SIZE);
 
 }
@@ -38,7 +38,6 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 {
 	const unsigned int ARRAY_SIZE = totalThreads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
-	unsigned int ARRAY_SIZE_IN_BYTES1 = (sizeof(int) * (ARRAY_SIZE));
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
 	unsigned int cpu_arr1[ARRAY_SIZE];
@@ -50,12 +49,14 @@ void submain(unsigned int totalThreads, unsigned int  blockSize, unsigned int nu
 	
 	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
+
+	init(cpu_arr1, cpu_arr2);	
+
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
-	
-	/* Execute kernels */
-	init<<<numBlocks, blockSize>>>(gpu_arr1, gpu_arr2);						  
-	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);							  
+					  
+	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
+
 	cudaMemcpy(cpu_arr1,      gpu_arr1,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2,      gpu_arr2,      ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
 	cudaFree(gpu_arr1);
