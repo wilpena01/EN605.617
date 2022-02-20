@@ -129,19 +129,19 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	float delta1 = 0, delta2 =0;
-	cudaEvent_t start_time = get_time();	
+	float delta1 = 0, delta2 = 0;
+	cudaEvent_t start1 = get_time();	
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
-	cudaEvent_t end_time = get_time();	
+	cudaEvent_t stop1 = get_time();	
 	cudaEventSynchronize(end_time);	
-	cudaEventElapsedTime(&delta1, start_time, end_time);
+	cudaEventElapsedTime(&delta1, start1, stop1);
 
 	
-	start_time = get_time();	
+	cudaEvent_t start2 = get_time();	
 	main_Pinned(totalThreads, numBlocks, blockSize);
-	end_time = get_time();
+	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(end_time);
-	cudaEventElapsedTime(&delta2, start_time, end_time);
+	cudaEventElapsedTime(&delta2, start2, stop2);
 	
 	outputTime(delta1,delta2);
 	return EXIT_SUCCESS;
