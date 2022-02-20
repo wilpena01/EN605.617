@@ -86,4 +86,12 @@ void outputTime(T duration1, T duration2)
 	    <<"\n######################################\n";
 }
 
+__host__ cudaEvent_t get_time(void)
+{
+	cudaEvent_t time;
+	cudaEventCreate(&time);
+	cudaEventRecord(time);
+	return time;
+}
+
 #endif
