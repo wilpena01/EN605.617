@@ -131,22 +131,20 @@ int main(int argc, char** argv)
 	
 	main_Pinned(totalThreads, numBlocks, blockSize); 
 
-
+	float delta1 = 0, delta2 =0;
 	cudaEvent_t start_time = get_time();	
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	cudaEvent_t end_time = get_time();	
-	cudaEventSynchronize(end_time);
-
-	float delta = 0;
-	cudaEventElapsedTime(&delta, start_time, end_time);
+	cudaEventSynchronize(end_time);	
+	cudaEventElapsedTime(&delta1, start_time, end_time);
 
 	
-	cudaEvent_t start_time = get_time();	
+	start_time = get_time();	
 	main_Pinned(totalThreads, numBlocks, blockSize);
-	cudaEvent_t end_time = get_time();
-	float delta = 0;
-	cudaEventElapsedTime(&delta, start_time, end_time);
+	end_time = get_time();
+	cudaEventSynchronize(end_time);
+	cudaEventElapsedTime(&delta2, start_time, end_time);
 	
-	outputTime(delta,delta);
+	outputTime(delta1,delta2);
 	return EXIT_SUCCESS;
 }
