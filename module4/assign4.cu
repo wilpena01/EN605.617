@@ -140,7 +140,7 @@ int main(int argc, char** argv)
 
 	
 	start_time = get_time();	
-	main_Pinned(totalThreads, numBlocks, blockSize);
+	main_Pegeable(totalThreads, numBlocks, blockSize);
 	end_time = get_time();
 	cudaEventSynchronize(end_time);
 	cudaEventElapsedTime(&delta2, start_time, end_time);
