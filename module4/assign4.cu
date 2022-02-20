@@ -129,7 +129,7 @@ int main(int argc, char** argv)
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
 	
-	main_Pinned(totalThreads, numBlocks, blockSize); 
+	//main_Pinned(totalThreads, numBlocks, blockSize); 
 
 	float delta1 = 0, delta2 =0;
 	cudaEvent_t start_time = get_time();	
