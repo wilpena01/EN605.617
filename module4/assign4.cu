@@ -133,14 +133,14 @@ int main(int argc, char** argv)
 	cudaEvent_t start1 = get_time();	
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	cudaEvent_t stop1 = get_time();	
-	cudaEventSynchronize(end_time);	
+	cudaEventSynchronize(stop1);	
 	cudaEventElapsedTime(&delta1, start1, stop1);
 
 	
 	cudaEvent_t start2 = get_time();	
 	main_Pinned(totalThreads, numBlocks, blockSize);
 	cudaEvent_t stop2 = get_time();	
-	cudaEventSynchronize(end_time);
+	cudaEventSynchronize(stop2);
 	cudaEventElapsedTime(&delta2, start2, stop2);
 	
 	outputTime(delta1,delta2);
