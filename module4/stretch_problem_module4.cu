@@ -19,16 +19,14 @@ void print_results(unsigned int *cpu_text, unsigned int *cpu_key,
 	{
 		cout<<static_cast<char>(cpu_text[i]);
 	}
-	cout<<"\nkey msg: ";
-	for(int i=0; i<array_size; i++)
-	{
-		cout<<static_cast<char>(cpu_key[i]);
-	}
+	cout<<"\nkey msg: "<<static_cast<char>(cpu_key[i]);
+	
 		cout<<"\nncrypted msg: ";
 	for(int i=0; i<array_size; i++)
 	{
 		cout<<static_cast<char>(cpu_result[i]);
 	}
+	cout<<endl;
 	
 }
 __global__ void encrypt(unsigned int *text, unsigned int *key, unsigned int *result) 
