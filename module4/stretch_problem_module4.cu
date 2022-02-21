@@ -16,6 +16,7 @@
 unsigned int get_data_from_file(unsigned int *cpu_text, unsigned int *cpu_key,
 								FILE *input_fp, FILE *key_fp, int array_size)
 {
+	//import data from the msg file and the key file
 	int array_size_in_bytes = (sizeof(unsigned int) * (array_size));
 	char temp;
 	unsigned int idx=0; 
@@ -33,6 +34,7 @@ unsigned int get_data_from_file(unsigned int *cpu_text, unsigned int *cpu_key,
 void print_results(unsigned int *cpu_text, unsigned int *cpu_key, 
 			  unsigned int *cpu_result, int array_size, float duration)
 {
+	// print the result of the encryption
 	printf("Pageable Transfer- Duration: %fmsn\n", duration); 
 	cout<<"\nmsg: ";
 	for(int i=0; i<array_size; i++)
@@ -84,12 +86,13 @@ void freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_r
 float run_funs(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result,
 		 	   unsigned int num_blocks, unsigned int num_threads)
 {
-	 float duration = 0; 
+	//run the kerner and time the function
+	 float duration         = 0; 
 	 cudaEvent_t start_time = get_time();
 
 	 encrypt<<<num_blocks, num_threads>>>(gpu_text, gpu_key, gpu_result);
 
-	 cudaEvent_t end_time = get_time(); 
+	 cudaEvent_t end_time   = get_time(); 
 	 cudaEventSynchronize(end_time); 
 	 cudaEventElapsedTime(&duration, start_time, end_time);
 
@@ -99,18 +102,16 @@ float run_funs(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_
 void pageable_transfer_execution(int array_size, int threads_per_block, FILE *input_fp, FILE *key_fp) 
 { /* Calculate the size of the array*/ 
 
-	int array_size_in_bytes = (sizeof(unsigned int) * (array_size));
-	unsigned int *cpu_text = (unsigned int *) malloc(array_size_in_bytes); 
-	unsigned int *cpu_key = (unsigned int *) malloc(array_size_in_bytes); 
+	int array_size_in_bytes  = (sizeof(unsigned int) * (array_size));
+	unsigned int *cpu_text   = (unsigned int *) malloc(array_size_in_bytes); 
+	unsigned int *cpu_key    = (unsigned int *) malloc(array_size_in_bytes); 
 	unsigned int *cpu_result = (unsigned int *) malloc(array_size_in_bytes);
 
-	// attempt to read the next line and store 
-	// the value in the "temp" variable 
+	/* Read characters from the input and key files into the text and key arrays */ 
 	unsigned int idx = 0;
 	idx = get_data_from_file(cpu_text, cpu_key,input_fp,key_fp, array_size);
 
-	 /* Read characters from the input and key files into the text and key arrays respectively */ 
-	 // Code left out for brevity sake
+	 
 	 unsigned int *gpu_text, *gpu_key, *gpu_result;
 	 cudaMalloc((void **)&gpu_text, array_size_in_bytes); 
 	 cudaMalloc((void **)&gpu_key, array_size_in_bytes); 
@@ -139,13 +140,12 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 }
 
 
-/** * Prints the correct usage of this file * @name is the name of the executable (argv[0]) */ 
 void print_usage(char *name) {
 	printf("Usage: %s <total_num_threads> <threads_per_block> <input_file> <key_file>\n", name); 
 }
 
 /** 
-  * Performs simple setup functions before calling the pageable_transfer_execution() 
+  * Performs simple setup functions before calling the pageable_transfer() 
   * function. * Makes sure the files are valid, handles opening and closing of file pointers. 
   */ void pageable_transfer(int num_threads, int threads_per_block) { 
 
@@ -166,7 +166,6 @@ void print_usage(char *name) {
 
 	/** 
 	  * Entry point for excution. Checks command line arguments and 
-	  * opens input files, then passes execution to subordinate main_sub() 
 	  */
 int main(int argc, char *argv[]) { 
 	
