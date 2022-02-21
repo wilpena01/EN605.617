@@ -42,15 +42,12 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	// the value in the "temp" variable 
 	unsigned int idx = 0;
 	string temp;
-	while ( fscanf(input_fp, "%s", &temp ) == 1 && idx<array_size )  
+	while ( fscanf(input_fp, "%c", &temp ) == 1 && idx<array_size )  
 	{ 
-		for(int i=0; i<temp.length(); i++)
-		{
-			cpu_text[idx] = static_cast<unsigned int>(temp[i]);
-			cout<<static_cast<char>(cpu_text[idx])<<"\t"<<idx<<endl;;
-			idx++;
-		}
-		cpu_text[idx] = static_cast<char>(' ');
+		cpu_text[idx] = static_cast<unsigned int>(temp[i]);
+		cout<<static_cast<char>(cpu_text[idx])<<"\t"<<idx<<endl;;
+		idx++;
+
 	}
 	cout<<array_size<<endl;
 
