@@ -26,7 +26,8 @@ void init(unsigned int *arr1, unsigned int *arr2 , unsigned int ARRAY_SIZE)
 	}
 }
 
-void pushResult(unsigned int *cpu_Result, unsigned int *cpu_Block, 
+template <typename T>
+void pushResult(T *cpu_Result, unsigned int *cpu_Block, 
 unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 {
     //puch the kerner result into the finalresult structure
