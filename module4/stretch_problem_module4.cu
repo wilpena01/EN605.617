@@ -49,7 +49,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 		idx++;
 	}
 
-	fscanf(key_fp,"%u", &cpu_key);
+	fscanf(key_fp,"%u", cpu_key);
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
 	 // Code left out for brevity sake
 
