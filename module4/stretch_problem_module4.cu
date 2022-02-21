@@ -11,8 +11,6 @@
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
 
-…
-
 __global__ void encrypt(unsigned int *text, unsigned int *key, unsigned int *result) 
 { /* Calculate the current index */ 
 
