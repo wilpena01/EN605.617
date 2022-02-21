@@ -67,7 +67,7 @@ __global__ void encrypt(unsigned int *text, unsigned int *key, unsigned int *res
 	 /* adjust back to normal ascii (starting at MIN_PRINTABLE) and save to result */ 
 	result[idx] = static_cast<unsigned int>(cipherchar + MIN_PRINTABLE);
 }
-freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result,
+void freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result,
 		 unsigned int *cpu_text, unsigned int *cpu_key, unsigned int *cpu_result)
 {
 	/* Free the GPU memory */ 
