@@ -106,7 +106,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	 /* Copy the changed GPU memory back to the CPU */ 
 	 cudaMemcpy( cpu_result, gpu_result, array_size_in_bytes, cudaMemcpyDeviceToHost);
 	 
-	 print_results(cpu_text, cpu_key, cpu_result, array_size, idx);
+	 print_results(cpu_text, cpu_key, cpu_result, idx, duration);
 
 	 /* Free the GPU memory */ 
 	 cudaFree(gpu_text);
