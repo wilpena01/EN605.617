@@ -8,7 +8,7 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 			 unsigned int *Block, unsigned int *Thread)
 {
 	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-	Result[thread_idx] = arr1[thread_idx] + arr2[thread_idx];
+	Result[thread_idx] = static_cast<int>(arr1[thread_idx] + arr2[thread_idx]);
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;
 }
@@ -16,6 +16,7 @@ void add_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
 void Topadd(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
               unsigned int num_threads, RESULT *finalResult)
 {
+    //Preparation to do the addition in the kernel
 	const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	unsigned int cpu_Result[ARRAY_SIZE];

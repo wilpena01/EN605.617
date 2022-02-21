@@ -8,6 +8,9 @@ using namespace std;
 
 struct RESULT
 {
+    //structure used to store the final
+    //result of each mathematical
+    //calculation
 	vector<int> result;
 	vector<unsigned int> blockId;
 	vector<unsigned int> threadId;
@@ -15,6 +18,7 @@ struct RESULT
 
 void init(unsigned int *arr1, unsigned int *arr2 , unsigned int ARRAY_SIZE)
 {
+    //initialize the input arrays.
 	for(unsigned int i = 0; i<ARRAY_SIZE; i++)
 	{
 		arr1[i] = i;
@@ -25,6 +29,7 @@ void init(unsigned int *arr1, unsigned int *arr2 , unsigned int ARRAY_SIZE)
 void pushResult(unsigned int *cpu_Result, unsigned int *cpu_Block, 
 unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 {
+    //puch the kerner result into the finalresult structure
 	for(int i=0; i< ARRAY_SIZE; i++)
 	{
 		finalResult->result.push_back(cpu_Result[i]);
@@ -34,9 +39,10 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 
 }
 
-void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESULT *outsub, 
-            RESULT *outmul, RESULT *outmod, unsigned int arraySize)
+void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, 
+    RESULT *outsub, RESULT *outmul, RESULT *outmod, unsigned int arraySize)
 {
+    //output the result of every calculation
     unsigned int *in1, *in2;
     unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (arraySize));
 
@@ -73,17 +79,17 @@ void output(unsigned int *gpu_arr1, unsigned int *gpu_arr2, RESULT *outadd, RESU
     free(in2);
 }
 
-template <typename T>
-void outputTime(T duration1, T duration2)
+
+void outputTime(float duration)
 {
-    /* Iterate through the arrays and print */
-	cout<<"\nElapsed time with Pegable Memory = "<< duration1<< " seconds"
-	    <<"\nElapsed time with Pinned  Memory = "<< duration2<< " seconds"
+    /* print the duratino */
+	cout<<"\nElapsed time = "<< duration<< " msn"
 	    <<"\n######################################\n";
 }
 
 __host__ cudaEvent_t get_time(void)
 {
+    //get the current time.
 	cudaEvent_t time;
 	cudaEventCreate(&time);
 	cudaEventRecord(time);

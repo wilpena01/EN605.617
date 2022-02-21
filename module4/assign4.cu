@@ -26,7 +26,8 @@ void run_Funs(unsigned int *gpu_arr1, unsigned int *gpu_arr2,
 	RESULT addR, subR, mulR, modR; 
 	const unsigned int ARRAY_SIZE = numBlocks * blockSize;
 	
-
+	//Do the four mathematical calculation and output
+	//the result
 	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
@@ -42,15 +43,10 @@ void main_Pegeable(unsigned int totalThreads, unsigned int numBlocks,
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
-	unsigned int *cpu_arr1, *cpu_arr2;
+	unsigned int *cpu_arr1, *cpu_arr2, *gpu_arr1, *gpu_arr2;
 
 	cpu_arr1 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-	cpu_arr2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);
-	
-	/* Declare pointers for GPU based params */
-	unsigned int *gpu_arr1;
-	unsigned int *gpu_arr2;
-	
+	cpu_arr2 = (unsigned int *)malloc(ARRAY_SIZE_IN_BYTES);	
 	cudaMalloc((void **)&gpu_arr1,      ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2,      ARRAY_SIZE_IN_BYTES);
 
@@ -60,7 +56,8 @@ void main_Pegeable(unsigned int totalThreads, unsigned int numBlocks,
 	cudaMemcpy(gpu_arr2, cpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
 					  
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
-
+	
+	//free GPU and CPU memory
 	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
 	cudaFree(gpu_arr1);
@@ -76,14 +73,10 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
 	
 	/* Declare  statically arrays of ARRAY_SIZE each */
-	unsigned int *cpu_arr1, *cpu_arr2;
+	unsigned int *cpu_arr1, *cpu_arr2, *gpu_arr1, *gpu_arr2;
 
 	cudaMallocHost((unsigned int **)&cpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMallocHost((unsigned int **)&cpu_arr2, ARRAY_SIZE_IN_BYTES);
-
-	/* Declare pointers for GPU based params */
-	unsigned int *gpu_arr1, *gpu_arr2;
-	
 	cudaMalloc((void **)&gpu_arr1, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_arr2, ARRAY_SIZE_IN_BYTES);
 
@@ -94,6 +87,7 @@ void main_Pinned(unsigned int totalThreads, unsigned int numBlocks,
 
 	run_Funs(gpu_arr1, gpu_arr2, numBlocks, blockSize);	
 
+	//free GPU and CPU memory
 	cudaMemcpy(cpu_arr1, gpu_arr1, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_arr2, gpu_arr2, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);								  
 	cudaFree(gpu_arr1);
@@ -128,21 +122,15 @@ int main(int argc, char** argv)
 		cout<<"Warning: Total thread count is not evenly divisible by the block size\n";
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
-	
-	float delta1 = 0, delta2 = 0;
-	cudaEvent_t start1 = get_time();	
-	main_Pegeable(totalThreads, numBlocks, blockSize); 
-	cudaEvent_t stop1 = get_time();	
-	cudaEventSynchronize(stop1);	
-	cudaEventElapsedTime(&delta1, start1, stop1);
 
-	
-	cudaEvent_t start2 = get_time();	
-	main_Pinned(totalThreads, numBlocks, blockSize);
-	cudaEvent_t stop2 = get_time();	
-	cudaEventSynchronize(stop2);
-	cudaEventElapsedTime(&delta2, start2, stop2);
-	
-	outputTime(delta1,delta2);
+	//launch the main_Pegleble() or main_main_Pinned()
+	// and measure the execution time
+	float delta = 0;
+	cudaEvent_t start = get_time();	
+	main_Pegeable(totalThreads, numBlocks, blockSize); 
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop1);	
+	cudaEventElapsedTime(&delta, start, stop);
+	outputTime(delta);
 	return EXIT_SUCCESS;
 }
