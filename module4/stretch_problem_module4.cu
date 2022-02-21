@@ -67,7 +67,7 @@ __global__ void encrypt(unsigned int *text, unsigned int *key, unsigned int *res
 	 /* adjust back to normal ascii (starting at MIN_PRINTABLE) and save to result */ 
 	result[idx] = static_cast<unsigned int>(cipherchar + MIN_PRINTABLE);
 }
-freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result
+freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result,
 		 unsigned int *cpu_text, unsigned int *cpu_key, unsigned int *cpu_result)
 {
 	/* Free the GPU memory */ 
@@ -81,8 +81,8 @@ freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result
 	 free(cpu_result);
 }
 
-float run_funs(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result
-		 unsigned int num_blocks, unsigned int num_threads)
+float run_funs(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result,
+		 	   unsigned int num_blocks, unsigned int num_threads)
 {
 	 float duration = 0; 
 	 cudaEvent_t start_time = get_time();
