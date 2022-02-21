@@ -69,7 +69,6 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	}
 	cout<<array_size<<endl;
 
-	char temp;
 	fscanf(key_fp,"%c", &temp);
 	cpu_key[1] = static_cast<unsigned int>(temp);
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
