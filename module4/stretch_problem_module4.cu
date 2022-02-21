@@ -10,7 +10,7 @@
 #define MAX_PRINTABLE 64 
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
-unsigned int get_data_from_file(unsigned int *cpu_text, unsigned int *cpu_key
+unsigned int get_data_from_file(unsigned int *cpu_text, unsigned int *cpu_key,
 								FILE *input_fp, FILE *key_fp, int array_size)
 {
 	int array_size_in_bytes = (sizeof(unsigned int) * (array_size));
