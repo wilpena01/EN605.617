@@ -11,10 +11,11 @@
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
 unsigned int get_data_from_file(unsigned int *cpu_text, FILE *input_fp, 
-								FILE *key_fp)
+								FILE *key_fp, int array_size)
 {
+	int array_size_in_bytes = (sizeof(unsigned int) * (array_size));
 	char temp;
-	unsigned int idx=0;
+	unsigned int idx=0; 
 	while ( fscanf(input_fp, "%c", &temp ) == 1 && idx<array_size )  
 	{ 
 		cpu_text[idx] = static_cast<unsigned int>(temp);
@@ -74,7 +75,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 
 	// attempt to read the next line and store 
 	// the value in the "temp" variable 
-	unsigned int idx = get_data_from_file(cpu_text,input_fp,key_fp);
+	unsigned int idx = get_data_from_file(cpu_text,input_fp,key_fp, array_size);
 
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
 	 // Code left out for brevity sake
