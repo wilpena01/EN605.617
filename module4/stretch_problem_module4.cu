@@ -14,20 +14,20 @@
 void print_results(unsigned int *cpu_text, unsigned int *cpu_key, 
 			  unsigned int *cpu_result, int array_size)
 {
-	cout<<"msg: ";
+	cout<<"\nmsg: ";
 	for(int i=0; i<array_size; i++)
 	{
-		cout<<cpu_text[i];
+		cout<<static_cast<char>(cpu_text[i]);
 	}
 	cout<<"\nkey msg: ";
 	for(int i=0; i<array_size; i++)
 	{
-		cout<<cpu_key[i];
+		cout<<static_cast<char>(cpu_key[i]);
 	}
-		cout<<"\encrypted msg: ";
+		cout<<"\nncrypted msg: ";
 	for(int i=0; i<array_size; i++)
 	{
-		cout<<cpu_result[i];
+		cout<<static_cast<char>(cpu_result[i]);
 	}
 	
 }
