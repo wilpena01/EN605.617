@@ -29,11 +29,6 @@ unsigned int *cpu_Thread, RESULT *finalResult, unsigned int ARRAY_SIZE)
 		finalResult->result.push_back(cpu_Result[i]);
 		finalResult->blockId.push_back(cpu_Block[i]);
 		finalResult->threadId.push_back(cpu_Thread[i]);
-        /*
-        finalResult->result.insert(finalResult->result.begin()     + i,cpu_Result[i]);
-		finalResult->blockId.insert(finalResult->blockId.begin()   + i, cpu_Block[i]);
-		finalResult->threadId.insert(finalResult->threadId.begin() + i,cpu_Thread[i]);
-        */
 	}
 
 }
