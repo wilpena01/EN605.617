@@ -70,7 +70,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	cout<<array_size<<endl;
 
 	fscanf(key_fp,"%c", &temp);
-	cpu_key[1] = static_cast<unsigned int>(temp);
+	memset(cpu_key,static_cast<unsigned int>(temp),array_size_in_bytes);
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
 	 // Code left out for brevity sake
 
