@@ -10,6 +10,9 @@
 #define MAX_PRINTABLE 64 
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
+
+
+
 unsigned int get_data_from_file(unsigned int *cpu_text, unsigned int *cpu_key,
 								FILE *input_fp, FILE *key_fp, int array_size)
 {
@@ -38,7 +41,7 @@ void print_results(unsigned int *cpu_text, unsigned int *cpu_key,
 	}
 	cout<<"\nkey msg: "<<static_cast<char>(cpu_key[1]);
 	
-	cout<<"\nncrypted msg: ";
+	cout<<"\nencrypted msg: ";
 	for(int i=0; i<array_size; i++)
 	{
 		cout<<static_cast<char>(cpu_result[i]);
@@ -63,6 +66,34 @@ __global__ void encrypt(unsigned int *text, unsigned int *key, unsigned int *res
 
 	 /* adjust back to normal ascii (starting at MIN_PRINTABLE) and save to result */ 
 	result[idx] = static_cast<unsigned int>(cipherchar + MIN_PRINTABLE);
+}
+freeData(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result
+		 unsigned int *cpu_text, unsigned int *cpu_key, unsigned int *cpu_result)
+{
+	/* Free the GPU memory */ 
+	 cudaFree(gpu_text);
+	 cudaFree(gpu_key);
+	 cudaFree(gpu_result);
+
+	 /* Free the CPU memory */ 
+	 free(cpu_text);
+	 free(cpu_key);
+	 free(cpu_result);
+}
+
+float run_funs(unsigned int *gpu_text, unsigned int *gpu_key, unsigned int *gpu_result
+		 unsigned int num_blocks, unsigned int num_threads)
+{
+	 float duration = 0; 
+	 cudaEvent_t start_time = get_time();
+
+	 encrypt<<<num_blocks, num_threads>>>(gpu_text, gpu_key, gpu_result);
+
+	 cudaEvent_t end_time = get_time(); 
+	 cudaEventSynchronize(end_time); 
+	 cudaEventElapsedTime(&duration, start_time, end_time);
+
+	 return duration;
 }
 
 void pageable_transfer_execution(int array_size, int threads_per_block, FILE *input_fp, FILE *key_fp) 
@@ -94,29 +125,17 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	 const unsigned int num_threads = array_size/num_blocks;
 
 	 /* Execute the encryption kernel and keep track of start and end time for duration */ 
-	 float duration = 0; 
-	 cudaEvent_t start_time = get_time();
-
-	 encrypt<<<num_blocks, num_threads>>>(gpu_text, gpu_key, gpu_result);
-
-	 cudaEvent_t end_time = get_time(); 
-	 cudaEventSynchronize(end_time); 
-	 cudaEventElapsedTime(&duration, start_time, end_time);
+	 float dx = 0; 
+	 dx = run_funs(gpu_text, gpu_key, gpu_result, num_blocks, num_threads);
 
 	 /* Copy the changed GPU memory back to the CPU */ 
 	 cudaMemcpy( cpu_result, gpu_result, array_size_in_bytes, cudaMemcpyDeviceToHost);
-	 
-	 print_results(cpu_text, cpu_key, cpu_result, idx, duration);
+	 print_results(cpu_text, cpu_key, cpu_result, idx, dx);
 
-	 /* Free the GPU memory */ 
-	 cudaFree(gpu_text);
-	 cudaFree(gpu_key);
-	 cudaFree(gpu_result);
+	/* Free the CPU & GPU memory */ 
+	freeData(gpu_text, gpu_key, gpu_result, 
+			 cpu_text, cpu_key, cpu_result);
 
-	 /* Free the CPU memory */ 
-	 free(cpu_text);
-	 free(cpu_key);
-	 free(cpu_result);
 }
 
 
