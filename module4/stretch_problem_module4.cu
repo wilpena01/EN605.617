@@ -79,7 +79,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	 cudaMemcpy( cpu_result, gpu_result, array_size_in_bytes, cudaMemcpyDeviceToHost);
 
 	 printf("Pageable Transfer- Duration: %fmsn\n", duration); 
-	 print_encryption_results(cpu_text, cpu_key, cpu_result, array_size);
+	 //print_encryption_results(cpu_text, cpu_key, cpu_result, array_size);
 
 	 /* Free the GPU memory */ 
 	 cudaFree(gpu_text);
