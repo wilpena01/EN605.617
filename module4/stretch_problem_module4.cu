@@ -52,6 +52,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
 	 // Code left out for brevity sake
 
+	 unsigned int *gpu_text, *gpu_key, *gpu_result;
 	 cudaMalloc((void **)&gpu_text, array_size_in_bytes); 
 	 cudaMalloc((void **)&gpu_key, array_size_in_bytes); 
 	 cudaMalloc((void **)&gpu_result, array_size_in_bytes);
