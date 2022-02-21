@@ -19,9 +19,9 @@ void print_results(unsigned int *cpu_text, unsigned int *cpu_key,
 	{
 		cout<<static_cast<char>(cpu_text[i]);
 	}
-	cout<<"\nkey msg: "<<static_cast<char>(cpu_key[i]);
+	cout<<"\nkey msg: "<<static_cast<char>(cpu_key[1]);
 	
-		cout<<"\nncrypted msg: ";
+	cout<<"\nncrypted msg: ";
 	for(int i=0; i<array_size; i++)
 	{
 		cout<<static_cast<char>(cpu_result[i]);
