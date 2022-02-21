@@ -48,7 +48,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 		cout<<static_cast<char>(cpu_text[idx])<<"\t"<<idx<<endl;;
 		idx++;
 	}
-	cout<<endl;
+	cout<<array_size<<endl;
 
 	fscanf(key_fp,"%u", cpu_key);
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
