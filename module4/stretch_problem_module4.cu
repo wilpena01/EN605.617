@@ -10,10 +10,26 @@
 #define MAX_PRINTABLE 64 
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
-
-void print_results(unsigned int *cpu_text, unsigned int *cpu_key, 
-			  unsigned int *cpu_result, int array_size)
+unsigned int get_data_from_file(unsigned int *cpu_text, FILE *input_fp, 
+								FILE *key_fp)
 {
+	char temp;
+	unsigned int idx=0;
+	while ( fscanf(input_fp, "%c", &temp ) == 1 && idx<array_size )  
+	{ 
+		cpu_text[idx] = static_cast<unsigned int>(temp);
+		idx++;
+	}
+
+	fscanf(key_fp,"%c", &temp);
+	memset(cpu_key,static_cast<unsigned int>(temp),array_size_in_bytes);
+
+	return idx;
+}
+void print_results(unsigned int *cpu_text, unsigned int *cpu_key, 
+			  unsigned int *cpu_result, int array_size, float duration)
+{
+	printf("Pageable Transfer- Duration: %fmsn\n", duration); 
 	cout<<"\nmsg: ";
 	for(int i=0; i<array_size; i++)
 	{
@@ -58,22 +74,10 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 
 	// attempt to read the next line and store 
 	// the value in the "temp" variable 
-	unsigned int idx = 0;
-	char temp;
-	while ( fscanf(input_fp, "%c", &temp ) == 1 && idx<array_size )  
-	{ 
-		cpu_text[idx] = static_cast<unsigned int>(temp);
-		cout<<static_cast<char>(cpu_text[idx])<<"\t"<<idx<<endl;;
-		idx++;
+	unsigned int idx = get_data_from_file(cpu_text,input_fp,key_fp);
 
-	}
-	cout<<array_size<<endl;
-
-	fscanf(key_fp,"%c", &temp);
-	memset(cpu_key,static_cast<unsigned int>(temp),array_size_in_bytes);
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
 	 // Code left out for brevity sake
-
 	 unsigned int *gpu_text, *gpu_key, *gpu_result;
 	 cudaMalloc((void **)&gpu_text, array_size_in_bytes); 
 	 cudaMalloc((void **)&gpu_key, array_size_in_bytes); 
@@ -99,8 +103,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 
 	 /* Copy the changed GPU memory back to the CPU */ 
 	 cudaMemcpy( cpu_result, gpu_result, array_size_in_bytes, cudaMemcpyDeviceToHost);
-
-	 printf("Pageable Transfer- Duration: %fmsn\n", duration); 
+	 
 	 print_results(cpu_text, cpu_key, cpu_result, idx);
 
 	 /* Free the GPU memory */ 
