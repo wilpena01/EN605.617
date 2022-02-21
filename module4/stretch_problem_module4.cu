@@ -11,6 +11,26 @@
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
 
+void print_results(unsigned int cpu_text, unsigned int cpu_key, 
+			  unsigned int cpu_result, int array_size)
+{
+	cout<<"msg: ";
+	for(int i=0; i<array_size; i++)
+	{
+		cout<<cpu_text[i];
+	}
+	cout<<"\nkey msg: ";
+	for(int i=0; i<array_size; i++)
+	{
+		cout<<cpu_key[i];
+	}
+		cout<<"\encrypted msg: ";
+	for(int i=0; i<array_size; i++)
+	{
+		cout<<cpu_result[i];
+	}
+	
+}
 __global__ void encrypt(unsigned int *text, unsigned int *key, unsigned int *result) 
 { /* Calculate the current index */ 
 
@@ -82,7 +102,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	 cudaMemcpy( cpu_result, gpu_result, array_size_in_bytes, cudaMemcpyDeviceToHost);
 
 	 printf("Pageable Transfer- Duration: %fmsn\n", duration); 
-	 //print_encryption_results(cpu_text, cpu_key, cpu_result, array_size);
+	 print_results(cpu_text, cpu_key, cpu_result, array_size);
 
 	 /* Free the GPU memory */ 
 	 cudaFree(gpu_text);
