@@ -41,7 +41,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	// attempt to read the next line and store 
 	// the value in the "temp" variable 
 	unsigned int idx = 0;
-	string temp;
+	char temp;
 	while ( fscanf(input_fp, "%c", &temp ) == 1 && idx<array_size )  
 	{ 
 		cpu_text[idx] = static_cast<unsigned int>(temp[i]);
