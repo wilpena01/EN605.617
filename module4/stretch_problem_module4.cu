@@ -11,8 +11,8 @@
 #define MIN_PRINTABLE 128 
 #define NUM_ALPHA MAX_PRINTABLE - MIN_PRINTABLE
 
-void print_results(unsigned int cpu_text, unsigned int cpu_key, 
-			  unsigned int cpu_result, int array_size)
+void print_results(unsigned int *cpu_text, unsigned int *cpu_key, 
+			  unsigned int *cpu_result, int array_size)
 {
 	cout<<"msg: ";
 	for(int i=0; i<array_size; i++)
