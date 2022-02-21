@@ -76,7 +76,7 @@ void pageable_transfer_execution(int array_size, int threads_per_block, FILE *in
 	// attempt to read the next line and store 
 	// the value in the "temp" variable 
 	unsigned int idx = 0;
-	idx = get_data_from_file(cpu_text, cpu_keyinput_fp,key_fp, array_size);
+	idx = get_data_from_file(cpu_text, cpu_key,input_fp,key_fp, array_size);
 
 	 /* Read characters from the input and key files into the text and key arrays respectively */ 
 	 // Code left out for brevity sake
