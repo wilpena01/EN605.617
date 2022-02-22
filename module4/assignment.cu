@@ -132,9 +132,9 @@ int main(int argc, char** argv)
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta1, start, stop);
 
-	cudaEvent_t start = get_time();	
+	start = get_time();	
 	main_Pinned(totalThreads, numBlocks, blockSize); 
-	cudaEvent_t stop = get_time();	
+	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
 	outputTime(delta1,delta2);
