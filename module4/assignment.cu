@@ -125,7 +125,7 @@ int main(int argc, char** argv)
 
 	//launch the main_Pegleble() or main_main_Pinned()
 	// and measure the execution time
-	float delta1 = 0 delta2=0;
+	float delta1 = 0, delta2 = 0;
 	cudaEvent_t start = get_time();	
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	cudaEvent_t stop = get_time();	
