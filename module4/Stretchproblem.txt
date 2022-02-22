@@ -1,0 +1,12 @@
+Good:
+- good initialization if no input is passed.
+- The way he measure the execution time
+- The implementation of the pageable memory allocation is correct.
+- Does not check for invalid inputs.
+- Properly freed the data from the GPU
+
+
+Bad:
+- Do not initialize the number of block and the number of threads in case no input is provided.
+- The pinned memory allocation is wrong.
+- Did not have any memory location in the Host side.
