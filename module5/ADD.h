@@ -54,18 +54,18 @@ void add_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 	__syncthreads();	
 }
 
-void runKernerAdd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
+void runsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
                   UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
 			      UInt32 *gpu_Thread)
 {
-	float delta1 = 0, delta2=0, delta3=0, delta4=0;
+	
+	RESULT ResultConst;
 	cudaEvent_t start1 = get_time();
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 	cudaEvent_t stop1 = get_time();	
 	cudaEventSynchronize(stop1);	
 	cudaEventElapsedTime(&delta1, start1, stop1);
-
 
 	cudaEvent_t start2 = get_time();
 	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
@@ -77,18 +77,24 @@ void runKernerAdd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cout<<"Addition Elapse Time:\n";
 	outputTime(delta1,delta2);
 
-	start1 = get_time();
+
+}
+
+void runConstMem()
+{
+	float delta1 = 0, delta2=0;
+	cudaEvent_t start1 = get_time();
 	add_literal<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
-	stop1 = get_time();	
+	cudaEvent_t stop1 = get_time();	
 	cudaEventSynchronize(stop1);	
 	cudaEventElapsedTime(&delta3, start1, stop1);
 
 
-	start2 = get_time();
+	cudaEvent_t start2 = get_time();
 	add_const<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
-	stop2 = get_time();	
+	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta4, start2, stop2);
 
@@ -109,7 +115,7 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	runKernerAdd(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
+	runsharedMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
 			     gpu_Block, gpu_Thread);
 
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
