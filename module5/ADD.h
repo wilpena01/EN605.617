@@ -40,8 +40,8 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	UInt32 cpu_Thread[ARRAY_SIZE];	
 	
 	UInt32 *gpu_Result, *gpu_Block, *gpu_Thread;
-	
-    allocMemDevice(gpu_Result, gpu_Block, gpu_Thread);
+
+    allocMemDevice(gpu_Result, gpu_Block, gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
 	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
