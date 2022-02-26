@@ -95,8 +95,8 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 void outputTime(float duration1, float duration2)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time using Pegeable memory allocation = "<< duration1<< " msn"
-        <<"\nElapsed Time using Pinned memory allocation = "<< duration2<< " msn"
+	cout<<"\nElapsed Time using global memory allocation = "<< duration1<< " msn"
+        <<"\nElapsed Time using shared memory allocation = "<< duration2<< " msn"
 	    <<"\n######################################\n";
 }
 

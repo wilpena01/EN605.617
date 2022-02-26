@@ -39,7 +39,7 @@ void runKernerAdd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 {
 	float delta1 = 0, delta2=0;
 	cudaEvent_t start1 = get_time();
-	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 	cudaEvent_t stop1 = get_time();	
 	cudaEventSynchronize(stop1);	
@@ -53,6 +53,7 @@ void runKernerAdd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta2, start2, stop2);
 
+	cout<<"Addition Elapse Time:\n";
 	outputTime(delta1,delta2);
 
 }
