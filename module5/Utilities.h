@@ -9,6 +9,9 @@ using namespace std;
 typedef unsigned int UInt32;
 typedef int Int32;
 
+__constant__  static const UInt32 Input1 = 5;
+__constant__  static const UInt32 Input2 = 5;
+
 struct RESULT
 {
     //structure used to store the final
