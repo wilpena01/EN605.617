@@ -80,7 +80,9 @@ void runsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 
 }
 
-void runConstMem()
+void runConstMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
+                  UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
+			      UInt32 *gpu_Thread)
 {
 	float delta1 = 0, delta2=0;
 	cudaEvent_t start1 = get_time();
