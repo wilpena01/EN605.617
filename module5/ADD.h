@@ -2,6 +2,7 @@
 #define ADD_H
 
 #include "Utilities.h"
+#include <string>
 
 __constant__  static const UInt32 Input1 = 5;
 __constant__  static const UInt32 Input2 = 5;
@@ -75,7 +76,7 @@ void runsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaEventElapsedTime(&delta2, start2, stop2);
 
 	string str[] ={"global", "shared"};
-	outputTime(delta1,delta2, "shared");
+	outputTime(delta1,delta2, str);
 }
 
 void runConstMem(UInt32 num_blocks, UInt32 num_threads, UInt32 *gpu_Result, 
