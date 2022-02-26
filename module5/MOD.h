@@ -2,9 +2,30 @@
 #define MOD_H
 
 #include "Utilities.h"
+#include <string>
 
 __global__
-void mod_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+void mod_Const(UInt32 *Block, UInt32 *Thread)
+{
+	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+	UInt32 result = (Input1 + thread_idx) % Input2;
+	Block[thread_idx]  = blockIdx.x;
+	Thread[thread_idx] = threadIdx.x;	
+}
+
+__global__
+void mod_literal(UInt32 *Block, UInt32 *Thread)
+{
+	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+	UInt32 result = (5 + thread_idx) % 5;
+	Block[thread_idx]  = blockIdx.x;
+	Thread[thread_idx] = threadIdx.x;	
+}
+
+__global__
+void add_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -40,7 +61,7 @@ void mod_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 	__syncthreads();
 }
 
-void runKernerMod(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
+void modRunsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
                   UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
 			      UInt32 *gpu_Thread)
 {
@@ -56,6 +77,26 @@ void runKernerMod(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaEvent_t start2 = get_time();
 	mod_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
+	cudaEvent_t stop2 = get_time();	
+	cudaEventSynchronize(stop2);	
+	cudaEventElapsedTime(&delta2, start2, stop2);
+
+	string str[] ={"global", "shared"};
+	outputTime(delta1,delta2, str);
+}
+
+void modRunConstMem(UInt32 num_blocks, UInt32 num_threads, 
+				 UInt32 *gpu_Block, UInt32 *gpu_Thread)
+{
+	float delta1 = 0, delta2=0;
+	cudaEvent_t start1 = get_time();
+	mod_literal<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
+	cudaEvent_t stop1 = get_time();	
+	cudaEventSynchronize(stop1);	
+	cudaEventElapsedTime(&delta1, start1, stop1);
+
+	cudaEvent_t start2 = get_time();
+	mod_Const<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
 	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta2, start2, stop2);
@@ -79,8 +120,9 @@ void Topmod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
 	cout<<"Addition Elapse Time:\n";
-	runKernerMod(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
-			     gpu_Block, gpu_Thread);									 
+	modRunsharedMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
+			     gpu_Block, gpu_Thread);
+	modRunConstMem(num_blocks, num_threads, gpu_Block, gpu_Thread);
 	cout<<"\n######################################\n";
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
