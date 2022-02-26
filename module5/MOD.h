@@ -26,9 +26,8 @@ void mod_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 
 	__shared__ UInt32 g_input1;
 	__shared__ UInt32 g_input2;
-
-	g_input1 = arr1[thread_idx];
-	g_input2 = arr2[thread_idx];
+	
+	copy_data_to_shared(arr1,arr2,g_input1,g_input2,thread_idx);
 
 	if(g_input2 != 0)
 		Result[thread_idx] = g_input1 % g_input2;
