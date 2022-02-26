@@ -35,13 +35,8 @@ void Topmul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
     //Preparation to do the multiplication in the kernel
 	const UInt32 ARRAY_SIZE     = num_blocks * num_threads;
 	UInt32 ARRAY_SIZE_IN_BYTES  = (sizeof(UInt32) * (ARRAY_SIZE));
-	UInt32 cpu_Result[ARRAY_SIZE];
-	UInt32 cpu_Block[ARRAY_SIZE];
-	UInt32 cpu_Thread[ARRAY_SIZE];	
-	
-	UInt32 *gpu_Result;
-	UInt32 *gpu_Block;
-	UInt32 *gpu_Thread;
+	UInt32 cpu_Result[ARRAY_SIZE], cpu_Block[ARRAY_SIZE], cpu_Thread[ARRAY_SIZE];	
+	UInt32 *gpu_Result, *gpu_Block, *gpu_Thread;
 
 	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
