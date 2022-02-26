@@ -77,18 +77,18 @@ void runKernerAdd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cout<<"Addition Elapse Time:\n";
 	outputTime(delta1,delta2);
 
-	cudaEvent_t start1 = get_time();
+	start1 = get_time();
 	add_literal<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
-	cudaEvent_t stop1 = get_time();	
+	stop1 = get_time();	
 	cudaEventSynchronize(stop1);	
 	cudaEventElapsedTime(&delta3, start1, stop1);
 
 
-	cudaEvent_t start2 = get_time();
+	start2 = get_time();
 	add_const<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
-	cudaEvent_t stop2 = get_time();	
+	stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta4, start2, stop2);
 
