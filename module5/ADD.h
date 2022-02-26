@@ -27,6 +27,8 @@ void add_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 	Result[thread_idx] = g_input1 + g_input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;
+
+	__syncthreads();
 }
 
 void runKerner(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
@@ -51,7 +53,7 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
