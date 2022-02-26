@@ -5,7 +5,7 @@
 #include <chrono>
 
 using namespace std;
-typedef unsigned int UInt32;
+typedef UInt32 UInt32;
 typedef int Int32;
 
 struct RESULT
@@ -35,7 +35,7 @@ UInt32 *cpu_Thread, RESULT *finalResult, UInt32 ARRAY_SIZE)
     //puch the kerner result into the finalresult structure
 	for(int i=0; i< ARRAY_SIZE; i++)
 	{
-		finalResult->result.push_back(cpu_Result[i]);
+		finalResult->result.push_back(static_cast<int>(cpu_Result[i]));
 		finalResult->blockId.push_back(cpu_Block[i]);
 		finalResult->threadId.push_back(cpu_Thread[i]);
 	}

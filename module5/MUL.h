@@ -4,28 +4,54 @@
 #include "Utilities.h"
 
 __global__
-void mul_arr(unsigned int *arr1, unsigned int *arr2, unsigned int *Result,
-			 unsigned int *Block, unsigned int *Thread)
+void mul_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+			 UInt32 *Block, UInt32 *Thread)
 {
-	const unsigned int thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	Result[thread_idx] = static_cast<int>(arr1[thread_idx] * arr2[thread_idx]);
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;
 }
 
-void Topmul(unsigned int *gpu_arr1, unsigned int *gpu_arr2,unsigned int num_blocks, 
-              unsigned int num_threads, RESULT *finalResult)
+__device__ 
+void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2,	UInt32 &in1, UInt32 &in2, 
+									const UInt32 idx)
+{
+	in1 = arr1[idx];
+	in2 = arr2[idx];
+
+	__syncthreads();
+}
+
+__global__
+void add_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+			 UInt32 *Block, UInt32 *Thread)
+{
+	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+	__shared__ UInt32 g_input1;
+	__shared__ UInt32 g_input2;
+
+	copy_data_to_shared(arr1, arr2, g_input1, g_input2, thread_idx);
+	
+	Result[thread_idx] = g_input1 * g_input2;
+	Block[thread_idx]  = blockIdx.x;
+	Thread[thread_idx] = threadIdx.x;
+}
+
+void Topmul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks, 
+              UInt32 num_threads, RESULT *finalResult)
 {
     //Preparation to do the multiplication in the kernel
-	const unsigned int ARRAY_SIZE     = num_blocks * num_threads;
-	unsigned int ARRAY_SIZE_IN_BYTES  = (sizeof(unsigned int) * (ARRAY_SIZE));
-	unsigned int cpu_Result[ARRAY_SIZE];
-	unsigned int cpu_Block[ARRAY_SIZE];
-	unsigned int cpu_Thread[ARRAY_SIZE];	
+	const UInt32 ARRAY_SIZE     = num_blocks * num_threads;
+	UInt32 ARRAY_SIZE_IN_BYTES  = (sizeof(UInt32) * (ARRAY_SIZE));
+	UInt32 cpu_Result[ARRAY_SIZE];
+	UInt32 cpu_Block[ARRAY_SIZE];
+	UInt32 cpu_Thread[ARRAY_SIZE];	
 	
-	unsigned int *gpu_Result;
-	unsigned int *gpu_Block;
-	unsigned int *gpu_Thread;
+	UInt32 *gpu_Result;
+	UInt32 *gpu_Block;
+	UInt32 *gpu_Thread;
 
 	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
