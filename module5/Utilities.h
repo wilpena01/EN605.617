@@ -100,6 +100,17 @@ void outputTime(float duration1, float duration2)
 	    <<"\n######################################\n";
 }
 
+void outputTime(float duration1, float duration2, 
+				float duration3, float duration4)
+{
+    /* print the duratino */
+	cout<<"\nElapsed Time using global memory allocation = "<< duration1<< " msn"
+        <<"\nElapsed Time using shared memory allocation = "<< duration2<< " msn"
+		<<"\nElapsed Time using literal memory allocation = "<< duration3<< " msn"
+        <<"\nElapsed Time using constant memory allocation = "<< duration4<< " msn"
+	    <<"\n######################################\n";
+}
+
 __host__ cudaEvent_t get_time(void)
 {
     //get the current time.
