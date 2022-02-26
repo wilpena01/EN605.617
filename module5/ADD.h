@@ -59,7 +59,6 @@ void runsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 			      UInt32 *gpu_Thread)
 {
 	float delta1 = 0, delta2=0;
-	RESULT ResultConst;
 	cudaEvent_t start1 = get_time();
 	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
