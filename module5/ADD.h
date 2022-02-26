@@ -117,8 +117,7 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cout<<"Addition Elapse Time:\n";
 	runsharedMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
 			     gpu_Block, gpu_Thread);
-	runConstMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
-			     gpu_Block, gpu_Thread);
+	runConstMem(num_blocks, num_threads, gpu_Result, gpu_Block, gpu_Thread);
 	cout<<"\n######################################\n";
 
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
