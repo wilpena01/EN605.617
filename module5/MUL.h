@@ -31,6 +31,16 @@ void mul_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 	__syncthreads();
 }
 
+void runKerner(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
+               UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
+			   UInt32 *gpu_Thread)
+{
+
+	mul_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
+
+}
+
 void Topmul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks, 
               UInt32 num_threads, RESULT *finalResult)
 {
@@ -44,8 +54,8 @@ void Topmul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	mul_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
-										 gpu_Block, gpu_Thread);
+	runKerner(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
+			  gpu_Block, gpu_Thread);
 
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
