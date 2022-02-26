@@ -122,15 +122,6 @@ int main(int argc, char** argv)
 		cout<<"Warning: Total thread count is not evenly divisible by the block size\n";
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
-
-	//launch the main_Pegleble() or main_main_Pinned()
-	// and measure the execution time
-	float delta1 = 0, delta2 = 0;
-	cudaEvent_t start = get_time();	
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
-	cudaEvent_t stop = get_time();	
-	cudaEventSynchronize(stop);	
-	cudaEventElapsedTime(&delta1, start, stop);
-
 	return EXIT_SUCCESS;
 }
