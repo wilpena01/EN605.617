@@ -9,11 +9,11 @@ __constant__  static const UInt32 Input2 = 5;
 
 
 __global__
-void add_Const(UInt32 *Result, UInt32 *Block, UInt32 *Thread)
+void add_Const(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-	Result[thread_idx] = (Input1 + thread_idx) + Input2;
+	UInt32 result = (Input1 + thread_idx) + Input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
 }
@@ -23,7 +23,7 @@ void add_literal(UInt32 *Result, UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-	Result[thread_idx] = (5 + thread_idx) + 5;
+	UInt32 result = (5 + thread_idx) + 5;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
 }
@@ -90,8 +90,7 @@ void runConstMem(UInt32 num_blocks, UInt32 num_threads,
 	cudaEventElapsedTime(&delta1, start1, stop1);
 
 	cudaEvent_t start2 = get_time();
-	add_Const<<<num_blocks, num_threads>>>(gpu_Result, 
-										   gpu_Block, gpu_Thread);
+	add_Const<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
 	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta2, start2, stop2);
