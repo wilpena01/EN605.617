@@ -6,6 +6,7 @@
 __constant__  static const UInt32 Input1 = 5;
 __constant__  static const UInt32 Input2 = 5;
 
+/*
 __global__
 void add_const(UInt32 *Result, UInt32 *Block, UInt32 *Thread)
 {
@@ -14,7 +15,7 @@ void add_const(UInt32 *Result, UInt32 *Block, UInt32 *Thread)
 	Result[thread_idx] = (Input1 + thread_idx) + Input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
-}
+}*/
 
 __global__
 void add_literal(UInt32 *Result, UInt32 *Block, UInt32 *Thread)
