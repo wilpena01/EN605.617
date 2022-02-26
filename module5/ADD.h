@@ -14,7 +14,8 @@ void add_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 }
 
 
-__device__ void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2,	UInt32 &in1, UInt32 &in2, 
+__device__ 
+void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2,	UInt32 &in1, UInt32 &in2, 
 									const UInt32 idx)
 {
 	in1 = arr1[idx];
@@ -55,7 +56,7 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	add_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
