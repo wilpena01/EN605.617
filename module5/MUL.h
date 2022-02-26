@@ -13,18 +13,8 @@ void mul_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 	Thread[thread_idx] = threadIdx.x;
 }
 
-__device__ 
-void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2,	UInt32 &in1, UInt32 &in2, 
-									const UInt32 idx)
-{
-	in1 = arr1[idx];
-	in2 = arr2[idx];
-
-	__syncthreads();
-}
-
 __global__
-void add_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+void mul_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
