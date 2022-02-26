@@ -60,8 +60,8 @@ void runKernerMod(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta2, start2, stop2);
 
-	cout<<"Modulo Elapse Time:\n";
-	outputTime(delta1,delta2);
+	string str[] ={"literal", "constant"};
+	outputTime(delta1,delta2, str);
 
 }
 
@@ -78,10 +78,10 @@ void Topmod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-
+	cout<<"Addition Elapse Time:\n";
 	runKernerMod(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
 			     gpu_Block, gpu_Thread);									 
-
+	cout<<"\n######################################\n";
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
