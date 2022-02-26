@@ -118,6 +118,7 @@ void allocMemDevice(T *gpu_Result, UInt32 *gpu_Block, UInt32 *gpu_Thread,
 	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
+	cout<<"entre aqui \n \n \n \n \n"<<endl;
 }
 
 #endif
