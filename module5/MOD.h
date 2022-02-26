@@ -37,6 +37,8 @@ void mod_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;
+
+	__syncthreads();
 }
 
 void Topmod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks, 
