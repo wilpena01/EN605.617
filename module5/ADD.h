@@ -41,7 +41,7 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	
 	UInt32 *gpu_Result, *gpu_Block, *gpu_Thread;
 
-    allocMemDevice(gpu_Result, gpu_Block, gpu_Thread, ARRAY_SIZE_IN_BYTES);
+    allocMemDevicee(gpu_Result, gpu_Block, gpu_Thread, ARRAY_SIZE_IN_BYTES);
 	//cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
 	//cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	//cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
