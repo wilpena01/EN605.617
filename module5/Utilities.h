@@ -19,11 +19,11 @@ struct RESULT
 };
 
 __device__ 
-void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *in1, UInt32 *in2, 
+void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2, UInt32 &in1, UInt32 &in2, 
 						const UInt32 idx)
 {
-	*in1 = arr1[idx];
-	*in2 = arr2[idx];
+	in1 = arr1[idx];
+	in2 = arr2[idx];
 	__syncthreads();
 }
 
