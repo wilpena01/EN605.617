@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <chrono>
+#include <string>
 
 using namespace std;
 typedef unsigned int UInt32;
@@ -92,12 +93,12 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 }
 
 
-void outputTime(float duration1, float duration2)
+void outputTime(float duration1, float duration2, string str)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time using global memory allocation = "<< duration1<< " msn"
-        <<"\nElapsed Time using shared memory allocation = "<< duration2<< " msn"
-	    <<"\n######################################\n";
+	cout<<"\nElapsed Time using "<<str<<" allocation = "<< duration1<< " msn"
+        <<"\nElapsed Time using shared memory allocation = "<< duration2<< " msn";
+	    
 }
 
 void outputTime(float duration1, float duration2, 
