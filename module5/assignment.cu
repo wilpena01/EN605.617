@@ -99,8 +99,8 @@ void main_Pinned(UInt32 totalThreads, UInt32 numBlocks,
 int main(int argc, char** argv)
 {
 	// read command line arguments
-	UInt32 totalThreads = 256;
-	UInt32 blockSize    = 256;
+	UInt32 totalThreads = 12;
+	UInt32 blockSize    = 12;
 	UInt32 numBlocks    = 1;
 	
 	if (argc >= 2) {
