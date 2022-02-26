@@ -5,7 +5,7 @@
 #include <string>
 
 __global__
-void add_Const(UInt32 *Block, UInt32 *Thread)
+void mul_Const(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
@@ -15,7 +15,7 @@ void add_Const(UInt32 *Block, UInt32 *Thread)
 }
 
 __global__
-void add_literal(UInt32 *Block, UInt32 *Thread)
+void mul_literal(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
@@ -25,7 +25,7 @@ void add_literal(UInt32 *Block, UInt32 *Thread)
 }
 
 __global__
-void add_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+void mul_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -82,13 +82,13 @@ void mulRunConstMem(UInt32 num_blocks, UInt32 num_threads,
 {
 	float delta1 = 0, delta2=0;
 	cudaEvent_t start1 = get_time();
-	add_literal<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
+	mul_literal<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
 	cudaEvent_t stop1 = get_time();	
 	cudaEventSynchronize(stop1);	
 	cudaEventElapsedTime(&delta1, start1, stop1);
 
 	cudaEvent_t start2 = get_time();
-	add_Const<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
+	mul_Const<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
 	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta2, start2, stop2);
