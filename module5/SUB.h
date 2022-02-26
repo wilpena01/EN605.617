@@ -25,7 +25,7 @@ void sub_literal(UInt32 *Block, UInt32 *Thread)
 }
 
 __global__
-void sub_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+void sub_arr(UInt32 *arr1, UInt32 *arr2, Int32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
