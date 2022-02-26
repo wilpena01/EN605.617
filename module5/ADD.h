@@ -77,7 +77,7 @@ void runsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cout<<"Addition Elapse Time:\n";
 	outputTime(delta1,delta2);
 }
-
+/*
 void runConstMem(UInt32 num_blocks, 
                   UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
 			      UInt32 *gpu_Thread)
@@ -90,6 +90,7 @@ void runConstMem(UInt32 num_blocks,
 	cudaEventSynchronize(stop1);	
 	cudaEventElapsedTime(&delta1, start1, stop1);
 
+
 	cudaEvent_t start2 = get_time();
 	add_const<<<num_blocks, num_threads>>>(gpu_Result, 
 										 gpu_Block, gpu_Thread);
@@ -100,7 +101,7 @@ void runConstMem(UInt32 num_blocks,
 	cout<<"Addition Elapse Time:\n";
 	outputTime(delta1,delta2);
 
-}
+}*/
 void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
               UInt32 num_threads, RESULT *finalResult)
 {
