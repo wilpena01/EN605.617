@@ -19,7 +19,7 @@ void add_Const(UInt32 *Block, UInt32 *Thread)
 }
 
 __global__
-void add_literal(UInt32 *Result, UInt32 *Block, UInt32 *Thread)
+void add_literal(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
