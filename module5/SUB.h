@@ -36,7 +36,7 @@ void Topsub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	const UInt32 ARRAY_SIZE     = num_blocks * num_threads;
 	UInt32 ARRAY_SIZE_IN_BYTES  = (sizeof(UInt32) * (ARRAY_SIZE));
     UInt32 ARRAY_SIZE_IN_BYTES1 = (sizeof(UInt32) * (ARRAY_SIZE));
-	         int cpu_Result[ARRAY_SIZE];
+	Int32  cpu_Result[ARRAY_SIZE];
 	UInt32 cpu_Block[ARRAY_SIZE];
 	UInt32 cpu_Thread[ARRAY_SIZE];	
 	

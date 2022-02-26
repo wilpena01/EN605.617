@@ -39,13 +39,9 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	UInt32 cpu_Block[ARRAY_SIZE];
 	UInt32 cpu_Thread[ARRAY_SIZE];	
 	
-	UInt32 *gpu_Result;
-	UInt32 *gpu_Block;
-	UInt32 *gpu_Thread;
-
-	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
-	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
+	UInt32 *gpu_Result, *gpu_Block, *gpu_Thread;
+	
+    allocMemDevice(gpu_Result, gpu_Block, gpu_Thread);
 
 	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);

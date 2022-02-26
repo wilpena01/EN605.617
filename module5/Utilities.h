@@ -19,7 +19,7 @@ struct RESULT
 };
 
 __device__ 
-void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2,	UInt32 &in1, UInt32 &in2, 
+void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2, UInt32 &in1, UInt32 &in2, 
 						const UInt32 idx)
 {
 	in1 = arr1[idx];
@@ -109,6 +109,14 @@ __host__ cudaEvent_t get_time(void)
 	cudaEventCreate(&time);
 	cudaEventRecord(time);
 	return time;
+}
+
+template <typename T>
+void allocMemDevice(T *gpu_Result, UInt32 *gpu_Block, UInt32 *gpu_Thread)
+{
+	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 }
 
 #endif
