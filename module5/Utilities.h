@@ -5,7 +5,7 @@
 #include <chrono>
 
 using namespace std;
-typedef UInt32 UInt32;
+typedef unsigned int UInt32;
 typedef int Int32;
 
 struct RESULT
