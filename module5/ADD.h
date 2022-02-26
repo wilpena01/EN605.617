@@ -31,7 +31,7 @@ void add_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 	cout<<"arr1["<<thread_idx<<"] = "<<arr1[thread_idx]<<"\n"
 	<<"arr2["<<thread_idx<<"] = "<<arr2[thread_idx]<<"\n"
 	<<"g_input1["<<thread_idx<<"] = "<<g_input1<<"\n"
-	<<"g_input2["<<thread_idx<<"] = "<<g_input2<<"\n"
+	<<"g_input2["<<thread_idx<<"] = "<<g_input2<<"\n";
 
 	
 }
