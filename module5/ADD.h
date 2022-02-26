@@ -31,7 +31,7 @@ void add_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 
 	__shared__ UInt32 g_input1;
 	__shared__ UInt32 g_input2;
-	copy_data_to_shared(arr1, arr2, g_input1, g_input2, thread_idx)
+	copy_data_to_shared(arr1, arr2, g_input1, g_input2, thread_idx);
 	Result[thread_idx] = g_input1 + g_input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;
