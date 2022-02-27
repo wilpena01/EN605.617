@@ -9,7 +9,7 @@ void mul_Const(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-	UInt32 result = (Input1 + thread_idx) + Input2;
+	UInt32 result = (Input1 + thread_idx) * Input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
 }
@@ -19,7 +19,7 @@ void mul_literal(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-	UInt32 result = (5 + thread_idx) + 5;
+	UInt32 result = (5 + thread_idx) * 5;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
 }

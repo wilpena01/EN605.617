@@ -115,7 +115,7 @@ void Topsub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	cout<<"Addition Elapse Time:\n";
+	cout<<"Subtraction Elapse Time:\n";
 	subRunsharedMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
 			     gpu_Block, gpu_Thread);
 	subRunConstMem(num_blocks, num_threads, gpu_Block, gpu_Thread);
