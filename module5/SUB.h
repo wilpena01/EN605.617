@@ -12,6 +12,7 @@ void sub_Const(UInt32 *Block, UInt32 *Thread)
 	UInt32 result = (Input1 + thread_idx) - Input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
+	free(&result);
 }
 
 __global__
@@ -21,7 +22,8 @@ void sub_literal(UInt32 *Block, UInt32 *Thread)
 
 	UInt32 result = (5 + thread_idx) - 5;
 	Block[thread_idx]  = blockIdx.x;
-	Thread[thread_idx] = threadIdx.x;	
+	Thread[thread_idx] = threadIdx.x;
+	free(&result);	
 }
 
 __global__
