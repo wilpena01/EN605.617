@@ -96,11 +96,11 @@ void main_Pinned(UInt32 totalThreads, UInt32 numBlocks,
 	cudaFreeHost(cpu_arr2);
 }
 
-int main(int argc, char** argv)
+int main()
 {
 	// read command line arguments
-	UInt32 totalThreads = 12;
-	UInt32 blockSize    = 12;
+	UInt32 totalThreads = 256;
+	UInt32 blockSize    = 256;
 	UInt32 numBlocks    = 1;
 	
 	if (argc >= 2) {
@@ -122,7 +122,7 @@ int main(int argc, char** argv)
 		cout<<"Warning: Total thread count is not evenly divisible by the block size\n";
 		cout<<"The total number of threads will be rounded up to "<< totalThreads<<endl;
 	}
-	
+
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	return EXIT_SUCCESS;
 }
