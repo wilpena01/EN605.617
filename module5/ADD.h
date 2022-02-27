@@ -13,7 +13,7 @@ void add_Const(UInt32 *Block, UInt32 *Thread)
 	result = (Input1 + thread_idx) + Input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
-	cout<<"result of adding const"<<result;
+	free(&result);
 }
 
 __global__
@@ -25,7 +25,7 @@ void add_literal(UInt32 *Block, UInt32 *Thread)
 	result = (5 + thread_idx) + 5;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
-	cout<<"result of adding literal"<<result;
+	free(&result);
 }
 
 __global__
