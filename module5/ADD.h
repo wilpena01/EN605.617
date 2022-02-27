@@ -9,7 +9,8 @@ void add_Const(UInt32 *Block, UInt32 *Thread)
 {
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-	UInt32 result = (Input1 + thread_idx) + Input2;
+	UInt32 result;
+	result = (Input1 + thread_idx) + Input2;
 	Block[thread_idx]  = blockIdx.x;
 	Thread[thread_idx] = threadIdx.x;	
 }
