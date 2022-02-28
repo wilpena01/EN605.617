@@ -95,7 +95,7 @@ void addRunsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaEventElapsedTime(&delta1, start1, stop1);
 
 	cudaEvent_t start2 = get_time();
-	add_arr_shared<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+	add_arr_Reg<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
@@ -117,7 +117,7 @@ void addRunConstMem(UInt32 num_blocks, UInt32 num_threads,
 	cudaEventElapsedTime(&delta1, start1, stop1);
 
 	cudaEvent_t start2 = get_time();
-	add_Const<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
+	add_arr_Reg<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
 	cudaEvent_t stop2 = get_time();	
 	cudaEventSynchronize(stop2);	
 	cudaEventElapsedTime(&delta2, start2, stop2);
