@@ -31,7 +31,6 @@ void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2, UInt32 &in1, UInt32 &in2,
 	in2 = arr2[idx];
 }
 
-
 void init(UInt32 *arr1, UInt32 *arr2 , UInt32 ARRAY_SIZE)
 {
     //initialize the input arrays.

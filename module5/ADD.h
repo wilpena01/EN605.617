@@ -4,6 +4,27 @@
 #include "Utilities.h"
 #include <string>
 
+
+__global__
+void add_arr_Reg(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+			 UInt32 *Block, UInt32 *Thread)
+{
+	//add using register memory
+	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+	//local memory/register
+	 UInt32 g_input1;
+	 UInt32 g_input2;
+
+	 //copy from global to shared memory
+	g_input1 = arr1[thread_idx];
+	g_input2 = arr2[thread_idx];
+
+	Result[thread_idx] = g_input1 + g_input2;
+	Block[thread_idx]  = blockIdx.x;
+	Thread[thread_idx] = threadIdx.x;
+}
+
 __global__
 void add_Const(UInt32 *Block, UInt32 *Thread)
 {
