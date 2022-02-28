@@ -7,6 +7,7 @@
 __global__
 void mod_Const(UInt32 *Block, UInt32 *Thread)
 {
+	//modulo using constant memory
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
 	UInt32 result = (Input1 + thread_idx) % Input2;
@@ -18,6 +19,7 @@ void mod_Const(UInt32 *Block, UInt32 *Thread)
 __global__
 void mod_literal(UInt32 *Block, UInt32 *Thread)
 {
+	//modulo using literal numbers
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
 	UInt32 result = (5 + thread_idx) % 5;
@@ -30,6 +32,7 @@ __global__
 void mod_arr(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
+	//modulo using global memory
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
     if(arr2[thread_idx] != 0)
@@ -45,6 +48,7 @@ __global__
 void mod_arr_shared(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
+	//modulo using shared memory
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
 	__shared__ UInt32 g_input1;
@@ -67,6 +71,7 @@ void modRunsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
                   UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
 			      UInt32 *gpu_Thread)
 {
+	//Run with shared and global memory allocation
 	float delta1 = 0, delta2=0;
 	cudaEvent_t start1 = get_time();
 	mod_arr<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
@@ -90,6 +95,7 @@ void modRunsharedMem(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 void modRunConstMem(UInt32 num_blocks, UInt32 num_threads, 
 				 UInt32 *gpu_Block, UInt32 *gpu_Thread)
 {
+	//Run with literal and constant memory allocation
 	float delta1 = 0, delta2=0;
 	cudaEvent_t start1 = get_time();
 	mod_literal<<<num_blocks, num_threads>>>(gpu_Block, gpu_Thread);
@@ -105,7 +111,6 @@ void modRunConstMem(UInt32 num_blocks, UInt32 num_threads,
 
 	string str[] ={"literal", "constant"};
 	outputTime(delta1,delta2, str);
-
 }
 
 void Topmod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks, 
@@ -126,6 +131,8 @@ void Topmod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 			     gpu_Block, gpu_Thread);
 	modRunConstMem(num_blocks, num_threads, gpu_Block, gpu_Thread);
 	cout<<"\n######################################\n";
+
+	//free GPU memory
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);

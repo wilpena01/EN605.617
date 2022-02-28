@@ -1,8 +1,8 @@
 //
-//  assignment4.cu
-//  assignment4
+//  assignment5.cu
+//  assignment5
 //
-//  Created by Wilson on 2/18/22.
+//  Created by Wilson on 2/25/22.
 //
 
 
