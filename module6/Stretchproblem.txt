@@ -1,0 +1,14 @@
+Good:
+- The way he breaks down the code is pretty efficient
+- The way he measure the execution time
+- The way he declare the GPU functions using __device__ 
+
+
+
+
+Bad:
+- Does not check for invalid inputs.
+- Do not initialize the number of block and the number of threads in case no input is provided.
+- Does not declare the function named "outputCardInfo" in the code.
+- the value of N is not declared in the main function.
+- N has to be declared as global variable because it is using it in the GPU and CPU.
