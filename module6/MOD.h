@@ -5,7 +5,7 @@
 #include <string>
 
 __global__
-void add_arr_Reg(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
+void mod_arr_Reg(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
 			 UInt32 *Block, UInt32 *Thread)
 {
 	//add using register memory
