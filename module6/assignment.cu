@@ -125,7 +125,7 @@ int main()
 	cudaEventElapsedTime(&delta2, start, stop);
 
 	size[1] = totalThreads;
-	outputTime(delta1, delta2, size);
+	outputTimeReg(delta1, delta2, size);
 
 	return EXIT_SUCCESS;
 }
