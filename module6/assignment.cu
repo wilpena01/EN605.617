@@ -103,7 +103,7 @@ int main()
 	UInt32 blockSize    = 12;
 	UInt32 numBlocks    = 1;
 
-	float delta1=0,delta=0;
+	float delta1=0,delta2=0;
 	UInt32 size[2];
 
 	size[0] = totalThreads;
