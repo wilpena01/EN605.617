@@ -37,8 +37,8 @@ void init(UInt32 *arr1, UInt32 *arr2 , UInt32 ARRAY_SIZE)
     //initialize the input arrays.
 	for(UInt32 i = 0; i<ARRAY_SIZE; i++)
 	{
-		arr1[i] = (unsigned int) rand();
-		arr2[i] = (unsigned int) rand();
+		arr1[i] = (unsigned int) rand() % 100;
+		arr2[i] = (unsigned int) rand() % 100;
 	}
 }
 
