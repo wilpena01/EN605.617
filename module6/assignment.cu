@@ -99,8 +99,8 @@ void main_Pinned(UInt32 totalThreads, UInt32 numBlocks,
 int main()
 {
 	
-	UInt32 totalThreads = 12;
-	UInt32 blockSize    = 12;
+	UInt32 totalThreads = 512;
+	UInt32 blockSize    = 512;
 	UInt32 numBlocks    = 1;
 
 	float delta1=0,delta2=0;
@@ -114,8 +114,8 @@ int main()
 	cudaEventElapsedTime(&delta1, start, stop);
 
 
-	totalThreads = 14;
-	blockSize    = 14;
+	totalThreads = 64;
+	blockSize    = 64;
 	numBlocks    = 1;
 
 	start = get_time();
