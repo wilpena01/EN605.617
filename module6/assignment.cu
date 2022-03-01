@@ -100,7 +100,7 @@ int main()
 {
 	
 	UInt32 totalThreads = 512;
-	UInt32 blockSize    = 32;
+	UInt32 blockSize    = 512;
 	UInt32 numBlocks    = 1;
 
 	float delta1=0,delta2=0;
@@ -115,7 +115,7 @@ int main()
 
 
 	totalThreads = 64;
-	blockSize    = 32;
+	blockSize    = 64;
 	numBlocks    = 1;
 
 	start = get_time();
