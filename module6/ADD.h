@@ -7,7 +7,7 @@
 
 __global__
 void add_arr_Reg(UInt32 *arr1, UInt32 *arr2, UInt32 *Result,
-			 UInt32 *Block, UInt32 *Thread)
+			 	 UInt32 *Block, UInt32 *Thread)
 {
 	//add using register memory
 	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -126,6 +126,7 @@ void addRunConstMem(UInt32 num_blocks, UInt32 num_threads,
 	outputTime(delta1,delta2, str);
 
 }
+
 void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
               UInt32 num_threads, RESULT *finalResult)
 {
@@ -139,11 +140,8 @@ void Topadd(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	cout<<"Addition Elapse Time:\n";
-	addRunsharedMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
-			     gpu_Block, gpu_Thread);
-	addRunConstMem(num_blocks, num_threads, gpu_Block, gpu_Thread);
-	cout<<"\n######################################\n";
+	add_arr_Reg<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
 
 	//free GPU memory
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost);

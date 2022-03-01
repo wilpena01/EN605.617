@@ -11,6 +11,7 @@ typedef int Int32;
 
 __constant__  static const UInt32 Input1 = 5;
 __constant__  static const UInt32 Input2 = 5;
+__constant__  static const UInt32 InvalidNumber = 99999;
 
 struct RESULT
 {
