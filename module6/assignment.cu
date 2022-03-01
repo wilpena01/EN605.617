@@ -118,9 +118,9 @@ int main()
 	blockSize    = 14;
 	numBlocks    = 1;
 
-	cudaEvent_t start = get_time();
+	start = get_time();
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
-	cudaEvent_t stop = get_time();
+	stop = get_time();
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
 
