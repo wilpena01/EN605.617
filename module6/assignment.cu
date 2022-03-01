@@ -103,7 +103,29 @@ int main()
 	UInt32 blockSize    = 12;
 	UInt32 numBlocks    = 1;
 
-	
+	float delta1=0,delta=0;
+	UInt32 size[2];
+
+	size[0] = totalThreads;
+	cudaEvent_t start = get_time();
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
+	cudaEvent_t stop = get_time();
+	cudaEventSynchronize(stop2);	
+	cudaEventElapsedTime(&delta1, start, stop);
+
+
+	totalThreads = 14;
+	blockSize    = 14;
+	numBlocks    = 1;
+
+	cudaEvent_t start = get_time();
+	main_Pegeable(totalThreads, numBlocks, blockSize); 
+	cudaEvent_t stop = get_time();
+	cudaEventSynchronize(stop2);	
+	cudaEventElapsedTime(&delta2, start, stop);
+
+	size[1] = totalThreads;
+	outputTime(delta1, delta2, size);
+
 	return EXIT_SUCCESS;
 }
