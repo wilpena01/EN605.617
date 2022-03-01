@@ -110,7 +110,7 @@ int main()
 	cudaEvent_t start = get_time();
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	cudaEvent_t stop = get_time();
-	cudaEventSynchronize(stop2);	
+	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta1, start, stop);
 
 
@@ -121,7 +121,7 @@ int main()
 	cudaEvent_t start = get_time();
 	main_Pegeable(totalThreads, numBlocks, blockSize); 
 	cudaEvent_t stop = get_time();
-	cudaEventSynchronize(stop2);	
+	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
 
 	size[1] = totalThreads;
