@@ -5,6 +5,25 @@
 #include <string>
 
 __global__
+void sub_arr_Reg(UInt32 *arr1, UInt32 *arr2, Int32 *Result,
+			 UInt32 *Block, UInt32 *Thread)
+{
+	//add using register memory
+	const UInt32 thread_idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+	//local memory/register
+	 UInt32 g_input1;
+	 UInt32 g_input2;
+
+	 //copy from global to shared memory
+	g_input1 = arr1[thread_idx];
+	g_input2 = arr2[thread_idx];
+
+	Result[thread_idx] = g_input1 - g_input2;
+	Block[thread_idx]  = blockIdx.x;
+	Thread[thread_idx] = threadIdx.x;
+}
+__global__
 void sub_Const(UInt32 *Block, UInt32 *Thread)
 {
 	//subtract using constant memory
@@ -121,11 +140,8 @@ void Topsub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
-	cout<<"Subtraction Elapse Time:\n";
-	subRunsharedMem(gpu_arr1, gpu_arr2, num_blocks, num_threads, gpu_Result, 
-			     gpu_Block, gpu_Thread);
-	subRunConstMem(num_blocks, num_threads, gpu_Block, gpu_Thread);
-	cout<<"\n######################################\n";
+	sub_arr_Reg<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
 
 	//free GPU memory
 	cudaMemcpy(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES1,cudaMemcpyDeviceToHost);
