@@ -109,7 +109,7 @@ void outputTimeReg(float duration1, float duration2, UInt32 *str)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time with "<<str[0]<<" input size and register memory allocation = "<< duration1<< " msn"
-        <<"\nElapsed Time with "<<str[1]<<" input size and register memory allocation = "<< duration2<< " msn";
+        <<"\nElapsed Time with "<<str[1]<<" input size and register memory allocation = "<< duration2<< " msn\n";
 	    
 }
 
