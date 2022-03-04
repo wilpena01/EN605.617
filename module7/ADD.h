@@ -154,7 +154,7 @@ void Topadd_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaMemcpyAsync(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream1);
 	cudaMemcpyAsync(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream2);
 	cudaDeviceSynchronize();
-	cudaEventDestroy(stream1); cudaEventDestroy(stream2);
+	cudaStreamDestroy(stream1); cudaStreamDestroy(stream2);
 	cudaFree(gpu_Result);
 	cudaFree(gpu_Block);
 	cudaFree(gpu_Thread);
