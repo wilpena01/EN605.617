@@ -99,8 +99,8 @@ void main_Pinned(UInt32 totalThreads, UInt32 numBlocks,
 int main()
 {
 	
-	UInt32 totalThreads = 512;
-	UInt32 blockSize    = 512;
+	UInt32 totalThreads = 12;
+	UInt32 blockSize    = 12;
 	UInt32 numBlocks    = 1;
 
 	float delta1=0,delta2=0;
@@ -112,20 +112,6 @@ int main()
 	cudaEvent_t stop = get_time();
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta1, start, stop);
-
-
-	totalThreads = 64;
-	blockSize    = 64;
-	numBlocks    = 1;
-
-	start = get_time();
-	main_Pegeable(totalThreads, numBlocks, blockSize); 
-	stop = get_time();
-	cudaEventSynchronize(stop);	
-	cudaEventElapsedTime(&delta2, start, stop);
-
-	size[1] = totalThreads;
-	outputTimeReg(delta1, delta2, size);
 
 	return EXIT_SUCCESS;
 }
