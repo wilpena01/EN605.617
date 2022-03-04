@@ -138,6 +138,7 @@ void Topadd_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	cudaStream_t stream1,stream2; 
   	cudaStreamCreate(&stream1); 
 	cudaStreamCreate(&stream2); 
+	cudaStreamCreate(&stream3); 
 
 	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
@@ -145,16 +146,17 @@ void Topadd_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 
 	add_arr<<<num_blocks, num_threads, 1, stream1>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
-
 	add_arr<<<num_blocks, num_threads, 1, stream2>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
+	add_arr<<<num_blocks, num_threads, 1, stream3>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 
 	//free GPU memory
 	cudaMemcpyAsync(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream1);
-	cudaMemcpyAsync(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream1);
-	cudaMemcpyAsync(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream2);
+	cudaMemcpyAsync(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream2);
+	cudaMemcpyAsync(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream3);
 	cudaDeviceSynchronize();
-	cudaStreamDestroy(stream1); cudaStreamDestroy(stream2);
+	cudaStreamDestroy(stream1); cudaStreamDestroy(stream2); cudaStreamDestroy(stream3);
 	cudaFree(gpu_Result);
 	cudaFree(gpu_Block);
 	cudaFree(gpu_Thread);
