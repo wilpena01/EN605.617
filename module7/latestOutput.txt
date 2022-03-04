@@ -1,0 +1,1820 @@
+Addition Elapse Time:
+
+Elapsed Time using global memory allocation = 0.030752 msn
+Elapsed Time using shared memory allocation = 0.01216 msn
+Elapsed Time using literal memory allocation = 4.97632 msn
+Elapsed Time using constant memory allocation = 0.019424 msn
+######################################
+Subtraction Elapse Time:
+
+Elapsed Time using global memory allocation = 0.018528 msn
+Elapsed Time using shared memory allocation = 0.010304 msn
+Elapsed Time using literal memory allocation = 0.018304 msn
+Elapsed Time using constant memory allocation = 0.016064 msn
+######################################
+Multiplication Elapse Time:
+
+Elapsed Time using global memory allocation = 0.015008 msn
+Elapsed Time using shared memory allocation = 0.010112 msn
+Elapsed Time using literal memory allocation = 0.016608 msn
+Elapsed Time using constant memory allocation = 0.015104 msn
+######################################
+Modulo Elapse Time:
+
+Elapsed Time using global memory allocation = 0.01584 msn
+Elapsed Time using shared memory allocation = 0.010048 msn
+Elapsed Time using literal memory allocation = 0.016352 msn
+Elapsed Time using constant memory allocation = 0.016128 msn
+######################################
+Array1[0] = 0	Array2[0]  = 0
+Add[0] = 0	addBock[0] = 0	addThread[0] = 0
+Sub[0] = 0	subBock[0] = 0	subThread[0] = 0
+Mul[0] = 0	mulBock[0] = 0	mulThread[0] = 0
+Mod[0] = 99999	modBock[0] = 0	modThread[0] = 0
+
+######################################
+Array1[1] = 1	Array2[1]  = 1
+Add[1] = 2	addBock[1] = 0	addThread[1] = 1
+Sub[1] = 0	subBock[1] = 0	subThread[1] = 1
+Mul[1] = 1	mulBock[1] = 0	mulThread[1] = 1
+Mod[1] = 0	modBock[1] = 0	modThread[1] = 1
+
+######################################
+Array1[2] = 2	Array2[2]  = 2
+Add[2] = 4	addBock[2] = 0	addThread[2] = 2
+Sub[2] = 0	subBock[2] = 0	subThread[2] = 2
+Mul[2] = 4	mulBock[2] = 0	mulThread[2] = 2
+Mod[2] = 0	modBock[2] = 0	modThread[2] = 2
+
+######################################
+Array1[3] = 3	Array2[3]  = 3
+Add[3] = 6	addBock[3] = 0	addThread[3] = 3
+Sub[3] = 0	subBock[3] = 0	subThread[3] = 3
+Mul[3] = 9	mulBock[3] = 0	mulThread[3] = 3
+Mod[3] = 0	modBock[3] = 0	modThread[3] = 3
+
+######################################
+Array1[4] = 4	Array2[4]  = 0
+Add[4] = 4	addBock[4] = 0	addThread[4] = 4
+Sub[4] = 4	subBock[4] = 0	subThread[4] = 4
+Mul[4] = 0	mulBock[4] = 0	mulThread[4] = 4
+Mod[4] = 99999	modBock[4] = 0	modThread[4] = 4
+
+######################################
+Array1[5] = 5	Array2[5]  = 1
+Add[5] = 6	addBock[5] = 0	addThread[5] = 5
+Sub[5] = 4	subBock[5] = 0	subThread[5] = 5
+Mul[5] = 5	mulBock[5] = 0	mulThread[5] = 5
+Mod[5] = 0	modBock[5] = 0	modThread[5] = 5
+
+######################################
+Array1[6] = 6	Array2[6]  = 2
+Add[6] = 8	addBock[6] = 0	addThread[6] = 6
+Sub[6] = 4	subBock[6] = 0	subThread[6] = 6
+Mul[6] = 12	mulBock[6] = 0	mulThread[6] = 6
+Mod[6] = 0	modBock[6] = 0	modThread[6] = 6
+
+######################################
+Array1[7] = 7	Array2[7]  = 3
+Add[7] = 10	addBock[7] = 0	addThread[7] = 7
+Sub[7] = 4	subBock[7] = 0	subThread[7] = 7
+Mul[7] = 21	mulBock[7] = 0	mulThread[7] = 7
+Mod[7] = 1	modBock[7] = 0	modThread[7] = 7
+
+######################################
+Array1[8] = 8	Array2[8]  = 0
+Add[8] = 8	addBock[8] = 0	addThread[8] = 8
+Sub[8] = 8	subBock[8] = 0	subThread[8] = 8
+Mul[8] = 0	mulBock[8] = 0	mulThread[8] = 8
+Mod[8] = 99999	modBock[8] = 0	modThread[8] = 8
+
+######################################
+Array1[9] = 9	Array2[9]  = 1
+Add[9] = 10	addBock[9] = 0	addThread[9] = 9
+Sub[9] = 8	subBock[9] = 0	subThread[9] = 9
+Mul[9] = 9	mulBock[9] = 0	mulThread[9] = 9
+Mod[9] = 0	modBock[9] = 0	modThread[9] = 9
+
+######################################
+Array1[10] = 10	Array2[10]  = 2
+Add[10] = 12	addBock[10] = 0	addThread[10] = 10
+Sub[10] = 8	subBock[10] = 0	subThread[10] = 10
+Mul[10] = 20	mulBock[10] = 0	mulThread[10] = 10
+Mod[10] = 0	modBock[10] = 0	modThread[10] = 10
+
+######################################
+Array1[11] = 11	Array2[11]  = 3
+Add[11] = 14	addBock[11] = 0	addThread[11] = 11
+Sub[11] = 8	subBock[11] = 0	subThread[11] = 11
+Mul[11] = 33	mulBock[11] = 0	mulThread[11] = 11
+Mod[11] = 2	modBock[11] = 0	modThread[11] = 11
+
+######################################
+Array1[12] = 12	Array2[12]  = 0
+Add[12] = 12	addBock[12] = 0	addThread[12] = 12
+Sub[12] = 12	subBock[12] = 0	subThread[12] = 12
+Mul[12] = 0	mulBock[12] = 0	mulThread[12] = 12
+Mod[12] = 99999	modBock[12] = 0	modThread[12] = 12
+
+######################################
+Array1[13] = 13	Array2[13]  = 1
+Add[13] = 14	addBock[13] = 0	addThread[13] = 13
+Sub[13] = 12	subBock[13] = 0	subThread[13] = 13
+Mul[13] = 13	mulBock[13] = 0	mulThread[13] = 13
+Mod[13] = 0	modBock[13] = 0	modThread[13] = 13
+
+######################################
+Array1[14] = 14	Array2[14]  = 2
+Add[14] = 16	addBock[14] = 0	addThread[14] = 14
+Sub[14] = 12	subBock[14] = 0	subThread[14] = 14
+Mul[14] = 28	mulBock[14] = 0	mulThread[14] = 14
+Mod[14] = 0	modBock[14] = 0	modThread[14] = 14
+
+######################################
+Array1[15] = 15	Array2[15]  = 3
+Add[15] = 18	addBock[15] = 0	addThread[15] = 15
+Sub[15] = 12	subBock[15] = 0	subThread[15] = 15
+Mul[15] = 45	mulBock[15] = 0	mulThread[15] = 15
+Mod[15] = 0	modBock[15] = 0	modThread[15] = 15
+
+######################################
+Array1[16] = 16	Array2[16]  = 0
+Add[16] = 16	addBock[16] = 0	addThread[16] = 16
+Sub[16] = 16	subBock[16] = 0	subThread[16] = 16
+Mul[16] = 0	mulBock[16] = 0	mulThread[16] = 16
+Mod[16] = 99999	modBock[16] = 0	modThread[16] = 16
+
+######################################
+Array1[17] = 17	Array2[17]  = 1
+Add[17] = 18	addBock[17] = 0	addThread[17] = 17
+Sub[17] = 16	subBock[17] = 0	subThread[17] = 17
+Mul[17] = 17	mulBock[17] = 0	mulThread[17] = 17
+Mod[17] = 0	modBock[17] = 0	modThread[17] = 17
+
+######################################
+Array1[18] = 18	Array2[18]  = 2
+Add[18] = 20	addBock[18] = 0	addThread[18] = 18
+Sub[18] = 16	subBock[18] = 0	subThread[18] = 18
+Mul[18] = 36	mulBock[18] = 0	mulThread[18] = 18
+Mod[18] = 0	modBock[18] = 0	modThread[18] = 18
+
+######################################
+Array1[19] = 19	Array2[19]  = 3
+Add[19] = 22	addBock[19] = 0	addThread[19] = 19
+Sub[19] = 16	subBock[19] = 0	subThread[19] = 19
+Mul[19] = 57	mulBock[19] = 0	mulThread[19] = 19
+Mod[19] = 1	modBock[19] = 0	modThread[19] = 19
+
+######################################
+Array1[20] = 20	Array2[20]  = 0
+Add[20] = 20	addBock[20] = 0	addThread[20] = 20
+Sub[20] = 20	subBock[20] = 0	subThread[20] = 20
+Mul[20] = 0	mulBock[20] = 0	mulThread[20] = 20
+Mod[20] = 99999	modBock[20] = 0	modThread[20] = 20
+
+######################################
+Array1[21] = 21	Array2[21]  = 1
+Add[21] = 22	addBock[21] = 0	addThread[21] = 21
+Sub[21] = 20	subBock[21] = 0	subThread[21] = 21
+Mul[21] = 21	mulBock[21] = 0	mulThread[21] = 21
+Mod[21] = 0	modBock[21] = 0	modThread[21] = 21
+
+######################################
+Array1[22] = 22	Array2[22]  = 2
+Add[22] = 24	addBock[22] = 0	addThread[22] = 22
+Sub[22] = 20	subBock[22] = 0	subThread[22] = 22
+Mul[22] = 44	mulBock[22] = 0	mulThread[22] = 22
+Mod[22] = 0	modBock[22] = 0	modThread[22] = 22
+
+######################################
+Array1[23] = 23	Array2[23]  = 3
+Add[23] = 26	addBock[23] = 0	addThread[23] = 23
+Sub[23] = 20	subBock[23] = 0	subThread[23] = 23
+Mul[23] = 69	mulBock[23] = 0	mulThread[23] = 23
+Mod[23] = 2	modBock[23] = 0	modThread[23] = 23
+
+######################################
+Array1[24] = 24	Array2[24]  = 0
+Add[24] = 24	addBock[24] = 0	addThread[24] = 24
+Sub[24] = 24	subBock[24] = 0	subThread[24] = 24
+Mul[24] = 0	mulBock[24] = 0	mulThread[24] = 24
+Mod[24] = 99999	modBock[24] = 0	modThread[24] = 24
+
+######################################
+Array1[25] = 25	Array2[25]  = 1
+Add[25] = 26	addBock[25] = 0	addThread[25] = 25
+Sub[25] = 24	subBock[25] = 0	subThread[25] = 25
+Mul[25] = 25	mulBock[25] = 0	mulThread[25] = 25
+Mod[25] = 0	modBock[25] = 0	modThread[25] = 25
+
+######################################
+Array1[26] = 26	Array2[26]  = 2
+Add[26] = 28	addBock[26] = 0	addThread[26] = 26
+Sub[26] = 24	subBock[26] = 0	subThread[26] = 26
+Mul[26] = 52	mulBock[26] = 0	mulThread[26] = 26
+Mod[26] = 0	modBock[26] = 0	modThread[26] = 26
+
+######################################
+Array1[27] = 27	Array2[27]  = 3
+Add[27] = 30	addBock[27] = 0	addThread[27] = 27
+Sub[27] = 24	subBock[27] = 0	subThread[27] = 27
+Mul[27] = 81	mulBock[27] = 0	mulThread[27] = 27
+Mod[27] = 0	modBock[27] = 0	modThread[27] = 27
+
+######################################
+Array1[28] = 28	Array2[28]  = 0
+Add[28] = 28	addBock[28] = 0	addThread[28] = 28
+Sub[28] = 28	subBock[28] = 0	subThread[28] = 28
+Mul[28] = 0	mulBock[28] = 0	mulThread[28] = 28
+Mod[28] = 99999	modBock[28] = 0	modThread[28] = 28
+
+######################################
+Array1[29] = 29	Array2[29]  = 1
+Add[29] = 30	addBock[29] = 0	addThread[29] = 29
+Sub[29] = 28	subBock[29] = 0	subThread[29] = 29
+Mul[29] = 29	mulBock[29] = 0	mulThread[29] = 29
+Mod[29] = 0	modBock[29] = 0	modThread[29] = 29
+
+######################################
+Array1[30] = 30	Array2[30]  = 2
+Add[30] = 32	addBock[30] = 0	addThread[30] = 30
+Sub[30] = 28	subBock[30] = 0	subThread[30] = 30
+Mul[30] = 60	mulBock[30] = 0	mulThread[30] = 30
+Mod[30] = 0	modBock[30] = 0	modThread[30] = 30
+
+######################################
+Array1[31] = 31	Array2[31]  = 3
+Add[31] = 34	addBock[31] = 0	addThread[31] = 31
+Sub[31] = 28	subBock[31] = 0	subThread[31] = 31
+Mul[31] = 93	mulBock[31] = 0	mulThread[31] = 31
+Mod[31] = 1	modBock[31] = 0	modThread[31] = 31
+
+######################################
+Array1[32] = 32	Array2[32]  = 0
+Add[32] = 32	addBock[32] = 0	addThread[32] = 32
+Sub[32] = 32	subBock[32] = 0	subThread[32] = 32
+Mul[32] = 0	mulBock[32] = 0	mulThread[32] = 32
+Mod[32] = 99999	modBock[32] = 0	modThread[32] = 32
+
+######################################
+Array1[33] = 33	Array2[33]  = 1
+Add[33] = 34	addBock[33] = 0	addThread[33] = 33
+Sub[33] = 32	subBock[33] = 0	subThread[33] = 33
+Mul[33] = 33	mulBock[33] = 0	mulThread[33] = 33
+Mod[33] = 0	modBock[33] = 0	modThread[33] = 33
+
+######################################
+Array1[34] = 34	Array2[34]  = 2
+Add[34] = 36	addBock[34] = 0	addThread[34] = 34
+Sub[34] = 32	subBock[34] = 0	subThread[34] = 34
+Mul[34] = 68	mulBock[34] = 0	mulThread[34] = 34
+Mod[34] = 0	modBock[34] = 0	modThread[34] = 34
+
+######################################
+Array1[35] = 35	Array2[35]  = 3
+Add[35] = 38	addBock[35] = 0	addThread[35] = 35
+Sub[35] = 32	subBock[35] = 0	subThread[35] = 35
+Mul[35] = 105	mulBock[35] = 0	mulThread[35] = 35
+Mod[35] = 2	modBock[35] = 0	modThread[35] = 35
+
+######################################
+Array1[36] = 36	Array2[36]  = 0
+Add[36] = 36	addBock[36] = 0	addThread[36] = 36
+Sub[36] = 36	subBock[36] = 0	subThread[36] = 36
+Mul[36] = 0	mulBock[36] = 0	mulThread[36] = 36
+Mod[36] = 99999	modBock[36] = 0	modThread[36] = 36
+
+######################################
+Array1[37] = 37	Array2[37]  = 1
+Add[37] = 38	addBock[37] = 0	addThread[37] = 37
+Sub[37] = 36	subBock[37] = 0	subThread[37] = 37
+Mul[37] = 37	mulBock[37] = 0	mulThread[37] = 37
+Mod[37] = 0	modBock[37] = 0	modThread[37] = 37
+
+######################################
+Array1[38] = 38	Array2[38]  = 2
+Add[38] = 40	addBock[38] = 0	addThread[38] = 38
+Sub[38] = 36	subBock[38] = 0	subThread[38] = 38
+Mul[38] = 76	mulBock[38] = 0	mulThread[38] = 38
+Mod[38] = 0	modBock[38] = 0	modThread[38] = 38
+
+######################################
+Array1[39] = 39	Array2[39]  = 3
+Add[39] = 42	addBock[39] = 0	addThread[39] = 39
+Sub[39] = 36	subBock[39] = 0	subThread[39] = 39
+Mul[39] = 117	mulBock[39] = 0	mulThread[39] = 39
+Mod[39] = 0	modBock[39] = 0	modThread[39] = 39
+
+######################################
+Array1[40] = 40	Array2[40]  = 0
+Add[40] = 40	addBock[40] = 0	addThread[40] = 40
+Sub[40] = 40	subBock[40] = 0	subThread[40] = 40
+Mul[40] = 0	mulBock[40] = 0	mulThread[40] = 40
+Mod[40] = 99999	modBock[40] = 0	modThread[40] = 40
+
+######################################
+Array1[41] = 41	Array2[41]  = 1
+Add[41] = 42	addBock[41] = 0	addThread[41] = 41
+Sub[41] = 40	subBock[41] = 0	subThread[41] = 41
+Mul[41] = 41	mulBock[41] = 0	mulThread[41] = 41
+Mod[41] = 0	modBock[41] = 0	modThread[41] = 41
+
+######################################
+Array1[42] = 42	Array2[42]  = 2
+Add[42] = 44	addBock[42] = 0	addThread[42] = 42
+Sub[42] = 40	subBock[42] = 0	subThread[42] = 42
+Mul[42] = 84	mulBock[42] = 0	mulThread[42] = 42
+Mod[42] = 0	modBock[42] = 0	modThread[42] = 42
+
+######################################
+Array1[43] = 43	Array2[43]  = 3
+Add[43] = 46	addBock[43] = 0	addThread[43] = 43
+Sub[43] = 40	subBock[43] = 0	subThread[43] = 43
+Mul[43] = 129	mulBock[43] = 0	mulThread[43] = 43
+Mod[43] = 1	modBock[43] = 0	modThread[43] = 43
+
+######################################
+Array1[44] = 44	Array2[44]  = 0
+Add[44] = 44	addBock[44] = 0	addThread[44] = 44
+Sub[44] = 44	subBock[44] = 0	subThread[44] = 44
+Mul[44] = 0	mulBock[44] = 0	mulThread[44] = 44
+Mod[44] = 99999	modBock[44] = 0	modThread[44] = 44
+
+######################################
+Array1[45] = 45	Array2[45]  = 1
+Add[45] = 46	addBock[45] = 0	addThread[45] = 45
+Sub[45] = 44	subBock[45] = 0	subThread[45] = 45
+Mul[45] = 45	mulBock[45] = 0	mulThread[45] = 45
+Mod[45] = 0	modBock[45] = 0	modThread[45] = 45
+
+######################################
+Array1[46] = 46	Array2[46]  = 2
+Add[46] = 48	addBock[46] = 0	addThread[46] = 46
+Sub[46] = 44	subBock[46] = 0	subThread[46] = 46
+Mul[46] = 92	mulBock[46] = 0	mulThread[46] = 46
+Mod[46] = 0	modBock[46] = 0	modThread[46] = 46
+
+######################################
+Array1[47] = 47	Array2[47]  = 3
+Add[47] = 50	addBock[47] = 0	addThread[47] = 47
+Sub[47] = 44	subBock[47] = 0	subThread[47] = 47
+Mul[47] = 141	mulBock[47] = 0	mulThread[47] = 47
+Mod[47] = 2	modBock[47] = 0	modThread[47] = 47
+
+######################################
+Array1[48] = 48	Array2[48]  = 0
+Add[48] = 48	addBock[48] = 0	addThread[48] = 48
+Sub[48] = 48	subBock[48] = 0	subThread[48] = 48
+Mul[48] = 0	mulBock[48] = 0	mulThread[48] = 48
+Mod[48] = 99999	modBock[48] = 0	modThread[48] = 48
+
+######################################
+Array1[49] = 49	Array2[49]  = 1
+Add[49] = 50	addBock[49] = 0	addThread[49] = 49
+Sub[49] = 48	subBock[49] = 0	subThread[49] = 49
+Mul[49] = 49	mulBock[49] = 0	mulThread[49] = 49
+Mod[49] = 0	modBock[49] = 0	modThread[49] = 49
+
+######################################
+Array1[50] = 50	Array2[50]  = 2
+Add[50] = 52	addBock[50] = 0	addThread[50] = 50
+Sub[50] = 48	subBock[50] = 0	subThread[50] = 50
+Mul[50] = 100	mulBock[50] = 0	mulThread[50] = 50
+Mod[50] = 0	modBock[50] = 0	modThread[50] = 50
+
+######################################
+Array1[51] = 51	Array2[51]  = 3
+Add[51] = 54	addBock[51] = 0	addThread[51] = 51
+Sub[51] = 48	subBock[51] = 0	subThread[51] = 51
+Mul[51] = 153	mulBock[51] = 0	mulThread[51] = 51
+Mod[51] = 0	modBock[51] = 0	modThread[51] = 51
+
+######################################
+Array1[52] = 52	Array2[52]  = 0
+Add[52] = 52	addBock[52] = 0	addThread[52] = 52
+Sub[52] = 52	subBock[52] = 0	subThread[52] = 52
+Mul[52] = 0	mulBock[52] = 0	mulThread[52] = 52
+Mod[52] = 99999	modBock[52] = 0	modThread[52] = 52
+
+######################################
+Array1[53] = 53	Array2[53]  = 1
+Add[53] = 54	addBock[53] = 0	addThread[53] = 53
+Sub[53] = 52	subBock[53] = 0	subThread[53] = 53
+Mul[53] = 53	mulBock[53] = 0	mulThread[53] = 53
+Mod[53] = 0	modBock[53] = 0	modThread[53] = 53
+
+######################################
+Array1[54] = 54	Array2[54]  = 2
+Add[54] = 56	addBock[54] = 0	addThread[54] = 54
+Sub[54] = 52	subBock[54] = 0	subThread[54] = 54
+Mul[54] = 108	mulBock[54] = 0	mulThread[54] = 54
+Mod[54] = 0	modBock[54] = 0	modThread[54] = 54
+
+######################################
+Array1[55] = 55	Array2[55]  = 3
+Add[55] = 58	addBock[55] = 0	addThread[55] = 55
+Sub[55] = 52	subBock[55] = 0	subThread[55] = 55
+Mul[55] = 165	mulBock[55] = 0	mulThread[55] = 55
+Mod[55] = 1	modBock[55] = 0	modThread[55] = 55
+
+######################################
+Array1[56] = 56	Array2[56]  = 0
+Add[56] = 56	addBock[56] = 0	addThread[56] = 56
+Sub[56] = 56	subBock[56] = 0	subThread[56] = 56
+Mul[56] = 0	mulBock[56] = 0	mulThread[56] = 56
+Mod[56] = 99999	modBock[56] = 0	modThread[56] = 56
+
+######################################
+Array1[57] = 57	Array2[57]  = 1
+Add[57] = 58	addBock[57] = 0	addThread[57] = 57
+Sub[57] = 56	subBock[57] = 0	subThread[57] = 57
+Mul[57] = 57	mulBock[57] = 0	mulThread[57] = 57
+Mod[57] = 0	modBock[57] = 0	modThread[57] = 57
+
+######################################
+Array1[58] = 58	Array2[58]  = 2
+Add[58] = 60	addBock[58] = 0	addThread[58] = 58
+Sub[58] = 56	subBock[58] = 0	subThread[58] = 58
+Mul[58] = 116	mulBock[58] = 0	mulThread[58] = 58
+Mod[58] = 0	modBock[58] = 0	modThread[58] = 58
+
+######################################
+Array1[59] = 59	Array2[59]  = 3
+Add[59] = 62	addBock[59] = 0	addThread[59] = 59
+Sub[59] = 56	subBock[59] = 0	subThread[59] = 59
+Mul[59] = 177	mulBock[59] = 0	mulThread[59] = 59
+Mod[59] = 2	modBock[59] = 0	modThread[59] = 59
+
+######################################
+Array1[60] = 60	Array2[60]  = 0
+Add[60] = 60	addBock[60] = 0	addThread[60] = 60
+Sub[60] = 60	subBock[60] = 0	subThread[60] = 60
+Mul[60] = 0	mulBock[60] = 0	mulThread[60] = 60
+Mod[60] = 99999	modBock[60] = 0	modThread[60] = 60
+
+######################################
+Array1[61] = 61	Array2[61]  = 1
+Add[61] = 62	addBock[61] = 0	addThread[61] = 61
+Sub[61] = 60	subBock[61] = 0	subThread[61] = 61
+Mul[61] = 61	mulBock[61] = 0	mulThread[61] = 61
+Mod[61] = 0	modBock[61] = 0	modThread[61] = 61
+
+######################################
+Array1[62] = 62	Array2[62]  = 2
+Add[62] = 64	addBock[62] = 0	addThread[62] = 62
+Sub[62] = 60	subBock[62] = 0	subThread[62] = 62
+Mul[62] = 124	mulBock[62] = 0	mulThread[62] = 62
+Mod[62] = 0	modBock[62] = 0	modThread[62] = 62
+
+######################################
+Array1[63] = 63	Array2[63]  = 3
+Add[63] = 66	addBock[63] = 0	addThread[63] = 63
+Sub[63] = 60	subBock[63] = 0	subThread[63] = 63
+Mul[63] = 189	mulBock[63] = 0	mulThread[63] = 63
+Mod[63] = 0	modBock[63] = 0	modThread[63] = 63
+
+######################################
+Array1[64] = 64	Array2[64]  = 0
+Add[64] = 64	addBock[64] = 0	addThread[64] = 64
+Sub[64] = 64	subBock[64] = 0	subThread[64] = 64
+Mul[64] = 0	mulBock[64] = 0	mulThread[64] = 64
+Mod[64] = 99999	modBock[64] = 0	modThread[64] = 64
+
+######################################
+Array1[65] = 65	Array2[65]  = 1
+Add[65] = 66	addBock[65] = 0	addThread[65] = 65
+Sub[65] = 64	subBock[65] = 0	subThread[65] = 65
+Mul[65] = 65	mulBock[65] = 0	mulThread[65] = 65
+Mod[65] = 0	modBock[65] = 0	modThread[65] = 65
+
+######################################
+Array1[66] = 66	Array2[66]  = 2
+Add[66] = 68	addBock[66] = 0	addThread[66] = 66
+Sub[66] = 64	subBock[66] = 0	subThread[66] = 66
+Mul[66] = 132	mulBock[66] = 0	mulThread[66] = 66
+Mod[66] = 0	modBock[66] = 0	modThread[66] = 66
+
+######################################
+Array1[67] = 67	Array2[67]  = 3
+Add[67] = 70	addBock[67] = 0	addThread[67] = 67
+Sub[67] = 64	subBock[67] = 0	subThread[67] = 67
+Mul[67] = 201	mulBock[67] = 0	mulThread[67] = 67
+Mod[67] = 1	modBock[67] = 0	modThread[67] = 67
+
+######################################
+Array1[68] = 68	Array2[68]  = 0
+Add[68] = 68	addBock[68] = 0	addThread[68] = 68
+Sub[68] = 68	subBock[68] = 0	subThread[68] = 68
+Mul[68] = 0	mulBock[68] = 0	mulThread[68] = 68
+Mod[68] = 99999	modBock[68] = 0	modThread[68] = 68
+
+######################################
+Array1[69] = 69	Array2[69]  = 1
+Add[69] = 70	addBock[69] = 0	addThread[69] = 69
+Sub[69] = 68	subBock[69] = 0	subThread[69] = 69
+Mul[69] = 69	mulBock[69] = 0	mulThread[69] = 69
+Mod[69] = 0	modBock[69] = 0	modThread[69] = 69
+
+######################################
+Array1[70] = 70	Array2[70]  = 2
+Add[70] = 72	addBock[70] = 0	addThread[70] = 70
+Sub[70] = 68	subBock[70] = 0	subThread[70] = 70
+Mul[70] = 140	mulBock[70] = 0	mulThread[70] = 70
+Mod[70] = 0	modBock[70] = 0	modThread[70] = 70
+
+######################################
+Array1[71] = 71	Array2[71]  = 3
+Add[71] = 74	addBock[71] = 0	addThread[71] = 71
+Sub[71] = 68	subBock[71] = 0	subThread[71] = 71
+Mul[71] = 213	mulBock[71] = 0	mulThread[71] = 71
+Mod[71] = 2	modBock[71] = 0	modThread[71] = 71
+
+######################################
+Array1[72] = 72	Array2[72]  = 0
+Add[72] = 72	addBock[72] = 0	addThread[72] = 72
+Sub[72] = 72	subBock[72] = 0	subThread[72] = 72
+Mul[72] = 0	mulBock[72] = 0	mulThread[72] = 72
+Mod[72] = 99999	modBock[72] = 0	modThread[72] = 72
+
+######################################
+Array1[73] = 73	Array2[73]  = 1
+Add[73] = 74	addBock[73] = 0	addThread[73] = 73
+Sub[73] = 72	subBock[73] = 0	subThread[73] = 73
+Mul[73] = 73	mulBock[73] = 0	mulThread[73] = 73
+Mod[73] = 0	modBock[73] = 0	modThread[73] = 73
+
+######################################
+Array1[74] = 74	Array2[74]  = 2
+Add[74] = 76	addBock[74] = 0	addThread[74] = 74
+Sub[74] = 72	subBock[74] = 0	subThread[74] = 74
+Mul[74] = 148	mulBock[74] = 0	mulThread[74] = 74
+Mod[74] = 0	modBock[74] = 0	modThread[74] = 74
+
+######################################
+Array1[75] = 75	Array2[75]  = 3
+Add[75] = 78	addBock[75] = 0	addThread[75] = 75
+Sub[75] = 72	subBock[75] = 0	subThread[75] = 75
+Mul[75] = 225	mulBock[75] = 0	mulThread[75] = 75
+Mod[75] = 0	modBock[75] = 0	modThread[75] = 75
+
+######################################
+Array1[76] = 76	Array2[76]  = 0
+Add[76] = 76	addBock[76] = 0	addThread[76] = 76
+Sub[76] = 76	subBock[76] = 0	subThread[76] = 76
+Mul[76] = 0	mulBock[76] = 0	mulThread[76] = 76
+Mod[76] = 99999	modBock[76] = 0	modThread[76] = 76
+
+######################################
+Array1[77] = 77	Array2[77]  = 1
+Add[77] = 78	addBock[77] = 0	addThread[77] = 77
+Sub[77] = 76	subBock[77] = 0	subThread[77] = 77
+Mul[77] = 77	mulBock[77] = 0	mulThread[77] = 77
+Mod[77] = 0	modBock[77] = 0	modThread[77] = 77
+
+######################################
+Array1[78] = 78	Array2[78]  = 2
+Add[78] = 80	addBock[78] = 0	addThread[78] = 78
+Sub[78] = 76	subBock[78] = 0	subThread[78] = 78
+Mul[78] = 156	mulBock[78] = 0	mulThread[78] = 78
+Mod[78] = 0	modBock[78] = 0	modThread[78] = 78
+
+######################################
+Array1[79] = 79	Array2[79]  = 3
+Add[79] = 82	addBock[79] = 0	addThread[79] = 79
+Sub[79] = 76	subBock[79] = 0	subThread[79] = 79
+Mul[79] = 237	mulBock[79] = 0	mulThread[79] = 79
+Mod[79] = 1	modBock[79] = 0	modThread[79] = 79
+
+######################################
+Array1[80] = 80	Array2[80]  = 0
+Add[80] = 80	addBock[80] = 0	addThread[80] = 80
+Sub[80] = 80	subBock[80] = 0	subThread[80] = 80
+Mul[80] = 0	mulBock[80] = 0	mulThread[80] = 80
+Mod[80] = 99999	modBock[80] = 0	modThread[80] = 80
+
+######################################
+Array1[81] = 81	Array2[81]  = 1
+Add[81] = 82	addBock[81] = 0	addThread[81] = 81
+Sub[81] = 80	subBock[81] = 0	subThread[81] = 81
+Mul[81] = 81	mulBock[81] = 0	mulThread[81] = 81
+Mod[81] = 0	modBock[81] = 0	modThread[81] = 81
+
+######################################
+Array1[82] = 82	Array2[82]  = 2
+Add[82] = 84	addBock[82] = 0	addThread[82] = 82
+Sub[82] = 80	subBock[82] = 0	subThread[82] = 82
+Mul[82] = 164	mulBock[82] = 0	mulThread[82] = 82
+Mod[82] = 0	modBock[82] = 0	modThread[82] = 82
+
+######################################
+Array1[83] = 83	Array2[83]  = 3
+Add[83] = 86	addBock[83] = 0	addThread[83] = 83
+Sub[83] = 80	subBock[83] = 0	subThread[83] = 83
+Mul[83] = 249	mulBock[83] = 0	mulThread[83] = 83
+Mod[83] = 2	modBock[83] = 0	modThread[83] = 83
+
+######################################
+Array1[84] = 84	Array2[84]  = 0
+Add[84] = 84	addBock[84] = 0	addThread[84] = 84
+Sub[84] = 84	subBock[84] = 0	subThread[84] = 84
+Mul[84] = 0	mulBock[84] = 0	mulThread[84] = 84
+Mod[84] = 99999	modBock[84] = 0	modThread[84] = 84
+
+######################################
+Array1[85] = 85	Array2[85]  = 1
+Add[85] = 86	addBock[85] = 0	addThread[85] = 85
+Sub[85] = 84	subBock[85] = 0	subThread[85] = 85
+Mul[85] = 85	mulBock[85] = 0	mulThread[85] = 85
+Mod[85] = 0	modBock[85] = 0	modThread[85] = 85
+
+######################################
+Array1[86] = 86	Array2[86]  = 2
+Add[86] = 88	addBock[86] = 0	addThread[86] = 86
+Sub[86] = 84	subBock[86] = 0	subThread[86] = 86
+Mul[86] = 172	mulBock[86] = 0	mulThread[86] = 86
+Mod[86] = 0	modBock[86] = 0	modThread[86] = 86
+
+######################################
+Array1[87] = 87	Array2[87]  = 3
+Add[87] = 90	addBock[87] = 0	addThread[87] = 87
+Sub[87] = 84	subBock[87] = 0	subThread[87] = 87
+Mul[87] = 261	mulBock[87] = 0	mulThread[87] = 87
+Mod[87] = 0	modBock[87] = 0	modThread[87] = 87
+
+######################################
+Array1[88] = 88	Array2[88]  = 0
+Add[88] = 88	addBock[88] = 0	addThread[88] = 88
+Sub[88] = 88	subBock[88] = 0	subThread[88] = 88
+Mul[88] = 0	mulBock[88] = 0	mulThread[88] = 88
+Mod[88] = 99999	modBock[88] = 0	modThread[88] = 88
+
+######################################
+Array1[89] = 89	Array2[89]  = 1
+Add[89] = 90	addBock[89] = 0	addThread[89] = 89
+Sub[89] = 88	subBock[89] = 0	subThread[89] = 89
+Mul[89] = 89	mulBock[89] = 0	mulThread[89] = 89
+Mod[89] = 0	modBock[89] = 0	modThread[89] = 89
+
+######################################
+Array1[90] = 90	Array2[90]  = 2
+Add[90] = 92	addBock[90] = 0	addThread[90] = 90
+Sub[90] = 88	subBock[90] = 0	subThread[90] = 90
+Mul[90] = 180	mulBock[90] = 0	mulThread[90] = 90
+Mod[90] = 0	modBock[90] = 0	modThread[90] = 90
+
+######################################
+Array1[91] = 91	Array2[91]  = 3
+Add[91] = 94	addBock[91] = 0	addThread[91] = 91
+Sub[91] = 88	subBock[91] = 0	subThread[91] = 91
+Mul[91] = 273	mulBock[91] = 0	mulThread[91] = 91
+Mod[91] = 1	modBock[91] = 0	modThread[91] = 91
+
+######################################
+Array1[92] = 92	Array2[92]  = 0
+Add[92] = 92	addBock[92] = 0	addThread[92] = 92
+Sub[92] = 92	subBock[92] = 0	subThread[92] = 92
+Mul[92] = 0	mulBock[92] = 0	mulThread[92] = 92
+Mod[92] = 99999	modBock[92] = 0	modThread[92] = 92
+
+######################################
+Array1[93] = 93	Array2[93]  = 1
+Add[93] = 94	addBock[93] = 0	addThread[93] = 93
+Sub[93] = 92	subBock[93] = 0	subThread[93] = 93
+Mul[93] = 93	mulBock[93] = 0	mulThread[93] = 93
+Mod[93] = 0	modBock[93] = 0	modThread[93] = 93
+
+######################################
+Array1[94] = 94	Array2[94]  = 2
+Add[94] = 96	addBock[94] = 0	addThread[94] = 94
+Sub[94] = 92	subBock[94] = 0	subThread[94] = 94
+Mul[94] = 188	mulBock[94] = 0	mulThread[94] = 94
+Mod[94] = 0	modBock[94] = 0	modThread[94] = 94
+
+######################################
+Array1[95] = 95	Array2[95]  = 3
+Add[95] = 98	addBock[95] = 0	addThread[95] = 95
+Sub[95] = 92	subBock[95] = 0	subThread[95] = 95
+Mul[95] = 285	mulBock[95] = 0	mulThread[95] = 95
+Mod[95] = 2	modBock[95] = 0	modThread[95] = 95
+
+######################################
+Array1[96] = 96	Array2[96]  = 0
+Add[96] = 96	addBock[96] = 0	addThread[96] = 96
+Sub[96] = 96	subBock[96] = 0	subThread[96] = 96
+Mul[96] = 0	mulBock[96] = 0	mulThread[96] = 96
+Mod[96] = 99999	modBock[96] = 0	modThread[96] = 96
+
+######################################
+Array1[97] = 97	Array2[97]  = 1
+Add[97] = 98	addBock[97] = 0	addThread[97] = 97
+Sub[97] = 96	subBock[97] = 0	subThread[97] = 97
+Mul[97] = 97	mulBock[97] = 0	mulThread[97] = 97
+Mod[97] = 0	modBock[97] = 0	modThread[97] = 97
+
+######################################
+Array1[98] = 98	Array2[98]  = 2
+Add[98] = 100	addBock[98] = 0	addThread[98] = 98
+Sub[98] = 96	subBock[98] = 0	subThread[98] = 98
+Mul[98] = 196	mulBock[98] = 0	mulThread[98] = 98
+Mod[98] = 0	modBock[98] = 0	modThread[98] = 98
+
+######################################
+Array1[99] = 99	Array2[99]  = 3
+Add[99] = 102	addBock[99] = 0	addThread[99] = 99
+Sub[99] = 96	subBock[99] = 0	subThread[99] = 99
+Mul[99] = 297	mulBock[99] = 0	mulThread[99] = 99
+Mod[99] = 0	modBock[99] = 0	modThread[99] = 99
+
+######################################
+Array1[100] = 100	Array2[100]  = 0
+Add[100] = 100	addBock[100] = 0	addThread[100] = 100
+Sub[100] = 100	subBock[100] = 0	subThread[100] = 100
+Mul[100] = 0	mulBock[100] = 0	mulThread[100] = 100
+Mod[100] = 99999	modBock[100] = 0	modThread[100] = 100
+
+######################################
+Array1[101] = 101	Array2[101]  = 1
+Add[101] = 102	addBock[101] = 0	addThread[101] = 101
+Sub[101] = 100	subBock[101] = 0	subThread[101] = 101
+Mul[101] = 101	mulBock[101] = 0	mulThread[101] = 101
+Mod[101] = 0	modBock[101] = 0	modThread[101] = 101
+
+######################################
+Array1[102] = 102	Array2[102]  = 2
+Add[102] = 104	addBock[102] = 0	addThread[102] = 102
+Sub[102] = 100	subBock[102] = 0	subThread[102] = 102
+Mul[102] = 204	mulBock[102] = 0	mulThread[102] = 102
+Mod[102] = 0	modBock[102] = 0	modThread[102] = 102
+
+######################################
+Array1[103] = 103	Array2[103]  = 3
+Add[103] = 106	addBock[103] = 0	addThread[103] = 103
+Sub[103] = 100	subBock[103] = 0	subThread[103] = 103
+Mul[103] = 309	mulBock[103] = 0	mulThread[103] = 103
+Mod[103] = 1	modBock[103] = 0	modThread[103] = 103
+
+######################################
+Array1[104] = 104	Array2[104]  = 0
+Add[104] = 104	addBock[104] = 0	addThread[104] = 104
+Sub[104] = 104	subBock[104] = 0	subThread[104] = 104
+Mul[104] = 0	mulBock[104] = 0	mulThread[104] = 104
+Mod[104] = 99999	modBock[104] = 0	modThread[104] = 104
+
+######################################
+Array1[105] = 105	Array2[105]  = 1
+Add[105] = 106	addBock[105] = 0	addThread[105] = 105
+Sub[105] = 104	subBock[105] = 0	subThread[105] = 105
+Mul[105] = 105	mulBock[105] = 0	mulThread[105] = 105
+Mod[105] = 0	modBock[105] = 0	modThread[105] = 105
+
+######################################
+Array1[106] = 106	Array2[106]  = 2
+Add[106] = 108	addBock[106] = 0	addThread[106] = 106
+Sub[106] = 104	subBock[106] = 0	subThread[106] = 106
+Mul[106] = 212	mulBock[106] = 0	mulThread[106] = 106
+Mod[106] = 0	modBock[106] = 0	modThread[106] = 106
+
+######################################
+Array1[107] = 107	Array2[107]  = 3
+Add[107] = 110	addBock[107] = 0	addThread[107] = 107
+Sub[107] = 104	subBock[107] = 0	subThread[107] = 107
+Mul[107] = 321	mulBock[107] = 0	mulThread[107] = 107
+Mod[107] = 2	modBock[107] = 0	modThread[107] = 107
+
+######################################
+Array1[108] = 108	Array2[108]  = 0
+Add[108] = 108	addBock[108] = 0	addThread[108] = 108
+Sub[108] = 108	subBock[108] = 0	subThread[108] = 108
+Mul[108] = 0	mulBock[108] = 0	mulThread[108] = 108
+Mod[108] = 99999	modBock[108] = 0	modThread[108] = 108
+
+######################################
+Array1[109] = 109	Array2[109]  = 1
+Add[109] = 110	addBock[109] = 0	addThread[109] = 109
+Sub[109] = 108	subBock[109] = 0	subThread[109] = 109
+Mul[109] = 109	mulBock[109] = 0	mulThread[109] = 109
+Mod[109] = 0	modBock[109] = 0	modThread[109] = 109
+
+######################################
+Array1[110] = 110	Array2[110]  = 2
+Add[110] = 112	addBock[110] = 0	addThread[110] = 110
+Sub[110] = 108	subBock[110] = 0	subThread[110] = 110
+Mul[110] = 220	mulBock[110] = 0	mulThread[110] = 110
+Mod[110] = 0	modBock[110] = 0	modThread[110] = 110
+
+######################################
+Array1[111] = 111	Array2[111]  = 3
+Add[111] = 114	addBock[111] = 0	addThread[111] = 111
+Sub[111] = 108	subBock[111] = 0	subThread[111] = 111
+Mul[111] = 333	mulBock[111] = 0	mulThread[111] = 111
+Mod[111] = 0	modBock[111] = 0	modThread[111] = 111
+
+######################################
+Array1[112] = 112	Array2[112]  = 0
+Add[112] = 112	addBock[112] = 0	addThread[112] = 112
+Sub[112] = 112	subBock[112] = 0	subThread[112] = 112
+Mul[112] = 0	mulBock[112] = 0	mulThread[112] = 112
+Mod[112] = 99999	modBock[112] = 0	modThread[112] = 112
+
+######################################
+Array1[113] = 113	Array2[113]  = 1
+Add[113] = 114	addBock[113] = 0	addThread[113] = 113
+Sub[113] = 112	subBock[113] = 0	subThread[113] = 113
+Mul[113] = 113	mulBock[113] = 0	mulThread[113] = 113
+Mod[113] = 0	modBock[113] = 0	modThread[113] = 113
+
+######################################
+Array1[114] = 114	Array2[114]  = 2
+Add[114] = 116	addBock[114] = 0	addThread[114] = 114
+Sub[114] = 112	subBock[114] = 0	subThread[114] = 114
+Mul[114] = 228	mulBock[114] = 0	mulThread[114] = 114
+Mod[114] = 0	modBock[114] = 0	modThread[114] = 114
+
+######################################
+Array1[115] = 115	Array2[115]  = 3
+Add[115] = 118	addBock[115] = 0	addThread[115] = 115
+Sub[115] = 112	subBock[115] = 0	subThread[115] = 115
+Mul[115] = 345	mulBock[115] = 0	mulThread[115] = 115
+Mod[115] = 1	modBock[115] = 0	modThread[115] = 115
+
+######################################
+Array1[116] = 116	Array2[116]  = 0
+Add[116] = 116	addBock[116] = 0	addThread[116] = 116
+Sub[116] = 116	subBock[116] = 0	subThread[116] = 116
+Mul[116] = 0	mulBock[116] = 0	mulThread[116] = 116
+Mod[116] = 99999	modBock[116] = 0	modThread[116] = 116
+
+######################################
+Array1[117] = 117	Array2[117]  = 1
+Add[117] = 118	addBock[117] = 0	addThread[117] = 117
+Sub[117] = 116	subBock[117] = 0	subThread[117] = 117
+Mul[117] = 117	mulBock[117] = 0	mulThread[117] = 117
+Mod[117] = 0	modBock[117] = 0	modThread[117] = 117
+
+######################################
+Array1[118] = 118	Array2[118]  = 2
+Add[118] = 120	addBock[118] = 0	addThread[118] = 118
+Sub[118] = 116	subBock[118] = 0	subThread[118] = 118
+Mul[118] = 236	mulBock[118] = 0	mulThread[118] = 118
+Mod[118] = 0	modBock[118] = 0	modThread[118] = 118
+
+######################################
+Array1[119] = 119	Array2[119]  = 3
+Add[119] = 122	addBock[119] = 0	addThread[119] = 119
+Sub[119] = 116	subBock[119] = 0	subThread[119] = 119
+Mul[119] = 357	mulBock[119] = 0	mulThread[119] = 119
+Mod[119] = 2	modBock[119] = 0	modThread[119] = 119
+
+######################################
+Array1[120] = 120	Array2[120]  = 0
+Add[120] = 120	addBock[120] = 0	addThread[120] = 120
+Sub[120] = 120	subBock[120] = 0	subThread[120] = 120
+Mul[120] = 0	mulBock[120] = 0	mulThread[120] = 120
+Mod[120] = 99999	modBock[120] = 0	modThread[120] = 120
+
+######################################
+Array1[121] = 121	Array2[121]  = 1
+Add[121] = 122	addBock[121] = 0	addThread[121] = 121
+Sub[121] = 120	subBock[121] = 0	subThread[121] = 121
+Mul[121] = 121	mulBock[121] = 0	mulThread[121] = 121
+Mod[121] = 0	modBock[121] = 0	modThread[121] = 121
+
+######################################
+Array1[122] = 122	Array2[122]  = 2
+Add[122] = 124	addBock[122] = 0	addThread[122] = 122
+Sub[122] = 120	subBock[122] = 0	subThread[122] = 122
+Mul[122] = 244	mulBock[122] = 0	mulThread[122] = 122
+Mod[122] = 0	modBock[122] = 0	modThread[122] = 122
+
+######################################
+Array1[123] = 123	Array2[123]  = 3
+Add[123] = 126	addBock[123] = 0	addThread[123] = 123
+Sub[123] = 120	subBock[123] = 0	subThread[123] = 123
+Mul[123] = 369	mulBock[123] = 0	mulThread[123] = 123
+Mod[123] = 0	modBock[123] = 0	modThread[123] = 123
+
+######################################
+Array1[124] = 124	Array2[124]  = 0
+Add[124] = 124	addBock[124] = 0	addThread[124] = 124
+Sub[124] = 124	subBock[124] = 0	subThread[124] = 124
+Mul[124] = 0	mulBock[124] = 0	mulThread[124] = 124
+Mod[124] = 99999	modBock[124] = 0	modThread[124] = 124
+
+######################################
+Array1[125] = 125	Array2[125]  = 1
+Add[125] = 126	addBock[125] = 0	addThread[125] = 125
+Sub[125] = 124	subBock[125] = 0	subThread[125] = 125
+Mul[125] = 125	mulBock[125] = 0	mulThread[125] = 125
+Mod[125] = 0	modBock[125] = 0	modThread[125] = 125
+
+######################################
+Array1[126] = 126	Array2[126]  = 2
+Add[126] = 128	addBock[126] = 0	addThread[126] = 126
+Sub[126] = 124	subBock[126] = 0	subThread[126] = 126
+Mul[126] = 252	mulBock[126] = 0	mulThread[126] = 126
+Mod[126] = 0	modBock[126] = 0	modThread[126] = 126
+
+######################################
+Array1[127] = 127	Array2[127]  = 3
+Add[127] = 130	addBock[127] = 0	addThread[127] = 127
+Sub[127] = 124	subBock[127] = 0	subThread[127] = 127
+Mul[127] = 381	mulBock[127] = 0	mulThread[127] = 127
+Mod[127] = 1	modBock[127] = 0	modThread[127] = 127
+
+######################################
+Array1[128] = 128	Array2[128]  = 0
+Add[128] = 128	addBock[128] = 0	addThread[128] = 128
+Sub[128] = 128	subBock[128] = 0	subThread[128] = 128
+Mul[128] = 0	mulBock[128] = 0	mulThread[128] = 128
+Mod[128] = 99999	modBock[128] = 0	modThread[128] = 128
+
+######################################
+Array1[129] = 129	Array2[129]  = 1
+Add[129] = 130	addBock[129] = 0	addThread[129] = 129
+Sub[129] = 128	subBock[129] = 0	subThread[129] = 129
+Mul[129] = 129	mulBock[129] = 0	mulThread[129] = 129
+Mod[129] = 0	modBock[129] = 0	modThread[129] = 129
+
+######################################
+Array1[130] = 130	Array2[130]  = 2
+Add[130] = 132	addBock[130] = 0	addThread[130] = 130
+Sub[130] = 128	subBock[130] = 0	subThread[130] = 130
+Mul[130] = 260	mulBock[130] = 0	mulThread[130] = 130
+Mod[130] = 0	modBock[130] = 0	modThread[130] = 130
+
+######################################
+Array1[131] = 131	Array2[131]  = 3
+Add[131] = 134	addBock[131] = 0	addThread[131] = 131
+Sub[131] = 128	subBock[131] = 0	subThread[131] = 131
+Mul[131] = 393	mulBock[131] = 0	mulThread[131] = 131
+Mod[131] = 2	modBock[131] = 0	modThread[131] = 131
+
+######################################
+Array1[132] = 132	Array2[132]  = 0
+Add[132] = 132	addBock[132] = 0	addThread[132] = 132
+Sub[132] = 132	subBock[132] = 0	subThread[132] = 132
+Mul[132] = 0	mulBock[132] = 0	mulThread[132] = 132
+Mod[132] = 99999	modBock[132] = 0	modThread[132] = 132
+
+######################################
+Array1[133] = 133	Array2[133]  = 1
+Add[133] = 134	addBock[133] = 0	addThread[133] = 133
+Sub[133] = 132	subBock[133] = 0	subThread[133] = 133
+Mul[133] = 133	mulBock[133] = 0	mulThread[133] = 133
+Mod[133] = 0	modBock[133] = 0	modThread[133] = 133
+
+######################################
+Array1[134] = 134	Array2[134]  = 2
+Add[134] = 136	addBock[134] = 0	addThread[134] = 134
+Sub[134] = 132	subBock[134] = 0	subThread[134] = 134
+Mul[134] = 268	mulBock[134] = 0	mulThread[134] = 134
+Mod[134] = 0	modBock[134] = 0	modThread[134] = 134
+
+######################################
+Array1[135] = 135	Array2[135]  = 3
+Add[135] = 138	addBock[135] = 0	addThread[135] = 135
+Sub[135] = 132	subBock[135] = 0	subThread[135] = 135
+Mul[135] = 405	mulBock[135] = 0	mulThread[135] = 135
+Mod[135] = 0	modBock[135] = 0	modThread[135] = 135
+
+######################################
+Array1[136] = 136	Array2[136]  = 0
+Add[136] = 136	addBock[136] = 0	addThread[136] = 136
+Sub[136] = 136	subBock[136] = 0	subThread[136] = 136
+Mul[136] = 0	mulBock[136] = 0	mulThread[136] = 136
+Mod[136] = 99999	modBock[136] = 0	modThread[136] = 136
+
+######################################
+Array1[137] = 137	Array2[137]  = 1
+Add[137] = 138	addBock[137] = 0	addThread[137] = 137
+Sub[137] = 136	subBock[137] = 0	subThread[137] = 137
+Mul[137] = 137	mulBock[137] = 0	mulThread[137] = 137
+Mod[137] = 0	modBock[137] = 0	modThread[137] = 137
+
+######################################
+Array1[138] = 138	Array2[138]  = 2
+Add[138] = 140	addBock[138] = 0	addThread[138] = 138
+Sub[138] = 136	subBock[138] = 0	subThread[138] = 138
+Mul[138] = 276	mulBock[138] = 0	mulThread[138] = 138
+Mod[138] = 0	modBock[138] = 0	modThread[138] = 138
+
+######################################
+Array1[139] = 139	Array2[139]  = 3
+Add[139] = 142	addBock[139] = 0	addThread[139] = 139
+Sub[139] = 136	subBock[139] = 0	subThread[139] = 139
+Mul[139] = 417	mulBock[139] = 0	mulThread[139] = 139
+Mod[139] = 1	modBock[139] = 0	modThread[139] = 139
+
+######################################
+Array1[140] = 140	Array2[140]  = 0
+Add[140] = 140	addBock[140] = 0	addThread[140] = 140
+Sub[140] = 140	subBock[140] = 0	subThread[140] = 140
+Mul[140] = 0	mulBock[140] = 0	mulThread[140] = 140
+Mod[140] = 99999	modBock[140] = 0	modThread[140] = 140
+
+######################################
+Array1[141] = 141	Array2[141]  = 1
+Add[141] = 142	addBock[141] = 0	addThread[141] = 141
+Sub[141] = 140	subBock[141] = 0	subThread[141] = 141
+Mul[141] = 141	mulBock[141] = 0	mulThread[141] = 141
+Mod[141] = 0	modBock[141] = 0	modThread[141] = 141
+
+######################################
+Array1[142] = 142	Array2[142]  = 2
+Add[142] = 144	addBock[142] = 0	addThread[142] = 142
+Sub[142] = 140	subBock[142] = 0	subThread[142] = 142
+Mul[142] = 284	mulBock[142] = 0	mulThread[142] = 142
+Mod[142] = 0	modBock[142] = 0	modThread[142] = 142
+
+######################################
+Array1[143] = 143	Array2[143]  = 3
+Add[143] = 146	addBock[143] = 0	addThread[143] = 143
+Sub[143] = 140	subBock[143] = 0	subThread[143] = 143
+Mul[143] = 429	mulBock[143] = 0	mulThread[143] = 143
+Mod[143] = 2	modBock[143] = 0	modThread[143] = 143
+
+######################################
+Array1[144] = 144	Array2[144]  = 0
+Add[144] = 144	addBock[144] = 0	addThread[144] = 144
+Sub[144] = 144	subBock[144] = 0	subThread[144] = 144
+Mul[144] = 0	mulBock[144] = 0	mulThread[144] = 144
+Mod[144] = 99999	modBock[144] = 0	modThread[144] = 144
+
+######################################
+Array1[145] = 145	Array2[145]  = 1
+Add[145] = 146	addBock[145] = 0	addThread[145] = 145
+Sub[145] = 144	subBock[145] = 0	subThread[145] = 145
+Mul[145] = 145	mulBock[145] = 0	mulThread[145] = 145
+Mod[145] = 0	modBock[145] = 0	modThread[145] = 145
+
+######################################
+Array1[146] = 146	Array2[146]  = 2
+Add[146] = 148	addBock[146] = 0	addThread[146] = 146
+Sub[146] = 144	subBock[146] = 0	subThread[146] = 146
+Mul[146] = 292	mulBock[146] = 0	mulThread[146] = 146
+Mod[146] = 0	modBock[146] = 0	modThread[146] = 146
+
+######################################
+Array1[147] = 147	Array2[147]  = 3
+Add[147] = 150	addBock[147] = 0	addThread[147] = 147
+Sub[147] = 144	subBock[147] = 0	subThread[147] = 147
+Mul[147] = 441	mulBock[147] = 0	mulThread[147] = 147
+Mod[147] = 0	modBock[147] = 0	modThread[147] = 147
+
+######################################
+Array1[148] = 148	Array2[148]  = 0
+Add[148] = 148	addBock[148] = 0	addThread[148] = 148
+Sub[148] = 148	subBock[148] = 0	subThread[148] = 148
+Mul[148] = 0	mulBock[148] = 0	mulThread[148] = 148
+Mod[148] = 99999	modBock[148] = 0	modThread[148] = 148
+
+######################################
+Array1[149] = 149	Array2[149]  = 1
+Add[149] = 150	addBock[149] = 0	addThread[149] = 149
+Sub[149] = 148	subBock[149] = 0	subThread[149] = 149
+Mul[149] = 149	mulBock[149] = 0	mulThread[149] = 149
+Mod[149] = 0	modBock[149] = 0	modThread[149] = 149
+
+######################################
+Array1[150] = 150	Array2[150]  = 2
+Add[150] = 152	addBock[150] = 0	addThread[150] = 150
+Sub[150] = 148	subBock[150] = 0	subThread[150] = 150
+Mul[150] = 300	mulBock[150] = 0	mulThread[150] = 150
+Mod[150] = 0	modBock[150] = 0	modThread[150] = 150
+
+######################################
+Array1[151] = 151	Array2[151]  = 3
+Add[151] = 154	addBock[151] = 0	addThread[151] = 151
+Sub[151] = 148	subBock[151] = 0	subThread[151] = 151
+Mul[151] = 453	mulBock[151] = 0	mulThread[151] = 151
+Mod[151] = 1	modBock[151] = 0	modThread[151] = 151
+
+######################################
+Array1[152] = 152	Array2[152]  = 0
+Add[152] = 152	addBock[152] = 0	addThread[152] = 152
+Sub[152] = 152	subBock[152] = 0	subThread[152] = 152
+Mul[152] = 0	mulBock[152] = 0	mulThread[152] = 152
+Mod[152] = 99999	modBock[152] = 0	modThread[152] = 152
+
+######################################
+Array1[153] = 153	Array2[153]  = 1
+Add[153] = 154	addBock[153] = 0	addThread[153] = 153
+Sub[153] = 152	subBock[153] = 0	subThread[153] = 153
+Mul[153] = 153	mulBock[153] = 0	mulThread[153] = 153
+Mod[153] = 0	modBock[153] = 0	modThread[153] = 153
+
+######################################
+Array1[154] = 154	Array2[154]  = 2
+Add[154] = 156	addBock[154] = 0	addThread[154] = 154
+Sub[154] = 152	subBock[154] = 0	subThread[154] = 154
+Mul[154] = 308	mulBock[154] = 0	mulThread[154] = 154
+Mod[154] = 0	modBock[154] = 0	modThread[154] = 154
+
+######################################
+Array1[155] = 155	Array2[155]  = 3
+Add[155] = 158	addBock[155] = 0	addThread[155] = 155
+Sub[155] = 152	subBock[155] = 0	subThread[155] = 155
+Mul[155] = 465	mulBock[155] = 0	mulThread[155] = 155
+Mod[155] = 2	modBock[155] = 0	modThread[155] = 155
+
+######################################
+Array1[156] = 156	Array2[156]  = 0
+Add[156] = 156	addBock[156] = 0	addThread[156] = 156
+Sub[156] = 156	subBock[156] = 0	subThread[156] = 156
+Mul[156] = 0	mulBock[156] = 0	mulThread[156] = 156
+Mod[156] = 99999	modBock[156] = 0	modThread[156] = 156
+
+######################################
+Array1[157] = 157	Array2[157]  = 1
+Add[157] = 158	addBock[157] = 0	addThread[157] = 157
+Sub[157] = 156	subBock[157] = 0	subThread[157] = 157
+Mul[157] = 157	mulBock[157] = 0	mulThread[157] = 157
+Mod[157] = 0	modBock[157] = 0	modThread[157] = 157
+
+######################################
+Array1[158] = 158	Array2[158]  = 2
+Add[158] = 160	addBock[158] = 0	addThread[158] = 158
+Sub[158] = 156	subBock[158] = 0	subThread[158] = 158
+Mul[158] = 316	mulBock[158] = 0	mulThread[158] = 158
+Mod[158] = 0	modBock[158] = 0	modThread[158] = 158
+
+######################################
+Array1[159] = 159	Array2[159]  = 3
+Add[159] = 162	addBock[159] = 0	addThread[159] = 159
+Sub[159] = 156	subBock[159] = 0	subThread[159] = 159
+Mul[159] = 477	mulBock[159] = 0	mulThread[159] = 159
+Mod[159] = 0	modBock[159] = 0	modThread[159] = 159
+
+######################################
+Array1[160] = 160	Array2[160]  = 0
+Add[160] = 160	addBock[160] = 0	addThread[160] = 160
+Sub[160] = 160	subBock[160] = 0	subThread[160] = 160
+Mul[160] = 0	mulBock[160] = 0	mulThread[160] = 160
+Mod[160] = 99999	modBock[160] = 0	modThread[160] = 160
+
+######################################
+Array1[161] = 161	Array2[161]  = 1
+Add[161] = 162	addBock[161] = 0	addThread[161] = 161
+Sub[161] = 160	subBock[161] = 0	subThread[161] = 161
+Mul[161] = 161	mulBock[161] = 0	mulThread[161] = 161
+Mod[161] = 0	modBock[161] = 0	modThread[161] = 161
+
+######################################
+Array1[162] = 162	Array2[162]  = 2
+Add[162] = 164	addBock[162] = 0	addThread[162] = 162
+Sub[162] = 160	subBock[162] = 0	subThread[162] = 162
+Mul[162] = 324	mulBock[162] = 0	mulThread[162] = 162
+Mod[162] = 0	modBock[162] = 0	modThread[162] = 162
+
+######################################
+Array1[163] = 163	Array2[163]  = 3
+Add[163] = 166	addBock[163] = 0	addThread[163] = 163
+Sub[163] = 160	subBock[163] = 0	subThread[163] = 163
+Mul[163] = 489	mulBock[163] = 0	mulThread[163] = 163
+Mod[163] = 1	modBock[163] = 0	modThread[163] = 163
+
+######################################
+Array1[164] = 164	Array2[164]  = 0
+Add[164] = 164	addBock[164] = 0	addThread[164] = 164
+Sub[164] = 164	subBock[164] = 0	subThread[164] = 164
+Mul[164] = 0	mulBock[164] = 0	mulThread[164] = 164
+Mod[164] = 99999	modBock[164] = 0	modThread[164] = 164
+
+######################################
+Array1[165] = 165	Array2[165]  = 1
+Add[165] = 166	addBock[165] = 0	addThread[165] = 165
+Sub[165] = 164	subBock[165] = 0	subThread[165] = 165
+Mul[165] = 165	mulBock[165] = 0	mulThread[165] = 165
+Mod[165] = 0	modBock[165] = 0	modThread[165] = 165
+
+######################################
+Array1[166] = 166	Array2[166]  = 2
+Add[166] = 168	addBock[166] = 0	addThread[166] = 166
+Sub[166] = 164	subBock[166] = 0	subThread[166] = 166
+Mul[166] = 332	mulBock[166] = 0	mulThread[166] = 166
+Mod[166] = 0	modBock[166] = 0	modThread[166] = 166
+
+######################################
+Array1[167] = 167	Array2[167]  = 3
+Add[167] = 170	addBock[167] = 0	addThread[167] = 167
+Sub[167] = 164	subBock[167] = 0	subThread[167] = 167
+Mul[167] = 501	mulBock[167] = 0	mulThread[167] = 167
+Mod[167] = 2	modBock[167] = 0	modThread[167] = 167
+
+######################################
+Array1[168] = 168	Array2[168]  = 0
+Add[168] = 168	addBock[168] = 0	addThread[168] = 168
+Sub[168] = 168	subBock[168] = 0	subThread[168] = 168
+Mul[168] = 0	mulBock[168] = 0	mulThread[168] = 168
+Mod[168] = 99999	modBock[168] = 0	modThread[168] = 168
+
+######################################
+Array1[169] = 169	Array2[169]  = 1
+Add[169] = 170	addBock[169] = 0	addThread[169] = 169
+Sub[169] = 168	subBock[169] = 0	subThread[169] = 169
+Mul[169] = 169	mulBock[169] = 0	mulThread[169] = 169
+Mod[169] = 0	modBock[169] = 0	modThread[169] = 169
+
+######################################
+Array1[170] = 170	Array2[170]  = 2
+Add[170] = 172	addBock[170] = 0	addThread[170] = 170
+Sub[170] = 168	subBock[170] = 0	subThread[170] = 170
+Mul[170] = 340	mulBock[170] = 0	mulThread[170] = 170
+Mod[170] = 0	modBock[170] = 0	modThread[170] = 170
+
+######################################
+Array1[171] = 171	Array2[171]  = 3
+Add[171] = 174	addBock[171] = 0	addThread[171] = 171
+Sub[171] = 168	subBock[171] = 0	subThread[171] = 171
+Mul[171] = 513	mulBock[171] = 0	mulThread[171] = 171
+Mod[171] = 0	modBock[171] = 0	modThread[171] = 171
+
+######################################
+Array1[172] = 172	Array2[172]  = 0
+Add[172] = 172	addBock[172] = 0	addThread[172] = 172
+Sub[172] = 172	subBock[172] = 0	subThread[172] = 172
+Mul[172] = 0	mulBock[172] = 0	mulThread[172] = 172
+Mod[172] = 99999	modBock[172] = 0	modThread[172] = 172
+
+######################################
+Array1[173] = 173	Array2[173]  = 1
+Add[173] = 174	addBock[173] = 0	addThread[173] = 173
+Sub[173] = 172	subBock[173] = 0	subThread[173] = 173
+Mul[173] = 173	mulBock[173] = 0	mulThread[173] = 173
+Mod[173] = 0	modBock[173] = 0	modThread[173] = 173
+
+######################################
+Array1[174] = 174	Array2[174]  = 2
+Add[174] = 176	addBock[174] = 0	addThread[174] = 174
+Sub[174] = 172	subBock[174] = 0	subThread[174] = 174
+Mul[174] = 348	mulBock[174] = 0	mulThread[174] = 174
+Mod[174] = 0	modBock[174] = 0	modThread[174] = 174
+
+######################################
+Array1[175] = 175	Array2[175]  = 3
+Add[175] = 178	addBock[175] = 0	addThread[175] = 175
+Sub[175] = 172	subBock[175] = 0	subThread[175] = 175
+Mul[175] = 525	mulBock[175] = 0	mulThread[175] = 175
+Mod[175] = 1	modBock[175] = 0	modThread[175] = 175
+
+######################################
+Array1[176] = 176	Array2[176]  = 0
+Add[176] = 176	addBock[176] = 0	addThread[176] = 176
+Sub[176] = 176	subBock[176] = 0	subThread[176] = 176
+Mul[176] = 0	mulBock[176] = 0	mulThread[176] = 176
+Mod[176] = 99999	modBock[176] = 0	modThread[176] = 176
+
+######################################
+Array1[177] = 177	Array2[177]  = 1
+Add[177] = 178	addBock[177] = 0	addThread[177] = 177
+Sub[177] = 176	subBock[177] = 0	subThread[177] = 177
+Mul[177] = 177	mulBock[177] = 0	mulThread[177] = 177
+Mod[177] = 0	modBock[177] = 0	modThread[177] = 177
+
+######################################
+Array1[178] = 178	Array2[178]  = 2
+Add[178] = 180	addBock[178] = 0	addThread[178] = 178
+Sub[178] = 176	subBock[178] = 0	subThread[178] = 178
+Mul[178] = 356	mulBock[178] = 0	mulThread[178] = 178
+Mod[178] = 0	modBock[178] = 0	modThread[178] = 178
+
+######################################
+Array1[179] = 179	Array2[179]  = 3
+Add[179] = 182	addBock[179] = 0	addThread[179] = 179
+Sub[179] = 176	subBock[179] = 0	subThread[179] = 179
+Mul[179] = 537	mulBock[179] = 0	mulThread[179] = 179
+Mod[179] = 2	modBock[179] = 0	modThread[179] = 179
+
+######################################
+Array1[180] = 180	Array2[180]  = 0
+Add[180] = 180	addBock[180] = 0	addThread[180] = 180
+Sub[180] = 180	subBock[180] = 0	subThread[180] = 180
+Mul[180] = 0	mulBock[180] = 0	mulThread[180] = 180
+Mod[180] = 99999	modBock[180] = 0	modThread[180] = 180
+
+######################################
+Array1[181] = 181	Array2[181]  = 1
+Add[181] = 182	addBock[181] = 0	addThread[181] = 181
+Sub[181] = 180	subBock[181] = 0	subThread[181] = 181
+Mul[181] = 181	mulBock[181] = 0	mulThread[181] = 181
+Mod[181] = 0	modBock[181] = 0	modThread[181] = 181
+
+######################################
+Array1[182] = 182	Array2[182]  = 2
+Add[182] = 184	addBock[182] = 0	addThread[182] = 182
+Sub[182] = 180	subBock[182] = 0	subThread[182] = 182
+Mul[182] = 364	mulBock[182] = 0	mulThread[182] = 182
+Mod[182] = 0	modBock[182] = 0	modThread[182] = 182
+
+######################################
+Array1[183] = 183	Array2[183]  = 3
+Add[183] = 186	addBock[183] = 0	addThread[183] = 183
+Sub[183] = 180	subBock[183] = 0	subThread[183] = 183
+Mul[183] = 549	mulBock[183] = 0	mulThread[183] = 183
+Mod[183] = 0	modBock[183] = 0	modThread[183] = 183
+
+######################################
+Array1[184] = 184	Array2[184]  = 0
+Add[184] = 184	addBock[184] = 0	addThread[184] = 184
+Sub[184] = 184	subBock[184] = 0	subThread[184] = 184
+Mul[184] = 0	mulBock[184] = 0	mulThread[184] = 184
+Mod[184] = 99999	modBock[184] = 0	modThread[184] = 184
+
+######################################
+Array1[185] = 185	Array2[185]  = 1
+Add[185] = 186	addBock[185] = 0	addThread[185] = 185
+Sub[185] = 184	subBock[185] = 0	subThread[185] = 185
+Mul[185] = 185	mulBock[185] = 0	mulThread[185] = 185
+Mod[185] = 0	modBock[185] = 0	modThread[185] = 185
+
+######################################
+Array1[186] = 186	Array2[186]  = 2
+Add[186] = 188	addBock[186] = 0	addThread[186] = 186
+Sub[186] = 184	subBock[186] = 0	subThread[186] = 186
+Mul[186] = 372	mulBock[186] = 0	mulThread[186] = 186
+Mod[186] = 0	modBock[186] = 0	modThread[186] = 186
+
+######################################
+Array1[187] = 187	Array2[187]  = 3
+Add[187] = 190	addBock[187] = 0	addThread[187] = 187
+Sub[187] = 184	subBock[187] = 0	subThread[187] = 187
+Mul[187] = 561	mulBock[187] = 0	mulThread[187] = 187
+Mod[187] = 1	modBock[187] = 0	modThread[187] = 187
+
+######################################
+Array1[188] = 188	Array2[188]  = 0
+Add[188] = 188	addBock[188] = 0	addThread[188] = 188
+Sub[188] = 188	subBock[188] = 0	subThread[188] = 188
+Mul[188] = 0	mulBock[188] = 0	mulThread[188] = 188
+Mod[188] = 99999	modBock[188] = 0	modThread[188] = 188
+
+######################################
+Array1[189] = 189	Array2[189]  = 1
+Add[189] = 190	addBock[189] = 0	addThread[189] = 189
+Sub[189] = 188	subBock[189] = 0	subThread[189] = 189
+Mul[189] = 189	mulBock[189] = 0	mulThread[189] = 189
+Mod[189] = 0	modBock[189] = 0	modThread[189] = 189
+
+######################################
+Array1[190] = 190	Array2[190]  = 2
+Add[190] = 192	addBock[190] = 0	addThread[190] = 190
+Sub[190] = 188	subBock[190] = 0	subThread[190] = 190
+Mul[190] = 380	mulBock[190] = 0	mulThread[190] = 190
+Mod[190] = 0	modBock[190] = 0	modThread[190] = 190
+
+######################################
+Array1[191] = 191	Array2[191]  = 3
+Add[191] = 194	addBock[191] = 0	addThread[191] = 191
+Sub[191] = 188	subBock[191] = 0	subThread[191] = 191
+Mul[191] = 573	mulBock[191] = 0	mulThread[191] = 191
+Mod[191] = 2	modBock[191] = 0	modThread[191] = 191
+
+######################################
+Array1[192] = 192	Array2[192]  = 0
+Add[192] = 192	addBock[192] = 0	addThread[192] = 192
+Sub[192] = 192	subBock[192] = 0	subThread[192] = 192
+Mul[192] = 0	mulBock[192] = 0	mulThread[192] = 192
+Mod[192] = 99999	modBock[192] = 0	modThread[192] = 192
+
+######################################
+Array1[193] = 193	Array2[193]  = 1
+Add[193] = 194	addBock[193] = 0	addThread[193] = 193
+Sub[193] = 192	subBock[193] = 0	subThread[193] = 193
+Mul[193] = 193	mulBock[193] = 0	mulThread[193] = 193
+Mod[193] = 0	modBock[193] = 0	modThread[193] = 193
+
+######################################
+Array1[194] = 194	Array2[194]  = 2
+Add[194] = 196	addBock[194] = 0	addThread[194] = 194
+Sub[194] = 192	subBock[194] = 0	subThread[194] = 194
+Mul[194] = 388	mulBock[194] = 0	mulThread[194] = 194
+Mod[194] = 0	modBock[194] = 0	modThread[194] = 194
+
+######################################
+Array1[195] = 195	Array2[195]  = 3
+Add[195] = 198	addBock[195] = 0	addThread[195] = 195
+Sub[195] = 192	subBock[195] = 0	subThread[195] = 195
+Mul[195] = 585	mulBock[195] = 0	mulThread[195] = 195
+Mod[195] = 0	modBock[195] = 0	modThread[195] = 195
+
+######################################
+Array1[196] = 196	Array2[196]  = 0
+Add[196] = 196	addBock[196] = 0	addThread[196] = 196
+Sub[196] = 196	subBock[196] = 0	subThread[196] = 196
+Mul[196] = 0	mulBock[196] = 0	mulThread[196] = 196
+Mod[196] = 99999	modBock[196] = 0	modThread[196] = 196
+
+######################################
+Array1[197] = 197	Array2[197]  = 1
+Add[197] = 198	addBock[197] = 0	addThread[197] = 197
+Sub[197] = 196	subBock[197] = 0	subThread[197] = 197
+Mul[197] = 197	mulBock[197] = 0	mulThread[197] = 197
+Mod[197] = 0	modBock[197] = 0	modThread[197] = 197
+
+######################################
+Array1[198] = 198	Array2[198]  = 2
+Add[198] = 200	addBock[198] = 0	addThread[198] = 198
+Sub[198] = 196	subBock[198] = 0	subThread[198] = 198
+Mul[198] = 396	mulBock[198] = 0	mulThread[198] = 198
+Mod[198] = 0	modBock[198] = 0	modThread[198] = 198
+
+######################################
+Array1[199] = 199	Array2[199]  = 3
+Add[199] = 202	addBock[199] = 0	addThread[199] = 199
+Sub[199] = 196	subBock[199] = 0	subThread[199] = 199
+Mul[199] = 597	mulBock[199] = 0	mulThread[199] = 199
+Mod[199] = 1	modBock[199] = 0	modThread[199] = 199
+
+######################################
+Array1[200] = 200	Array2[200]  = 0
+Add[200] = 200	addBock[200] = 0	addThread[200] = 200
+Sub[200] = 200	subBock[200] = 0	subThread[200] = 200
+Mul[200] = 0	mulBock[200] = 0	mulThread[200] = 200
+Mod[200] = 99999	modBock[200] = 0	modThread[200] = 200
+
+######################################
+Array1[201] = 201	Array2[201]  = 1
+Add[201] = 202	addBock[201] = 0	addThread[201] = 201
+Sub[201] = 200	subBock[201] = 0	subThread[201] = 201
+Mul[201] = 201	mulBock[201] = 0	mulThread[201] = 201
+Mod[201] = 0	modBock[201] = 0	modThread[201] = 201
+
+######################################
+Array1[202] = 202	Array2[202]  = 2
+Add[202] = 204	addBock[202] = 0	addThread[202] = 202
+Sub[202] = 200	subBock[202] = 0	subThread[202] = 202
+Mul[202] = 404	mulBock[202] = 0	mulThread[202] = 202
+Mod[202] = 0	modBock[202] = 0	modThread[202] = 202
+
+######################################
+Array1[203] = 203	Array2[203]  = 3
+Add[203] = 206	addBock[203] = 0	addThread[203] = 203
+Sub[203] = 200	subBock[203] = 0	subThread[203] = 203
+Mul[203] = 609	mulBock[203] = 0	mulThread[203] = 203
+Mod[203] = 2	modBock[203] = 0	modThread[203] = 203
+
+######################################
+Array1[204] = 204	Array2[204]  = 0
+Add[204] = 204	addBock[204] = 0	addThread[204] = 204
+Sub[204] = 204	subBock[204] = 0	subThread[204] = 204
+Mul[204] = 0	mulBock[204] = 0	mulThread[204] = 204
+Mod[204] = 99999	modBock[204] = 0	modThread[204] = 204
+
+######################################
+Array1[205] = 205	Array2[205]  = 1
+Add[205] = 206	addBock[205] = 0	addThread[205] = 205
+Sub[205] = 204	subBock[205] = 0	subThread[205] = 205
+Mul[205] = 205	mulBock[205] = 0	mulThread[205] = 205
+Mod[205] = 0	modBock[205] = 0	modThread[205] = 205
+
+######################################
+Array1[206] = 206	Array2[206]  = 2
+Add[206] = 208	addBock[206] = 0	addThread[206] = 206
+Sub[206] = 204	subBock[206] = 0	subThread[206] = 206
+Mul[206] = 412	mulBock[206] = 0	mulThread[206] = 206
+Mod[206] = 0	modBock[206] = 0	modThread[206] = 206
+
+######################################
+Array1[207] = 207	Array2[207]  = 3
+Add[207] = 210	addBock[207] = 0	addThread[207] = 207
+Sub[207] = 204	subBock[207] = 0	subThread[207] = 207
+Mul[207] = 621	mulBock[207] = 0	mulThread[207] = 207
+Mod[207] = 0	modBock[207] = 0	modThread[207] = 207
+
+######################################
+Array1[208] = 208	Array2[208]  = 0
+Add[208] = 208	addBock[208] = 0	addThread[208] = 208
+Sub[208] = 208	subBock[208] = 0	subThread[208] = 208
+Mul[208] = 0	mulBock[208] = 0	mulThread[208] = 208
+Mod[208] = 99999	modBock[208] = 0	modThread[208] = 208
+
+######################################
+Array1[209] = 209	Array2[209]  = 1
+Add[209] = 210	addBock[209] = 0	addThread[209] = 209
+Sub[209] = 208	subBock[209] = 0	subThread[209] = 209
+Mul[209] = 209	mulBock[209] = 0	mulThread[209] = 209
+Mod[209] = 0	modBock[209] = 0	modThread[209] = 209
+
+######################################
+Array1[210] = 210	Array2[210]  = 2
+Add[210] = 212	addBock[210] = 0	addThread[210] = 210
+Sub[210] = 208	subBock[210] = 0	subThread[210] = 210
+Mul[210] = 420	mulBock[210] = 0	mulThread[210] = 210
+Mod[210] = 0	modBock[210] = 0	modThread[210] = 210
+
+######################################
+Array1[211] = 211	Array2[211]  = 3
+Add[211] = 214	addBock[211] = 0	addThread[211] = 211
+Sub[211] = 208	subBock[211] = 0	subThread[211] = 211
+Mul[211] = 633	mulBock[211] = 0	mulThread[211] = 211
+Mod[211] = 1	modBock[211] = 0	modThread[211] = 211
+
+######################################
+Array1[212] = 212	Array2[212]  = 0
+Add[212] = 212	addBock[212] = 0	addThread[212] = 212
+Sub[212] = 212	subBock[212] = 0	subThread[212] = 212
+Mul[212] = 0	mulBock[212] = 0	mulThread[212] = 212
+Mod[212] = 99999	modBock[212] = 0	modThread[212] = 212
+
+######################################
+Array1[213] = 213	Array2[213]  = 1
+Add[213] = 214	addBock[213] = 0	addThread[213] = 213
+Sub[213] = 212	subBock[213] = 0	subThread[213] = 213
+Mul[213] = 213	mulBock[213] = 0	mulThread[213] = 213
+Mod[213] = 0	modBock[213] = 0	modThread[213] = 213
+
+######################################
+Array1[214] = 214	Array2[214]  = 2
+Add[214] = 216	addBock[214] = 0	addThread[214] = 214
+Sub[214] = 212	subBock[214] = 0	subThread[214] = 214
+Mul[214] = 428	mulBock[214] = 0	mulThread[214] = 214
+Mod[214] = 0	modBock[214] = 0	modThread[214] = 214
+
+######################################
+Array1[215] = 215	Array2[215]  = 3
+Add[215] = 218	addBock[215] = 0	addThread[215] = 215
+Sub[215] = 212	subBock[215] = 0	subThread[215] = 215
+Mul[215] = 645	mulBock[215] = 0	mulThread[215] = 215
+Mod[215] = 2	modBock[215] = 0	modThread[215] = 215
+
+######################################
+Array1[216] = 216	Array2[216]  = 0
+Add[216] = 216	addBock[216] = 0	addThread[216] = 216
+Sub[216] = 216	subBock[216] = 0	subThread[216] = 216
+Mul[216] = 0	mulBock[216] = 0	mulThread[216] = 216
+Mod[216] = 99999	modBock[216] = 0	modThread[216] = 216
+
+######################################
+Array1[217] = 217	Array2[217]  = 1
+Add[217] = 218	addBock[217] = 0	addThread[217] = 217
+Sub[217] = 216	subBock[217] = 0	subThread[217] = 217
+Mul[217] = 217	mulBock[217] = 0	mulThread[217] = 217
+Mod[217] = 0	modBock[217] = 0	modThread[217] = 217
+
+######################################
+Array1[218] = 218	Array2[218]  = 2
+Add[218] = 220	addBock[218] = 0	addThread[218] = 218
+Sub[218] = 216	subBock[218] = 0	subThread[218] = 218
+Mul[218] = 436	mulBock[218] = 0	mulThread[218] = 218
+Mod[218] = 0	modBock[218] = 0	modThread[218] = 218
+
+######################################
+Array1[219] = 219	Array2[219]  = 3
+Add[219] = 222	addBock[219] = 0	addThread[219] = 219
+Sub[219] = 216	subBock[219] = 0	subThread[219] = 219
+Mul[219] = 657	mulBock[219] = 0	mulThread[219] = 219
+Mod[219] = 0	modBock[219] = 0	modThread[219] = 219
+
+######################################
+Array1[220] = 220	Array2[220]  = 0
+Add[220] = 220	addBock[220] = 0	addThread[220] = 220
+Sub[220] = 220	subBock[220] = 0	subThread[220] = 220
+Mul[220] = 0	mulBock[220] = 0	mulThread[220] = 220
+Mod[220] = 99999	modBock[220] = 0	modThread[220] = 220
+
+######################################
+Array1[221] = 221	Array2[221]  = 1
+Add[221] = 222	addBock[221] = 0	addThread[221] = 221
+Sub[221] = 220	subBock[221] = 0	subThread[221] = 221
+Mul[221] = 221	mulBock[221] = 0	mulThread[221] = 221
+Mod[221] = 0	modBock[221] = 0	modThread[221] = 221
+
+######################################
+Array1[222] = 222	Array2[222]  = 2
+Add[222] = 224	addBock[222] = 0	addThread[222] = 222
+Sub[222] = 220	subBock[222] = 0	subThread[222] = 222
+Mul[222] = 444	mulBock[222] = 0	mulThread[222] = 222
+Mod[222] = 0	modBock[222] = 0	modThread[222] = 222
+
+######################################
+Array1[223] = 223	Array2[223]  = 3
+Add[223] = 226	addBock[223] = 0	addThread[223] = 223
+Sub[223] = 220	subBock[223] = 0	subThread[223] = 223
+Mul[223] = 669	mulBock[223] = 0	mulThread[223] = 223
+Mod[223] = 1	modBock[223] = 0	modThread[223] = 223
+
+######################################
+Array1[224] = 224	Array2[224]  = 0
+Add[224] = 224	addBock[224] = 0	addThread[224] = 224
+Sub[224] = 224	subBock[224] = 0	subThread[224] = 224
+Mul[224] = 0	mulBock[224] = 0	mulThread[224] = 224
+Mod[224] = 99999	modBock[224] = 0	modThread[224] = 224
+
+######################################
+Array1[225] = 225	Array2[225]  = 1
+Add[225] = 226	addBock[225] = 0	addThread[225] = 225
+Sub[225] = 224	subBock[225] = 0	subThread[225] = 225
+Mul[225] = 225	mulBock[225] = 0	mulThread[225] = 225
+Mod[225] = 0	modBock[225] = 0	modThread[225] = 225
+
+######################################
+Array1[226] = 226	Array2[226]  = 2
+Add[226] = 228	addBock[226] = 0	addThread[226] = 226
+Sub[226] = 224	subBock[226] = 0	subThread[226] = 226
+Mul[226] = 452	mulBock[226] = 0	mulThread[226] = 226
+Mod[226] = 0	modBock[226] = 0	modThread[226] = 226
+
+######################################
+Array1[227] = 227	Array2[227]  = 3
+Add[227] = 230	addBock[227] = 0	addThread[227] = 227
+Sub[227] = 224	subBock[227] = 0	subThread[227] = 227
+Mul[227] = 681	mulBock[227] = 0	mulThread[227] = 227
+Mod[227] = 2	modBock[227] = 0	modThread[227] = 227
+
+######################################
+Array1[228] = 228	Array2[228]  = 0
+Add[228] = 228	addBock[228] = 0	addThread[228] = 228
+Sub[228] = 228	subBock[228] = 0	subThread[228] = 228
+Mul[228] = 0	mulBock[228] = 0	mulThread[228] = 228
+Mod[228] = 99999	modBock[228] = 0	modThread[228] = 228
+
+######################################
+Array1[229] = 229	Array2[229]  = 1
+Add[229] = 230	addBock[229] = 0	addThread[229] = 229
+Sub[229] = 228	subBock[229] = 0	subThread[229] = 229
+Mul[229] = 229	mulBock[229] = 0	mulThread[229] = 229
+Mod[229] = 0	modBock[229] = 0	modThread[229] = 229
+
+######################################
+Array1[230] = 230	Array2[230]  = 2
+Add[230] = 232	addBock[230] = 0	addThread[230] = 230
+Sub[230] = 228	subBock[230] = 0	subThread[230] = 230
+Mul[230] = 460	mulBock[230] = 0	mulThread[230] = 230
+Mod[230] = 0	modBock[230] = 0	modThread[230] = 230
+
+######################################
+Array1[231] = 231	Array2[231]  = 3
+Add[231] = 234	addBock[231] = 0	addThread[231] = 231
+Sub[231] = 228	subBock[231] = 0	subThread[231] = 231
+Mul[231] = 693	mulBock[231] = 0	mulThread[231] = 231
+Mod[231] = 0	modBock[231] = 0	modThread[231] = 231
+
+######################################
+Array1[232] = 232	Array2[232]  = 0
+Add[232] = 232	addBock[232] = 0	addThread[232] = 232
+Sub[232] = 232	subBock[232] = 0	subThread[232] = 232
+Mul[232] = 0	mulBock[232] = 0	mulThread[232] = 232
+Mod[232] = 99999	modBock[232] = 0	modThread[232] = 232
+
+######################################
+Array1[233] = 233	Array2[233]  = 1
+Add[233] = 234	addBock[233] = 0	addThread[233] = 233
+Sub[233] = 232	subBock[233] = 0	subThread[233] = 233
+Mul[233] = 233	mulBock[233] = 0	mulThread[233] = 233
+Mod[233] = 0	modBock[233] = 0	modThread[233] = 233
+
+######################################
+Array1[234] = 234	Array2[234]  = 2
+Add[234] = 236	addBock[234] = 0	addThread[234] = 234
+Sub[234] = 232	subBock[234] = 0	subThread[234] = 234
+Mul[234] = 468	mulBock[234] = 0	mulThread[234] = 234
+Mod[234] = 0	modBock[234] = 0	modThread[234] = 234
+
+######################################
+Array1[235] = 235	Array2[235]  = 3
+Add[235] = 238	addBock[235] = 0	addThread[235] = 235
+Sub[235] = 232	subBock[235] = 0	subThread[235] = 235
+Mul[235] = 705	mulBock[235] = 0	mulThread[235] = 235
+Mod[235] = 1	modBock[235] = 0	modThread[235] = 235
+
+######################################
+Array1[236] = 236	Array2[236]  = 0
+Add[236] = 236	addBock[236] = 0	addThread[236] = 236
+Sub[236] = 236	subBock[236] = 0	subThread[236] = 236
+Mul[236] = 0	mulBock[236] = 0	mulThread[236] = 236
+Mod[236] = 99999	modBock[236] = 0	modThread[236] = 236
+
+######################################
+Array1[237] = 237	Array2[237]  = 1
+Add[237] = 238	addBock[237] = 0	addThread[237] = 237
+Sub[237] = 236	subBock[237] = 0	subThread[237] = 237
+Mul[237] = 237	mulBock[237] = 0	mulThread[237] = 237
+Mod[237] = 0	modBock[237] = 0	modThread[237] = 237
+
+######################################
+Array1[238] = 238	Array2[238]  = 2
+Add[238] = 240	addBock[238] = 0	addThread[238] = 238
+Sub[238] = 236	subBock[238] = 0	subThread[238] = 238
+Mul[238] = 476	mulBock[238] = 0	mulThread[238] = 238
+Mod[238] = 0	modBock[238] = 0	modThread[238] = 238
+
+######################################
+Array1[239] = 239	Array2[239]  = 3
+Add[239] = 242	addBock[239] = 0	addThread[239] = 239
+Sub[239] = 236	subBock[239] = 0	subThread[239] = 239
+Mul[239] = 717	mulBock[239] = 0	mulThread[239] = 239
+Mod[239] = 2	modBock[239] = 0	modThread[239] = 239
+
+######################################
+Array1[240] = 240	Array2[240]  = 0
+Add[240] = 240	addBock[240] = 0	addThread[240] = 240
+Sub[240] = 240	subBock[240] = 0	subThread[240] = 240
+Mul[240] = 0	mulBock[240] = 0	mulThread[240] = 240
+Mod[240] = 99999	modBock[240] = 0	modThread[240] = 240
+
+######################################
+Array1[241] = 241	Array2[241]  = 1
+Add[241] = 242	addBock[241] = 0	addThread[241] = 241
+Sub[241] = 240	subBock[241] = 0	subThread[241] = 241
+Mul[241] = 241	mulBock[241] = 0	mulThread[241] = 241
+Mod[241] = 0	modBock[241] = 0	modThread[241] = 241
+
+######################################
+Array1[242] = 242	Array2[242]  = 2
+Add[242] = 244	addBock[242] = 0	addThread[242] = 242
+Sub[242] = 240	subBock[242] = 0	subThread[242] = 242
+Mul[242] = 484	mulBock[242] = 0	mulThread[242] = 242
+Mod[242] = 0	modBock[242] = 0	modThread[242] = 242
+
+######################################
+Array1[243] = 243	Array2[243]  = 3
+Add[243] = 246	addBock[243] = 0	addThread[243] = 243
+Sub[243] = 240	subBock[243] = 0	subThread[243] = 243
+Mul[243] = 729	mulBock[243] = 0	mulThread[243] = 243
+Mod[243] = 0	modBock[243] = 0	modThread[243] = 243
+
+######################################
+Array1[244] = 244	Array2[244]  = 0
+Add[244] = 244	addBock[244] = 0	addThread[244] = 244
+Sub[244] = 244	subBock[244] = 0	subThread[244] = 244
+Mul[244] = 0	mulBock[244] = 0	mulThread[244] = 244
+Mod[244] = 99999	modBock[244] = 0	modThread[244] = 244
+
+######################################
+Array1[245] = 245	Array2[245]  = 1
+Add[245] = 246	addBock[245] = 0	addThread[245] = 245
+Sub[245] = 244	subBock[245] = 0	subThread[245] = 245
+Mul[245] = 245	mulBock[245] = 0	mulThread[245] = 245
+Mod[245] = 0	modBock[245] = 0	modThread[245] = 245
+
+######################################
+Array1[246] = 246	Array2[246]  = 2
+Add[246] = 248	addBock[246] = 0	addThread[246] = 246
+Sub[246] = 244	subBock[246] = 0	subThread[246] = 246
+Mul[246] = 492	mulBock[246] = 0	mulThread[246] = 246
+Mod[246] = 0	modBock[246] = 0	modThread[246] = 246
+
+######################################
+Array1[247] = 247	Array2[247]  = 3
+Add[247] = 250	addBock[247] = 0	addThread[247] = 247
+Sub[247] = 244	subBock[247] = 0	subThread[247] = 247
+Mul[247] = 741	mulBock[247] = 0	mulThread[247] = 247
+Mod[247] = 1	modBock[247] = 0	modThread[247] = 247
+
+######################################
+Array1[248] = 248	Array2[248]  = 0
+Add[248] = 248	addBock[248] = 0	addThread[248] = 248
+Sub[248] = 248	subBock[248] = 0	subThread[248] = 248
+Mul[248] = 0	mulBock[248] = 0	mulThread[248] = 248
+Mod[248] = 99999	modBock[248] = 0	modThread[248] = 248
+
+######################################
+Array1[249] = 249	Array2[249]  = 1
+Add[249] = 250	addBock[249] = 0	addThread[249] = 249
+Sub[249] = 248	subBock[249] = 0	subThread[249] = 249
+Mul[249] = 249	mulBock[249] = 0	mulThread[249] = 249
+Mod[249] = 0	modBock[249] = 0	modThread[249] = 249
+
+######################################
+Array1[250] = 250	Array2[250]  = 2
+Add[250] = 252	addBock[250] = 0	addThread[250] = 250
+Sub[250] = 248	subBock[250] = 0	subThread[250] = 250
+Mul[250] = 500	mulBock[250] = 0	mulThread[250] = 250
+Mod[250] = 0	modBock[250] = 0	modThread[250] = 250
+
+######################################
+Array1[251] = 251	Array2[251]  = 3
+Add[251] = 254	addBock[251] = 0	addThread[251] = 251
+Sub[251] = 248	subBock[251] = 0	subThread[251] = 251
+Mul[251] = 753	mulBock[251] = 0	mulThread[251] = 251
+Mod[251] = 2	modBock[251] = 0	modThread[251] = 251
+
+######################################
+Array1[252] = 252	Array2[252]  = 0
+Add[252] = 252	addBock[252] = 0	addThread[252] = 252
+Sub[252] = 252	subBock[252] = 0	subThread[252] = 252
+Mul[252] = 0	mulBock[252] = 0	mulThread[252] = 252
+Mod[252] = 99999	modBock[252] = 0	modThread[252] = 252
+
+######################################
+Array1[253] = 253	Array2[253]  = 1
+Add[253] = 254	addBock[253] = 0	addThread[253] = 253
+Sub[253] = 252	subBock[253] = 0	subThread[253] = 253
+Mul[253] = 253	mulBock[253] = 0	mulThread[253] = 253
+Mod[253] = 0	modBock[253] = 0	modThread[253] = 253
+
+######################################
+Array1[254] = 254	Array2[254]  = 2
+Add[254] = 256	addBock[254] = 0	addThread[254] = 254
+Sub[254] = 252	subBock[254] = 0	subThread[254] = 254
+Mul[254] = 508	mulBock[254] = 0	mulThread[254] = 254
+Mod[254] = 0	modBock[254] = 0	modThread[254] = 254
+
+######################################
+Array1[255] = 255	Array2[255]  = 3
+Add[255] = 258	addBock[255] = 0	addThread[255] = 255
+Sub[255] = 252	subBock[255] = 0	subThread[255] = 255
+Mul[255] = 765	mulBock[255] = 0	mulThread[255] = 255
+Mod[255] = 0	modBock[255] = 0	modThread[255] = 255
+
+######################################
