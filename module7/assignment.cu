@@ -28,7 +28,7 @@ void run_Funs(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	
 	//Do the four mathematical calculation and output
 	//the result
-	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
+	Topadd_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
 	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR); 
