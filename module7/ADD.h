@@ -135,7 +135,7 @@ void Topadd_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks,
 	UInt32 cpu_Result[ARRAY_SIZE], cpu_Block[ARRAY_SIZE], cpu_Thread[ARRAY_SIZE];	
 	UInt32 *gpu_Result, *gpu_Block, *gpu_Thread;
 
-	cudaStream_t stream1; 
+	cudaStream_t stream1,stream2; 
   	cudaStreamCreate(&stream1); 
 	cudaStreamCreate(&stream2); 
 
