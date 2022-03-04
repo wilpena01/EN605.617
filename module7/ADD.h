@@ -126,25 +126,6 @@ void addRunConstMem(UInt32 num_blocks, UInt32 num_threads,
 
 }
 
-void add_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
-                  UInt32 num_threads, UInt32 *gpu_Result, UInt32 *gpu_Block,
-			      UInt32 *gpu_Thread)
-{
-	cudaEvent_t start, stop; 
-  	float elapsedTime; 
-
-	cudaEventCreate( &start ); 
-  	cudaEventCreate( &stop ); 
-
- 
-
-	add_arr<<<num_blocks, num_threads,1,stream1>>>(gpu_arr1, gpu_arr2, gpu_Result, 
-										 			   gpu_Block, gpu_Thread);
-	add_arr<<<num_blocks, num_threads,1,stream2>>>(gpu_arr1, gpu_arr2, gpu_Result, 
-										 			   gpu_Block, gpu_Thread);
-
-	
-}
 void Topadd_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
               UInt32 num_threads, RESULT *finalResult)
 {
