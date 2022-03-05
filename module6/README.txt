@@ -10,7 +10,7 @@ There should be 11 files here:
 	MOD.h
 	Utilities.h
 	latestOutput.txt
-	ConstantvsShared.xslx
+	InputSizeVSTime.xslx
 	Stretchproblem.txt
 	
 	
@@ -56,8 +56,8 @@ it has the latest output from the main cuda file.
 
 
 
-ConstantvsShared.xslx:
-This file shows the difference execution time between constant and shared memory allocation
+InputSizeVSTime.xslx:
+This file shows the difference in execution time between Input size and local memory allocation.
 
 
 Stretchproblem.txt:
