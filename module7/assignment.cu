@@ -25,7 +25,7 @@ RESULT run_add(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//and record the time using events
 	RESULT addR;
 	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
-	float delta1, delta2, delta3, delta4;
+	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
 	Topadd_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
@@ -37,10 +37,10 @@ RESULT run_add(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	start = get_time();
 
 	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
-	cudaEvent_t stop = get_time();	
+	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	outputTime(delta1,delta2)
+	outputTime(delta1,delta2);
 	return addR;
 }
 
@@ -51,10 +51,10 @@ RESULT run_sub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//and record the time using events
 	RESULT subR;
 	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
-	float delta1, delta2, delta3, delta4;
+	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
-	Topmsub_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
+	Topsub_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	
 	cudaEvent_t stop = get_time();	
 	cudaEventSynchronize(stop);	
@@ -63,10 +63,10 @@ RESULT run_sub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	start = get_time();
 
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
-	cudaEvent_t stop = get_time();	
+	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	outputTime(delta1,delta2)
+	outputTime(delta1,delta2);
 
 	return subR;
 }
@@ -78,7 +78,7 @@ RESULT run_mul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//and record the time using events
 	RESULT mulR;
 	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
-	float delta1, delta2, delta3, delta4;
+	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
 	Topmul_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
@@ -91,10 +91,10 @@ RESULT run_mul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
 
-	cudaEvent_t stop = get_time();	
+	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	outputTime(delta1,delta2)
+	outputTime(delta1,delta2);
 
 	return mulR;
 }
@@ -106,7 +106,7 @@ RESULT run_mod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//and record the time using events
 	RESULT modR;
 	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
-	float delta1, delta2, delta3, delta4;
+	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
 	Topmod_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR);
@@ -118,10 +118,10 @@ RESULT run_mod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	start = get_time();
 
 	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR);
-	cudaEvent_t stop = get_time();	
+	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	outputTime(delta1,delta2)
+	outputTime(delta1,delta2);
 
 	return modR;
 }
@@ -131,6 +131,7 @@ void run_Funs(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 {
 	//call the four mathematical calculation and output
 	//the result
+	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
 	RESULT addR, subR, mulR, modR; 
 
 	addR = run_add(gpu_arr1, gpu_arr2, numBlocks, blockSize);
