@@ -100,7 +100,7 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 void outputTime(float duration1, float duration2, string *str)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time using "<<str[0]<<" memory allocation = "<< duration1<< " msn"
+	cout<<"Elapsed Time using "<<str[0]<<" memory allocation = "<< duration1<< " msn"
         <<"\nElapsed Time using "<<str[1]<<" memory allocation = "<< duration2<< " msn";
 	    
 }
