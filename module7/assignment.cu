@@ -28,11 +28,21 @@ void run_Funs(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	
 	//Do the four mathematical calculation and output
 	//the result
+	float delta1, delta2, delta3, delta4;
+	cudaEvent_t start = get_time();
+
 	Topadd_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
+	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
+
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta1, start, stop);
+
+	
+
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
 	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR); 
-	cudaDeviceSynchronize();
 	output(gpu_arr1, gpu_arr2, &addR, &subR, &mulR, &modR, ARRAY_SIZE);
 }
 
