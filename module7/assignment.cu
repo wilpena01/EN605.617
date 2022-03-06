@@ -208,7 +208,7 @@ int main()
 	UInt32 blockSize    = 32;
 	UInt32 numBlocks    = totalThreads / blockSize;
 
-	main_Pinned(totalThreads, numBlocks, blockSize); 
+	main_Pegeable(totalThreads, numBlocks, blockSize); 
 
 
 	return EXIT_SUCCESS;
