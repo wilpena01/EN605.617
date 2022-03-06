@@ -39,7 +39,7 @@ RESULT run_add(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	cout<<"Addition Execution Time";
+	cout<<"\nAddition Execution Time";
 	outputTime(delta1,delta2);
 	return addR;
 }
@@ -204,8 +204,8 @@ void main_Pinned(UInt32 totalThreads, UInt32 numBlocks,
 int main()
 {
 	
-	UInt32 totalThreads = 12;
-	UInt32 blockSize    = 12;
+	UInt32 totalThreads = 64;
+	UInt32 blockSize    = 4;
 	UInt32 numBlocks    = 1;
 
 	main_Pinned(totalThreads, numBlocks, blockSize); 
