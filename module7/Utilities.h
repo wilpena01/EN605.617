@@ -109,7 +109,7 @@ void outputTime(float duration1, float duration2)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time using multiple stream = "<< duration1<< " msn"
-        <<"\nElapsed Time NOT using multiple streams = "<< duration2<< " msn";
+        <<"\nElapsed Time NOT using multiple streams = "<< duration2<< " msn\n";
 	    
 }
 
