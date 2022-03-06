@@ -206,7 +206,7 @@ int main()
 	
 	UInt32 totalThreads = 64;
 	UInt32 blockSize    = 4;
-	UInt32 numBlocks    = 1;
+	UInt32 numBlocks    = totalThreads / blockSize;
 
 	main_Pinned(totalThreads, numBlocks, blockSize); 
 
