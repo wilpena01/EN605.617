@@ -24,7 +24,6 @@ RESULT run_add(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//call the add module using stream and no stream
 	//and record the time using events
 	RESULT addR;
-	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
 	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
@@ -50,7 +49,6 @@ RESULT run_sub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//call the sub module using stream and no stream
 	//and record the time using events
 	RESULT subR;
-	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
 	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
@@ -77,7 +75,6 @@ RESULT run_mul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//call the mul module using stream and no stream
 	//and record the time using events
 	RESULT mulR;
-	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
 	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
@@ -105,7 +102,6 @@ RESULT run_mod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	//call the mod module using stream and no stream
 	//and record the time using events
 	RESULT modR;
-	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
 	float delta1, delta2;
 	cudaEvent_t start = get_time();
 
