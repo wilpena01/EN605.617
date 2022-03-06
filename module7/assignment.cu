@@ -120,7 +120,7 @@ RESULT run_mod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	cout<<"Modulo Execution Time\n";
+	cout<<"Modulo Execution Time";
 	outputTime(delta1,delta2);
 
 	return modR;
