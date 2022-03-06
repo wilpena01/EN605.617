@@ -39,7 +39,7 @@ RESULT run_add(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	cout<<"\nAddition Execution Time";
+	cout<<"Addition Execution Time";
 	outputTime(delta1,delta2);
 	return addR;
 }
@@ -65,7 +65,7 @@ RESULT run_sub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	cout<<"\nSubtraction Execution Time";
+	cout<<"Subtraction Execution Time";
 	outputTime(delta1,delta2);
 
 	return subR;
@@ -93,7 +93,7 @@ RESULT run_mul(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	cout<<"\nMultiplication Execution Time";
+	cout<<"Multiplication Execution Time";
 	outputTime(delta1,delta2);
 
 	return mulR;
@@ -120,7 +120,7 @@ RESULT run_mod(UInt32 *gpu_arr1, UInt32 *gpu_arr2,
 	stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta2, start, stop);
-	cout<<"\nModulo Execution Time";
+	cout<<"Modulo Execution Time";
 	outputTime(delta1,delta2);
 
 	return modR;
