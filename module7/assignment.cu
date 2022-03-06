@@ -18,31 +18,125 @@
 using namespace std;
 using namespace std::chrono;
 
-
-
-void run_Funs(UInt32 *gpu_arr1, UInt32 *gpu_arr2, 
+RESULT run_add(UInt32 *gpu_arr1, UInt32 *gpu_arr2, 
          UInt32 numBlocks, UInt32 blockSize)
 {
-	RESULT addR, subR, mulR, modR; 
+	//call the add module using stream and no stream
+	//and record the time using events
+	RESULT addR;
 	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
-	
-	//Do the four mathematical calculation and output
-	//the result
 	float delta1, delta2, delta3, delta4;
 	cudaEvent_t start = get_time();
 
 	Topadd_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
-	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
-
+	
 	cudaEvent_t stop = get_time();	
 	cudaEventSynchronize(stop);	
 	cudaEventElapsedTime(&delta1, start, stop);
 
+	start = get_time();
+
+	Topadd(gpu_arr1, gpu_arr2, numBlocks, blockSize, &addR);
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta2, start, stop);
+	outputTime(delta1,delta2)
+	return addR;
+}
+
+RESULT run_sub(UInt32 *gpu_arr1, UInt32 *gpu_arr2, 
+         UInt32 numBlocks, UInt32 blockSize)
+{
+	//call the sub module using stream and no stream
+	//and record the time using events
+	RESULT subR;
+	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
+	float delta1, delta2, delta3, delta4;
+	cudaEvent_t start = get_time();
+
+	Topmsub_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
 	
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta1, start, stop);
+
+	start = get_time();
 
 	Topsub(gpu_arr1, gpu_arr2, numBlocks, blockSize, &subR);
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta2, start, stop);
+	outputTime(delta1,delta2)
+
+	return subR;
+}
+
+RESULT run_mul(UInt32 *gpu_arr1, UInt32 *gpu_arr2, 
+         UInt32 numBlocks, UInt32 blockSize)
+{
+	//call the mul module using stream and no stream
+	//and record the time using events
+	RESULT mulR;
+	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
+	float delta1, delta2, delta3, delta4;
+	cudaEvent_t start = get_time();
+
+	Topmul_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
+	
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta1, start, stop);
+
+	start = get_time();
+
 	Topmul(gpu_arr1, gpu_arr2, numBlocks, blockSize, &mulR);
-	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR); 
+
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta2, start, stop);
+	outputTime(delta1,delta2)
+
+	return mulR;
+}
+
+RESULT run_mod(UInt32 *gpu_arr1, UInt32 *gpu_arr2, 
+         UInt32 numBlocks, UInt32 blockSize)
+{
+	//call the mod module using stream and no stream
+	//and record the time using events
+	RESULT modR;
+	const UInt32 ARRAY_SIZE = numBlocks * blockSize;
+	float delta1, delta2, delta3, delta4;
+	cudaEvent_t start = get_time();
+
+	Topmod_stream(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR);
+	
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta1, start, stop);
+
+	start = get_time();
+
+	Topmod(gpu_arr1, gpu_arr2, numBlocks, blockSize, &modR);
+	cudaEvent_t stop = get_time();	
+	cudaEventSynchronize(stop);	
+	cudaEventElapsedTime(&delta2, start, stop);
+	outputTime(delta1,delta2)
+
+	return modR;
+}
+
+void run_Funs(UInt32 *gpu_arr1, UInt32 *gpu_arr2, 
+         UInt32 numBlocks, UInt32 blockSize)
+{
+	//call the four mathematical calculation and output
+	//the result
+	RESULT addR, subR, mulR, modR; 
+
+	addR = run_add(gpu_arr1, gpu_arr2, numBlocks, blockSize);
+	subR = run_sub(gpu_arr1, gpu_arr2, numBlocks, blockSize);
+	mulR = run_mul(gpu_arr1, gpu_arr2, numBlocks, blockSize);
+	modR = run_mod(gpu_arr1, gpu_arr2, numBlocks, blockSize);
 	output(gpu_arr1, gpu_arr2, &addR, &subR, &mulR, &modR, ARRAY_SIZE);
 }
 
@@ -113,15 +207,8 @@ int main()
 	UInt32 blockSize    = 12;
 	UInt32 numBlocks    = 1;
 
-	float delta1=0,delta2=0;
-	UInt32 size[2];
+	main_Pinned(totalThreads, numBlocks, blockSize); 
 
-	size[0] = totalThreads;
-	cudaEvent_t start = get_time();
-	main_Pegeable(totalThreads, numBlocks, blockSize); 
-	cudaEvent_t stop = get_time();
-	cudaEventSynchronize(stop);	
-	cudaEventElapsedTime(&delta1, start, stop);
 
 	return EXIT_SUCCESS;
 }

@@ -123,6 +123,46 @@ void subRunConstMem(UInt32 num_blocks, UInt32 num_threads,
 	outputTime(delta1,delta2, str);
 }
 
+void Topsub_stream(UInt32 *gpu_arr1, UInt32 *gpu_arr2, UInt32 num_blocks, 
+              UInt32 num_threads, RESULT *finalResult)
+{
+    //Preparation to do the subtraction in the kernel using different streams
+	const UInt32 ARRAY_SIZE     = num_blocks * num_threads;
+	UInt32 ARRAY_SIZE_IN_BYTES  = (sizeof(UInt32) * (ARRAY_SIZE));
+	UInt32 ARRAY_SIZE_IN_BYTES1 = (sizeof(UInt32) * (ARRAY_SIZE));
+	UInt32 cpu_Result[ARRAY_SIZE], cpu_Block[ARRAY_SIZE], cpu_Thread[ARRAY_SIZE];	
+	Int32 *gpu_Result; 
+	UInt32 *gpu_Block, *gpu_Thread;
+
+	cudaStream_t stream1,stream2,stream3; 
+  	cudaStreamCreate(&stream1); 
+	cudaStreamCreate(&stream2); 
+	cudaStreamCreate(&stream3); 
+
+	cudaMalloc((void **)&gpu_Result, ARRAY_SIZE_IN_BYTES1);
+	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
+	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
+
+	sub_arr<<<num_blocks, num_threads, 1, stream1>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
+	sub_arr<<<num_blocks, num_threads, 1, stream2>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
+	sub_arr<<<num_blocks, num_threads, 1, stream3>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
+
+	//free GPU memory
+	cudaMemcpyAsync(cpu_Result, gpu_Result, ARRAY_SIZE_IN_BYTES1,cudaMemcpyDeviceToHost, stream1);
+	cudaMemcpyAsync(cpu_Block,  gpu_Block,  ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream2);
+	cudaMemcpyAsync(cpu_Thread, gpu_Thread, ARRAY_SIZE_IN_BYTES, cudaMemcpyDeviceToHost, stream3);
+	cudaDeviceSynchronize();
+	cudaStreamDestroy(stream1); cudaStreamDestroy(stream2); cudaStreamDestroy(stream3);
+	cudaFree(gpu_Result);
+	cudaFree(gpu_Block);
+	cudaFree(gpu_Thread);
+
+	pushResult(cpu_Result, cpu_Block, cpu_Thread, finalResult, ARRAY_SIZE);
+}
+
 void Topsub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks, 
               UInt32 num_threads, RESULT *finalResult)
 {
@@ -140,6 +180,10 @@ void Topsub(UInt32 *gpu_arr1, UInt32 *gpu_arr2,UInt32 num_blocks,
 	cudaMalloc((void **)&gpu_Block,  ARRAY_SIZE_IN_BYTES);
 	cudaMalloc((void **)&gpu_Thread, ARRAY_SIZE_IN_BYTES);
 
+	sub_arr_Reg<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
+	sub_arr_Reg<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
+										 gpu_Block, gpu_Thread);
 	sub_arr_Reg<<<num_blocks, num_threads>>>(gpu_arr1, gpu_arr2, gpu_Result, 
 										 gpu_Block, gpu_Thread);
 
