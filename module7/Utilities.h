@@ -101,7 +101,7 @@ void outputTime(float duration1, float duration2, string *str)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time using "<<str[0]<<" memory allocation = "<< duration1<< " msn"
-        <<"\nElapsed Time using "<<str[1]<<" memory allocation = "<< duration2<< " msn";
+        <<"\nElapsed Time using "<<str[1]<<" memory allocation = "<< duration2<< " msn\n";
 	    
 }
 
@@ -109,7 +109,7 @@ void outputTime(float duration1, float duration2)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time using multiple stream = "<< duration1<< " msn"
-        <<"\nElapsed Time NOT using multiple streams = "<< duration2<< " msn\n";
+        <<"\nElapsed Time NOT using multiple streams = "<< duration2<< " msn\n\n";
 	    
 }
 
