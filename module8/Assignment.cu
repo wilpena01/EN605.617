@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <cublas.h>
 
+using namespace std;
+
 #define index(i,j,ld) (((j)*(ld))+(i))
 
 void printMat(float*P,int uWP,int uHP){
@@ -16,7 +18,8 @@ void printMat(float*P,int uWP,int uHP){
   }
 }
 
-void mulMat(int *mat1, int* mat2, H, W, int *rslt ) {
+void mulMat(float *mat1, float* mat2,int H, int W, float *rslt ) 
+{
  
     cout << "Multiplication of given two matrices is:\n" << endl;
  
