@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <cublas.h>
 
+#define index(i,j,ld) (((j)*(ld))+(i))
+
 void printMat(float*P,int uWP,int uHP){
   //printf("\n %f",P[1]);
   int i,j;
