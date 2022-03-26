@@ -40,10 +40,10 @@ void printMat(float*P,int uWP,int uHP){
 
     for (i=0;i<H;i++)
       for (j=0;j<W;j++)
-        A[index(i,j,HA)] = rand()%100; 
+        A[index(i,j,H)] = rand()%100; 
     for (i=0;i<H;i++)
       for (j=0;j<W;j++)
-        B[index(i,j,HB)] = rand()%100; 
+        B[index(i,j,H)] = rand()%100; 
  
     float* g_A; float* g_B; float* g_C;
 
@@ -87,7 +87,7 @@ void printMat(float*P,int uWP,int uHP){
       fprintf (stderr, "!!!! kernel execution error.\n");
       return EXIT_FAILURE;
     }
-    cublasGetMatrix(HC,WC,sizeof(float),CC,HC,C,HC);
+    cublasGetMatrix(H,W,sizeof(float),g_C,H,C,H);
     if (status != CUBLAS_STATUS_SUCCESS) {
       fprintf (stderr, "!!!! device read error (A)\n");
       return EXIT_FAILURE;
@@ -97,24 +97,24 @@ void printMat(float*P,int uWP,int uHP){
     /* PERFORMANCE OUTPUT*/
 
     printf("\nMatriz A:\n");
-    printMat(A,WA,HA);
+    printMat(A,W,H);
     printf("\nMatriz B:\n");
-    printMat(B,WB,HB);
+    printMat(B,W,H);
     printf("\nMatriz C:\n");
-    printMat(C,WC,HC);
+    printMat(C,W,H);
 
     free( A );  free( B );  free ( C );
-    status = cublasFree(AA);
+    status = cublasFree(g_A);
     if (status != CUBLAS_STATUS_SUCCESS) {
       fprintf (stderr, "!!!! memory free error (A)\n");
       return EXIT_FAILURE;
     }
-    status = cublasFree(BB);
+    status = cublasFree(g_B);
     if (status != CUBLAS_STATUS_SUCCESS) {
       fprintf (stderr, "!!!! memory free error (B)\n");
       return EXIT_FAILURE;
     }
-    status = cublasFree(CC);
+    status = cublasFree(g_C);
     if (status != CUBLAS_STATUS_SUCCESS) {
       fprintf (stderr, "!!!! memory free error (C)\n");
       return EXIT_FAILURE;
