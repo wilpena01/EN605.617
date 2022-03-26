@@ -12,7 +12,7 @@ void printMat(float*P,int uWP,int uHP){
       printf("\n");
 
       for(j=0;j<uWP;j++)
-          printf("%f ",i);
+          printf("%f ",P[index(i,j,uHP)]);
   }
 }
 
