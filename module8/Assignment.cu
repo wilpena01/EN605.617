@@ -12,10 +12,10 @@ void printMat(float*P,int uWP,int uHP){
   int i,j;
   for(i=0;i<uHP;i++){
 
-      printf("\n");
+      cout<<"\n";
 
       for(j=0;j<uWP;j++)
-          printf("%f ",P[index(i,j,uHP)]);
+          cout<<P[index(i,j,uHP)]<<" ";
   }
 }
 
