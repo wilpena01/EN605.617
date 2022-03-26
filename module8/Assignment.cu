@@ -10,10 +10,9 @@ using namespace std;
 void printMat(float*P,int uWP,int uHP){
   //printf("\n %f",P[1]);
   int i,j;
-  for(i=0;i<uHP;i++){
-
+  for(i=0;i<uHP;i++)
+  {
       cout<<"\n";
-
       for(j=0;j<uWP;j++)
           cout<<P[index(i,j,uHP)]<<"\t";
   }
@@ -21,7 +20,6 @@ void printMat(float*P,int uWP,int uHP){
 
 void mulMat(float *mat1, float* mat2,int H, int W, float *rslt ) 
 {
- 
     cout << "Multiplication of given two matrices is:\n" << endl;
  
     for (int i = 0; i < H; i++) {
@@ -45,7 +43,7 @@ void mulMat(float *mat1, float* mat2,int H, int W, float *rslt )
     int i,j;
     cublasInit();
 
-    int H = 9, W=9;
+    int H = 10, W=2;
 
     float *A = (float*)malloc(H*W*sizeof(float));
     float *B = (float*)malloc(H*W*sizeof(float));
