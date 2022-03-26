@@ -43,7 +43,7 @@ void mulMat(float *mat1, float* mat2,int H, int W, float *rslt )
     int i,j;
     cublasInit();
 
-    int H = 5, W=5;
+    int H = 2, W=2;
 
     float *A = (float*)malloc(H*W*sizeof(float));
     float *B = (float*)malloc(H*W*sizeof(float));
