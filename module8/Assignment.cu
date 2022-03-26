@@ -16,6 +16,26 @@ void printMat(float*P,int uWP,int uHP){
   }
 }
 
+void mulMat(int *mat1, int* mat2, H, W, int *rslt ) {
+ 
+    cout << "Multiplication of given two matrices is:\n" << endl;
+ 
+    for (int i = 0; i < H; i++) {
+        for (int j = 0; j < W; j++) {
+            rslt[index(i,j,H)] = 0;
+ 
+            for (int k = 0; k < W; k++) {
+                rslt[index(i,j,H)] += mat1[index(i,k,H)] * mat2[index(k,j,H)];
+            }
+ 
+            cout << rslt[index(i,j,H)] << "\t";
+        }
+ 
+        cout << endl;
+    }
+}
+
+
  int  main (int argc, char** argv) {
     cublasStatus status;
     int i,j;
@@ -39,13 +59,25 @@ void printMat(float*P,int uWP,int uHP){
       return EXIT_FAILURE;
     }
 
+    float *h_A = (float*)malloc(H*W*sizeof(float));
+    float *h_B = (float*)malloc(H*W*sizeof(float));
+    float *h_C = (float*)malloc(H*W*sizeof(float));
+
 
     for (i=0;i<H;i++)
       for (j=0;j<W;j++)
-        A[index(i,j,H)] = rand()%100; 
+      {
+        A[index(i,j,H)] = rand()%20; 
+        h_A[index(i,j,H)] = A[index(i,j,H)]; 
+      }
     for (i=0;i<H;i++)
       for (j=0;j<W;j++)
-        B[index(i,j,H)] = rand()%100; 
+      {
+        B[index(i,j,H)] = rand()%20; 
+        h_B[index(i,j,H)] = B[index(i,j,H)]; 
+      }
+
+      mulMat(h_A,h_B,H,W,h_C);
  
     float* g_A; float* g_B; float* g_C;
 
