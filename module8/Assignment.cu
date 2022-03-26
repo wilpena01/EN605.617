@@ -40,10 +40,10 @@ void printMat(float*P,int uWP,int uHP){
 
     for (i=0;i<H;i++)
       for (j=0;j<W;j++)
-        A[index(i,j,HA)] = (float) index(i,j,HA);   
+        A[index(i,j,HA)] = rand()%100; 
     for (i=0;i<H;i++)
       for (j=0;j<W;j++)
-        B[index(i,j,HB)] = (float) index(i,j,HB); 
+        B[index(i,j,HB)] = rand()%100; 
  
     float* g_A; float* g_B; float* g_C;
 
