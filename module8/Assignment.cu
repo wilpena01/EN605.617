@@ -15,7 +15,7 @@ void printMat(float*P,int uWP,int uHP){
       cout<<"\n";
 
       for(j=0;j<uWP;j++)
-          cout<<P[index(i,j,uHP)]<<" ";
+          cout<<P[index(i,j,uHP)]<<"\t";
   }
 }
 
