@@ -141,6 +141,11 @@ __host__ cudaEvent_t get_time(void)
 	return time;
 }
 
+inline int index(int i, int j, int k) 
+{
+	return (((j)*(k))+(i));
+}
+
 void printMat(float*P,int uWP,int uHP){
   //printf("\n %f",P[1]);
   int i,j;
@@ -150,11 +155,6 @@ void printMat(float*P,int uWP,int uHP){
       for(j=0;j<uWP;j++)
           cout<<P[index(i,j,uHP)]<<"\t";
   }
-}
-
-inline int index(int i, int j, int k) 
-{
-	return (((j)*(k))+(i));
 }
 
 void mulMat(float *mat1, float* mat2,int H, int W, float *rslt ) 
