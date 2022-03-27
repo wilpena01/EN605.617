@@ -183,7 +183,7 @@ void initMat(float *mat, int H, int W)
         mat[index(i,j,H)] = rand()%10; 
 }
 
-void equalMat(float *arr1, float *arr2, ArraySize)
+void equalMat(float *arr1, float *arr2, int ArraySize)
 {
 	for (int i=0; i<ArraySize ; i++)
         arr1[i] = arr2[i];
