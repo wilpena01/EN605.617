@@ -9,7 +9,6 @@ using namespace std;
  int  main () 
  {
     cublasInit();
-    cublasStatus status;
 
     int H = 2;
     int W = H; 

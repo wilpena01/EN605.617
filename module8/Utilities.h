@@ -152,7 +152,7 @@ void printMat(float*P,int uWP,int uHP){
   }
 }
 
-inline int index(i,j,k) 
+inline int index(int i, int j, int k) 
 {
 	return (((j)*(k))+(i));
 }
