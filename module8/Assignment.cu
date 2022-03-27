@@ -54,13 +54,14 @@ using namespace std;
 
     free( A );  
     free( B );  
-    free ( C );
+    free( C );
     cublasFree(g_A);
     cublasFree(g_B);
     cublasFree(g_C);
 
     /* Shutdown */
     cublasShutdown();
+    printf("\n");
 
 		return EXIT_SUCCESS;
 
