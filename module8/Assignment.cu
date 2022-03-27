@@ -10,7 +10,7 @@ using namespace std;
  {
     cublasInit();
 
-    int H = 2;
+    int H = 3;
     int W = H; 
     int HW = H*W;
 
@@ -33,7 +33,6 @@ using namespace std;
     cublasAlloc(HW,sizeof(float),(void**)&g_A);
     cublasAlloc(HW,sizeof(float),(void**)&g_B);
     cublasAlloc(HW,sizeof(float),(void**)&g_C);
-  
 
     /*SET MATRIX*/
     cublasSetMatrix(H,W,sizeof(float),A,H,g_A,H);
