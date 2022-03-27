@@ -152,6 +152,10 @@ void printMat(float*P,int uWP,int uHP){
   }
 }
 
+inline int index(i,j,k) 
+{
+	return (((j)*(k))+(i));
+}
 
 void mulMat(float *mat1, float* mat2,int H, int W, float *rslt ) 
 {
@@ -170,11 +174,6 @@ void mulMat(float *mat1, float* mat2,int H, int W, float *rslt )
  
         cout << endl;
     }
-}
-
-inline int index(i,j,k) 
-{
-	return (((j)*(k))+(i));
 }
 
 void initMat(float *mat, H, W)
