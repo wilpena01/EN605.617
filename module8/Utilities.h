@@ -176,7 +176,7 @@ void mulMat(float *mat1, float* mat2,int H, int W, float *rslt )
     }
 }
 
-void initMat(float *mat, H, W)
+void initMat(float *mat, int H, int W)
 {
 	for (int i=0; i<H ; i++)
       for (int j=0; j<W; j++)
