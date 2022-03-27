@@ -182,8 +182,7 @@ void initMat(float *mat, int H, int W)
 	{
       for (int j=0; j<W; j++)
 	  {
-        mat[index(i,j,H)] = srand()%10; 
-		cout<<"mat["<<index(i,j,H)<<"] " <<  mat[index(i,j,H)]<<endl;
+        mat[index(i,j,H)] = rand()%10; 
 	  }
 	}
 }
