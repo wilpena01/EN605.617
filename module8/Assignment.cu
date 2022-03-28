@@ -9,11 +9,14 @@
 using namespace std;
 using namespace std::chrono;
 
+#define H  = 3;
+#define W  = H;
+#define HW = H*W;
 typedef float2 Complex;
 
-void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
+void mulMatAnalysis(float *A, float *B, float *C)
 {
-    int HW = H*W;
+    
     float *h_A = (float*)malloc(HW*sizeof(float));
     float *h_B = (float*)malloc(HW*sizeof(float));
     float *h_C = (float*)malloc(HW*sizeof(float));
@@ -53,60 +56,52 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
     printf("\nMatriz C:\n");
     printMat(C,W,H);
 
-    free( h_A );  
-    free( h_B );
-    free( h_C );
-    cublasFree(g_A);
-    cublasFree(g_B);
-    cublasFree(g_C);
+    free( h_A );  cublasFree(g_A);
+    free( h_B );  cublasFree(g_B);
+    free( h_C );  cublasFree(g_C);
 
     string str[] = {"cuBlas"};
     outputTime(duration1, duration2, str);
-
 }
 
 __global__ 
-void ComplexMUL(Complex *a, Complex *b)
+void ComplexMUL(Complex *mat1, Complex *mat2)
 {
     int i = threadIdx.x + blockIdx.x * blockDim.x ;
-    a[i].x = a[i].x * b[i].x - a[i].y*b[i].y;
-    a[i].y = a[i].x * b[i].y + a[i].y*b[i].x;
+    mat1[i].x = mat1[i].x * mat2[i].x - mat1[i].y*mat2[i].y;
+    mat1[i].y = mat1[i].x * mat2[i].y + mat1[i].y*mat2[i].x;
 }
 
-void test()
+void runcuFFT()
 {
-
-    int N = 5;
-    int SIZE = N*N;
-
-    Complex *fg = new Complex[SIZE];
-    for (int i = 0; i < SIZE; i++){
+    Complex *fg = new Complex[HW];
+    for (int i = 0; i < HW; i++){
         fg[i].x = 1;
         fg[i].y = 0;
     }
-    Complex *fig = new Complex[SIZE];
-    for (int i = 0; i < SIZE; i++){
+    Complex *fig = new Complex[HW];
+    for (int i = 0; i < HW; i++){
         fig[i].x = 1; // 
         fig[i].y = 0;
     }
-    for (int i = 0; i < N * N; i = i + N)
+    for (int i = 0; i < H * W; i = i + H)
     {
-        for (int j=0; j < N; j++){
+        for (int j=0; j < W; j++){
             cout << fg[i+j].x << " ";
         }
         cout << endl;
     }
     cout << "----------------" << endl;
-    for (int i = 0; i < N * N; i = i + N)
+    for (int i = 0; i < H * W; i = i + H)
     {
-        for (int j=0; j < N; j++){
+        for (int j=0; j < W; j++){
             cout << fig[i+j].x << " ";
         }
         cout << endl;
     }
     cout << "----------------" << endl;
 
-    int mem_size = sizeof(Complex)* SIZE;
+    int mem_size = sizeof(Complex)* HW;
 
 
     cufftComplex *d_signal;
@@ -120,7 +115,7 @@ void test()
     // cout << d_signal[1].x << endl;
     // CUFFT plan
     cufftHandle plan;
-    cufftPlan2d(&plan, N, N, CUFFT_C2C);
+    cufftPlan2d(&plan, H, H, CUFFT_C2C);
 
     // Transform signal and filter
     printf("Transforming signal cufftExecR2C\n");
@@ -128,18 +123,18 @@ void test()
     cufftExecC2C(plan, (cufftComplex *)d_filter_kernel, (cufftComplex *)d_filter_kernel, CUFFT_FORWARD);
 
     printf("Launching Complex multiplication<<< >>>\n");
-    ComplexMUL <<< N, N >> >(d_signal, d_filter_kernel);
+    ComplexMUL <<< H, H >> >(d_signal, d_filter_kernel);
 
     // Transform signal back
     printf("Transforming signal back cufftExecC2C\n");
     cufftExecC2C(plan, (cufftComplex *)d_signal, (cufftComplex *)d_signal, CUFFT_INVERSE);
 
-    Complex *result = new Complex[SIZE];
-    cudaMemcpy(result, d_signal, sizeof(Complex)*SIZE, cudaMemcpyDeviceToHost);
+    Complex *result = new Complex[HW];
+    cudaMemcpy(result, d_signal, sizeof(Complex)*HW, cudaMemcpyDeviceToHost);
 
-    for (int i = 0; i < SIZE; i = i + N)
+    for (int i = 0; i < HW; i = i + H)
     {
-        for (int j=0; j < N; j++){
+        for (int j=0; j < W; j++){
             cout << result[i+j].x << " ";
         }
         cout << endl;
@@ -156,9 +151,6 @@ void test()
  int  main () 
  {
     cublasInit();
-    int H = 3;
-    int W = H; 
-    int HW = H*W;
 
     float *A = (float*)malloc(HW*sizeof(float));
     float *B = (float*)malloc(HW*sizeof(float));
@@ -167,8 +159,8 @@ void test()
     initMat(A,H,W); 
     initMat(B,H,W); 
 
-    mulMatAnalysis(A,B,C,H,W);
-    test();
+    mulMatAnalysis(A,B,C);
+    runcuFFT();
 
     free( A ); 
     free( B ); 
