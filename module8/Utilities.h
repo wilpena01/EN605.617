@@ -136,7 +136,6 @@ void outputTime(float duration1, float duration2,
 float get_time()
 {
 	auto time = high_resolution_clock::now();
-	time = duration_cast<microseconds>(time);
 	return static_cast<float>(time.count());
 }
 
