@@ -2,9 +2,11 @@
 #include <stdio.h>
 #include <cublas.h>
 #include <iostream>
+#include <chrono>
 #include "Utilities.h"
 
 using namespace std;
+using namespace std::chrono;
 
 void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
 {
@@ -64,7 +66,11 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
     initMat(A,H,W); 
     initMat(B,H,W); 
 
+    auto start = high_resolution_clock::now();
     mulMatAnalysis(A,B,C,H,W);
+    auto stop = high_resolution_clock::now();
+
+    auto duration = duration_cast<microseconds>(stop - start);
 
     free( A ); 
     free( B ); 
@@ -72,7 +78,7 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
 
     /* Shutdown */
     cublasShutdown();
-    printf("time = %f\n",get_time());
+    printf("time = %f\n",duration.count());
 
 		return 0;
 

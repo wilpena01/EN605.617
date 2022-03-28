@@ -133,11 +133,9 @@ void outputTime(float duration1, float duration2,
 	    <<"\n######################################\n";
 }
 
-float get_time()
+void get_time(auto &time)
 {
-	auto time = high_resolution_clock::now();
-	auto duration = duration_cast<microseconds>(time);
-	return static_cast<float>(duration.count());
+	time = high_resolution_clock::now();
 }
 
 inline int index(int i, int j, int k) 
