@@ -79,7 +79,6 @@ void test()
     int N = 5;
     int SIZE = N*N;
 
-
     Complex *fg = new Complex[SIZE];
     for (int i = 0; i < SIZE; i++){
         fg[i].x = 1;
@@ -111,12 +110,12 @@ void test()
 
 
     cufftComplex *d_signal;
-    checkCudaErrors(cudaMalloc((void **) &d_signal, mem_size)); 
-    checkCudaErrors(cudaMemcpy(d_signal, fg, mem_size, cudaMemcpyHostToDevice));
+    cudaMalloc((void **) &d_signal, mem_size); 
+    cudaMemcpy(d_signal, fg, mem_size, cudaMemcpyHostToDevice);
 
     cufftComplex *d_filter_kernel;
-    checkCudaErrors(cudaMalloc((void **)&d_filter_kernel, mem_size));
-    checkCudaErrors(cudaMemcpy(d_filter_kernel, fig, mem_size, cudaMemcpyHostToDevice));
+    cudaMalloc((void **)&d_filter_kernel, mem_size);
+    cudaMemcpy(d_filter_kernel, fig, mem_size, cudaMemcpyHostToDevice);
 
     // cout << d_signal[1].x << endl;
     // CUFFT plan
