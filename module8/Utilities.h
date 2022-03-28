@@ -136,7 +136,8 @@ void outputTime(float duration1, float duration2,
 float get_time()
 {
 	auto time = high_resolution_clock::now();
-	return static_cast<float>(time.count());
+	auto duration = duration_cast<microseconds>(time);
+	return static_cast<float>(duration.count());
 }
 
 inline int index(int i, int j, int k) 
