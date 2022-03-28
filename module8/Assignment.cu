@@ -73,7 +73,7 @@ void ComplexMUL(Complex *mat1, Complex *mat2)
 
 void runcuFFT()
 {
-    Complex *fg = new Complex[HW];
+    Complex *fg  = new Complex[HW];
     Complex *fig = new Complex[HW];
     initComplex(fg,HW);
     initComplex(fig,HW);
@@ -83,42 +83,37 @@ void runcuFFT()
 
     int mem_size = sizeof(Complex)* HW;
 
-    cufftComplex *d_signal;
-    cudaMalloc((void **) &d_signal, mem_size); 
-    cudaMemcpy(d_signal, fg, mem_size, cudaMemcpyHostToDevice);
+    cufftComplex *d_sig;
+    cudaMalloc((void **) &d_sig, mem_size); 
+    cudaMemcpy(d_sig, fg, mem_size, cudaMemcpyHostToDevice);
 
-    cufftComplex *d_filter_kernel;
-    cudaMalloc((void **)&d_filter_kernel, mem_size);
-    cudaMemcpy(d_filter_kernel, fig, mem_size, cudaMemcpyHostToDevice);
+    cufftComplex *d_filter;
+    cudaMalloc((void **)&d_filter, mem_size);
+    cudaMemcpy(d_filter, fig, mem_size, cudaMemcpyHostToDevice);
 
-    // cout << d_signal[1].x << endl;
     // CUFFT plan
     cufftHandle plan;
     cufftPlan2d(&plan, H, H, CUFFT_C2C);
 
     // Transform signal and filter
-    printf("Transforming signal cufftExecR2C\n");
-    cufftExecC2C(plan, (cufftComplex *)d_signal, (cufftComplex *)d_signal, CUFFT_FORWARD);
-    cufftExecC2C(plan, (cufftComplex *)d_filter_kernel, (cufftComplex *)d_filter_kernel, CUFFT_FORWARD);
+    cout<<"Transforming signal cufftExecR2C\n";
+    cufftExecC2C(plan, (cufftComplex *)d_sig, (cufftComplex *)d_sig, CUFFT_FORWARD);
+    cufftExecC2C(plan, (cufftComplex *)d_filter, (cufftComplex *)d_filter, CUFFT_FORWARD);
 
-    printf("Launching Complex multiplication<<< >>>\n");
-    ComplexMUL <<< H, H >> >(d_signal, d_filter_kernel);
+    cout<<"Launching Complex multiplication<<< >>>\n";
+    ComplexMUL <<< H, H >> >(d_sig, d_filter);
 
     // Transform signal back
     printf("Transforming signal back cufftExecC2C\n");
-    cufftExecC2C(plan, (cufftComplex *)d_signal, (cufftComplex *)d_signal, CUFFT_INVERSE);
+    cufftExecC2C(plan, (cufftComplex *)d_sig, (cufftComplex *)d_sig, CUFFT_INVERSE);
 
     Complex *result = new Complex[HW];
-    cudaMemcpy(result, d_signal, sizeof(Complex)*HW, cudaMemcpyDeviceToHost);
-
+    cudaMemcpy(result, d_sig, sizeof(Complex)*HW, cudaMemcpyDeviceToHost);
     printComplex(result,H,W);
 
     delete result, fg, fig;
     cufftDestroy(plan);
-    //cufftDestroy(plan2);
-    cudaFree(d_signal);
-    cudaFree(d_filter_kernel);
-
+    cudaFree(d_sig); cudaFree(d_filter);
 }
 
  int  main () 
