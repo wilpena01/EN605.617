@@ -5,9 +5,7 @@
 #include <chrono>
 #include <string>
 
-
-
-
+using namespace std::chrono;
 using namespace std;
 typedef unsigned int UInt32;
 typedef int Int32;
@@ -137,8 +135,8 @@ void outputTime(float duration1, float duration2,
 
 float get_time()
 {
-	auto time = std::chrono::high_resolution_clock::now();
-	time = std::chrono::duration_cast<std::chrono::microseconds>(time);
+	auto time = high_resolution_clock::now();
+	time = duration_cast<microseconds>(time);
 	return static_cast<float>(time.count());
 }
 
