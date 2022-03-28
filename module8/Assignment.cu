@@ -73,7 +73,7 @@ void ComplexMUL(Complex *a, Complex *b)
     a[i].y = a[i].x * b[i].y + a[i].y*b[i].x;
 }
 
-int test()
+void test()
 {
 
     int N = 5;
