@@ -9,7 +9,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define H 1080
+#define H 256
 #define W H
 #define HW H*W
 typedef float2 Complex;
