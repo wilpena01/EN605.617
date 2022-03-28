@@ -34,9 +34,9 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
     cublasSetMatrix(H,W,sizeof(float),B,H,g_B,H);
   
     /*KERNEL*/
-    auto start = high_resolution_clock::now();
+    start = high_resolution_clock::now();
     cublasSgemm('n','n',H,W,W,1,g_A,H,g_B,H,0,g_C,H);
-    auto stop = high_resolution_clock::now();
+    stop = high_resolution_clock::now();
     auto duration2 = duration_cast<microseconds>(stop - start);
     cublasGetError();
     cublasGetMatrix(H,W,sizeof(float),g_C,H,C,H);

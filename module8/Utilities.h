@@ -98,7 +98,7 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 }
 
 
-void outputTime(float duration1, float duration2, string *str)
+void outputTime(auto duration1, auto duration2, string *str)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1<< " microsecond"
