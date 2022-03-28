@@ -74,21 +74,14 @@ void ComplexMUL(Complex *mat1, Complex *mat2)
 void runcuFFT()
 {
     Complex *fg = new Complex[HW];
-    for (int i = 0; i < HW; i++){
-        fg[i].x = 1;
-        fg[i].y = 0;
-    }
     Complex *fig = new Complex[HW];
-    for (int i = 0; i < HW; i++){
-        fig[i].x = 1; // 
-        fig[i].y = 0;
-    }
+    initComplex(fg,HW);
+    initComplex(fig,HW);
 
     printComplex(fg,H,W);   cout << "----------------" << endl;
     printComplex(fig,H,W);  cout << "----------------" << endl;
 
     int mem_size = sizeof(Complex)* HW;
-
 
     cufftComplex *d_signal;
     cudaMalloc((void **) &d_signal, mem_size); 

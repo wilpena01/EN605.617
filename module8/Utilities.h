@@ -194,6 +194,15 @@ void initMat(float *mat, int H, int W)
 	}
 }
 
+void initComplex(Complex *fig, int HW)
+{
+    for (int i = 0; i < HW; i++)
+	{
+        fig[i].x = rand()%10; 
+        fig[i].y = rand()%2;
+    }
+}
+
 void equalMat(float *arr1, float *arr2, int ArraySize)
 {
 	for (int i=0; i<ArraySize ; i++)
