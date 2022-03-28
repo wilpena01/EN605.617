@@ -83,22 +83,9 @@ void runcuFFT()
         fig[i].x = 1; // 
         fig[i].y = 0;
     }
-    for (int i = 0; i < H * W; i = i + H)
-    {
-        for (int j=0; j < W; j++){
-            cout << fg[i+j].x << " ";
-        }
-        cout << endl;
-    }
-    cout << "----------------" << endl;
-    for (int i = 0; i < H * W; i = i + H)
-    {
-        for (int j=0; j < W; j++){
-            cout << fig[i+j].x << " ";
-        }
-        cout << endl;
-    }
-    cout << "----------------" << endl;
+
+    printComplex(fg,H,W);   cout << "----------------" << endl;
+    printComplex(fig,H,W);  cout << "----------------" << endl;
 
     int mem_size = sizeof(Complex)* HW;
 
@@ -131,13 +118,7 @@ void runcuFFT()
     Complex *result = new Complex[HW];
     cudaMemcpy(result, d_signal, sizeof(Complex)*HW, cudaMemcpyDeviceToHost);
 
-    for (int i = 0; i < HW; i = i + H)
-    {
-        for (int j=0; j < W; j++){
-            cout << result[i+j].x << " ";
-        }
-        cout << endl;
-    }
+    printComplex(result,H,W);
 
     delete result, fg, fig;
     cufftDestroy(plan);
