@@ -98,7 +98,8 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 }
 
 
-void outputTime(time_point duration1, time_point duration2, string *str)
+void outputTime(time_point<std::chrono::high_resolution_clock> duration1, 
+				time_point<std::chrono::high_resolution_clock> duration2, string *str)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1<< " microsecond"
