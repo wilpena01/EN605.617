@@ -78,7 +78,7 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
 
     /* Shutdown */
     cublasShutdown();
-    printf("time = %f\n",duration.count());
+    printf("time = %d\n",duration.count());
 
 		return 0;
 
