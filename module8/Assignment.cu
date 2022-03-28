@@ -6,25 +6,15 @@
 
 using namespace std;
 
- int  main () 
- {
-    cublasInit();
-
-    int H = 3;
-    int W = H; 
+void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
+{
     int HW = H*W;
-
-    float *A = (float*)malloc(HW*sizeof(float));
-    float *B = (float*)malloc(HW*sizeof(float));
-    float *C = (float*)malloc(HW*sizeof(float));
-
     float *h_A = (float*)malloc(HW*sizeof(float));
     float *h_B = (float*)malloc(HW*sizeof(float));
     float *h_C = (float*)malloc(HW*sizeof(float));
 
-    initMat(A,H,W); equalMat(h_A,A,HW);
-    initMat(B,H,W); equalMat(h_B,B,HW);
-
+    equalMat(h_A,A,HW); equalMat(h_B,B,HW);
+    
     mulMat(h_A,h_B,H,W,h_C);
  
     float* g_A; float* g_B; float* g_C;
@@ -52,18 +42,40 @@ using namespace std;
     printf("\nMatriz C:\n");
     printMat(C,W,H);
 
-    free( A );  
-    free( B );  
-    free( C );
+    free( h_A );  
+    free( h_B );
+    free( h_C );
     cublasFree(g_A);
     cublasFree(g_B);
     cublasFree(g_C);
+
+}
+ int  main () 
+ {
+    cublasInit();
+
+    int H = 3;
+    int W = H; 
+    int HW = H*W;
+
+    float *A = (float*)malloc(HW*sizeof(float));
+    float *B = (float*)malloc(HW*sizeof(float));
+    float *C = (float*)malloc(HW*sizeof(float));
+
+    initMat(A,H,W); 
+    initMat(B,H,W); 
+
+    mulMatAnalysis();
+
+    free( A ); 
+    free( B ); 
+    free( C );
 
     /* Shutdown */
     cublasShutdown();
     printf("\n");
 
-		return EXIT_SUCCESS;
+		return 0;
 
 
   }
