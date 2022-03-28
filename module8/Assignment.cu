@@ -42,7 +42,7 @@ void mulMatAnalysis(float *A, float *B, float *C)
   
     /*KERNEL*/
     start = high_resolution_clock::now();
-    cublasSgemm('n','n',H,W,W,1,g_A,H,g_B,H,0,g_C,H);
+    cublasSgemm('n','n',H,W,W,1,g_A,H,g_B,H,0,g_C,H); __syncthreads();
     stop = high_resolution_clock::now();
     auto duration2 = duration_cast<microseconds>(stop - start);
     cublasGetError();
