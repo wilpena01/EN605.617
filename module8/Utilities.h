@@ -9,6 +9,7 @@ using namespace std::chrono;
 using namespace std;
 typedef unsigned int UInt32;
 typedef int Int32;
+typedef float2 Complex;
 
 __constant__  static const UInt32 Input1 = 5;
 __constant__  static const UInt32 Input2 = 5;
@@ -139,15 +140,27 @@ inline int index(int i, int j, int k)
 	return (((j)*(k))+(i));
 }
 
-void printMat(float*P,int uWP,int uHP){
+void printMat(float*mat,int W,int H)
+{
   //printf("\n %f",P[1]);
-  int i,j;
-  for(i=0;i<uHP;i++)
+  for(int i=0;i<H;i++)
   {
       cout<<"\n";
-      for(j=0;j<uWP;j++)
-          cout<<P[index(i,j,uHP)]<<"\t";
+      for(int j=0;j<W;j++)
+          cout<<mat[index(i,j,H)]<<"\t";
   }
+}
+
+void printComplex(Complex*sig, int H, int W)
+{
+     for (int i = 0; i < H * W; i = i + H)
+    {
+        for (int j=0; j < W; j++)
+		{
+            cout << sig[i+j].x << " ";
+		}
+	}
+        
 }
 
 void mulMat(float *mat1, float* mat2,int H, int W, float *rslt ) 
