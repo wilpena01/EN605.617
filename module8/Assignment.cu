@@ -65,7 +65,7 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
     initMat(A,H,W); 
     initMat(B,H,W); 
 
-    mulMatAnalysis();
+    mulMatAnalysis(A,B,C,H,W);
 
     free( A ); 
     free( B ); 
