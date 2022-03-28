@@ -102,8 +102,8 @@ void outputTime(std::chrono::microseconds duration1,
 				std::chrono::microseconds duration2, string *str)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1<< " microsecond"
-        <<"\nElapsed Time using "<<str[0]<<" = "<< duration2<< " microsecond\n";
+	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1.count()<< " microsecond"
+        <<"\nElapsed Time using "<<str[0]<<" = "<< duration2.count()<< " microsecond\n";
 	    
 }
 
