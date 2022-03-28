@@ -16,6 +16,8 @@ typedef float2 Complex;
 
 void mulMatAnalysis(float *A, float *B, float *C)
 {
+  // Run an analysis using normal matrix multiplication
+  // and cublas matrix multiplication
     float *h_A = (float*)malloc(HW*sizeof(float));
     float *h_B = (float*)malloc(HW*sizeof(float));
     float *h_C = (float*)malloc(HW*sizeof(float));
@@ -47,7 +49,6 @@ void mulMatAnalysis(float *A, float *B, float *C)
     cublasGetMatrix(H,W,sizeof(float),g_C,H,C,H);
 
     /* PERFORMANCE OUTPUT*/
-
     printf("\nMatriz A:\n");
     printMat(A,W,H);
     printf("\nMatriz B:\n");
@@ -66,6 +67,7 @@ void mulMatAnalysis(float *A, float *B, float *C)
 __global__ 
 void ComplexMUL(Complex *mat1, Complex *mat2)
 {
+  //Multiply complex signals
     int i = threadIdx.x + blockIdx.x * blockDim.x ;
     mat1[i].x = mat1[i].x * mat2[i].x - mat1[i].y*mat2[i].y;
     mat1[i].y = mat1[i].x * mat2[i].y + mat1[i].y*mat2[i].x;
@@ -73,6 +75,7 @@ void ComplexMUL(Complex *mat1, Complex *mat2)
 
 void runcuFFT()
 {
+  //run cuFFT library on a sample figure
     Complex *fg  = new Complex[HW];
     Complex *fig = new Complex[HW];
     initComplex(fg,HW);
