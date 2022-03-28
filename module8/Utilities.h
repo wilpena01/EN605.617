@@ -133,11 +133,6 @@ void outputTime(float duration1, float duration2,
 	    <<"\n######################################\n";
 }
 
-void get_time(auto &time)
-{
-	time = high_resolution_clock::now();
-}
-
 inline int index(int i, int j, int k) 
 {
 	return (((j)*(k))+(i));
