@@ -98,12 +98,12 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 }
 
 
-void outputTime(std::chrono::duration d1, 
-				std::chrono::duration d2, string *str)
+void outputTime(std::chrono d1, 
+				std::chrono d2, string *str)
 {
     /* print the duratino */
 	auto duration1 = duration_cast<microseconds>(d1);
-	auto duration2 = duration_cast<microseconds>(d);
+	auto duration2 = duration_cast<microseconds>(d2);
 
 	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1.count()<< " microsecond"
         <<"\nElapsed Time using "<<str[0]<<" = "<< duration2.count()<< " microsecond\n";
