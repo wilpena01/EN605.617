@@ -127,8 +127,8 @@ void runcuFFT()
     initMat(A,H,W); 
     initMat(B,H,W); 
 
-    mulMatAnalysis(A,B,C);
     runcuFFT();
+    mulMatAnalysis(A,B,C);
 
     free( A ); 
     free( B ); 
