@@ -135,9 +135,9 @@ void outputTime(float duration1, float duration2,
 	    <<"\n######################################\n";
 }
 
-float get_time()
+auto get_time()
 {
-	return static_cast<float>(std::chrono::high_resolution_clock::now());
+	return std::chrono::high_resolution_clock::now();
 }
 
 inline int index(int i, int j, int k) 
