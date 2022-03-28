@@ -98,8 +98,8 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 }
 
 
-void outputTime(time_point<std::chrono::duration> d1, 
-				time_point<std::chrono::duration> d2, string *str)
+void outputTime(std::chrono::duration d1, 
+				std::chrono::duration d2, string *str)
 {
     /* print the duratino */
 	auto duration1 = duration_cast<microseconds>(d1);
