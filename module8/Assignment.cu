@@ -78,7 +78,7 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
 
     /* Shutdown */
     cublasShutdown();
-    cout<<"time = "<<duration.count();
+    cout<<"time = "<<duration.count()<<" microsecond"<<endl;
 
 		return 0;
 
