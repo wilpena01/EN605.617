@@ -101,23 +101,23 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 void outputTime(float duration1, float duration2, string *str)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time using "<<str[0]<<" memory allocation = "<< duration1<< " msn"
-        <<"\nElapsed Time using "<<str[1]<<" memory allocation = "<< duration2<< " msn\n";
+	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1<< " microsecond"
+        <<"\nElapsed Time using "<<str[0]<<" = "<< duration2<< " microsecond\n";
 	    
 }
 
 void outputTime(float duration1, float duration2)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time using multiple stream = "<< duration1<< " msn"
-        <<"\nElapsed Time NOT using multiple streams = "<< duration2<< " msn\n\n";
+	cout<<"\nElapsed Time using multiple stream = "<< duration1<< " microsecond"
+        <<"\nElapsed Time NOT using multiple streams = "<< duration2<< " microsecond\n\n";
 	    
 }
 
 void outputTimeReg(float duration1, float duration2, UInt32 *str)
 {
     /* print the duratino */
-	cout<<"\nElapsed Time with "<<str[0]<<" input size and register memory allocation = "<< duration1<< " msn"
+	cout<<"\nElapsed Time with "<<str[0]<<" input size and register memory allocation = "<< duration1<< " micro"
         <<"\nElapsed Time with "<<str[1]<<" input size and register memory allocation = "<< duration2<< " msn\n";
 	    
 }

@@ -17,8 +17,11 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
 
     equalMat(h_A,A,HW); equalMat(h_B,B,HW);
     
+    auto start = high_resolution_clock::now();
     mulMat(h_A,h_B,H,W,h_C);
- 
+    auto stop = high_resolution_clock::now();
+    auto duration1 = duration_cast<microseconds>(stop - start);
+
     float* g_A; float* g_B; float* g_C;
 
     /*ALLOCATE ON THE DEVICE*/
@@ -31,7 +34,10 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
     cublasSetMatrix(H,W,sizeof(float),B,H,g_B,H);
   
     /*KERNEL*/
+    auto start = high_resolution_clock::now();
     cublasSgemm('n','n',H,W,W,1,g_A,H,g_B,H,0,g_C,H);
+    auto stop = high_resolution_clock::now();
+    auto duration2 = duration_cast<microseconds>(stop - start);
     cublasGetError();
     cublasGetMatrix(H,W,sizeof(float),g_C,H,C,H);
 
@@ -50,6 +56,9 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
     cublasFree(g_A);
     cublasFree(g_B);
     cublasFree(g_C);
+
+    string str[] = {"cuBlas"};
+    outputTime(duration1, duration2, str);
 
 }
  int  main () 
