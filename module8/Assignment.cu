@@ -9,14 +9,13 @@
 using namespace std;
 using namespace std::chrono;
 
-#define H  = 3;
-#define W  = H;
-#define HW = H*W;
+#define H  = 3
+#define W  = H
+#define HW = H*W
 typedef float2 Complex;
 
 void mulMatAnalysis(float *A, float *B, float *C)
 {
-    
     float *h_A = (float*)malloc(HW*sizeof(float));
     float *h_B = (float*)malloc(HW*sizeof(float));
     float *h_C = (float*)malloc(HW*sizeof(float));
