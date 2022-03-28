@@ -159,6 +159,7 @@ void printComplex(Complex*sig, int H, int W)
 		{
             cout << sig[i+j].x << " ";
 		}
+		 cout << endl;
 	}
         
 }
