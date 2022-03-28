@@ -53,7 +53,6 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
  int  main () 
  {
     cublasInit();
-
     int H = 3;
     int W = H; 
     int HW = H*W;
@@ -73,7 +72,7 @@ void mulMatAnalysis(float *A, float *B, float *C, int H, int W)
 
     /* Shutdown */
     cublasShutdown();
-    printf("\n");
+    printf("time = %f\n",get_time());
 
 		return 0;
 

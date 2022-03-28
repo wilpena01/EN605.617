@@ -5,6 +5,9 @@
 #include <chrono>
 #include <string>
 
+
+
+
 using namespace std;
 typedef unsigned int UInt32;
 typedef int Int32;
@@ -132,13 +135,9 @@ void outputTime(float duration1, float duration2,
 	    <<"\n######################################\n";
 }
 
-__host__ cudaEvent_t get_time(void)
+float get_time()
 {
-    //get the current time.
-	cudaEvent_t time;
-	cudaEventCreate(&time);
-	cudaEventRecord(time);
-	return time;
+	return static_cast<float>(std::chrono::high_resolution_clock::now());
 }
 
 inline int index(int i, int j, int k) 
