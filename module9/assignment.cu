@@ -15,7 +15,7 @@ int main()
     thrust::host_vector<int> Y(N);
 
     // fill X, Y with randon numbers
-    thrust::generate(X.begin(), X.end(), rand);
+    thrust::generate(X.begin(), X.end(), rand%10);
     thrust::generate(Y.begin(), Y.end(), rand); 
 
     // print X
