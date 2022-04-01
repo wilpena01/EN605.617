@@ -37,6 +37,9 @@ int main()
     // compute Z = X + Y
     thrust::device_vector<int> add = Y;
     thrust::transform(g_X.begin(), g_X.end(), add.begin(), add.begin(), thrust::plus<int>());
+
+    cout<<"add = ";
+    thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
 /*
     // compute Z = X - Y
     thrust::device_vector<int> sub = Y;
