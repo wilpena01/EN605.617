@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-int main(void)
+int main()
 {
     int N = 20;
     // allocate two host_vectors with N elements
@@ -15,8 +15,8 @@ int main(void)
     thrust::host_vector<int> Y(N);
 
     // fill X, Y with randon numbers
-    thrust::fill(X.begin(), X.end(), rand);
-    thrust::fill(Y.begin(), Y.end(), rand); 
+    thrust::generate(X.begin(), X.end(), rand);
+    thrust::generate(Y.begin(), Y.end(), rand); 
 
     // print X
     thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\n"));
