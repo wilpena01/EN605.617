@@ -33,11 +33,11 @@ int main()
     thrust::device_vector<int> g_X = X;
     thrust::device_vector<int> g_Y = Y;
     thrust::device_vector<int> g_Z;
-/*
+
     // compute Z = X + Y
     thrust::device_vector<int> add = Y;
     thrust::transform(g_X.begin(), g_X.end(), add.begin(), add.begin(), thrust::plus<int>());
-
+/*
     // compute Z = X - Y
     thrust::device_vector<int> sub = Y;
     thrust::transform(g_X.begin(), g_X.end(), sub.begin(), sub.begin(), thrust::negate<int>());
