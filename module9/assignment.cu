@@ -15,8 +15,11 @@ int main()
     thrust::host_vector<int> Y(N);
 
     // fill X, Y with randon numbers
-    thrust::generate(X.begin(), X.end(), rand%10);
-    thrust::generate(Y.begin(), Y.end(), rand); 
+   for(int i = 0; i<N ; i++)
+   {
+       X[i]=rand % 10;
+       Y[i]=rand % 10;
+   }
 
     // print X
     thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\n"));
