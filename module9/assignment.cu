@@ -28,12 +28,12 @@ int main()
     // print Y
     cout<<"Y = ";
     thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-/*
+
     // copy host to device
     thrust::device_vector<int> g_X = X;
     thrust::device_vector<int> g_Y = Y;
     thrust::device_vector<int> g_Z;
-
+/*
     // compute Z = X + Y
     thrust::device_vector<int> add = Y;
     thrust::transform(g_X.begin(), g_X.end(), add.begin(), add.begin(), thrust::plus<int>());
