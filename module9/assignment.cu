@@ -9,7 +9,7 @@
 
 int main()
 {
-    int N = 20;
+    int N = 3;
     // allocate two host_vectors with N elements
     thrust::host_vector<int> X(N);
     thrust::host_vector<int> Y(N);
