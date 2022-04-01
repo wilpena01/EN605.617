@@ -34,15 +34,15 @@ int main()
 
     // compute Z = X - Y
     thrust::host_vector<int> sub = Y;
-    thrust::transform(X.begin(), X.end(), add.begin(), add.begin(), thrust::negate<int>());
+    thrust::transform(X.begin(), X.end(), sub.begin(), sub.begin(), thrust::negate<int>());
 
     // compute Z = X * Y
     thrust::host_vector<int> mul = Y;
-    thrust::transform(X.begin(), X.end(), add.begin(), add.begin(), thrust::multiplies<int>());
+    thrust::transform(X.begin(), X.end(), mul.begin(), mul.begin(), thrust::multiplies<int>());
 
     // compute Z = X % Y
     thrust::host_vector<int> mod = Y;
-    thrust::transform(X.begin(), X.end(), add.begin(), add.begin(), thrust::modulus<int>());
+    thrust::transform(X.begin(), X.end(), mod.begin(), mod.begin(), thrust::modulus<int>());
 
     // print Y
     thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\n"));
