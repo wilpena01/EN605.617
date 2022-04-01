@@ -40,10 +40,10 @@ int main()
 
     cout<<"add = ";
     thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-/*
+
     // compute Z = X - Y
     thrust::device_vector<int> sub = Y;
-    thrust::transform(g_X.begin(), g_X.end(), sub.begin(), sub.begin(), thrust::negate<int>());
+    thrust::transform(g_X.begin(), g_X.end(), sub.begin(), sub.begin(), thrust::minus<int>());
 
     // compute Z = X * Y
     thrust::device_vector<int> mul = Y;
@@ -61,6 +61,6 @@ int main()
     thrust::copy(mul.begin(), mul.end(), std::ostream_iterator<int>(std::cout, "\n"));
     // print Y
     thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\n"));
-   */
+   
     return 0;    
 }
