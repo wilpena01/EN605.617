@@ -21,7 +21,7 @@ int main(void)
     // print X
     thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\n"));
     // print Y
-    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\n"))
+    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\n"));
 
     // copy host to device
     thrust::device_vector<int> g_X = X;
