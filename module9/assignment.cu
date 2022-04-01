@@ -22,7 +22,7 @@ int main()
    }
 
     // print X
-    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl
     // print Y
     thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\n"));
 /*
