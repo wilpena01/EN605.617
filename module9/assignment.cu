@@ -6,6 +6,7 @@
 #include <thrust/functional.h>
 
 #include <iostream>
+using namespace std;
 
 int main()
 {
@@ -22,9 +23,11 @@ int main()
    }
 
     // print X
+    cout<<"X = ";
     thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl
     // print Y
-    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    cout<<"Y = ";
+    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl
 /*
     // copy host to device
     thrust::device_vector<int> g_X = X;
