@@ -17,8 +17,8 @@ int main()
     // fill X, Y with randon numbers
    for(int i = 0; i<N ; i++)
    {
-       X[i]=rand % 10;
-       Y[i]=rand % 10;
+       X[i]=rand() % 10;
+       Y[i]=rand() % 10;
    }
 
     // print X
