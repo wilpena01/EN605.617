@@ -24,10 +24,10 @@ int main()
 
     // print X
     cout<<"X = ";
-    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl
+    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
     // print Y
     cout<<"Y = ";
-    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl
+    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
 /*
     // copy host to device
     thrust::device_vector<int> g_X = X;
