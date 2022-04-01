@@ -22,7 +22,7 @@ int main()
     thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\n"));
     // print Y
     thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\n"));
-
+/*
     // copy host to device
     thrust::device_vector<int> g_X = X;
     thrust::device_vector<int> g_Y = Y;
@@ -52,6 +52,6 @@ int main()
     thrust::copy(mul.begin(), mul.end(), std::ostream_iterator<int>(std::cout, "\n"));
     // print Y
     thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\n"));
-   
+   */
     return 0;    
 }
