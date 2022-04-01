@@ -54,13 +54,17 @@ int main()
     thrust::transform(g_X.begin(), g_X.end(), mod.begin(), mod.begin(), thrust::modulus<int>());
 
     // print Y
-    thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    cout<<"add = ";
+    thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
     // print Y
-    thrust::copy(sub.begin(), sub.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    cout<<"sub = ";
+    thrust::copy(sub.begin(), sub.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
     // print Y
-    thrust::copy(mul.begin(), mul.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    cout<<"mul = ";
+    thrust::copy(mul.begin(), mul.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
     // print Y
-    thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\n"));
+    cout<<"mod = ";
+    thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
    
     return 0;    
 }
