@@ -4,16 +4,13 @@
 #include <vector>
 #include <chrono>
 #include <string>
+#include <thrust/host_vector.h>
+
 
 using namespace std::chrono;
 using namespace std;
 typedef unsigned int UInt32;
 typedef int Int32;
-typedef float2 Complex;
-
-__constant__  static const UInt32 Input1 = 5;
-__constant__  static const UInt32 Input2 = 5;
-__constant__  static const UInt32 InvalidNumber = 99999;
 
 struct RESULT
 {
@@ -25,14 +22,6 @@ struct RESULT
 	vector<UInt32> threadId;
 };
 
-__device__ 
-void copy_data_to_shared(UInt32 *arr1, UInt32 *arr2, UInt32 &in1, UInt32 &in2, 
-						const UInt32 idx)
-{
-	//copy from global to shared memory
-	in1 = arr1[idx];
-	in2 = arr2[idx];
-}
 
 void init(UInt32 *arr1, UInt32 *arr2 , UInt32 ARRAY_SIZE)
 {
