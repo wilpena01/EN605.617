@@ -88,8 +88,8 @@ void output(UInt32 *gpu_arr1, UInt32 *gpu_arr2, RESULT *outadd,
 }
 
 
-void outputTime(std::chrono::microseconds duration1, 
-				std::chrono::microseconds duration2, string *str)
+void outputTime(microseconds duration1, 
+				microseconds duration2, string *str)
 {
     /* print the duratino */
 	cout<<"\nElapsed Time Not using "<<str[0]<<" = "<< duration1.count()<< " microsecond"

@@ -113,18 +113,16 @@ int main()
     thrust::host_vector<int> X(N);
     thrust::host_vector<int> Y(N);
 
-    string str ={"Thrus"};
-
     // fill X, Y with randon numbers
     for(int i = 0; i<N ; i++)
     {
         X[i]=rand() % 10+1;
         Y[i]=rand() % 10+1;
     }
-    std::chrono::microseconds add_d1, add_d2;
-    std::chrono::microseconds sub_d1, sub_d2;
-    std::chrono::microseconds mul_d1, mul_d2;
-    std::chrono::microseconds mod_d1, mod_d2;
+    microseconds add_d1, add_d2;
+    microseconds sub_d1, sub_d2;
+    microseconds mul_d1, mul_d2;
+    microseconds mod_d1, mod_d2;
 
     thrust::host_vector<int> add(N);
     thrust::host_vector<int> sub(N);
@@ -136,6 +134,7 @@ int main()
     mulAnalysis(X,Y,mul,mul_d1,mul_d2);
     modAnalysis(X,Y,mod,mod_d1,mod_d2);
 
+    string str ={"Thrus"};
     cout<<"X = ";   outputVec(X);
     cout<<"Y = ";   outputVec(Y);
     cout<<"add = "; outputVec(add); outputTime(add_d1,add_d2,str);
