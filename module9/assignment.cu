@@ -22,17 +22,17 @@ void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
 
     auto start = high_resolution_clock::now();
     thrust::transform(g_X.begin(), g_X.end(), g_Y.begin(), g_Y.begin(), thrust::plus<int>());
-    auto end = high_resolution_clock::now();
-    auto d1 = duration_cast<microseconds>(stop - start);
+    auto stop = high_resolution_clock::now();
+    d1 = duration_cast<microseconds>(stop - start);
 
     start = high_resolution_clock::now();
     for(int i = 0; i<N; i++)
     {
         temp[i] = g_X[i] + g_Y[i];
     }
-    end = high_resolution_clock::now();
+    stop = high_resolution_clock::now();
     d2 = duration_cast<microseconds>(stop - start);
-    thrust::host_vector<int> Z = g_Y;
+    Z = g_Y;
 }
 
 
