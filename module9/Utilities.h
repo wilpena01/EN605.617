@@ -92,8 +92,8 @@ void outputTime(microseconds duration1,
 				microseconds duration2, string *str)
 {
     /* print the duratino */
-	cout<<"Elapsed Time Not using "<<str[0]<<" = "<< duration1.count()<< " microsecond"
-        <<"\nElapsed Time using "<<str[0]<<" = "<< duration2.count()<< " microsecond\n\n";
+	cout<<"Elapsed Time using "<<str[0]<<" = "<< duration1.count()<< " microsecond"
+        <<"\nElapsed Time Not using "<<str[0]<<" = "<< duration2.count()<< " microsecond\n\n";
 	    
 }
 
