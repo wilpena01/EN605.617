@@ -76,10 +76,7 @@ void mulAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
     start = high_resolution_clock::now();
     for(int i = 0; i<N ; i++)
     {
-        if(g_Y[i] != 0)
-            temp.push_back(g_X[i] * g_Y[i]);
-        else
-            temp.push_back(-999);
+        temp.push_back(g_X[i] * g_Y[i]);
     }
     stop = high_resolution_clock::now();
     d2 = duration_cast<microseconds>(stop - start);
@@ -102,7 +99,10 @@ void modAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
     start = high_resolution_clock::now();
     for(int i = 0; i<N ; i++)
     {
-        temp.push_back(g_X[i] % g_Y[i]);
+         if(g_Y[i] != 0)
+            temp.push_back(g_X[i] * g_Y[i]);
+        else
+            temp.push_back(-999);
     }
     stop = high_resolution_clock::now();
     d2 = duration_cast<microseconds>(stop - start);
