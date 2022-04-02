@@ -12,7 +12,7 @@
 using namespace std;
 using namespace std::chrono;
 
-#define N 3
+#define N 300
 
 void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B, 
                  thrust::host_vector<int> &Z, microseconds &d1, microseconds &d2)
