@@ -133,7 +133,7 @@ int main()
     addAnalysis(X,Y,add,add_d1,add_d2);
     subAnalysis(X,Y,sub,sub_d1,sub_d2);
     mulAnalysis(X,Y,mul,mul_d1,mul_d2);
-    modAnalysis(X,Y,mod,mod_d1,mod_d2);
+    //modAnalysis(X,Y,mod,mod_d1,mod_d2);
 
     string str[] ={"Thrus"};
     cout<<"X = ";   outputVec(X);
