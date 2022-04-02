@@ -128,7 +128,7 @@ void outputVec(thrust::host_vector<int> vec)
 {
 	for(auto i = vec.begin(); i != vec.end(); i++)
 	{
-		cout<<vec[i]<<" ";
+		cout<<vec.at(i)<<" ";
 	}
 	cout<<endl;
 }
@@ -168,30 +168,6 @@ void mulMat(float *mat1, float* mat2,int H, int W, float *rslt )
     }
 }
 
-void initMat(float *mat, int H, int W)
-{
-	for (int i=0; i<H ; i++)
-	{
-      for (int j=0; j<W; j++)
-	  {
-        mat[index(i,j,H)] = rand()%10; 
-	  }
-	}
-}
 
-void initComplex(Complex *fig, int HW)
-{
-    for (int i = 0; i < HW; i++)
-	{
-        fig[i].x = rand()%10; 
-        fig[i].y = rand()%2;
-    }
-}
-
-void equalMat(float *arr1, float *arr2, int ArraySize)
-{
-	for (int i=0; i<ArraySize ; i++)
-        arr1[i] = arr2[i];
-}
 
 #endif
