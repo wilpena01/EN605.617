@@ -149,19 +149,6 @@ void printMat(float*mat,int W,int H)
   }
 }
 
-void printComplex(Complex*sig, int H, int W)
-{
-     for (int i = 0; i < H * W; i = i + H)
-    {
-        for (int j=0; j < W; j++)
-		{
-            cout << sig[i+j].x << " ";
-		}
-		 cout << endl;
-	}
-        
-}
-
 void mulMat(float *mat1, float* mat2,int H, int W, float *rslt ) 
 {
     cout << "Multiplication of given two matrices is:\n" << endl;
