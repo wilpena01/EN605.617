@@ -112,6 +112,8 @@ int main()
     thrust::host_vector<int> X(N);
     thrust::host_vector<int> Y(N);
 
+    string str = "Thrus";
+
     // fill X, Y with randon numbers
     for(int i = 0; i<N ; i++)
     {
@@ -135,10 +137,10 @@ int main()
 
     cout<<"X = ";   outputVec(X);
     cout<<"Y = ";   outputVec(Y);
-    cout<<"add = "; outputVec(add); outputTime(add_d1,add_d2,"Thrus");
-    cout<<"sub = "; outputVec(sub); outputTime(sub_d1,sub_d2,"Thrus");
-    cout<<"mul = "; outputVec(mul); outputTime(mul_d1,mul_d2,"Thrus");
-    cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,"Thrus");   
+    cout<<"add = "; outputVec(add); outputTime(add_d1,add_d2,str);
+    cout<<"sub = "; outputVec(sub); outputTime(sub_d1,sub_d2,str);
+    cout<<"mul = "; outputVec(mul); outputTime(mul_d1,mul_d2,str);
+    cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,str);   
 
     
    
