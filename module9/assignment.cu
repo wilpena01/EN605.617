@@ -12,7 +12,7 @@
 using namespace std;
 using namespace std::chrono;
 
-int N  = 10;
+#define N 10
 
 void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B, 
                  thrust::host_vector<int> &Z, microseconds &d1, microseconds &d2)
@@ -121,27 +121,27 @@ int main()
     }
     
     microseconds add_d1, add_d2;
-    microseconds sub_d1, sub_d2;
+    /*microseconds sub_d1, sub_d2;
     microseconds mul_d1, mul_d2;
-    microseconds mod_d1, mod_d2;
+    microseconds mod_d1, mod_d2;*/
 
     thrust::host_vector<int> add(N);
-    thrust::host_vector<int> sub(N);
+   /* thrust::host_vector<int> sub(N);
     thrust::host_vector<int> mul(N);
-    thrust::host_vector<int> mod(N); 
+    thrust::host_vector<int> mod(N); */
 
     addAnalysis(X,Y,add,add_d1,add_d2);
-    subAnalysis(X,Y,sub,sub_d1,sub_d2);
+    /*subAnalysis(X,Y,sub,sub_d1,sub_d2);
     mulAnalysis(X,Y,mul,mul_d1,mul_d2);
-    modAnalysis(X,Y,mod,mod_d1,mod_d2);
+    modAnalysis(X,Y,mod,mod_d1,mod_d2);*/
 
     string str[] ={"Thrus"};
     cout<<"X = ";   outputVec(X);
     cout<<"Y = ";   outputVec(Y);
     cout<<"add = "; outputVec(add); outputTime(add_d1,add_d2,str);
-    cout<<"sub = "; outputVec(sub); outputTime(sub_d1,sub_d2,str);
+    /*cout<<"sub = "; outputVec(sub); outputTime(sub_d1,sub_d2,str);
     cout<<"mul = "; outputVec(mul); outputTime(mul_d1,mul_d2,str);
-    cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,str);   
+    cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,str);   */
 
     return 0;    
 }
