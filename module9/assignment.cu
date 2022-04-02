@@ -29,7 +29,6 @@ void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
     for(int i = 0; i<N ; i++)
     {
         temp.push_back(g_X[i] + g_Y[i]);
-        cout<<g_X[i]<<" + "<<g_Y[i]<<" = "<<temp[i]<<endl;
     }
     stop = high_resolution_clock::now();
     d2 = duration_cast<microseconds>(stop - start);
@@ -52,6 +51,8 @@ int main()
    microseconds d1,d2;
    thrust::host_vector<int> add(N);
    addAnalysis(X,Y,add,d1,d2);
+   thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
+
 
 /*
     // print X
