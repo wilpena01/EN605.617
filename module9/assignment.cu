@@ -4,13 +4,40 @@
 #include <thrust/copy.h>
 #include <thrust/fill.h>
 #include <thrust/functional.h>
-
+#include <chrono>
 #include <iostream>
+
 using namespace std;
+using namespace std::chrono;
+
+#define N 3
+
+void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B, 
+                 thrust::host_vector<int> &Z, microseconds &d1, microseconds &d2)
+{
+    // compute Z = X + Y
+    thrust::device_vector<int> g_X = A;
+    thrust::device_vector<int> g_Y = B;
+    thrust::device_vector<int> temp;
+
+    auto start = high_resolution_clock::now();
+    thrust::transform(g_X.begin(), g_X.end(), g_Y.begin(), g_Y.begin(), thrust::plus<int>());
+    auto end = high_resolution_clock::now();
+    auto d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    for(int i = 0; i<N; i++)
+    {
+        temp[i] = g_X[i] + g_Y[i];
+    }
+    end = high_resolution_clock::now();
+    d2 = duration_cast<microseconds>(stop - start);
+    thrust::host_vector<int> Z = g_Y;
+}
+
 
 int main()
 {
-    int N = 3;
     // allocate two host_vectors with N elements
     thrust::host_vector<int> X(N);
     thrust::host_vector<int> Y(N);
@@ -21,7 +48,11 @@ int main()
        X[i]=rand() % 10;
        Y[i]=rand() % 10;
    }
+   microseconds d1,d2;
+   thrust::host_vector<int> add(N);
+   addAnalysis(X,Y,add,d1,d2);
 
+/*
     // print X
     cout<<"X = ";
     thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
@@ -32,14 +63,9 @@ int main()
     // copy host to device
     thrust::device_vector<int> g_X = X;
     thrust::device_vector<int> g_Y = Y;
-    thrust::device_vector<int> g_Z;
 
-    // compute Z = X + Y
-    thrust::device_vector<int> add = Y;
-    thrust::transform(g_X.begin(), g_X.end(), add.begin(), add.begin(), thrust::plus<int>());
-
-    cout<<"add = ";
-    thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
+    
+    
 
     // compute Z = X - Y
     thrust::device_vector<int> sub = Y;
@@ -65,6 +91,6 @@ int main()
     // print Y
     cout<<"mod = ";
     thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-   
+   */
     return 0;    
 }
