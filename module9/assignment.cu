@@ -132,26 +132,13 @@ int main()
     mulAnalysis(X,Y,mul,mul_d1,mul_d2);
     modAnalysis(X,Y,mod,mod_d1,mod_d2);
 
-    // print X
-    cout<<"X = ";
-    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, " ")); cout<<endl;
-    // print Y
-    cout<<"Y = ";
-    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, " ")); cout<<endl;
+    cout<<"X = ";   outputVec(X);
+    cout<<"Y = ";   outputVec(Y);
+    cout<<"add = "; outputVec(add);
+    cout<<"sub = "; outputVec(sub);
+    cout<<"mul = "; outputVec(mul);  
+    cout<<"mod = "; outputVec(mod);      
 
-    
-    // print add
-    cout<<"add = ";
-    thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-    // print sub
-    cout<<"sub = ";
-    thrust::copy(sub.begin(), sub.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-    // print mul
-    cout<<"mul = ";
-    thrust::copy(mul.begin(), mul.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-    // print mod
-    cout<<"mod = ";
-    thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
    
     return 0;    
 }
