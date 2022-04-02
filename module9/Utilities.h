@@ -126,9 +126,9 @@ void outputTime(float duration1, float duration2,
 
 void outputVec(thrust::host_vector<int> vec)
 {
-	for(auto i = vec.begin(); i != vec.end(); i++)
+	for(int i = 0; i != vec.size(); i++)
 	{
-		cout<<vec.at(i)<<" ";
+		cout<<vec[i]<<" ";
 	}
 	cout<<endl;
 }
