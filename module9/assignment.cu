@@ -135,10 +135,10 @@ int main()
     mulAnalysis(X,Y,mul,mul_d1,mul_d2);
     modAnalysis(X,Y,mod,mod_d1,mod_d2);
 
-    string str ={"Thrus"};
+    string str[] ={"Thrus"};
     cout<<"X = ";   outputVec(X);
     cout<<"Y = ";   outputVec(Y);
-    cout<<"add = "; outputVec(add); outputTime(duration_cast<microseconds>(add_d1),duration_cast<microseconds>(add_d2),str);
+    cout<<"add = "; outputVec(add); outputTime(add_d1,add_d2,str);
     cout<<"sub = "; outputVec(sub); outputTime(sub_d1,sub_d2,str);
     cout<<"mul = "; outputVec(mul); outputTime(mul_d1,mul_d2,str);
     cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,str);   
