@@ -121,10 +121,10 @@ int main()
         X[i]=rand() % 10+1;
         Y[i]=rand() % 10+1;
     }
-    microseconds add_d1, add_d2;
-    microseconds sub_d1, sub_d2;
-    microseconds mul_d1, mul_d2;
-    microseconds mod_d1, mod_d2;
+    std::chrono::microseconds add_d1, add_d2;
+    std::chrono::microseconds sub_d1, sub_d2;
+    std::chrono::microseconds mul_d1, mul_d2;
+    std::chrono::microseconds mod_d1, mod_d2;
 
     thrust::host_vector<int> add(N);
     thrust::host_vector<int> sub(N);
