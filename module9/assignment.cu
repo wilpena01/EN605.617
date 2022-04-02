@@ -28,7 +28,76 @@ void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
     start = high_resolution_clock::now();
     for(int i = 0; i<N ; i++)
     {
-        temp.push_back(A[i] + B[i]);
+        temp.push_back(g_X[i] + g_Y[i]);
+    }
+    stop = high_resolution_clock::now();
+    d2 = duration_cast<microseconds>(stop - start);
+    Z = g_Y;
+}
+
+void subAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B, 
+                 thrust::host_vector<int> &Z, microseconds &d1, microseconds &d2)
+{
+    // compute Z = X - Y
+    thrust::device_vector<int> g_X = A;
+    thrust::device_vector<int> g_Y = B;
+    thrust::device_vector<int> temp;
+
+    auto start = high_resolution_clock::now();
+    thrust::transform(g_X.begin(), g_X.end(), g_Y.begin(), g_Y.begin(), thrust::minus<int>());
+    auto stop = high_resolution_clock::now();
+    d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    for(int i = 0; i<N ; i++)
+    {
+        temp.push_back(g_X[i] - g_Y[i]);
+    }
+    stop = high_resolution_clock::now();
+    d2 = duration_cast<microseconds>(stop - start);
+    Z = g_Y;
+}
+
+void mulAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B, 
+                 thrust::host_vector<int> &Z, microseconds &d1, microseconds &d2)
+{
+    // compute Z = X * Y
+    thrust::device_vector<int> g_X = A;
+    thrust::device_vector<int> g_Y = B;
+    thrust::device_vector<int> temp;
+
+    auto start = high_resolution_clock::now();
+    thrust::transform(g_X.begin(), g_X.end(), g_Y.begin(), g_Y.begin(), thrust::multiplications<int>());
+    auto stop = high_resolution_clock::now();
+    d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    for(int i = 0; i<N ; i++)
+    {
+        temp.push_back(g_X[i] * g_Y[i]);
+    }
+    stop = high_resolution_clock::now();
+    d2 = duration_cast<microseconds>(stop - start);
+    Z = g_Y;
+}
+
+void modAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B, 
+                 thrust::host_vector<int> &Z, microseconds &d1, microseconds &d2)
+{
+    // compute Z = X % Y
+    thrust::device_vector<int> g_X = A;
+    thrust::device_vector<int> g_Y = B;
+    thrust::device_vector<int> temp;
+
+    auto start = high_resolution_clock::now();
+    thrust::transform(g_X.begin(), g_X.end(), g_Y.begin(), g_Y.begin(), thrust::modulus<int>());
+    auto stop = high_resolution_clock::now();
+    d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    for(int i = 0; i<N ; i++)
+    {
+        temp.push_back(g_X[i] % g_Y[i]);
     }
     stop = high_resolution_clock::now();
     d2 = duration_cast<microseconds>(stop - start);
@@ -43,56 +112,46 @@ int main()
     thrust::host_vector<int> Y(N);
 
     // fill X, Y with randon numbers
-   for(int i = 0; i<N ; i++)
-   {
-       X[i]=rand() % 10;
-       Y[i]=rand() % 10;
-   }
-   microseconds d1,d2;
-   thrust::host_vector<int> add(N);
-   addAnalysis(X,Y,add,d1,d2);
-   thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
+    for(int i = 0; i<N ; i++)
+    {
+        X[i]=rand() % 10+1;
+        Y[i]=rand() % 10+1;
+    }
+    microseconds add_d1, add_d2;
+    microseconds sub_d1, sub_d2;
+    microseconds mul_d1, mul_d2;
+    microseconds mod_d1, mod_d2;
 
+    thrust::host_vector<int> add(N);
+    thrust::host_vector<int> sub(N);
+    thrust::host_vector<int> mul(N);
+    thrust::host_vector<int> mod(N); 
 
-/*
+    addAnalysis(X,Y,add,d1,d2);
+    subAnalysis(X,Y,sub,d1,d2);
+    mulAnalysis(X,Y,mul,d1,d2);
+    modAnalysis(X,Y,mod,d1,d2);
+
     // print X
     cout<<"X = ";
-    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
+    thrust::copy(X.begin(), X.end(), std::ostream_iterator<int>(std::cout, " ")); cout<<endl;
     // print Y
     cout<<"Y = ";
-    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-
-    // copy host to device
-    thrust::device_vector<int> g_X = X;
-    thrust::device_vector<int> g_Y = Y;
+    thrust::copy(Y.begin(), Y.end(), std::ostream_iterator<int>(std::cout, " ")); cout<<endl;
 
     
-    
-
-    // compute Z = X - Y
-    thrust::device_vector<int> sub = Y;
-    thrust::transform(g_X.begin(), g_X.end(), sub.begin(), sub.begin(), thrust::minus<int>());
-
-    // compute Z = X * Y
-    thrust::device_vector<int> mul = Y;
-    thrust::transform(g_X.begin(), g_X.end(), mul.begin(), mul.begin(), thrust::multiplies<int>());
-
-    // compute Z = X % Y
-    thrust::device_vector<int> mod = Y;
-    thrust::transform(g_X.begin(), g_X.end(), mod.begin(), mod.begin(), thrust::modulus<int>());
-
-    // print Y
+    // print add
     cout<<"add = ";
     thrust::copy(add.begin(), add.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-    // print Y
+    // print sub
     cout<<"sub = ";
     thrust::copy(sub.begin(), sub.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-    // print Y
+    // print mul
     cout<<"mul = ";
     thrust::copy(mul.begin(), mul.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-    // print Y
+    // print mod
     cout<<"mod = ";
     thrust::copy(mod.begin(), mod.end(), std::ostream_iterator<int>(std::cout, "\t")); cout<<endl;
-   */
+   
     return 0;    
 }
