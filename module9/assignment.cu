@@ -6,6 +6,7 @@
 #include <thrust/functional.h>
 #include <chrono>
 #include <iostream>
+#include "Utilities.h"
 
 using namespace std;
 using namespace std::chrono;
