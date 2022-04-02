@@ -113,7 +113,7 @@ int main()
     thrust::host_vector<int> X(N);
     thrust::host_vector<int> Y(N);
 
-    string str = "Thrus";
+    string str ={"Thrus"};
 
     // fill X, Y with randon numbers
     for(int i = 0; i<N ; i++)
