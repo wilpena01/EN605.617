@@ -28,7 +28,7 @@ void addAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
     start = high_resolution_clock::now();
     for(int i = 0; i<N ; i++)
     {
-        temp[i] = g_X[i] + g_Y[i];
+        temp.push_back(g_X[i] + g_Y[i]);
     }
     stop = high_resolution_clock::now();
     d2 = duration_cast<microseconds>(stop - start);
