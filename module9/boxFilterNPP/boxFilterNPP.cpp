@@ -10,7 +10,7 @@
 
 int main()
 {
-    printf("%s Starting...\n\n");
+    printf("Starting...\n\n");
 
     std::string sFilename = "mary.jpg";
 
@@ -36,6 +36,8 @@ int main()
     {
         exit(EXIT_FAILURE);
     }
+
+     printf("aqui no es...\n\n");
 
     std::string sResultFilename = sFilename;
 
