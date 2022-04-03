@@ -58,6 +58,8 @@ int main()
     // i.e. upload host to device
     npp::ImageNPP_8u_C1 oDeviceSrc(oHostSrc);
 
+        printf("aqui no es...\n\n");
+
     // create struct with box-filter mask size
     NppiSize oMaskSize = {5, 5};
 
@@ -72,7 +74,6 @@ int main()
     // It should round down when odd
     NppiPoint oAnchor = {oMaskSize.width / 2, oMaskSize.height / 2};
 
-    printf("aqui no es...\n\n");
     // run box filter
     nppiFilterBoxBorder_8u_C1R(oDeviceSrc.data(), oDeviceSrc.pitch(),
                                                     oSrcSize, oSrcOffset,
