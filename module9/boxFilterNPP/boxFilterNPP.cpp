@@ -2,6 +2,7 @@
 #include <ImagesNPP.h>
 #include <ImageIO.h>
 #include <Exceptions.h>
+#include <npp.h>
 
 #include <string.h>
 #include <fstream>
