@@ -251,7 +251,7 @@ endif
 # Target rules
 all: build
 
-build: boxFilterNPP.cpp
+build: boxFilterNPP
 
 check.deps:
 ifeq ($(SAMPLE_ENABLED),0)
