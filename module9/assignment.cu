@@ -5,11 +5,11 @@
 #include <thrust/fill.h>
 #include <thrust/functional.h>
 
-#include "./UtilNPP/ImagesCPU.h"
-#include "UtilNPP/ImagesNPP.h"
-#include "UtilNPP/ImageIO.h"
-#include "UtilNPP/Exceptions.h"
-#include "UtilNPP/npp.h"
+#include "ImagesCPU.h"
+#include "ImagesNPP.h"
+#include "ImageIO.h"
+#include "Exceptions.h"
+#include "npp.h"
 
 
 #include <chrono>
