@@ -5,7 +5,7 @@
 #include <thrust/fill.h>
 #include <thrust/functional.h>
 
-#include "UtilNPP/ImagesCPU.h"
+#include "./UtilNPP/ImagesCPU.h"
 #include "UtilNPP/ImagesNPP.h"
 #include "UtilNPP/ImageIO.h"
 #include "UtilNPP/Exceptions.h"
