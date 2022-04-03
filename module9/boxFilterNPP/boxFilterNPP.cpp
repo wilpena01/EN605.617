@@ -37,7 +37,7 @@ int main()
         exit(EXIT_FAILURE);
     }
 
-     printf("aqui no es...\n\n");
+     
 
     std::string sResultFilename = sFilename;
 
@@ -72,6 +72,7 @@ int main()
     // It should round down when odd
     NppiPoint oAnchor = {oMaskSize.width / 2, oMaskSize.height / 2};
 
+    printf("aqui no es...\n\n");
     // run box filter
     nppiFilterBoxBorder_8u_C1R(oDeviceSrc.data(), oDeviceSrc.pitch(),
                                                     oSrcSize, oSrcOffset,
