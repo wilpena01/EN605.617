@@ -13,7 +13,7 @@ int main()
 {
     printf("Starting...\n\n");
 
-    std::string sFilename = "mary.jpg";
+    std::string sFilename = "Lena.pgm";
 
 
     // if we specify the filename at the command line, then we only test sFilename[0].
