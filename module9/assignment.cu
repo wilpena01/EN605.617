@@ -165,7 +165,7 @@ void NPP()
 {
     printf("%s Starting...\n\n", argv[0]);
 
-    std::string sFilename = "Lena.pgm";
+    std::string sFilename = "mary.jpg";
 
 
     // if we specify the filename at the command line, then we only test sFilename[0].
