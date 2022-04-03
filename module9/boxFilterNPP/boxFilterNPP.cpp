@@ -53,12 +53,13 @@ int main()
     // declare a host image object for an 8-bit grayscale image
     npp::ImageCPU_8u_C1 oHostSrc;
     // load gray-scale image from disk
+            printf("aqui no es...\n\n");
+
     npp::loadImage(sFilename, oHostSrc);
     // declare a device image and copy construct from the host image,
     // i.e. upload host to device
     npp::ImageNPP_8u_C1 oDeviceSrc(oHostSrc);
 
-        printf("aqui no es...\n\n");
 
     // create struct with box-filter mask size
     NppiSize oMaskSize = {5, 5};
