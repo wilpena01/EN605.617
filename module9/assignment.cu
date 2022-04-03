@@ -4,6 +4,14 @@
 #include <thrust/copy.h>
 #include <thrust/fill.h>
 #include <thrust/functional.h>
+
+#include <ImagesCPU.h>
+#include <ImagesNPP.h>
+#include <ImageIO.h>
+#include <Exceptions.h>
+#include <npp.h>
+
+
 #include <chrono>
 #include <iostream>
 #include <string>
@@ -109,8 +117,7 @@ void modAnalysis(thrust::host_vector<int> A, thrust::host_vector<int> B,
     Z = g_Y;
 }
 
-
-int main()
+void thrus()
 {
     // allocate two host_vectors with N elements
     thrust::host_vector<int> X(N);
@@ -144,7 +151,102 @@ int main()
     cout<<"add = "; outputVec(add); outputTime(add_d1,add_d2,str);
     cout<<"sub = "; outputVec(sub); outputTime(sub_d1,sub_d2,str);
     cout<<"mul = "; outputVec(mul); outputTime(mul_d1,mul_d2,str);
-    cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,str);   
+    cout<<"mod = "; outputVec(mod); outputTime(mod_d1,mod_d2,str);  
+}
+
+
+
+
+
+
+
+
+void NPP()
+{
+    printf("%s Starting...\n\n", argv[0]);
+
+    std::string sFilename = "Lena.pgm";
+
+
+    // if we specify the filename at the command line, then we only test sFilename[0].
+    int file_errors = 0;
+    std::ifstream infile(sFilename.data(), std::ifstream::in);
+
+    if (infile.good())
+    {
+        std::cout << "boxFilterNPP opened: <" << sFilename.data() << "> successfully!" << std::endl;
+        file_errors = 0;
+        infile.close();
+    }
+    else
+    {
+        std::cout << "boxFilterNPP unable to open: <" << sFilename.data() << ">" << std::endl;
+        file_errors++;
+        infile.close();
+    }
+
+    if (file_errors > 0)
+    {
+        exit(EXIT_FAILURE);
+    }
+
+    std::string sResultFilename = sFilename;
+
+    std::string::size_type dot = sResultFilename.rfind('.');
+
+    if (dot != std::string::npos)
+    {
+        sResultFilename = sResultFilename.substr(0, dot);
+    }
+
+    sResultFilename += "_boxFilter.pgm";
+
+    // declare a host image object for an 8-bit grayscale image
+    npp::ImageCPU_8u_C1 oHostSrc;
+    // load gray-scale image from disk
+    npp::loadImage(sFilename, oHostSrc);
+    // declare a device image and copy construct from the host image,
+    // i.e. upload host to device
+    npp::ImageNPP_8u_C1 oDeviceSrc(oHostSrc);
+
+    // create struct with box-filter mask size
+    NppiSize oMaskSize = {5, 5};
+
+    NppiSize oSrcSize = {(int)oDeviceSrc.width(), (int)oDeviceSrc.height()};
+    NppiPoint oSrcOffset = {0, 0};
+
+    // create struct with ROI size
+    NppiSize oSizeROI = {(int)oDeviceSrc.width() , (int)oDeviceSrc.height() };
+    // allocate device image of appropriately reduced size
+    npp::ImageNPP_8u_C1 oDeviceDst(oSizeROI.width, oSizeROI.height);
+    // set anchor point inside the mask to (oMaskSize.width / 2, oMaskSize.height / 2)
+    // It should round down when odd
+    NppiPoint oAnchor = {oMaskSize.width / 2, oMaskSize.height / 2};
+
+    // run box filter
+    nppiFilterBoxBorder_8u_C1R(oDeviceSrc.data(), oDeviceSrc.pitch(),
+                                                    oSrcSize, oSrcOffset,
+                                                    oDeviceDst.data(), oDeviceDst.pitch(),
+                                                    oSizeROI, oMaskSize, oAnchor, NPP_BORDER_REPLICATE) );
+
+    // declare a host image for the result
+    npp::ImageCPU_8u_C1 oHostDst(oDeviceDst.size());
+    // and copy the device result data into it
+    oDeviceDst.copyTo(oHostDst.data(), oHostDst.pitch());
+
+    saveImage(sResultFilename, oHostDst);
+    std::cout << "Saved image: " << sResultFilename << std::endl;
+
+}
+
+
+int main()
+{
+    //Main driver
+    thrus();
+    NPP();
+
+ 
 
     return 0;    
 }
