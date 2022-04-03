@@ -10,7 +10,7 @@
 
 int main()
 {
-    printf("%s Starting...\n\n", argv[0]);
+    printf("%s Starting...\n\n");
 
     std::string sFilename = "mary.jpg";
 
@@ -74,7 +74,7 @@ int main()
     nppiFilterBoxBorder_8u_C1R(oDeviceSrc.data(), oDeviceSrc.pitch(),
                                                     oSrcSize, oSrcOffset,
                                                     oDeviceDst.data(), oDeviceDst.pitch(),
-                                                    oSizeROI, oMaskSize, oAnchor, NPP_BORDER_REPLICATE) );
+                                                    oSizeROI, oMaskSize, oAnchor, NPP_BORDER_REPLICATE) ;
 
     // declare a host image for the result
     npp::ImageCPU_8u_C1 oHostDst(oDeviceDst.size());
