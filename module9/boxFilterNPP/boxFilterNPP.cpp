@@ -8,87 +8,78 @@
 #include <fstream>
 #include <iostream>
 
-
-int main()
+void NPPTest()
 {
-    printf("Starting...\n\n");
 
-    std::string sFilename = "Lena.pgm";
+    cout<<"Start...\n";
+    std::string name = "Lena.pgm";
 
+    std::ifstream inputfile(name.data(), std::ifstream::in);
 
-    // if we specify the filename at the command line, then we only test sFilename[0].
-    int file_errors = 0;
-    std::ifstream infile(sFilename.data(), std::ifstream::in);
-
-    if (infile.good())
+    if (inputfile.good())
     {
-        std::cout << "boxFilterNPP opened: <" << sFilename.data() << "> successfully!" << std::endl;
-        file_errors = 0;
-        infile.close();
+        cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
+        inputfile.close();
     }
     else
     {
-        std::cout << "boxFilterNPP unable to open: <" << sFilename.data() << ">" << std::endl;
-        file_errors++;
-        infile.close();
-    }
-
-    if (file_errors > 0)
-    {
+        cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
+        inputfile.close();
         exit(EXIT_FAILURE);
     }
 
-     
-
-    std::string sResultFilename = sFilename;
-
-    std::string::size_type dot = sResultFilename.rfind('.');
+    string result = name;
+    std::string::size_type dot = result.rfind('.');
 
     if (dot != std::string::npos)
     {
-        sResultFilename = sResultFilename.substr(0, dot);
+        result = result.substr(0, dot);
     }
 
-    sResultFilename += "_boxFilter.pgm";
+    result += "_boxFilter.pgm";
 
     // declare a host image object for an 8-bit grayscale image
-    npp::ImageCPU_8u_C1 oHostSrc;
-    // load gray-scale image from disk
+    npp::ImageCPU_8u_C1 hostImage;
 
-    npp::loadImage(sFilename, oHostSrc);
-                printf("aqui no es...\n\n");
+    // load gray-scale image from disk
+    npp::loadImage(name, hostImage);
 
     // declare a device image and copy construct from the host image,
     // i.e. upload host to device
-    npp::ImageNPP_8u_C1 oDeviceSrc(oHostSrc);
+    npp::ImageNPP_8u_C1 deviceImage(hostImage);
 
 
     // create struct with box-filter mask size
-    NppiSize oMaskSize = {5, 5};
+    NppiSize FilterSize = {5, 5};
 
-    NppiSize oSrcSize = {(int)oDeviceSrc.width(), (int)oDeviceSrc.height()};
+    NppiSize oSrcSize = {(int)deviceImage.width(), (int)deviceImage.height()};
     NppiPoint oSrcOffset = {0, 0};
 
     // create struct with ROI size
-    NppiSize oSizeROI = {(int)oDeviceSrc.width() , (int)oDeviceSrc.height() };
+    NppiSize ROISize = {(int)deviceImage.width() , (int)deviceImage.height() };
     // allocate device image of appropriately reduced size
-    npp::ImageNPP_8u_C1 oDeviceDst(oSizeROI.width, oSizeROI.height);
-    // set anchor point inside the mask to (oMaskSize.width / 2, oMaskSize.height / 2)
+    npp::ImageNPP_8u_C1 device_imageDes(ROISize.width, ROISize.height);
+    // set anchor point inside the mask to (FilterSize.width / 2, FilterSize.height / 2)
     // It should round down when odd
-    NppiPoint oAnchor = {oMaskSize.width / 2, oMaskSize.height / 2};
+    NppiPoint host_anchor = {FilterSize.width / 2, FilterSize.height / 2};
 
     // run box filter
-    nppiFilterBoxBorder_8u_C1R(oDeviceSrc.data(), oDeviceSrc.pitch(),
+    nppiFilterBoxBorder_8u_C1R(deviceImage.data(), deviceImage.pitch(),
                                                     oSrcSize, oSrcOffset,
-                                                    oDeviceDst.data(), oDeviceDst.pitch(),
-                                                    oSizeROI, oMaskSize, oAnchor, NPP_BORDER_REPLICATE) ;
+                                                    device_imageDes.data(), device_imageDes.pitch(),
+                                                    ROISize, FilterSize, host_anchor, NPP_BORDER_REPLICATE) ;
 
     // declare a host image for the result
-    npp::ImageCPU_8u_C1 oHostDst(oDeviceDst.size());
+    npp::ImageCPU_8u_C1 host_imageDes(device_imageDes.size());
     // and copy the device result data into it
-    oDeviceDst.copyTo(oHostDst.data(), oHostDst.pitch());
+    device_imageDes.copyTo(host_imageDes.data(), host_imageDes.pitch());
 
-    saveImage(sResultFilename, oHostDst);
-    std::cout << "Saved image: " << sResultFilename << std::endl;
+    saveImage(result, host_imageDes);
+    cout << "Saved image: " << result << endl;
+}
+
+int main()
+{
+    NPPTest();
 
 }
