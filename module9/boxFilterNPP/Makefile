@@ -251,7 +251,7 @@ endif
 # Target rules
 all: build
 
-build: boxFilterNPP
+build: assignmentNPP
 
 check.deps:
 ifeq ($(SAMPLE_ENABLED),0)
@@ -260,16 +260,16 @@ else
 	@echo "Sample is ready - all dependencies have been met"
 endif
 
-boxFilterNPP.o:boxFilterNPP.cpp
+assignmentNPP.o:assignmentNPP.cpp
 	$(EXEC) $(NVCC) $(INCLUDES) $(ALL_CCFLAGS) $(GENCODE_FLAGS) -o $@ -c $<
 
-boxFilterNPP: boxFilterNPP.o
+assignmentNPP: assignmentNPP.o
 	$(EXEC) $(NVCC) $(ALL_LDFLAGS) $(GENCODE_FLAGS) -o $@ $+ $(LIBRARIES)
 	$(EXEC) mkdir -p ../../bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 	$(EXEC) cp $@ ../../bin/$(TARGET_ARCH)/$(TARGET_OS)/$(BUILD_TYPE)
 
 run: build
-	$(EXEC) ./boxFilterNPP
+	$(EXEC) ./assignmentNPP
 
 clean:
 	rm -f boxFilterNPP boxFilterNPP.o
