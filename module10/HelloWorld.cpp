@@ -28,6 +28,8 @@
 //
 const int ARRAY_SIZE = 1000;
 
+void ADDING();
+
 ///
 //  Create an OpenCL context on the first available platform using
 //  either a GPU or CPU depending on what is available.
@@ -226,6 +228,16 @@ void Cleanup(cl_context context, cl_command_queue commandQueue,
 //
 int main(int argc, char** argv)
 {
+    
+    ADDING();
+   
+    return 0;
+}
+
+
+void ADDING()
+{
+        
     cl_context context = 0;
     cl_command_queue commandQueue = 0;
     cl_program program = 0;
@@ -239,7 +251,7 @@ int main(int argc, char** argv)
     if (context == NULL)
     {
         std::cerr << "Failed to create OpenCL context." << std::endl;
-        return 1;
+        return;
     }
 
     // Create a command-queue on the first device available
@@ -248,7 +260,7 @@ int main(int argc, char** argv)
     if (commandQueue == NULL)
     {
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
     // Create OpenCL program from HelloWorld.cl kernel source
@@ -256,16 +268,16 @@ int main(int argc, char** argv)
     if (program == NULL)
     {
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
     // Create OpenCL kernel
-    kernel = clCreateKernel(program, "hello_kernel", NULL);
+    kernel = clCreateKernel(program, "add_cl", NULL);
     if (kernel == NULL)
     {
         std::cerr << "Failed to create kernel" << std::endl;
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
     // Create memory objects that will be used as arguments to
@@ -283,10 +295,10 @@ int main(int argc, char** argv)
     if (!CreateMemObjects(context, memObjects, a, b))
     {
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
-    // Set the kernel arguments (result, a, b)
+    // Set the kernel arguments (a, b, result)
     errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem), &memObjects[0]);
     errNum |= clSetKernelArg(kernel, 1, sizeof(cl_mem), &memObjects[1]);
     errNum |= clSetKernelArg(kernel, 2, sizeof(cl_mem), &memObjects[2]);
@@ -294,7 +306,7 @@ int main(int argc, char** argv)
     {
         std::cerr << "Error setting kernel arguments." << std::endl;
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
     size_t globalWorkSize[1] = { ARRAY_SIZE };
@@ -308,7 +320,7 @@ int main(int argc, char** argv)
     {
         std::cerr << "Error queuing kernel for execution." << std::endl;
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
     // Read the output buffer back to the Host
@@ -319,7 +331,7 @@ int main(int argc, char** argv)
     {
         std::cerr << "Error reading result buffer." << std::endl;
         Cleanup(context, commandQueue, program, kernel, memObjects);
-        return 1;
+        return;
     }
 
     // Output the result buffer
@@ -331,5 +343,4 @@ int main(int argc, char** argv)
     std::cout << "Executed program succesfully." << std::endl;
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
-    return 0;
 }

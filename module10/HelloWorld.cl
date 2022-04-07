@@ -1,5 +1,5 @@
 
-__kernel void hello_kernel(__global const float *a,
+__kernel void add_cl(__global const float *a,
 						__global const float *b,
 						__global float *result)
 {
@@ -7,3 +7,35 @@ __kernel void hello_kernel(__global const float *a,
 
     result[gid] = a[gid] + b[gid];
 }
+
+__kernel void sub_cl(__global const float *a,
+						__global const float *b,
+						__global float *result)
+{
+    int gid = get_global_id(0);
+
+    result[gid] = a[gid] - b[gid];
+}
+
+
+__kernel void mul_cl(__global const float *a,
+						__global const float *b,
+						__global float *result)
+{
+    int gid = get_global_id(0);
+
+    result[gid] = a[gid] * b[gid];
+}
+
+__kernel void mod_cl(__global const float *a,
+						__global const float *b,
+						__global float *result)
+{
+    int gid = get_global_id(0);
+
+    if(b[gid]!=0)
+        result[gid] = a[gid] % b[gid];
+    else
+        result[gid] = -9999
+}
+
