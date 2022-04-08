@@ -32,7 +32,7 @@ void ADDING();
 void SUBT();
 void MULT();
 void MODULUS();
-void MODULUS();
+void POW();
 
 ///
 //  Create an OpenCL context on the first available platform using
