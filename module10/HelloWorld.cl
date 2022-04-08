@@ -34,8 +34,18 @@ __kernel void mod_cl(__global const float *a,
     int gid = get_global_id(0);
 
     if(b[gid]!=0)
-        result[gid] = (int)a[gid] % (int)b[gid];
+        result[gid] = (int)a[gid] / (int)b[gid];
     else
         result[gid] = -9999;
+}
+
+__kernel void pow_cl(__global const float *a,
+						__global const float *b,
+						__global float *result)
+{
+    int gid = get_global_id(0);
+
+    result[gid] = pow((a[gid],b[gid]);
+
 }
 
