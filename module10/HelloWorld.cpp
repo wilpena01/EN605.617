@@ -232,7 +232,6 @@ void Cleanup(cl_context context, cl_command_queue commandQueue,
 //
 int main(int argc, char** argv)
 {
-    
     ADDING();
     SUBT();
     MULT();
