@@ -36,6 +36,6 @@ __kernel void mod_cl(__global const float *a,
     if(b[gid]!=0)
         result[gid] = a[gid] % b[gid];
     else
-        result[gid] = -9999
+        result[gid] = -9999;
 }
 
