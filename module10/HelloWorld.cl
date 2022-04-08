@@ -45,7 +45,19 @@ __kernel void pow_cl(__global const float *a,
 {
     int gid = get_global_id(0);
 
-    result[gid] = pow((a[gid],b[gid]);
+    base = a[gid];
+    exp  = (int)b[gid];
+    float r =1; 
+
+    if(exp != 0)
+    {
+        for(int i = 1; i<exp; i++)
+            r += a[gid];
+    }
+    else
+        r = 1;
+
+    result[gid] = (float)r;
 
 }
 
