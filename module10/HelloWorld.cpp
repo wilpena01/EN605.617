@@ -254,16 +254,46 @@ int main(int argc, char** argv)
     stop = high_resolution_clock::now();
     auto add_d2 = duration_cast<microseconds>(stop - start);
 
-
+    start = high_resolution_clock::now();
     SUBT();
-    MULT();
-    MODULUS();
-    POW();
+    stop = high_resolution_clock::now();
+    auto sub_d1 = duration_cast<microseconds>(stop - start);
 
+    start = high_resolution_clock::now();
     SUBT_CL();
+    stop = high_resolution_clock::now();
+    auto sub_d2 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    MULT();
+    stop = high_resolution_clock::now();
+    auto nul_d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
     MULT_CL();
+    stop = high_resolution_clock::now();
+    auto mul_d2 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    MODULUS();
+    stop = high_resolution_clock::now();
+    auto mod_d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
     MODULUS_CL();
+    stop = high_resolution_clock::now();
+    auto mod_d2 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    POW();
+    stop = high_resolution_clock::now();
+    auto pow_d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
     POW_CL();
+    stop = high_resolution_clock::now();
+    auto pow_d2 = duration_cast<microseconds>(stop - start);
+
    
     return 0;
 }
