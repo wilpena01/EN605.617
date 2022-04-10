@@ -374,8 +374,8 @@ void ADDING_CL()
     float b[ARRAY_SIZE];
     for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        a[i] = (float)i;
-        b[i] = (float)(i * 2);
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
     }
 
     if (!CreateMemObjects(context, memObjects, a, b))
@@ -475,8 +475,8 @@ void SUBT_CL()
     float b[ARRAY_SIZE];
     for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        a[i] = (float)i;
-        b[i] = (float)(i * 2);
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
     }
 
     if (!CreateMemObjects(context, memObjects, a, b))
@@ -576,8 +576,8 @@ void MULT_CL()
     float b[ARRAY_SIZE];
     for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        a[i] = (float)i;
-        b[i] = (float)(i * 2);
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
     }
 
     if (!CreateMemObjects(context, memObjects, a, b))
@@ -677,8 +677,8 @@ void MODULUS_CL()
     float b[ARRAY_SIZE];
     for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        a[i] = (float)i;
-        b[i] = (float)(i * 2);
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
     }
 
     if (!CreateMemObjects(context, memObjects, a, b))
@@ -778,8 +778,8 @@ void POW_CL()
     float b[ARRAY_SIZE];
     for (int i = 0; i < ARRAY_SIZE; i++)
     {
-        a[i] = (float)i;
-        b[i] = (float)(i * 2);
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
     }
 
     if (!CreateMemObjects(context, memObjects, a, b))
