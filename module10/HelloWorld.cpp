@@ -19,7 +19,8 @@
 #include <iostream>
 #include <math.h>
 
-using namespace std;
+using namespace std; 
+using namespace std::chrono;
 
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
@@ -242,13 +243,22 @@ void Cleanup(cl_context context, cl_command_queue commandQueue,
 //
 int main(int argc, char** argv)
 {
+    auto start = high_resolution_clock::now();
     ADDING();
+    auto stop = high_resolution_clock::now();
+    auto add_d1 = duration_cast<microseconds>(stop - start);
+
+    start = high_resolution_clock::now();
+    ADDING_CL();
+    stop = high_resolution_clock::now();
+    auto add_d2 = duration_cast<microseconds>(stop - start);
+
+
     SUBT();
     MULT();
     MODULUS();
     POW();
 
-    ADDING_CL();
     SUBT_CL();
     MULT_CL();
     MODULUS_CL();
@@ -359,7 +369,6 @@ void ADDING_CL()
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
-
 void SUBT_CL()
 {
         
@@ -461,7 +470,6 @@ void SUBT_CL()
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
-
 void MULT_CL()
 {
         
@@ -563,7 +571,6 @@ void MULT_CL()
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
-
 void MODULUS_CL()
 {
         
@@ -665,7 +672,6 @@ void MODULUS_CL()
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
-
 void POW_CL()
 {
         
@@ -770,7 +776,6 @@ void POW_CL()
 
 void ADDING()
 {
-    cout<<"ADDING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -781,16 +786,13 @@ void ADDING()
         a[i] = rand() % 10;
         b[i] = rand() % 10;
         result[i] = a[i] + b[i];
-        cout<<result[i]<<" ";
     }
-    cout<<endl;
     free(a); free(b);
 
 
 }
 void SUBT()
 {
-    cout<<"subING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -801,14 +803,11 @@ void SUBT()
         a[i] = rand() % 10;
         b[i] = rand() % 10;
         result[i] = a[i] - b[i];
-        cout<<result[i]<<" ";
     }
-    cout<<endl;
     free(a); free(b);
 }
 void MULT()
 {
-    cout<<"MULTING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -819,14 +818,11 @@ void MULT()
         a[i] = rand() % 10;
         b[i] = rand() % 10;
         result[i] = a[i] * b[i];
-        cout<<result[i]<<" ";
     }
-    cout<<endl;
     free(a); free(b);
 }
 void MODULUS()
 {
-    cout<<"MODING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -840,14 +836,11 @@ void MODULUS()
             result[i] = a[i] % b[i];
         else
             result[i] = -9999;
-        cout<<result[i]<<" ";
     }
-    cout<<endl;
     free(a); free(b);
 }
 void POW()
 {
-    cout<<"POWING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -858,9 +851,7 @@ void POW()
         a[i] = rand() % 10;
         b[i] = rand() % 10;
         result[i] = pow(a[i], b[i]);
-        cout<<result[i]<<" ";
     }
-    cout<<endl;
     free(a); free(b);
 }
 
