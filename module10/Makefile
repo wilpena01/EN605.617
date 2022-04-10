@@ -1,2 +1,3 @@
 all: HelloWorld.cpp
-	gcc HelloWorld.cpp -o HelloWorld.exe
+	nvcc HelloWorld.cpp -lOpenCL -std=c++11 -o HelloWorld.exe
+
