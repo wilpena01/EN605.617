@@ -46,6 +46,24 @@ void MULT_CL();
 void MODULUS_CL();
 void POW_CL();
 
+void outputTime(microseconds add_d1, microseconds add_d2,
+                microseconds sub_d1, microseconds sub_d2,
+                microseconds mul_d1, microseconds mul_d2,
+                microseconds mod_d1, microseconds mod_d2,
+                microseconds pow_d1, microseconds pow_d2)
+{
+    cout<<"Adding on the NOT using the kernel = "<<add_d1.count()<<" microseconds"<<endl;
+    cout<<"Adding on the     using the kernel = "<<add_d2.count()<<" microseconds"<<endl;
+    cout<<"Adding on the NOT using the kernel = "<<sub_d1.count()<<" microseconds"<<endl;
+    cout<<"Adding on the     using the kernel = "<<sub_d2.count()<<" microseconds"<<endl;
+    cout<<"Adding on the NOT using the kernel = "<<mul_d1.count()<<" microseconds"<<endl;
+    cout<<"Adding on the     using the kernel = "<<mul_d2.count()<<" microseconds"<<endl;
+    cout<<"Adding on the NOT using the kernel = "<<mod_d1.count()<<" microseconds"<<endl;
+    cout<<"Adding on the     using the kernel = "<<mod_d2.count()<<" microseconds"<<endl;
+    cout<<"Adding on the NOT using the kernel = "<<pow_d1.count()<<" microseconds"<<endl;
+    cout<<"Adding on the     using the kernel = "<<pow_d2.count()<<" microseconds"<<endl;
+}
+
 ///
 //  Create an OpenCL context on the first available platform using
 //  either a GPU or CPU depending on what is available.
@@ -294,10 +312,14 @@ int main(int argc, char** argv)
     stop = high_resolution_clock::now();
     auto pow_d2 = duration_cast<microseconds>(stop - start);
 
+    outputTime(add_d1,add_d2
+               sub_d1,sub_d2
+               mul_d1,mul_d2
+               mod_d1,mod_d2
+               pow_d1,pow_d2);
    
     return 0;
 }
-
 
 void ADDING_CL()
 {
