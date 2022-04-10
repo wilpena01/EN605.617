@@ -1,2 +1,2 @@
-all: assignment.c
-	gcc assignment.c -o assignment.exe
+all: HelloWorld.cpp
+	gcc HelloWorld.cpp -o HelloWorld.exe

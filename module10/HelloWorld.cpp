@@ -34,17 +34,18 @@ using namespace std::chrono;
 //
 const int ARRAY_SIZE = 1000;
 
+// Prototype Functions
 void ADDING();
 void SUBT();
 void MULT();
 void MODULUS();
 void POW();
-
 void ADDING_CL();
 void SUBT_CL();
 void MULT_CL();
 void MODULUS_CL();
 void POW_CL();
+//
 
 void outputTime(microseconds add_d1, microseconds add_d2,
                 microseconds sub_d1, microseconds sub_d2,
@@ -260,7 +261,7 @@ void Cleanup(cl_context context, cl_command_queue commandQueue,
 ///
 //	main() for HelloWorld example
 //
-int main(int argc, char** argv)
+int main()
 {
     auto start = high_resolution_clock::now();
     ADDING();
@@ -323,7 +324,7 @@ int main(int argc, char** argv)
 
 void ADDING_CL()
 {
-        
+    // Adding using OpenCL      
     cl_context context = 0;
     cl_command_queue commandQueue = 0;
     cl_program program = 0;
@@ -424,7 +425,7 @@ void ADDING_CL()
 }
 void SUBT_CL()
 {
-        
+    // Subtracting using OpenCL  
     cl_context context = 0;
     cl_command_queue commandQueue = 0;
     cl_program program = 0;
@@ -525,7 +526,7 @@ void SUBT_CL()
 }
 void MULT_CL()
 {
-        
+    // Multiplying using OpenCL  
     cl_context context = 0;
     cl_command_queue commandQueue = 0;
     cl_program program = 0;
@@ -626,7 +627,7 @@ void MULT_CL()
 }
 void MODULUS_CL()
 {
-        
+    // Modulus using OpenCL      
     cl_context context = 0;
     cl_command_queue commandQueue = 0;
     cl_program program = 0;
@@ -727,7 +728,7 @@ void MODULUS_CL()
 }
 void POW_CL()
 {
-        
+    // exponent using OpenCL      
     cl_context context = 0;
     cl_command_queue commandQueue = 0;
     cl_program program = 0;
@@ -829,6 +830,7 @@ void POW_CL()
 
 void ADDING()
 {
+    // Adding using the CPU  
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -846,6 +848,7 @@ void ADDING()
 }
 void SUBT()
 {
+    // Subtracting using the CPU  
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -861,6 +864,7 @@ void SUBT()
 }
 void MULT()
 {
+    // Multiplying using the CPU  
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -876,6 +880,7 @@ void MULT()
 }
 void MODULUS()
 {
+    // Modulus using the CPU  
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -894,6 +899,7 @@ void MODULUS()
 }
 void POW()
 {
+    // exponent using the CPU  
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
