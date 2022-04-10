@@ -285,7 +285,7 @@ int main(int argc, char** argv)
     start = high_resolution_clock::now();
     MULT();
     stop = high_resolution_clock::now();
-    auto nul_d1 = duration_cast<microseconds>(stop - start);
+    auto mul_d1 = duration_cast<microseconds>(stop - start);
 
     start = high_resolution_clock::now();
     MULT_CL();
