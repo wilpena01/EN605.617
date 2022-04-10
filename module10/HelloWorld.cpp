@@ -782,6 +782,7 @@ void ADDING()
         result[i] = a[i] + b[i];
         cout<<result[i]<<" ";
     }
+    cout<<endl;
     free(a); free(b);
 
 
@@ -800,6 +801,7 @@ void SUBT()
         result[i] = a[i] - b[i];
         cout<<result[i]<<" ";
     }
+    cout<<endl;
     free(a); free(b);
 }
 void MULT()
@@ -816,6 +818,7 @@ void MULT()
         result[i] = a[i] * b[i];
         cout<<result[i]<<" ";
     }
+    cout<<endl;
     free(a); free(b);
 }
 void MODULUS()
@@ -835,6 +838,7 @@ void MODULUS()
             result[i] = -9999;
         cout<<result[i]<<" ";
     }
+    cout<<endl;
     free(a); free(b);
 }
 void POW()
@@ -851,6 +855,7 @@ void POW()
         result[i] = pow(a[i], b[i]);
         cout<<result[i]<<" ";
     }
+    cout<<endl;
     free(a); free(b);
 }
 
