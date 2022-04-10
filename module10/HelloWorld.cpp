@@ -770,6 +770,7 @@ void POW_CL()
 
 void ADDING()
 {
+    cout<"ADDING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -789,6 +790,7 @@ void ADDING()
 }
 void SUBT()
 {
+    cout<"subING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -806,6 +808,7 @@ void SUBT()
 }
 void MULT()
 {
+    cout<"MULTING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -823,6 +826,7 @@ void MULT()
 }
 void MODULUS()
 {
+    cout<"MODING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
@@ -843,6 +847,7 @@ void MODULUS()
 }
 void POW()
 {
+    cout<"POWING\n\n";
     int i;
     int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
     int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
