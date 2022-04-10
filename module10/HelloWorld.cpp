@@ -16,7 +16,8 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include <iostream
+#include <iostream>
+#include <math.h>
 
 using namespace std;
 
@@ -785,9 +786,72 @@ void ADDING()
 
 
 }
-void SUBT();
-void MULT();
-void MODULUS();
-void POW();
+void SUBT()
+{
+    int i;
+    int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int result[ARRAY_SIZE];
+
+    for(i =0; i<ARRAY_SIZE; i++)
+    {
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
+        result[i] = a[i] - b[i];
+        cout<<result[i]<<" ";
+    }
+    free(a); free(b);
+}
+void MULT()
+{
+    int i;
+    int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int result[ARRAY_SIZE];
+
+    for(i =0; i<ARRAY_SIZE; i++)
+    {
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
+        result[i] = a[i] * b[i];
+        cout<<result[i]<<" ";
+    }
+    free(a); free(b);
+}
+void MODULUS()
+{
+    int i;
+    int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int result[ARRAY_SIZE];
+
+    for(i =0; i<ARRAY_SIZE; i++)
+    {
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
+        if(b[i]!=0)
+            result[i] = a[i] % b[i];
+        else
+            result[i] = -9999;
+        cout<<result[i]<<" ";
+    }
+    free(a); free(b);
+}
+void POW()
+{
+    int i;
+    int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int result[ARRAY_SIZE];
+
+    for(i =0; i<ARRAY_SIZE; i++)
+    {
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
+        result[i] = pow(a[i], b[i]);
+        cout<<result[i]<<" ";
+    }
+    free(a); free(b);
+}
 
 
