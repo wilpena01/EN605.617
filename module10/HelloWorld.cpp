@@ -312,10 +312,10 @@ int main(int argc, char** argv)
     stop = high_resolution_clock::now();
     auto pow_d2 = duration_cast<microseconds>(stop - start);
 
-    outputTime(add_d1,add_d2
-               sub_d1,sub_d2
-               mul_d1,mul_d2
-               mod_d1,mod_d2
+    outputTime(add_d1,add_d2,
+               sub_d1,sub_d2,
+               mul_d1,mul_d2,
+               mod_d1,mod_d2,
                pow_d1,pow_d2);
    
     return 0;
