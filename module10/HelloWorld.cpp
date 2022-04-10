@@ -16,6 +16,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <iostream
+
+using namespace std;
 
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
@@ -33,6 +36,12 @@ void SUBT();
 void MULT();
 void MODULUS();
 void POW();
+
+void ADDING_CL();
+void SUBT_CL();
+void MULT_CL();
+void MODULUS_CL();
+void POW_CL();
 
 ///
 //  Create an OpenCL context on the first available platform using
@@ -237,12 +246,18 @@ int main(int argc, char** argv)
     MULT();
     MODULUS();
     POW();
+
+    ADDING_CL();
+    SUBT_CL();
+    MULT_CL();
+    MODULUS_CL();
+    POW_CL();
    
     return 0;
 }
 
 
-void ADDING()
+void ADDING_CL()
 {
         
     cl_context context = 0;
@@ -340,19 +355,11 @@ void ADDING()
         Cleanup(context, commandQueue, program, kernel, memObjects);
         return;
     }
-
-    // Output the result buffer
-    for (int i = 0; i < ARRAY_SIZE; i++)
-    {
-        std::cout << result[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Executed program succesfully." << std::endl;
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
 
-void SUBT()
+void SUBT_CL()
 {
         
     cl_context context = 0;
@@ -450,19 +457,11 @@ void SUBT()
         Cleanup(context, commandQueue, program, kernel, memObjects);
         return;
     }
-
-    // Output the result buffer
-    for (int i = 0; i < ARRAY_SIZE; i++)
-    {
-        std::cout << result[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Executed program succesfully." << std::endl;
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
 
-void MULT()
+void MULT_CL()
 {
         
     cl_context context = 0;
@@ -560,19 +559,11 @@ void MULT()
         Cleanup(context, commandQueue, program, kernel, memObjects);
         return;
     }
-
-    // Output the result buffer
-    for (int i = 0; i < ARRAY_SIZE; i++)
-    {
-        std::cout << result[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Executed program succesfully." << std::endl;
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
 
-void MODULUS()
+void MODULUS_CL()
 {
         
     cl_context context = 0;
@@ -670,19 +661,11 @@ void MODULUS()
         Cleanup(context, commandQueue, program, kernel, memObjects);
         return;
     }
-
-    // Output the result buffer
-    for (int i = 0; i < ARRAY_SIZE; i++)
-    {
-        std::cout << result[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Executed program succesfully." << std::endl;
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
 
-void POW()
+void POW_CL()
 {
         
     cl_context context = 0;
@@ -780,14 +763,31 @@ void POW()
         Cleanup(context, commandQueue, program, kernel, memObjects);
         return;
     }
-
-    // Output the result buffer
-    for (int i = 0; i < ARRAY_SIZE; i++)
-    {
-        std::cout << result[i] << " ";
-    }
-    std::cout << std::endl;
-    std::cout << "Executed program succesfully." << std::endl;
     Cleanup(context, commandQueue, program, kernel, memObjects);
 
 }
+
+void ADDING()
+{
+    int i;
+    int *a = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int *b = (int*) malloc(ARRAY_SIZE * sizeof(int));
+    int result[ARRAY_SIZE];
+
+    for(i =0; i<ARRAY_SIZE; i++)
+    {
+        a[i] = rand() % 10;
+        b[i] = rand() % 10;
+        result[i] = a[i] + b[i];
+        cout<<result[i]<<" ";
+    }
+    free(a); free(b);
+
+
+}
+void SUBT();
+void MULT();
+void MODULUS();
+void POW();
+
+
