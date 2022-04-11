@@ -104,9 +104,9 @@ void readBMPFILE(int &width, int &height, int* image)
 
          // Reading the BMP File
          // into Image Array
-         cout<<"height = "<<height<<endl;
-         cout<<"width = "<<width<<endl;
-         cout<<"height * width = "<<height * width<<endl;
+         //cout<<"height = "<<height<<endl;
+         //cout<<"width = "<<width<<endl;
+         //cout<<"height * width = "<<height * width<<endl;
 
          for (i = 0; i < height; i++)
          {
@@ -118,7 +118,7 @@ void readBMPFILE(int &width, int &height, int* image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[index(i,j,height)] = temp;
-               cout<<"index("<<i<<")("<<j<<")("<<height<<") = "<<index(i,j,height)<<endl;
+               //cout<<"index("<<i<<")("<<j<<")("<<height<<") = "<<index(i,j,height)<<endl;
                //cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
             }
          }
@@ -135,6 +135,7 @@ int main()
 
    readBMPFILE(width, height, image);
 
+   cout<<"Entre aqui"<<endl;
    // Finding the probability
    // of occurrence
    int hist[256];
