@@ -109,6 +109,9 @@ void readBMPFILE(int &width, int &height, int** &image)
 
          // Reading the BMP File
          // into Image Array
+         cout<<"height = "<<height<<endl;
+         cout<<"width = "<<width<<endl;
+
          for (i = 0; i < height; i++)
          {
             for (j = 0; j < width; j++)
@@ -119,7 +122,8 @@ void readBMPFILE(int &width, int &height, int** &image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[i][j] = temp;
-               cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
+               //if(image[i][j]>=220)
+               //   cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
             }
          }
       }
