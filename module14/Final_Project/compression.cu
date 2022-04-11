@@ -328,4 +328,6 @@ int main()
    for (i = 0; i < nodes; i++)
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
+
+   free(image);
 }
