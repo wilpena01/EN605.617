@@ -122,7 +122,7 @@ void readBMPFILE(int &width, int &height, int** &image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[i][j] = temp;
-               cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
+               //cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
             }
          }
       }
