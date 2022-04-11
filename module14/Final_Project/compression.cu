@@ -43,7 +43,7 @@ void readBMPFILE(int &width, int &height, int** &image)
       int offset, bpp = 0;
       long bmpsize = 0, bmpdataoff = 0;
       int temp = 0;
-   // Reading the BMP File
+      // Reading the BMP File
       FILE* image_file;
 
       image_file = fopen(filename, "rb");
@@ -122,8 +122,7 @@ void readBMPFILE(int &width, int &height, int** &image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[i][j] = temp;
-               //if(image[i][j]>=220)
-               //   cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
+               cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
             }
          }
       }
