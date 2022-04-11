@@ -135,7 +135,7 @@ int main()
 
    readBMPFILE(width, height, image);
 
-   cout<<"Entre aqui"<<endl;
+   
    // Finding the probability
    // of occurrence
    int hist[256];
@@ -144,7 +144,7 @@ int main()
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
          hist[image[index(i,j,height)]] += 1;
-
+   cout<<"Entre aqui"<<endl;     
    // Finding number of
    // non-zero occurrences
    int nodes = 0;
