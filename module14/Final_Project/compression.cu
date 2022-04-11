@@ -140,7 +140,7 @@ int main()
       hist[i] = 0;
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
-         hist[image[i][j]] += 1;
+         hist[image[index(i,j,height)]] += 1;
 
    // Finding number of
    // non-zero occurrences
@@ -302,7 +302,7 @@ int main()
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         pix_val = image[i][j];
+         pix_val = image[index(i,j,height)];
          for (l = 0; l < nodes; l++)
             if (pix_val == pix_freq[l].intensity)
                fprintf(imagehuff, "%s", pix_freq[l].code);
