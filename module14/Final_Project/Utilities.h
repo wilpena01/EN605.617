@@ -35,6 +35,9 @@ int fib(int n)
    return fib(n - 1) + fib(n - 2);
 }
 
-
+inline int index(int i, int j, int k) 
+{
+	return (((j)*(k))+(i));
+}
 
 #endif /* UTILITIES_H_ */
