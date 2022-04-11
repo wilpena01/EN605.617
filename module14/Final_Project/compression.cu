@@ -100,7 +100,7 @@ void readBMPFILE(int &width, int &height, int* image)
          fseek(image_file, bmpdataoff, SEEK_SET);
 
          // Creating Image array
-         image = (int*)malloc(height * width * sizeof(int*));
+         image = (int*)malloc(height * width * sizeof(int));
 
          // Reading the BMP File
          // into Image Array
