@@ -119,7 +119,8 @@ void readBMPFILE(int &width, int &height, int* image)
                temp = temp & 0x0000FF;
                image[index(i,j,height)] = temp;
                //cout<<"index("<<i<<")("<<j<<")("<<height<<") = "<<index(i,j,height)<<endl;
-               //cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
+               if(image[index(i,j,height)])
+                  cout<<"image["<<i<<"]["<<j<<"] = "<<image[index(i,j,height)<<" ";
             }
          }
       }
