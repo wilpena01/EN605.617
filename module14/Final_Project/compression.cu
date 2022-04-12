@@ -171,9 +171,9 @@ int main()
    int i, j;
   npp::ImageCPU_8u_C1 hostImage; 
   
-   int width, int height;
+   int width, height;
    int** image;
-  readBMPFILE(width, height, image)
+  readBMPFILE(width, height, image);
    
 /*
    LoadImagePGM(hostImage);
