@@ -178,7 +178,7 @@ int main()
          j++;
       }
    }
-cout<<"bien aqui<<"<<endl;
+
    // Sorting the histogram
    struct huffcode temphuff;
 
@@ -196,7 +196,7 @@ cout<<"bien aqui<<"<<endl;
          }
       }
    }
-
+cout<<"bien aqui<<"<<endl;
    // Building Huffman Tree
    float sumprob;
    int sumpix;
