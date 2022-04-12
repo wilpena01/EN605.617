@@ -36,7 +36,7 @@ void strconcat(char* str, char* parentcode, char add)
 
 
 
-void readBMPFILE(int &width, int &height, int** image)
+void readBMPFILE(int &width, int &height, int* &image)
 {
       int i, j;
       char filename[] = "Lena.bmp";
@@ -100,7 +100,7 @@ void readBMPFILE(int &width, int &height, int** image)
          fseek(image_file, bmpdataoff, SEEK_SET);
 
          // Creating Image array
-         image = (int**)malloc(height * width * sizeof(int*));
+         *image = (int*)malloc(height * width * sizeof(int));
 
          // Reading the BMP File
          // into Image Array
@@ -117,7 +117,7 @@ void readBMPFILE(int &width, int &height, int** image)
                // the Image is a
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
-               *image[index(i,j,height)] = temp;
+               image[index(i,j,height)] = temp;
                //cout<<"index("<<i<<")("<<j<<")("<<height<<") = "<<index(i,j,height)<<endl;
                if(image[index(i,j,height)]>240)
                   cout<<"image["<<i<<"]["<<j<<"] = "<<image[index(i,j,height)]<<" ";
@@ -134,7 +134,7 @@ int main()
    int width, height;
    int* image;
 
-   readBMPFILE(width, height, &image);
+   readBMPFILE(width, height, image);
 
    
    // Finding the probability
