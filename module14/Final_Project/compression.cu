@@ -4,6 +4,7 @@
 #include <stdlib.h>
 #include <iostream>
 #include "Utilities.h"
+#include <string>
 
 using namespace std;
 
@@ -125,6 +126,43 @@ void readBMPFILE(int &width, int &height, int* image)
 
 }
 
+void test()
+{
+    cout<<"Start...\n";
+    string name = "Lena.pgm";
+
+    ifstream inputfile(name.data(), std::ifstream::in);
+
+    if (inputfile.good())
+    {
+        cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
+        inputfile.close();
+    }
+    else
+    {
+        cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
+        inputfile.close();
+        exit(EXIT_FAILURE);
+    }
+
+    string result = name;
+    string::size_type dot = result.rfind('.');
+
+    if (dot != string::npos)
+    {
+        result = result.substr(0, dot);
+    }
+
+    result += "_boxFilter.pgm";
+       // declare a host image object for an 8-bit grayscale image
+    npp::ImageCPU_8u_C1 hostImage;
+
+    // load gray-scale image from disk
+    npp::loadImage(name, hostImage);
+
+    cout<<"hostImage.width = "<<hostImage.width()<<"\thostImage.height = "<<hostImage.height()<<endl;
+}
+
 // Driver code
 int main()
 {
@@ -132,7 +170,7 @@ int main()
    int width = 512, height = 512;
    const int arrSize = width * height;
    int image[arrSize];
-
+   test();
    readBMPFILE(width, height, image);
 
    
@@ -148,8 +186,6 @@ int main()
          if(image[index(i,j,height)]>240)
             cout<<"image["<<i<<"]["<<j<<"] = "<<image[index(i,j,height)]<<" ";
          hist[image[index(i,j,height)]] += 1;
-         
-
       }
    
    // Finding number of
