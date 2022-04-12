@@ -92,7 +92,7 @@ int main()
       }
     }
     
-
+cout<<"entre aqui"<<endl<<endl;
    // Finding the probability
    // of occurrence
    
