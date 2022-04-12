@@ -628,7 +628,7 @@ cout<<"bien aqui<"<<endl;
 }
 int main()
 {
-   compressionDriver();
+   //compressionDriver();
    compressionDriver_CL();
 
    return 0;
