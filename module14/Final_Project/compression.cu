@@ -99,7 +99,7 @@ int main()
    int hist[256];
    for (i = 0; i < 256; i++)
       hist[i] = 0;
-
+   cout<<"bien aqui<"<<endl;
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
