@@ -308,6 +308,6 @@ cout<<"bien aqui<"<<endl;
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
-imagehuff.close();
+//imagehuff.close();
    //free(image);
 }
