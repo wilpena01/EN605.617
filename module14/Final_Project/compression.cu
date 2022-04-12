@@ -48,7 +48,7 @@ void strconcat(char* str, char* parentcode, char add)
 void readBMPFILE(int &width, int &height, int* image)
 {
       int i, j;
-      char filename[] = "Lena.bmp";
+      char filename[] = "Lena.pgm";
       int offset, bpp = 0;
       long bmpsize = 0, bmpdataoff = 0;
       int temp = 0;
