@@ -7,10 +7,10 @@
 #include <string>
 #include <fstream>
 
-#include <ImagesCPU.h>
-#include <ImagesNPP.h>
-#include <ImageIO.h>
-#include <Exceptions.h>
+#include "ImagesCPU.h"
+#include "ImagesNPP.h"
+#include "ImageIO.h"
+#include "Exceptions.h"
 #include <npp.h>
 
 
