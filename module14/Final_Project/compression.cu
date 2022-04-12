@@ -100,8 +100,8 @@ int main()
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         if(index(i,j,height)>height * width )
-            cout<<"Aqui = "<<index(i,j,height);
+         if(index(i,j,height)>=height * width )
+            cout<<"Aqui = "<<index(i,j,height)<<endl<<endl<<endl;
          hist[image[index(i,j,height)]] += 1;
       }
    
