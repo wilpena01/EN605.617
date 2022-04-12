@@ -147,7 +147,8 @@ int main()
       for (j = 0; j < width; j++)
       {
          hist[image[index(i,j,height)]] += 1;
-               cout<<"Entre aqui"<<endl; 
+         cout<<"image["<<i<<"]["<<j<<"] = "<<image[index(i,j,height)]<<" ";
+
       }
    
    // Finding number of
