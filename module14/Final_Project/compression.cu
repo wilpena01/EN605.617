@@ -156,7 +156,7 @@ void readBMPFILE(int &width, int &height, int** &image)
                temp = temp & 0x0000FF;
                image[i][j] = temp;
                if(image[i][j]>=220)
-                  cout<<"image["<<i<<"]["<<j<<"] = "<<image[indexi][j]<<" ";
+                  cout<<"image["<<i<<"]["<<j<<"] = "<<image[i][j]<<" ";
             }
          }
       }
