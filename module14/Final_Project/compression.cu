@@ -36,7 +36,7 @@ void strconcat(char* str, char* parentcode, char add)
 
 
 
-void readBMPFILE(int &width, int &height, int* &image)
+void readBMPFILE(int &width, int &height, int* image)
 {
       int i, j;
       char filename[] = "Lena.bmp";
@@ -99,8 +99,6 @@ void readBMPFILE(int &width, int &height, int* &image)
          // Setting offset to start of pixel data
          fseek(image_file, bmpdataoff, SEEK_SET);
 
-         // Creating Image array
-         image = (int*)malloc(height * width * sizeof(int));
 
          // Reading the BMP File
          // into Image Array
@@ -131,8 +129,9 @@ void readBMPFILE(int &width, int &height, int* &image)
 int main()
 {
    int i, j;
-   int width, height;
-   int* image;
+   int width = 512, height = 512;
+   arrSize = width * height;
+   int image[arrSize];
 
    readBMPFILE(width, height, image);
 
