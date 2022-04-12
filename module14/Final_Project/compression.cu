@@ -262,7 +262,8 @@ int main()
       if (pix_freq[i].right != NULL)
          strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
    }
-   
+   cout<<"totalnodes = "<<totalnodes<<endl;
+   cout<<"nodes = "<<nodes<<endl;
 cout<<"bien aqui<"<<endl;
    // Encode the Image
    int pix_val;
