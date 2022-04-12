@@ -100,7 +100,7 @@ int main()
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         if(image[index(i,j,height)]>240)
+         if(index(i,j,height)>height * width )
             cout<<"image["<<i<<"]["<<j<<"] = "<<image[index(i,j,height)]<<" ";
          hist[image[index(i,j,height)]] += 1;
       }
