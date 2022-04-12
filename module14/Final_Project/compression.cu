@@ -629,7 +629,7 @@ cout<<"bien aqui<"<<endl;
 int main()
 {
    compressionDriver();
-   //compressionDriver_CL();
+   compressionDriver_CL();
 
    return 0;
 
