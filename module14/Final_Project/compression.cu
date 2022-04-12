@@ -135,7 +135,8 @@ int main()
    {
       i++;
    }
-   //int maxcodelen = i - 3;
+   int maxcodelen = i - 3;
+   cout<<"maxcodelen = "<<maxcodelen<<endl;
 
    // Declaring structs
    //struct pixfreq<maxcodelen> *pix_freq; it should be this!!
