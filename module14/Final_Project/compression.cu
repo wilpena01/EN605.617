@@ -130,7 +130,7 @@ int main()
 {
    int i, j;
    int width = 512, height = 512;
-   arrSize = width * height;
+   const int arrSize = width * height;
    int image[arrSize];
 
    readBMPFILE(width, height, image);
