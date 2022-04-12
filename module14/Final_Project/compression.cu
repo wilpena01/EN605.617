@@ -7,6 +7,7 @@
 #include <string>
 #include <fstream>
 
+
 #include "ImagesCPU.h"
 #include "ImagesNPP.h"
 #include "ImageIO.h"
@@ -271,7 +272,7 @@ int main()
 
    // Writing the Huffman encoded
    // Image into a text file
-   FILE* imagehuff = fopen("encoded_image.txt", "w+");
+   FILE* imagehuff = fopen("encoded_image.bin", "wb");
 
    cout<<"bien aqui<"<<endl;
    for (i = 0; i < height; i++)
