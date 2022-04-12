@@ -139,13 +139,14 @@ int main()
    
    // Finding the probability
    // of occurrence
+   cout<<"Entre aqui"<<endl; 
    int hist[256];
    for (i = 0; i < 256; i++)
       hist[i] = 0;
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
          hist[image[index(i,j,height)]] += 1;
-   cout<<"Entre aqui"<<endl;     
+       
    // Finding number of
    // non-zero occurrences
    int nodes = 0;
