@@ -388,7 +388,7 @@ void compressionDriver()
 void compressionDriver_CL()
 {
 
-   int i, j;
+  int i, j;
   npp::ImageCPU_8u_C1 hostImage; 
   
    int width, height;
@@ -629,6 +629,7 @@ cout<<"bien aqui<"<<endl;
 int main()
 {
    compressionDriver();
+   compressionDriver_CL();
 
    return 0;
 
