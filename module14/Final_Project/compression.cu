@@ -272,7 +272,9 @@ int main()
 
    // Writing the Huffman encoded
    // Image into a text file
-   FILE* imagehuff = fopen("encoded_image.bin", "wb");
+
+   ofstream imagehuff;
+   imagehuff.open ("encoded_image.txt", ios::out | ios::app | ios::binary);
 
    cout<<"bien aqui<"<<endl;
    for (i = 0; i < height; i++)
@@ -284,7 +286,7 @@ int main()
          for (l = 0; l < nodes; l++)
          {
             if (pix_val == pix_freq[l].intensity)
-               fprintf(imagehuff, "%s", pix_freq[l].code);
+               imagehuff<< pix_freq[l].code;
          }
       }
       cout<<endl;
@@ -306,6 +308,6 @@ int main()
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
-fclose(imagehuff);
+imagehuff.close();
    //free(image);
 }
