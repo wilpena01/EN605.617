@@ -107,7 +107,6 @@ int main()
          hist[image[i][j]] += 1;
       }
 
-         cout<<"bien aqui<"<<endl;
 
    
    // Finding number of
@@ -116,6 +115,9 @@ int main()
    for (i = 0; i < 256; i++)
       if (hist[i] != 0)
          nodes += 1;
+
+                  cout<<"bien aqui<"<<endl;
+
 
    // Calculating minimum probability
    float p = 1.0, ptemp;
