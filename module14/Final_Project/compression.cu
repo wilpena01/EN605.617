@@ -44,7 +44,7 @@ void strconcat(char* str, char* parentcode, char add)
 }
 
 
-npp::ImageCPU_8u_C1 LoadImagePGM()
+void LoadImagePGM(npp::ImageCPU_8u_C1 &hostImage)
 {
     cout<<"Start...\n";
     string name = "Lena.pgm";
@@ -64,12 +64,11 @@ npp::ImageCPU_8u_C1 LoadImagePGM()
     }
 
    // declare a host image object for an 8-bit grayscale image
-    npp::ImageCPU_8u_C1 hostImage;
+    
 
     // load gray-scale image from disk
     npp::loadImage(name, hostImage);
 
-    return hostImage;
 }
 
 
@@ -79,7 +78,8 @@ int main()
    int i, j;
    int width, height;
    int *image;
-  npp::ImageCPU_8u_C1 hostImage = LoadImagePGM();
+  npp::ImageCPU_8u_C1 hostImage; 
+  LoadImagePGM(hostImage);
    
 
    height = hostImage.height();
