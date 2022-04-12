@@ -55,35 +55,11 @@ void compressionDriver()
    int i,j;
    int width, height;
    int** image;
-   readBMPFILE(width, height, image);
-/*
-   LoadImagePGM(hostImage);
-   const int height = hostImage.height();
-   const int width = hostImage.width();
-   int image[height][width];
-
-    for (i = 0; i < height; i++)
-    {
-      for (j = 0; j < width; j++)
-      {
-         image[i][j] = static_cast<int>(*(hostImage.data(i,j)));
-      }
-    }
-    */
-   // Finding the probability
-   // of occurrence
    int hist[256];
-   for (i = 0; i < 256; i++)
-      hist[i] = 0;
-   for (i = 0; i < height; i++)
-   {
-      for (j = 0; j < width; j++)
-      {
-         if(image[i][j]>=256)
-            cout<<"Este es el problema ="<<image[i][j]<<endl;
-         hist[image[i][j]] += 1;
-      }
-   }
+
+   readBMPFILE(width, height, image);
+
+   ocurrence(hist, image, width, height);
 
    // Finding number of
    // non-zero occurrences

@@ -98,6 +98,24 @@ void readBMPFILE(int &width, int &height, int** &image)
       }
 }
 
+void ocurrence(int* hist, int** image, int width, int height)
+{
+    int i,j;
+    // Finding the probability
+   // of occurrence
+   
+   for (i = 0; i < 256; i++)
+      hist[i] = 0;
+   for (i = 0; i < height; i++)
+   {
+      for (j = 0; j < width; j++)
+      {
+         if(image[i][j]>=256)
+            cout<<"Este es el problema ="<<image[i][j]<<endl;
+         hist[image[i][j]] += 1;
+      }
+   }
+}
 
 
 #endif /* COMPRESS_HELPER_H_ */
