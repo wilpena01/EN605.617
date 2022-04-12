@@ -628,7 +628,9 @@ cout<<"bien aqui<"<<endl;
 }
 int main()
 {
+   cout<<"primero"<<endl;
    compressionDriver();
+   cout<<"segundo"<<endl;
    compressionDriver_CL();
 
    return 0;
