@@ -271,7 +271,7 @@ int main()
 
    // Writing the Huffman encoded
    // Image into a text file
-   FILE* imagehuff = fopen("encoded_image.txt", "wb");
+   FILE* imagehuff = fopen("encoded_image.txt", "w+");
 
    cout<<"bien aqui<"<<endl;
    for (i = 0; i < height; i++)
