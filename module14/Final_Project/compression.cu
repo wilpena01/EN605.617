@@ -85,10 +85,12 @@ int main()
    int image[height][width];
 
     for (i = 0; i < height; i++)
+    {
       for (j = 0; j < width; j++)
       {
          image[i,j] = static_cast<int>(*(hostImage.data(i,j)));
       }
+    }
     
 
    // Finding the probability
@@ -103,7 +105,7 @@ int main()
       {
          if(index(i,j,height)>=height * width )
             cout<<"Aqui = "<<index(i,j,height)<<endl<<endl<<endl;
-         hist[image[i,j]]] += 1;
+         hist[image[i,j]] += 1;
       }
    
    // Finding number of
