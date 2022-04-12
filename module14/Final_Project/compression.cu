@@ -82,14 +82,14 @@ int main()
   LoadImagePGM(hostImage);
    
 
-   height = hostImage.height();
-   width = hostImage.width();
-   image = (int*)malloc(height * width * sizeof(int));
+   const int height = hostImage.height();
+   const int width = hostImage.width();
+   int image[height][width]=
 
     for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         image[index(i,j,height)] = static_cast<int>(*(hostImage.data(i,j)));
+         image[i,j] = static_cast<int>(*(hostImage.data(i,j)));
       }
     
 
@@ -105,7 +105,7 @@ int main()
       {
          if(index(i,j,height)>=height * width )
             cout<<"Aqui = "<<index(i,j,height)<<endl<<endl<<endl;
-         hist[image[index(i,j,height)]] += 1;
+         hist[image[i,j]]] += 1;
       }
    
    // Finding number of
@@ -268,7 +268,7 @@ int main()
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         pix_val = image[index(i,j,height)];
+         pix_val = image[i,j];
          for (l = 0; l < nodes; l++)
             if (pix_val == pix_freq[l].intensity)
                fprintf(imagehuff, "%s", pix_freq[l].code);
@@ -290,5 +290,5 @@ int main()
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
-   free(image);
+   //free(image);
 }
