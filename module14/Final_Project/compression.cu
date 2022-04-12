@@ -127,7 +127,7 @@ int main()
       if (ptemp > 0 && ptemp <= p)
          p = ptemp;
    }
-   cout<<"bien aqui<"<<endl;
+   
    // Calculating max length
    // of code word
    i = 0;
@@ -144,7 +144,7 @@ int main()
    int totalnodes = 2 * nodes - 1;
    pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
-
+   cout<<"bien aqui<<"<<endl;
    // Initializing
    j = 0;
    int totpix = height * width;
