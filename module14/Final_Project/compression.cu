@@ -639,7 +639,7 @@ int main()
    compressionDriver();
 
    cout<<"segundo"<<endl;
-  // compressionDriver();
+  compressionDriver();
 
    return 0;
 
