@@ -88,9 +88,7 @@ int main()
     {
       for (j = 0; j < width; j++)
       {
-         int temp = static_cast<int>(*(hostImage.data(i,j)));
-         cout<<temp <<" "<<endl;
-         //image[i,j] = static_cast<int>(*(hostImage.data(i,j)));
+         image[i][j] = static_cast<int>(*(hostImage.data(i,j)));
       }
     }
     
@@ -107,7 +105,7 @@ int main()
       {
          if(index(i,j,height)>=height * width )
             cout<<"Aqui = "<<index(i,j,height)<<endl<<endl<<endl;
-         hist[image[i,j]] += 1;
+         hist[image[i][j]] += 1;
       }
    
    // Finding number of
@@ -270,7 +268,7 @@ int main()
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         pix_val = image[i,j];
+         pix_val = image[i][j];
          for (l = 0; l < nodes; l++)
             if (pix_val == pix_freq[l].intensity)
                fprintf(imagehuff, "%s", pix_freq[l].code);
