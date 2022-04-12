@@ -88,7 +88,9 @@ int main()
     {
       for (j = 0; j < width; j++)
       {
-         image[i,j] = static_cast<int>(*(hostImage.data(i,j)));
+         int temp = static_cast<int>(*(hostImage.data(i,j)));
+         cout<<temp <<" "<<endl;
+         //image[i,j] = static_cast<int>(*(hostImage.data(i,j)));
       }
     }
     
