@@ -273,7 +273,7 @@ int main()
    // Writing the Huffman encoded
    // Image into a text file
 
-   ofstream imagehuff; 
+   /*ofstream imagehuff; 
    imagehuff.open ("encoded_image.bin", ios::out | ios::app | ios::binary);
 cout<<"bien aqui<"<<endl;
    
@@ -291,7 +291,7 @@ cout<<"bien aqui<"<<endl;
       }
       cout<<endl;
    }
-
+*/
    // Printing Huffman Codes
    printf("Huffmann Codes::\n\n");
    printf("pixel values -> Code\n\n");
