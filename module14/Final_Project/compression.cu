@@ -164,7 +164,7 @@ void test()
     for (int i = 0; i < hostImage.height(); i++)
       for (int j = 0; j < hostImage.width(); j++)
       {
-         int temp = static_cast<int>(*(hostImage.data(i,j)));
+         int temp = static_cast<int>((hostImage.data(i,j)));
          if(temp>230)
             cout<< temp <<" ";
       }
