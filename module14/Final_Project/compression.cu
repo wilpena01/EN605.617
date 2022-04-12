@@ -389,10 +389,7 @@ void compressionDriver_CL()
 {
 
   int i, j;
-  npp::ImageCPU_8u_C1 hostImage; 
-  
-   int width, height;
-   int** image;
+  int** image;
   readBMPFILE(width, height, image);
    
 /*
