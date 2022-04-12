@@ -92,7 +92,7 @@ int main()
       }
     }
     
-cout<<"entre aqui"<<endl<<endl;
+
    // Finding the probability
    // of occurrence
    
@@ -103,8 +103,8 @@ cout<<"entre aqui"<<endl<<endl;
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
-         if(index(i,j,height)>=height * width )
-            cout<<"Aqui = "<<index(i,j,height)<<endl<<endl<<endl;
+         if(image[i][j]>=256)
+            cout<<"Este es el problema ="<<image[i][j]<<endl;
          hist[image[i][j]] += 1;
       }
    
