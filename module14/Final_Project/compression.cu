@@ -57,10 +57,11 @@ void compressionDriver()
    int** image;
    int hist[256];
    int nodes;
+   float p = 1.0; 
    readBMPFILE(width, height, image);
    ocurrence(hist, image, width, height);
    nonZero_ocurrence(hist, nodes);
-   minProp(hist, width, height);
+   minProp(p, hist, width, height);
 
    // Calculating max length
    // of code word

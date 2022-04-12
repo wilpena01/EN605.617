@@ -128,10 +128,11 @@ void nonZero_ocurrence(int* hist, int &node)
          node += 1;
 }
 
-void minProp(int* hist, int width, int height)
+void minProp(float p, int* hist, int width, int height)
 {
     // Calculating minimum probability
-    float p = 1.0, ptemp;
+    float ptemp;
+    p = 1.0;
     for (int i = 0; i < 256; i++)
     {
         ptemp = (hist[i] / (float)(height * width));
