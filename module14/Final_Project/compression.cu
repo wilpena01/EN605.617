@@ -70,6 +70,7 @@ npp::ImageCPU_8u_C1 LoadImagePGM()
     npp::loadImage(name, hostImage);
 
     return hostImage;
+}
 
 
 // Driver code
