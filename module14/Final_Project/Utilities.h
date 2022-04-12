@@ -37,7 +37,7 @@ int fib(int n)
 
 int index(int H, int W, int k) 
 {
-	return ((W*k)+H));
+	return ((W*k)+H);
 }
 
 #endif /* UTILITIES_H_ */
