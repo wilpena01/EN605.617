@@ -250,7 +250,7 @@ int main()
       n += 1;
       nextnode += 1;
    }
-cout<<"bien aqui<<"<<endl;
+
    // Assigning Code through
    // backtracking
    char left = '0';
@@ -262,6 +262,7 @@ cout<<"bien aqui<<"<<endl;
       if (pix_freq[i].right != NULL)
          strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
    }
+   cout<<"bien aqui"<<endl;
 
    // Encode the Image
    int pix_val;
