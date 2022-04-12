@@ -56,17 +56,11 @@ void compressionDriver()
    int width, height;
    int** image;
    int hist[256];
-
+   int nodes;
    readBMPFILE(width, height, image);
-
    ocurrence(hist, image, width, height);
-
-   // Finding number of
-   // non-zero occurrences
-   int nodes = 0;
-   for (i = 0; i < 256; i++)
-      if (hist[i] != 0)
-         nodes += 1;
+   nodes = nonZero_ocurrence(hist);
+   
 
    // Calculating minimum probability
    float p = 1.0, ptemp;
