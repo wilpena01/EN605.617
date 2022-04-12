@@ -170,7 +170,20 @@ void compressionDriver()
    int width, height;
    int** image;
    readBMPFILE(width, height, image);
+/*
+   LoadImagePGM(hostImage);
+   const int height = hostImage.height();
+   const int width = hostImage.width();
+   int image[height][width];
 
+    for (i = 0; i < height; i++)
+    {
+      for (j = 0; j < width; j++)
+      {
+         image[i][j] = static_cast<int>(*(hostImage.data(i,j)));
+      }
+    }
+    */
    // Finding the probability
    // of occurrence
    int hist[256];
@@ -388,11 +401,10 @@ void compressionDriver()
 void compressionDriver_CL()
 {
 
-  int i, j;
-  int width,height;
-  int** image;
-  readBMPFILE(width, height, image);
-   
+  int i,j;
+   int width, height;
+   int** image;
+   readBMPFILE(width, height, image);
 /*
    LoadImagePGM(hostImage);
    const int height = hostImage.height();
@@ -407,32 +419,27 @@ void compressionDriver_CL()
       }
     }
     */
-
    // Finding the probability
    // of occurrence
-   
    int hist[256];
    for (i = 0; i < 256; i++)
       hist[i] = 0;
    for (i = 0; i < height; i++)
+   {
       for (j = 0; j < width; j++)
       {
          if(image[i][j]>=256)
             cout<<"Este es el problema ="<<image[i][j]<<endl;
          hist[image[i][j]] += 1;
       }
+   }
 
-
-   
    // Finding number of
    // non-zero occurrences
    int nodes = 0;
    for (i = 0; i < 256; i++)
       if (hist[i] != 0)
          nodes += 1;
-
-                  
-
 
    // Calculating minimum probability
    float p = 1.0, ptemp;
@@ -442,7 +449,7 @@ void compressionDriver_CL()
       if (ptemp > 0 && ptemp <= p)
          p = ptemp;
    }
-   
+
    // Calculating max length
    // of code word
    i = 0;
@@ -460,7 +467,7 @@ void compressionDriver_CL()
    int totalnodes = 2 * nodes - 1;
    pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
-   
+
    // Initializing
    j = 0;
    int totpix = height * width;
@@ -555,11 +562,11 @@ void compressionDriver_CL()
          }
          else if (k > i)
 
-            // Shifting the nodes below
-            // the new node by 1
-            // For inserting the new node
-            // at the updated position k
-            huffcodes[k] = huffcodes[k - 1];
+         // Shifting the nodes below
+         // the new node by 1
+         // For inserting the new node
+         // at the updated position k
+         huffcodes[k] = huffcodes[k - 1];
 
       }
       n += 1;
@@ -589,27 +596,28 @@ void compressionDriver_CL()
 
    /*ofstream imagehuff; 
    imagehuff.open ("encoded_image.bin", ios::out | ios::app | ios::binary);
-cout<<"bien aqui<"<<endl;
-   
+   cout<<"bien aqui<"<<endl;
+
    for (i = 0; i < height; i++)
    {
-      for (j = 0; j < width; j++)
+   for (j = 0; j < width; j++)
+   {
+      pix_val = image[i][j];
+      cout<<"image[" <<i<<"]["<<j<<"] ="<<image[i][j]<<" ";
+      for (l = 0; l < nodes; l++)
       {
-         pix_val = image[i][j];
-         cout<<"image[" <<i<<"]["<<j<<"] ="<<image[i][j]<<" ";
-         for (l = 0; l < nodes; l++)
-         {
-            if (pix_val == pix_freq[l].intensity)
-               imagehuff<< pix_freq[l].code;
-         }
+         if (pix_val == pix_freq[l].intensity)
+            imagehuff<< pix_freq[l].code;
       }
-      cout<<endl;
    }
-*/
+   cout<<endl;
+   }
+   */
    // Printing Huffman Codes
    printf("Huffmann Codes::\n\n");
    printf("pixel values -> Code\n\n");
-   for (i = 0; i < nodes; i++) {
+   for (i = 0; i < nodes; i++) 
+   {
       if (snprintf(NULL, 0, "%d", pix_freq[i].intensity) == 2)
          printf("  %d    -> %s\n", pix_freq[i].intensity, pix_freq[i].code);
       else
