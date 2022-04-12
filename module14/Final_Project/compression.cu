@@ -116,7 +116,7 @@ int main()
       if (hist[i] != 0)
          nodes += 1;
 
-                  cout<<"bien aqui<"<<endl;
+                  
 
 
    // Calculating minimum probability
@@ -127,7 +127,7 @@ int main()
       if (ptemp > 0 && ptemp <= p)
          p = ptemp;
    }
-
+   cout<<"bien aqui<"<<endl;
    // Calculating max length
    // of code word
    i = 0;
