@@ -44,7 +44,7 @@ void strconcat(char* str, char* parentcode, char add)
 }
 
 
-void LoadImagePGM(int &width, int &height, int* &image)
+npp::ImageCPU_8u_C1 LoadImagePGM()
 {
     cout<<"Start...\n";
     string name = "Lena.pgm";
@@ -69,6 +69,18 @@ void LoadImagePGM(int &width, int &height, int* &image)
     // load gray-scale image from disk
     npp::loadImage(name, hostImage);
 
+    return hostImage;
+
+
+// Driver code
+int main()
+{
+   int i, j;
+   int width, height;
+   int *image;
+  npp::ImageCPU_8u_C1 hostImage = LoadImagePGM();
+   
+
    height = hostImage.height();
    width = hostImage.width();
    image = (int*)malloc(height * width * sizeof(int));
@@ -80,14 +92,6 @@ void LoadImagePGM(int &width, int &height, int* &image)
       }
     }
 
-// Driver code
-int main()
-{
-   int i, j;
-   int width, height;
-   int *image;
-   LoadImagePGM(width, height, image );
-   
    // Finding the probability
    // of occurrence
    
