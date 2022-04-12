@@ -73,21 +73,12 @@ void LoadImagePGM(int &width, int &height, int* &image)
    width = hostImage.width();
    image = (int*)malloc(height * width * sizeof(int));
 
-// check if memory has been allocated successfully
-  if (!image) {
-    cout << "Memory Allocation Failed";
-    exit(1);
-  }
-  else
-  cout << "Memory Allocation PASS";
     for (int i = 0; i < height; i++)
       for (int j = 0; j < width; j++)
       {
          image[index(i,j,height)] = static_cast<int>(*(hostImage.data(i,j)));
       }
-    
-    cout<<"hostImage.width = "<<hostImage.width()<<"\thostImage.height = "<<hostImage.height()<<endl;
-}
+    }
 
 // Driver code
 int main()
