@@ -164,9 +164,9 @@ void test()
     result += "_boxFilter.pgm";
    // declare a host image object for an 8-bit grayscale image
     npp::ImageCPU_8u_C1 hostImage;
-   cout<<"entre qui"<<endl;
     // load gray-scale image from disk
     npp::loadImage(name, hostImage);
+   cout<<"entre qui"<<endl;
 
     cout<<"hostImage.width = "<<hostImage.width()<<"\thostImage.height = "<<hostImage.height()<<endl;
 }
