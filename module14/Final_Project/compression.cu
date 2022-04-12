@@ -170,8 +170,8 @@ void test()
     // load gray-scale image from disk
     npp::loadImage(name, hostImage);
 
-    for (i = 0; i < hostImage.height(); i++)
-      for (j = 0; j < hostImage.width(); j++)
+    for (int i = 0; i < hostImage.height(); i++)
+      for (int j = 0; j < hostImage.width(); j++)
       {
         cout<<hostImage.data(i,j)<<" ";
       }
