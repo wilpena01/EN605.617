@@ -389,6 +389,7 @@ void compressionDriver_CL()
 {
 
   int i, j;
+  int width,height;
   int** image;
   readBMPFILE(width, height, image);
    
