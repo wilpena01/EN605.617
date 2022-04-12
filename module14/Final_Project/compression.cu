@@ -166,6 +166,7 @@ void readBMPFILE(int &width, int &height, int** &image)
 // Driver code
 void compressionDriver()
 {
+   int i,j;
    int width, height;
    int** image;
    readBMPFILE(width, height, image);
@@ -191,9 +192,6 @@ void compressionDriver()
    for (i = 0; i < 256; i++)
       if (hist[i] != 0)
          nodes += 1;
-
-               
-
 
    // Calculating minimum probability
    float p = 1.0, ptemp;
