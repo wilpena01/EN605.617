@@ -638,8 +638,8 @@ int main()
    cout<<"primero"<<endl;
    compressionDriver();
 
-   cout<<"segundo"<<endl;
-   compressionDriver();
+   //cout<<"segundo"<<endl;
+  // compressionDriver();
 
    return 0;
 
