@@ -59,17 +59,8 @@ void compressionDriver()
    int nodes;
    readBMPFILE(width, height, image);
    ocurrence(hist, image, width, height);
-   nodes = nonZero_ocurrence(hist);
-   
-
-   // Calculating minimum probability
-   float p = 1.0, ptemp;
-   for (i = 0; i < 256; i++)
-   {
-      ptemp = (hist[i] / (float)(height * width));
-      if (ptemp > 0 && ptemp <= p)
-         p = ptemp;
-   }
+   nonZero_ocurrence(hist, node);
+   minProp(hist, width, height);
 
    // Calculating max length
    // of code word

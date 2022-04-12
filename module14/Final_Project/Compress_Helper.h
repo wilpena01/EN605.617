@@ -118,14 +118,26 @@ void ocurrence(int* hist, int** image, int width, int height)
     }
 }
 
-int nonZero_ocurrence(int* hist)
+void nonZero_ocurrence(int* hist, int &node)
 {
-    int temp=0;
+    // Finding number of
+    // non-zero occurrences
+    node=0;
     for (int i = 0; i < 256; i++)
       if (hist[i] != 0)
-         temp += 1;
+         node += 1;
+}
 
-    return temp;
+void minProp(int* hist, int width, int height)
+{
+    // Calculating minimum probability
+    float p = 1.0, ptemp;
+    for (int i = 0; i < 256; i++)
+    {
+        ptemp = (hist[i] / (float)(height * width));
+        if (ptemp > 0 && ptemp <= p)
+            p = ptemp;
+    }
 }
 
 
