@@ -101,7 +101,7 @@ int main()
       for (j = 0; j < width; j++)
       {
          if(index(i,j,height)>height * width )
-            cout<<"Aqui = "<<index(i,j,height)
+            cout<<"Aqui = "<<index(i,j,height);
          hist[image[index(i,j,height)]] += 1;
       }
    
