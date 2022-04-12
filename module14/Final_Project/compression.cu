@@ -277,7 +277,7 @@ cout<<"bien aqui<"<<endl;
       for (j = 0; j < width; j++)
       {
          pix_val = image[i][j];
-         cout<<" image[" <<i<<"]["<<j"] ="<<image[i][j]<<" ";
+         cout<<"image[" <<i<<"]["<<j<<"] ="<<image[i][j]<<" \n";
          for (l = 0; l < nodes; l++)
          {
             if (pix_val == pix_freq[l].intensity)
