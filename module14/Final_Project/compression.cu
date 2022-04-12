@@ -144,7 +144,7 @@ int main()
    int totalnodes = 2 * nodes - 1;
    pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
-   cout<<"bien aqui<<"<<endl;
+   
    // Initializing
    j = 0;
    int totpix = height * width;
@@ -178,7 +178,7 @@ int main()
          j++;
       }
    }
-
+cout<<"bien aqui<<"<<endl;
    // Sorting the histogram
    struct huffcode temphuff;
 
