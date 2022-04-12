@@ -141,5 +141,17 @@ void minProp(float p, int* hist, int width, int height)
     }
 }
 
+int MaxLength(float p)
+{
+    // Calculating max length
+    // of code word
+    int i = 0;
+    while ((1 / p) > fib(i))
+    {
+        i++;
+    }
+
+    return i;
+}
 
 #endif /* COMPRESS_HELPER_H_ */

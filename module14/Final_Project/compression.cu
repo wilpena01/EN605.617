@@ -56,22 +56,14 @@ void compressionDriver()
    int width, height;
    int** image;
    int hist[256];
-   int nodes;
+   int nodes, maxcodelen;
    float p = 1.0; 
+
    readBMPFILE(width, height, image);
    ocurrence(hist, image, width, height);
    nonZero_ocurrence(hist, nodes);
    minProp(p, hist, width, height);
-
-   // Calculating max length
-   // of code word
-   i = 0;
-   while ((1 / p) > fib(i))
-   {
-      i++;
-   }
-   int maxcodelen = i - 3;
-   cout<<"maxcodelen = "<<maxcodelen<<endl;
+   maxcodelen = MaxLength(p) - 3;
 
    // Declaring structs
    //struct pixfreq<maxcodelen> *pix_freq; it should be this!!
