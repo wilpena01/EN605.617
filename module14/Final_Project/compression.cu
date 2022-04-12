@@ -273,13 +273,18 @@ cout<<"bien aqui<"<<endl;
    // Image into a text file
    FILE* imagehuff = fopen("encoded_image.txt", "wb");
    for (i = 0; i < height; i++)
+   {
       for (j = 0; j < width; j++)
       {
          pix_val = image[i][j];
+         cout<<" image[" <<i<<"]["<<j"] ="<<image[i][j]<<" ";
          for (l = 0; l < nodes; l++)
+         {
             if (pix_val == pix_freq[l].intensity)
                fprintf(imagehuff, "%s", pix_freq[l].code);
+         }
       }
+   }
 
    // Printing Huffman Codes
    printf("Huffmann Codes::\n\n");
