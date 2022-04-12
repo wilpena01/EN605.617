@@ -78,6 +78,8 @@ void LoadImagePGM(int &width, int &height, int* &image)
     cout << "Memory Allocation Failed";
     exit(1);
   }
+  else
+  cout << "Memory Allocation PASS";
     for (int i = 0; i < height; i++)
       for (int j = 0; j < width; j++)
       {
