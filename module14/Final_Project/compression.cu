@@ -44,7 +44,7 @@ void strconcat(char* str, char* parentcode, char add)
 }
 
 
-void LoadImagePGM(int &width, int &height, int *image)
+void LoadImagePGM(int &width, int &height, int* &image)
 {
     cout<<"Start...\n";
     string name = "Lena.pgm";
@@ -71,7 +71,7 @@ void LoadImagePGM(int &width, int &height, int *image)
 
    height = hostImage.height();
    width = hostImage.width();
-    image = (int*)malloc(height * width * sizeof(int));
+   image = (int*)malloc(height * width * sizeof(int));
 
     for (int i = 0; i < height; i++)
       for (int j = 0; j < width; j++)
@@ -96,6 +96,7 @@ int main()
    int hist[256];
    for (i = 0; i < 256; i++)
       hist[i] = 0;
+
    for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
       {
