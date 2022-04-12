@@ -73,6 +73,11 @@ void LoadImagePGM(int &width, int &height, int* &image)
    width = hostImage.width();
    image = (int*)malloc(height * width * sizeof(int));
 
+// check if memory has been allocated successfully
+  if (!image) {
+    cout << "Memory Allocation Failed";
+    exit(1);
+  }
     for (int i = 0; i < height; i++)
       for (int j = 0; j < width; j++)
       {
