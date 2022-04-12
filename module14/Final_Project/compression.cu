@@ -102,8 +102,8 @@ void readBMPFILE(int &width, int &height, int* image)
 
          // Reading the BMP File
          // into Image Array
-         //cout<<"height = "<<height<<endl;
-         //cout<<"width = "<<width<<endl;
+         cout<<"height = "<<height<<endl;
+         cout<<"width = "<<width<<endl;
          //cout<<"height * width = "<<height * width<<endl;
 
          for (i = 0; i < height; i++)
