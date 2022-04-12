@@ -395,7 +395,6 @@ void compressionDriver()
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
-   free(image);
 }
 
 void compressionDriver_CL()
@@ -630,7 +629,6 @@ void compressionDriver_CL()
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
-   free(image);
 }
 
 int main()
@@ -639,7 +637,7 @@ int main()
    compressionDriver();
 
    cout<<"segundo"<<endl;
-  compressionDriver();
+   compressionDriver();
 
    return 0;
 
