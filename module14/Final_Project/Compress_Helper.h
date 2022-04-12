@@ -8,6 +8,7 @@
 #include <string>
 #include <fstream>
 
+using namespace std;
 
 void readBMPFILE(int &width, int &height, int** &image)
 {
