@@ -263,7 +263,7 @@ int main()
          strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
    }
    
-
+cout<<"bien aqui<"<<endl;
    // Encode the Image
    int pix_val;
    int l;
@@ -279,7 +279,7 @@ int main()
             if (pix_val == pix_freq[l].intensity)
                fprintf(imagehuff, "%s", pix_freq[l].code);
       }
-cout<<"bien aqui<"<<endl;
+
    // Printing Huffman Codes
    printf("Huffmann Codes::\n\n");
    printf("pixel values -> Code\n\n");
