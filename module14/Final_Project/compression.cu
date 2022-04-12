@@ -91,7 +91,7 @@ int main()
       {
          image[index(i,j,height)] = static_cast<int>(*(hostImage.data(i,j)));
       }
-    }
+    
 
    // Finding the probability
    // of occurrence
