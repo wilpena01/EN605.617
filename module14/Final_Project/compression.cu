@@ -264,7 +264,7 @@ int main()
    }
    cout<<"totalnodes = "<<totalnodes<<endl;
    cout<<"nodes = "<<nodes<<endl;
-cout<<"bien aqui<"<<endl;
+
    // Encode the Image
    int pix_val;
    int l;
@@ -272,6 +272,8 @@ cout<<"bien aqui<"<<endl;
    // Writing the Huffman encoded
    // Image into a text file
    FILE* imagehuff = fopen("encoded_image.txt", "wb");
+
+   cout<<"bien aqui<"<<endl;
    for (i = 0; i < height; i++)
    {
       for (j = 0; j < width; j++)
