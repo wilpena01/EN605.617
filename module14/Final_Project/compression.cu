@@ -44,7 +44,7 @@ void strconcat(char* str, char* parentcode, char add)
 }
 
 
-void LoadImagePGM(int *image)
+void LoadImagePGM(int &width, int &height, int *image)
 {
     cout<<"Start...\n";
     string name = "Lena.pgm";
@@ -69,16 +69,15 @@ void LoadImagePGM(int *image)
     // load gray-scale image from disk
     npp::loadImage(name, hostImage);
 
-    int height = hostImage.height();
-    int width = hostImage.width();
-   image = (int*)malloc(height * width * sizeof(int));
+     height = hostImage.height();
+     width = hostImage.width();
+    image = (int*)malloc(height * width * sizeof(int));
 
     for (int i = 0; i < height; i++)
       for (int j = 0; j < width; j++)
       {
          image[index(i,j,height)] = static_cast<int>(*(hostImage.data(i,j)));
       }
-
     
     cout<<"hostImage.width = "<<hostImage.width()<<"\thostImage.height = "<<hostImage.height()<<endl;
 }
@@ -89,7 +88,7 @@ int main()
    int i, j;
    int width, height;
    int *image;
-   LoadImagePGM( image );
+   LoadImagePGM(width, height, image );
    
    // Finding the probability
    // of occurrence
