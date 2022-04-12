@@ -139,7 +139,7 @@ void test()
     cout<<"Start...\n";
     string name = "Lena.bmp";
 
-    ifstream iputfile(name.data(), std::ifstream::in);
+    ifstream inputfile(name.data(), std::ifstream::in);
 
     if (inputfile.good())
     {
