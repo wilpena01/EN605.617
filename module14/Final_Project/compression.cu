@@ -164,7 +164,7 @@ void test()
     for (int i = 0; i < hostImage.height(); i++)
       for (int j = 0; j < hostImage.width(); j++)
       {
-        cout<< <int>(*hostImage.data(i,j))<<" ";
+        cout<< *hostImage.data(i,j)<<" ";
       }
     cout<<"hostImage.width = "<<hostImage.width()<<"\thostImage.height = "<<hostImage.height()<<endl;
 }
