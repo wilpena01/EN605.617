@@ -76,7 +76,6 @@ void LoadImagePGM(npp::ImageCPU_8u_C1 &hostImage)
 int main()
 {
    int i, j;
-   int *image;
   npp::ImageCPU_8u_C1 hostImage; 
   LoadImagePGM(hostImage);
    
