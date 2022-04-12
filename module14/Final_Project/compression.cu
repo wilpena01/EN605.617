@@ -76,7 +76,6 @@ void LoadImagePGM(npp::ImageCPU_8u_C1 &hostImage)
 int main()
 {
    int i, j;
-   int width, height;
    int *image;
   npp::ImageCPU_8u_C1 hostImage; 
   LoadImagePGM(hostImage);
@@ -84,7 +83,7 @@ int main()
 
    const int height = hostImage.height();
    const int width = hostImage.width();
-   int image[height][width]=
+   int image[height][width];
 
     for (i = 0; i < height; i++)
       for (j = 0; j < width; j++)
