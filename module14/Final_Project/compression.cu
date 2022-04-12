@@ -153,15 +153,6 @@ void test()
         exit(EXIT_FAILURE);
     }
 
-    string result = name;
-    string::size_type dot = result.rfind('.');
-
-    if (dot != string::npos)
-    {
-        result = result.substr(0, dot);
-    }
-      
-    result += "_boxFilter.pgm";
    // declare a host image object for an 8-bit grayscale image
     npp::ImageCPU_8u_C1 hostImage;
 
@@ -173,7 +164,7 @@ void test()
     for (int i = 0; i < hostImage.height(); i++)
       for (int j = 0; j < hostImage.width(); j++)
       {
-        cout<<*(hostImage.data(i,j))<<" ";
+        cout<< <int>hostImage.data(i,j)<<" ";
       }
     cout<<"hostImage.width = "<<hostImage.width()<<"\thostImage.height = "<<hostImage.height()<<endl;
 }
