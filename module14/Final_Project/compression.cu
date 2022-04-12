@@ -84,7 +84,7 @@ int main()
    int width = 512, height = 512;
    const int arrSize = width * height;
    int image[arrSize];
-   test( image );
+   LoadImagePGM( image );
    
    // Finding the probability
    // of occurrence
