@@ -274,7 +274,7 @@ int main()
    // Image into a text file
 
    ofstream imagehuff; 
-   imagehuff.open ("encoded_image.txt", ios::out | ios::app | ios::binary);
+   imagehuff.open ("encoded_image.bin", ios::out | ios::app | ios::binary);
 cout<<"bien aqui<"<<endl;
    
    for (i = 0; i < height; i++)
