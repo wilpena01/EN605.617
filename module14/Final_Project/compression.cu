@@ -305,5 +305,6 @@ int main()
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
+fclose(imagehuff);
    //free(image);
 }
