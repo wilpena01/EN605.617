@@ -197,7 +197,7 @@ int main()
          }
       }
    }
-cout<<"bien aqui<<"<<endl;
+
    // Building Huffman Tree
    float sumprob;
    int sumpix;
@@ -250,7 +250,7 @@ cout<<"bien aqui<<"<<endl;
       n += 1;
       nextnode += 1;
    }
-
+cout<<"bien aqui<<"<<endl;
    // Assigning Code through
    // backtracking
    char left = '0';
