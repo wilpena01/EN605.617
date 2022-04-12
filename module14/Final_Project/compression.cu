@@ -272,11 +272,11 @@ int main()
 
    // Writing the Huffman encoded
    // Image into a text file
-
+cout<<"bien aqui<"<<endl;
    ofstream imagehuff;
    imagehuff.open ("encoded_image.txt", ios::out | ios::app | ios::binary);
 
-   cout<<"bien aqui<"<<endl;
+   
    for (i = 0; i < height; i++)
    {
       for (j = 0; j < width; j++)
