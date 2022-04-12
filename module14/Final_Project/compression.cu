@@ -173,7 +173,7 @@ int main()
   
    int width, int height;
    int** image;
-  readBMPFILE(int &width, int &height, int** &image)
+  readBMPFILE(width, height, image)
    
 /*
    LoadImagePGM(hostImage);
