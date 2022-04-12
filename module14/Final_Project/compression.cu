@@ -395,7 +395,7 @@ void compressionDriver()
       avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
    printf("Average number of bits:: %f", avgbitnum);
 
-   free(image);
+   //free(image);
 }
 
 void compressionDriver_CL()
