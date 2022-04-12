@@ -36,7 +36,7 @@ void strconcat(char* str, char* parentcode, char add)
 
 
 
-void readBMPFILE(int &width, int &height, int* image)
+void readBMPFILE(int &width, int &height, int* &image)
 {
       int i, j;
       char filename[] = "Lena.bmp";
