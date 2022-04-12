@@ -137,9 +137,9 @@ void readBMPFILE(int &width, int &height, int* image)
 void test()
 {
     cout<<"Start...\n";
-    string name = "Lena.pgm";
+    string name = "Lena.bmp";
 
-    ifstream inputfile(name.data(), std::ifstream::in);
+    ifstream iputfile(name.data(), std::ifstream::in);
 
     if (inputfile.good())
     {
