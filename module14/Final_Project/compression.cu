@@ -85,8 +85,8 @@ int main()
    width = hostImage.width();
    image = (int*)malloc(height * width * sizeof(int));
 
-    for (int i = 0; i < height; i++)
-      for (int j = 0; j < width; j++)
+    for (i = 0; i < height; i++)
+      for (j = 0; j < width; j++)
       {
          image[index(i,j,height)] = static_cast<int>(*(hostImage.data(i,j)));
       }
