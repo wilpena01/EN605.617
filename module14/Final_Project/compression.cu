@@ -80,7 +80,7 @@ void compressionDriver_CL()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
-   free(image2);
+   free(image_cl);
 }
 
 int main()
