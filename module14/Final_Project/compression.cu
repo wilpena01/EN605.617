@@ -63,6 +63,7 @@ void compressionDriver_CL()
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
    
+                        cout<<"\n\nentre aqui<<\n\n";
 
    LoadImagePGM(width, height, image_cl);
    ocurrence(hist, image_cl, width, height);
