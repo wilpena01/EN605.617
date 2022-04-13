@@ -47,7 +47,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    npp::ImageCPU_8u_C1 hostImage;
 
    // load gray-scale image from disk
-   npp::loadImage(name, hostImage);
+   npp::loadImage("Lena.pgm", hostImage);
 
    height = hostImage.height();
    width = hostImage.width();
