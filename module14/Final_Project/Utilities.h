@@ -54,4 +54,13 @@ void PrintHuffmanCode(pixfreq<25> *pix_freq, int nodes)
    }
 }
 
+void calBitLength(pixfreq<25> *pix_freq, int nodes)
+{
+   // Calculating Average Bit Length
+   float avgbitnum = 0;
+   for (int i = 0; i < nodes; i++)
+      avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
+   printf("Average number of bits:: %f", avgbitnum);
+
+}
 #endif /* UTILITIES_H_ */

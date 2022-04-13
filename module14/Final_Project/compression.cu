@@ -75,13 +75,7 @@ void compressionDriver()
    }
    */
    PrintHuffmanCode(pix_freq, nodes);
-
-   // Calculating Average Bit Length
-   float avgbitnum = 0;
-   for (i = 0; i < nodes; i++)
-      avgbitnum += pix_freq[i].Freq * codelen(pix_freq[i].code);
-   printf("Average number of bits:: %f", avgbitnum);
-
+   calBitLength(pix_freq, nodes);
 }
 
 void compressionDriver_CL()
