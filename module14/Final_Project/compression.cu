@@ -56,15 +56,15 @@ void compressionDriver_CL()
 {
    int i,j;
    int width, height;
-   int** image_cl;
+   int** image;
    int hist[256];
    int nodes, maxcodelen, totalnodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
    
-   LoadImagePGM(width, height, image_cl);
-   ocurrence(hist, image_cl, width, height);
+   LoadImagePGM(width, height, image);
+   ocurrence(hist, image, width, height);
    nonZero_ocurrence(hist, nodes);
    minProp(p, hist, width, height);
    maxcodelen = MaxLength(p) - 3;
@@ -79,7 +79,7 @@ void compressionDriver_CL()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
-   free(image_cl);
+   delete[] image;
 }
 
 int main()
