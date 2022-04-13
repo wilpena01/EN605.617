@@ -21,15 +21,12 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    int i,j;
                            cout<<"\n\nentre aqui<<\n\n";
 
-   npp::ImageCPU_8u_C1 hostImage;
-   string name = "Lena.bmp";
+   std::string name = "Lena.pgm";
 
-   ifstream inputfile(name.data(), std::ifstream::in);
-
+   std::ifstream inputfile(name.data(), std::ifstream::in);
 
    if (inputfile.good())
    {
-
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
       inputfile.close();
    }
@@ -40,15 +37,17 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       exit(EXIT_FAILURE);
    }
 
-    string result = name;
-    std::string::size_type dot = result.rfind('.');
+   string result = name;
+   std::string::size_type dot = result.rfind('.');
 
-    if (dot != std::string::npos)
-    {
-        result = result.substr(0, dot);
-    }
+   if (dot != std::string::npos)
+   {
+      result = result.substr(0, dot);
+   }
 
 
+   // declare a host image object for an 8-bit grayscale image
+   npp::ImageCPU_8u_C1 hostImage;
 
    // load gray-scale image from disk
    npp::loadImage(name, hostImage);
