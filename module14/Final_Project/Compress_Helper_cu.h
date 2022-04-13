@@ -36,6 +36,7 @@ void LoadImagePGM(int &width, int &height, int** &image)
       exit(EXIT_FAILURE);
    }
 
+   cout<<"\n\nentre aqui<<\n\n";
 
 
    // load gray-scale image from disk
