@@ -49,7 +49,7 @@ void compressionDriver()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
-   free(image);
+   free(*image);
 }
 
 void compressionDriver_CL()
@@ -63,8 +63,6 @@ void compressionDriver_CL()
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
    
-                        cout<<"\n\nentre aqui<<\n\n";
-
    LoadImagePGM(width, height, image_cl);
    ocurrence(hist, image_cl, width, height);
    nonZero_ocurrence(hist, nodes);

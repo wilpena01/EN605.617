@@ -21,7 +21,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    int i,j;
 
    std::string name = "Lena.pgm";
-
+   
    std::ifstream inputfile(name.data(), std::ifstream::in);
 
    if (inputfile.good())
