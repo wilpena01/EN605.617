@@ -19,7 +19,6 @@ using namespace std;
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
-                           cout<<"\n\nentre aqui<<\n\n";
 
    std::string name = "Lena.pgm";
 
@@ -36,6 +35,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       inputfile.close();
       exit(EXIT_FAILURE);
    }
+                           cout<<"\n\nentre aqui<<\n\n";
 
    string result = name;
    std::string::size_type dot = result.rfind('.');
