@@ -43,7 +43,7 @@ void LoadImagePGM(int &width, int &height, int** &image)
 
    height = hostImage.height();
    width = hostImage.width();
-
+cout<<"height = "<<height<<"\twidth"<<width<<endl;
    // Creating Image array
    image = (int**)malloc(height * sizeof(int*));
 
