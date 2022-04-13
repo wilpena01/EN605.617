@@ -20,22 +20,29 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
 
-     std::string name = "Lena.pgm";
+   string name = "Lena.pgm";
+   FILE* inputfile = fopen(name.c_str(), "rb");
 
-    std::ifstream inputfile(name.data(), std::ifstream::in);
+   if (inputfile == NULL)
+   {
+      cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
+      fclose(inputfile);
+      exit(EXIT_FAILURE);
+   }
+   else
+   {
+      cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
+      fclose(inputfile);
+   }
+      
 
-    if (inputfile.good())
-    {
-        cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
-        inputfile.close();
-    }
-    else
-    {
-        cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
-        inputfile.close();
-        exit(EXIT_FAILURE);
-    }
+   string result = name;
+   std::string::size_type dot = result.rfind('.');
 
+   if (dot != std::string::npos)
+   {
+      result = result.substr(0, dot);
+   }
 
    // declare a host image object for an 8-bit grayscale image
    npp::ImageCPU_8u_C1 hostImage;
