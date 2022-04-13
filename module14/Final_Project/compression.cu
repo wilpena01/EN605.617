@@ -62,7 +62,8 @@ void compressionDriver_CL()
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
-
+   cout<<"\n\nentre aqui<<\n\n";
+   
    LoadImagePGM(width, height, image2);
    ocurrence(hist, image2, width, height);
    nonZero_ocurrence(hist, nodes);
