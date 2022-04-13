@@ -96,7 +96,7 @@ void readBMPFILE(int &width, int &height, int** &image)
 
          for (i = 0; i < height; i++)
          {
-            image[i] = (int*)malloc(width * sizeof(int));
+            image[i] = (int*)malloc(width * sizeof(int*));
          }
 
          // Reading the BMP File
