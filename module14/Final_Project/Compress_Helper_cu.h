@@ -19,7 +19,7 @@ using namespace std;
 void LoadImagePGM(int &width, int &height, int** &image)
 {
    int i,j;
-    npp::ImageCPU_8u_C1 &hostImage
+    npp::ImageCPU_8u_C1 &hostImage;
     string name = "Lena.pgm";
 
     ifstream inputfile(name.data(), std::ifstream::in);
