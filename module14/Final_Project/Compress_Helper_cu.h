@@ -35,7 +35,6 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       inputfile.close();
       exit(EXIT_FAILURE);
    }
-                           cout<<"\n\nentre aqui<<\n\n";
 
    string result = name;
    std::string::size_type dot = result.rfind('.');
@@ -51,6 +50,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 
    // load gray-scale image from disk
    npp::loadImage(name, hostImage);
+                           cout<<"\n\nentre aqui<<\n\n";
 
    height = hostImage.height();
    width = hostImage.width();
