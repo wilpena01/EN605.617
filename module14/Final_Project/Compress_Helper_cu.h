@@ -25,6 +25,7 @@ void LoadImagePGM(int &width, int &height, int** &image)
    ifstream inputfile(name.data(), std::ifstream::in);
    if (inputfile.good())
    {
+      cout<<"\n\nentre aqui<<\n\n";
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
       inputfile.close();
    }
@@ -35,7 +36,7 @@ void LoadImagePGM(int &width, int &height, int** &image)
       exit(EXIT_FAILURE);
    }
 
-      cout<<"\n\nentre aqui<<\n\n";
+      
 
 
 

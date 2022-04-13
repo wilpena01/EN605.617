@@ -49,6 +49,7 @@ void compressionDriver()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
+   free(image);
 }
 
 void compressionDriver_CL()
@@ -80,6 +81,7 @@ void compressionDriver_CL()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
+   free(image2);
 }
 
 int main()
@@ -87,7 +89,7 @@ int main()
    cout<<"Using Local CPU"<<endl;
    compressionDriver();
 
-   cout<<"segundo"<<endl;
+   cout<<"\n\nUsing GPU"<<endl;
    compressionDriver_CL();
 
    return 0;
