@@ -23,7 +23,6 @@ void LoadImagePGM(int &width, int &height, int** &image)
    string name = "Lena.pgm";
    
    ifstream inputfile(name.data(), std::ifstream::in);
-   cout<<"\n\nentre aqui<<\n\n";
    if (inputfile.good())
    {
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
@@ -36,7 +35,8 @@ void LoadImagePGM(int &width, int &height, int** &image)
       exit(EXIT_FAILURE);
    }
 
-   
+      cout<<"\n\nentre aqui<<\n\n";
+
 
 
    // load gray-scale image from disk
