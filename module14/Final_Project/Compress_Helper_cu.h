@@ -21,7 +21,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    int i,j;
 
    string name = "Lena.pgm";
-   FILE* inputfile = fopen(name, "rb");
+   FILE* inputfile = fopen("Lena.pgm", "rb");
 
    if (image_file != NULL)
    {
