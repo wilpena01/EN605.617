@@ -45,7 +45,7 @@ void PrintHuffmanCode(pixfreq<25> *pix_freq, int nodes)
    // Printing Huffman Codes
    printf("Huffmann Codes::\n\n");
    printf("pixel values -> Code\n\n");
-   for (i = 0; i < nodes; i++) 
+   for (int i = 0; i < nodes; i++) 
    {
       if (snprintf(NULL, 0, "%d", pix_freq[i].intensity) == 2)
          printf("  %d    -> %s\n", pix_freq[i].intensity, pix_freq[i].code);
