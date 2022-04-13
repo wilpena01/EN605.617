@@ -10,6 +10,34 @@
 
 using namespace std;
 
+int codelen(char* code)
+{
+    // function to calculate word length
+   int l = 0;
+   while (*(code + l) != '\0')
+      l++;
+   return l;
+}
+
+
+void strconcat(char* str, char* parentcode, char add)
+{
+    // function to concatenate the words
+   int i = 0;
+   while (*(parentcode + i) != '\0')
+   {
+      *(str + i) = *(parentcode + i);
+      i++;
+   }
+   if (add != '2')
+   {
+      str[i] = add;
+      str[i + 1] = '\0';
+   }
+   else
+      str[i] = '\0';
+}
+
 void readBMPFILE(int &width, int &height, int** &image)
 {
       int i, j;
@@ -275,4 +303,21 @@ void BuildTree(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
 
 
 }
+
+void AssignCode(pixfreq<25> *pix_freq, int nodes, int totalnodes)
+{
+    // Assigning Code through
+    // backtracking
+    int i;
+    char left = '0';
+    char right = '1';
+    for (i = totalnodes - 1; i >= nodes; i--)
+    {
+        if (pix_freq[i].left != NULL)
+            strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
+        if (pix_freq[i].right != NULL)
+            strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
+    }
+}
+
 #endif /* COMPRESS_HELPER_H_ */

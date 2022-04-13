@@ -21,34 +21,6 @@
 
 using namespace std;
 
-// function to calculate word length
-int codelen(char* code)
-{
-   int l = 0;
-   while (*(code + l) != '\0')
-      l++;
-   return l;
-}
-
-// function to concatenate the words
-void strconcat(char* str, char* parentcode, char add)
-{
-   int i = 0;
-   while (*(parentcode + i) != '\0')
-   {
-      *(str + i) = *(parentcode + i);
-      i++;
-   }
-   if (add != '2')
-   {
-      str[i] = add;
-      str[i + 1] = '\0';
-   }
-   else
-      str[i] = '\0';
-}
-
-
 // Driver code
 void compressionDriver()
 {
@@ -73,22 +45,9 @@ void compressionDriver()
 
    InitStruct(pix_freq, huffcodes, hist, height, width);
    sortHist(huffcodes, nodes);
-
    BuildTree(pix_freq, huffcodes, nodes);
 
-   // Assigning Code through
-   // backtracking
-   char left = '0';
-   char right = '1';
-   for (i = totalnodes - 1; i >= nodes; i--)
-   {
-      if (pix_freq[i].left != NULL)
-         strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
-      if (pix_freq[i].right != NULL)
-         strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
-   }
-   cout<<"totalnodes = "<<totalnodes<<endl;
-   cout<<"nodes = "<<nodes<<endl;
+
 
    // Encode the Image
    int pix_val;
