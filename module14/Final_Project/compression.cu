@@ -72,61 +72,9 @@ void compressionDriver()
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
 
    InitStruct(pix_freq, huffcodes, hist, height, width);
-  
    sortHist(huffcodes, nodes);
 
-   // Building Huffman Tree
-   float sumprob;
-   int sumpix;
-   int n = 0, k = 0;
-   int nextnode = nodes;
-
-   // Since total number of
-   // nodes in Huffman Tree
-   // is 2*nodes-1
-   while (n < nodes - 1)
-   {
-
-      // Adding the lowest two probabilities
-      sumprob = huffcodes[nodes - n - 1].Freq + huffcodes[nodes - n - 2].Freq;
-      sumpix = huffcodes[nodes - n - 1].intensity + huffcodes[nodes - n - 2].intensity;
-
-      // Appending to the pix_freq Array
-      pix_freq[nextnode].intensity = sumpix;
-      pix_freq[nextnode].Freq = sumprob;
-      pix_freq[nextnode].left = &pix_freq[huffcodes[nodes - n - 2].arrloc];
-      pix_freq[nextnode].right = &pix_freq[huffcodes[nodes - n - 1].arrloc];
-      pix_freq[nextnode].code[0] = '\0';
-      i = 0;
-
-      // Sorting and Updating the
-      // huffcodes array simultaneously
-      // New position of the combined node
-      while (sumprob <= huffcodes[i].Freq)
-         i++;
-
-      // Inserting the new node
-      // in the huffcodes array
-      for (k = nodes; k >= 0; k--)
-      {
-         if (k == i)
-         {
-            huffcodes[k].intensity = sumpix;
-            huffcodes[k].Freq = sumprob;
-            huffcodes[k].arrloc = nextnode;
-         }
-         else if (k > i)
-
-         // Shifting the nodes below
-         // the new node by 1
-         // For inserting the new node
-         // at the updated position k
-         huffcodes[k] = huffcodes[k - 1];
-
-      }
-      n += 1;
-      nextnode += 1;
-   }
+   BuildTree(pix_freq, huffcodes, nodes);
 
    // Assigning Code through
    // backtracking
