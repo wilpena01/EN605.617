@@ -54,7 +54,6 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    height = hostImage.height();
    width = hostImage.width();
 
-                              cout<<"\n\nentre aqui<<\n\n";
 
 cout<<"height = "<<height<<"\twidth"<<width<<endl;
    // Creating Image array
