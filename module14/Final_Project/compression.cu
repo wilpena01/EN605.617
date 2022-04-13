@@ -46,8 +46,7 @@ void compressionDriver()
    InitStruct(pix_freq, huffcodes, hist, height, width);
    sortHist(huffcodes, nodes);
    BuildTree(pix_freq, huffcodes, nodes);
-
-
+   AssignCode(pix_freq, nodes, totalnodes);
 
    // Encode the Image
    int pix_val;
