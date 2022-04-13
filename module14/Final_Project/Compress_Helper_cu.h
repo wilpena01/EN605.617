@@ -16,7 +16,7 @@
 
 using namespace std;
 
-void LoadImagePGM(int &width, int &height, int** &image)
+void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
    npp::ImageCPU_8u_C1 hostImage;
@@ -48,16 +48,16 @@ void LoadImagePGM(int &width, int &height, int** &image)
    width = hostImage.width();
 cout<<"height = "<<height<<"\twidth"<<width<<endl;
    // Creating Image array
-   image = (int**)malloc(height * sizeof(int*));
+   image_cl = (int**)malloc(height * sizeof(int*));
 
    for (i = 0; i < height; i++)
    {
-      image[i] = (int*)malloc(width * sizeof(int*));
+      image_cl[i] = (int*)malloc(width * sizeof(int*));
    }
 
    for(i=0; i<height; i++)
       for(j=0; j<width;j++)
-         image[i][j] = static_cast<int>(*hostImage.data(i,j));
+         image_cl[i][j] = static_cast<int>(*hostImage.data(i,j));
 
 }
 

@@ -54,10 +54,9 @@ void compressionDriver()
 
 void compressionDriver_CL()
 {
-
    int i,j;
    int width, height;
-   int** image2;
+   int** image_cl;
    int hist[256];
    int nodes, maxcodelen, totalnodes;
    float p = 1.0; 
@@ -65,8 +64,8 @@ void compressionDriver_CL()
    huffcode* huffcodes;
    
 
-   LoadImagePGM(width, height, image2);
-   ocurrence(hist, image2, width, height);
+   LoadImagePGM(width, height, image_cl);
+   ocurrence(hist, image_cl, width, height);
    nonZero_ocurrence(hist, nodes);
    minProp(p, hist, width, height);
    maxcodelen = MaxLength(p) - 3;
