@@ -32,7 +32,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    else
    {
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
-      //fclose(inputfile);
+      fclose(inputfile);
    }
       
 
