@@ -40,7 +40,13 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       exit(EXIT_FAILURE);
    }
 
+    string result = name;
+    std::string::size_type dot = result.rfind('.');
 
+    if (dot != std::string::npos)
+    {
+        result = result.substr(0, dot);
+    }
 
 
 
