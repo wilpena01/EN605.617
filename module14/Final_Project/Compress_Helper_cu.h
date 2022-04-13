@@ -19,15 +19,14 @@ using namespace std;
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
-// declare a host image object for an 8-bit grayscale image
-   npp::ImageCPU_8u_C1 hostImage;
-   
+
    string name = "Lena.pgm";
    FILE* inputfile = fopen(name.c_str(), "rb");
 
    if (inputfile != NULL)
    {
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
+      fclose(inputfile);
    }
    else
    {
@@ -44,9 +43,10 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       result = result.substr(0, dot);
    }
 
-   
+   // declare a host image object for an 8-bit grayscale image
+   npp::ImageCPU_8u_C1 hostImage;
 
-   // load gray-scale image from disk
+   // load gray-scale image from disk  
    npp::loadImage(name, hostImage);
    cout<<"\n\nentre aqui<<\n\n";
 
@@ -54,7 +54,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    width = hostImage.width();
 
 
-cout<<"height = "<<height<<"\twidth"<<width<<endl;
+   cout<<"height = "<<height<<"\twidth"<<width<<endl;
    // Creating Image array
    image_cl = (int**)malloc(height * sizeof(int*));
 
