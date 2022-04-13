@@ -36,6 +36,14 @@ void LoadImagePGM(int &width, int &height, int** &image)
       exit(EXIT_FAILURE);
    }
 
+
+
+   // load gray-scale image from disk
+   npp::loadImage(name, hostImage);
+
+   height = hostImage.height();
+   width = hostImage.width();
+
    // Creating Image array
    image = (int**)malloc(height * sizeof(int*));
 
@@ -44,15 +52,9 @@ void LoadImagePGM(int &width, int &height, int** &image)
       image[i] = (int*)malloc(width * sizeof(int));
    }
 
-   // load gray-scale image from disk
-   npp::loadImage(name, hostImage);
-
-   height = hostImage.height();
-   width = hostImage.width();
-
    for(i=0; i<height; i++)
-   for(j=0; j<width;j++)
-      image[i][j] = static_cast<int>(*hostImage.data(i,j));
+      for(j=0; j<width;j++)
+         image[i][j] = static_cast<int>(*hostImage.data(i,j));
 
 }
 
