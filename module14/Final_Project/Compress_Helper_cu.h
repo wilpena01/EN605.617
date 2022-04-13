@@ -31,13 +31,13 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    }
    else
    {
-            cout<<"\n\nentre aqui<<\n\n";
       cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
       inputfile.close();
       exit(EXIT_FAILURE);
    }
 
-      
+                  cout<<"\n\nentre aqui<<\n\n";
+
 
 
 
