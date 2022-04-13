@@ -20,7 +20,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
 
-   string name = "Lena.bmp";
+   string name = "Lena.pgm";
    FILE* inputfile = fopen(name, "rb");
 
    if (image_file != NULL)
