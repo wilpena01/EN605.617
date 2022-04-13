@@ -40,6 +40,16 @@ int index(int H, int W, int k)
 	return ((W*k)+H);
 }
 
+
+int codelen(char* code)
+{
+    // function to calculate word length
+   int l = 0;
+   while (*(code + l) != '\0')
+      l++;
+   return l;
+}
+
 void PrintHuffmanCode(pixfreq<25> *pix_freq, int nodes)
 {
    // Printing Huffman Codes

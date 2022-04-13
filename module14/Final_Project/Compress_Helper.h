@@ -10,15 +10,6 @@
 
 using namespace std;
 
-int codelen(char* code)
-{
-    // function to calculate word length
-   int l = 0;
-   while (*(code + l) != '\0')
-      l++;
-   return l;
-}
-
 void strconcat(char* str, char* parentcode, char add)
 {
     // function to concatenate the words
