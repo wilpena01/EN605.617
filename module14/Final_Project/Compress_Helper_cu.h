@@ -20,19 +20,17 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
 
-   std::string name = "Lena.pgm";
-   
-   std::ifstream inputfile(name.data(), std::ifstream::in);
+   string name = "Lena.pgm";
+   FILE* inputfile = fopen(name, "rb");
 
-   if (inputfile.good())
+   if (image_file != NULL)
    {
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
-      inputfile.close();
    }
    else
    {
       cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
-      inputfile.close();
+      fclose(inputfile);
       exit(EXIT_FAILURE);
    }
 
