@@ -56,8 +56,10 @@ void compressionDriver()
    int width, height;
    int** image;
    int hist[256];
-   int nodes, maxcodelen;
+   int nodes, maxcodelen, totalnodes;
    float p = 1.0; 
+   pixfreq<25> *pix_freq;
+   huffcode* huffcodes;
 
    readBMPFILE(width, height, image);
    ocurrence(hist, image, width, height);
@@ -65,48 +67,12 @@ void compressionDriver()
    minProp(p, hist, width, height);
    maxcodelen = MaxLength(p) - 3;
 
-   // Declaring structs
-   //struct pixfreq<maxcodelen> *pix_freq; it should be this!!
-   pixfreq<25> *pix_freq;
-   huffcode* huffcodes;
-   int totalnodes = 2 * nodes - 1;
+   totalnodes = 2 * nodes - 1;
    pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
 
-   // Initializing
-   j = 0;
-   int totpix = height * width;
-   float tempprob;
-   for (i = 0; i < 256; i++)
-   {
-      if (hist[i] != 0)
-      {
-
-         // pixel intensity value
-         huffcodes[j].intensity = i;
-         pix_freq[j].intensity = i;
-
-         // location of the node
-         // in the pix_freq array
-         huffcodes[j].arrloc = j;
-
-         // probability of occurrence
-         tempprob = (float)hist[i] / (float)totpix;
-         pix_freq[j].Freq = tempprob;
-         huffcodes[j].Freq = tempprob;
-
-         // Declaring the child of leaf
-         // node as NULL pointer
-         pix_freq[j].left = NULL;
-         pix_freq[j].right = NULL;
-
-         // initializing the code
-         // word as end of line
-         pix_freq[j].code[0] = '\0';
-         j++;
-      }
-   }
-
+   InitStruct(pix_freq, huffcodes, hist, height, width);
+  
    // Sorting the histogram
    struct huffcode temphuff;
 

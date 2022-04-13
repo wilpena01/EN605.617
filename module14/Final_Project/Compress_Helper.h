@@ -128,7 +128,7 @@ void nonZero_ocurrence(int* hist, int &node)
          node += 1;
 }
 
-void minProp(float p, int* hist, int width, int height)
+void minProp(float &p, int* hist, int width, int height)
 {
     // Calculating minimum probability
     float ptemp;
@@ -154,4 +154,42 @@ int MaxLength(float p)
     return i;
 }
 
+void InitStruct(pixfreq<25> *pix_freq, huffcode* huffcodes, 
+                int* hist, int height, int width)
+{
+     // Initializing
+   int i; int j=0;
+   int totpix = height * width;
+   float tempprob;
+   for (i = 0; i < 256; i++)
+   {
+      if (hist[i] != 0)
+      {
+
+         // pixel intensity value
+         huffcodes[j].intensity = i;
+         pix_freq[j].intensity = i;
+
+         // location of the node
+         // in the pix_freq array
+         huffcodes[j].arrloc = j;
+
+         // probability of occurrence
+         tempprob = (float)hist[i] / (float)totpix;
+         pix_freq[j].Freq = tempprob;
+         huffcodes[j].Freq = tempprob;
+
+         // Declaring the child of leaf
+         // node as NULL pointer
+         pix_freq[j].left = NULL;
+         pix_freq[j].right = NULL;
+
+         // initializing the code
+         // word as end of line
+         pix_freq[j].code[0] = '\0';
+         j++;
+      }
+   }
+
+}
 #endif /* COMPRESS_HELPER_H_ */
