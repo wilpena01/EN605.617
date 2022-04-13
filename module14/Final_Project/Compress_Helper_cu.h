@@ -42,12 +42,12 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       result = result.substr(0, dot);
    }
 
-   cout<<"\n\nentre aqui<<\n\n";
    // declare a host image object for an 8-bit grayscale image
    npp::ImageCPU_8u_C1 hostImage;
 
    // load gray-scale image from disk
    npp::loadImage("Lena.pgm", hostImage);
+   cout<<"\n\nentre aqui<<\n\n";
 
    height = hostImage.height();
    width = hostImage.width();
