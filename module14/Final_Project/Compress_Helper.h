@@ -114,6 +114,7 @@ void readBMPFILE(int &width, int &height, int** &image)
             }
          }
       }
+      fclose(image_file);
 }
 
 void ocurrence(int* hist, int** image, int width, int height)
