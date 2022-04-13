@@ -22,7 +22,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
                            cout<<"\n\nentre aqui<<\n\n";
 
    npp::ImageCPU_8u_C1 hostImage;
-   string name = "Lena.pgm";
+   string name = "Lena.bmp";
 
    ifstream inputfile(name.data(), std::ifstream::in);
 
