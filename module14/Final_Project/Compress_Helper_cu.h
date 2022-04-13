@@ -21,10 +21,10 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    int i,j;
    npp::ImageCPU_8u_C1 hostImage;
    string name = "Lena.pgm";
-   
+                        cout<<"\n\nentre aqui<<\n\n";
+
    ifstream inputfile(name.data(), std::ifstream::in);
 
-                     cout<<"\n\nentre aqui<<\n\n";
 
    if (inputfile.good())
    {
