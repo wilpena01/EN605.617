@@ -19,32 +19,32 @@ using namespace std;
 void LoadImagePGM(int &width, int &height, int** &image)
 {
    int i,j;
-    npp::ImageCPU_8u_C1 &hostImage;
-    string name = "Lena.pgm";
+   npp::ImageCPU_8u_C1 hostImage;
+   string name = "Lena.pgm";
 
-    ifstream inputfile(name.data(), std::ifstream::in);
+   ifstream inputfile(name.data(), std::ifstream::in);
 
-    if (inputfile.good())
-    {
-        cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
-        inputfile.close();
-    }
-    else
-    {
-        cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
-        inputfile.close();
-        exit(EXIT_FAILURE);
-    }
+   if (inputfile.good())
+   {
+      cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
+      inputfile.close();
+   }
+   else
+   {
+      cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
+      inputfile.close();
+      exit(EXIT_FAILURE);
+   }
 
-    // load gray-scale image from disk
-    npp::loadImage(name, hostImage);
+   // load gray-scale image from disk
+   npp::loadImage(name, hostImage);
 
-    height = hostImage.height();
-    width = hostImage.width();
+   height = hostImage.height();
+   width = hostImage.width();
 
-    for(i=0; i<height; i++)
-      for(j=0; j<width;j++)
-         image[i][j] = static_cast<int>(*hostImage.data(i,j));
+   for(i=0; i<height; i++)
+   for(j=0; j<width;j++)
+      image[i][j] = static_cast<int>(*hostImage.data(i,j));
 
 }
 
