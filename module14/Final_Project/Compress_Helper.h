@@ -192,4 +192,28 @@ void InitStruct(pixfreq<25> *pix_freq, huffcode* huffcodes,
    }
 
 }
+
+void sortHist(huffcode* huffcodes, int nodes)
+{
+     // Sorting the histogram
+    int i, j;
+    huffcode temphuff;
+
+    // Sorting w.r.t probability
+    // of occurrence
+    for (i = 0; i < nodes; i++)
+    {
+        for (j = i + 1; j < nodes; j++)
+        {
+            if (huffcodes[i].Freq < huffcodes[j].Freq)
+            {
+                temphuff = huffcodes[i];
+                huffcodes[i] = huffcodes[j];
+                huffcodes[j] = temphuff;
+            }
+        }
+    }
+}
+
+
 #endif /* COMPRESS_HELPER_H_ */

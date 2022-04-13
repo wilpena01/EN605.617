@@ -73,23 +73,7 @@ void compressionDriver()
 
    InitStruct(pix_freq, huffcodes, hist, height, width);
   
-   // Sorting the histogram
-   struct huffcode temphuff;
-
-   // Sorting w.r.t probability
-   // of occurrence
-   for (i = 0; i < nodes; i++)
-   {
-      for (j = i + 1; j < nodes; j++)
-      {
-         if (huffcodes[i].Freq < huffcodes[j].Freq)
-         {
-            temphuff = huffcodes[i];
-            huffcodes[i] = huffcodes[j];
-            huffcodes[j] = temphuff;
-         }
-      }
-   }
+   sortHist(huffcodes, nodes);
 
    // Building Huffman Tree
    float sumprob;
