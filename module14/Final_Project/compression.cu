@@ -49,8 +49,8 @@ void compressionDriver()
    AssignCode(pix_freq, nodes, totalnodes);
 
    // Encode the Image
-   int pix_val;
-   int l;
+   //int pix_val;
+   //int l;
 
    // Writing the Huffman encoded
    // Image into a text file
@@ -74,16 +74,7 @@ void compressionDriver()
    cout<<endl;
    }
    */
-   // Printing Huffman Codes
-   printf("Huffmann Codes::\n\n");
-   printf("pixel values -> Code\n\n");
-   for (i = 0; i < nodes; i++) 
-   {
-      if (snprintf(NULL, 0, "%d", pix_freq[i].intensity) == 2)
-         printf("  %d    -> %s\n", pix_freq[i].intensity, pix_freq[i].code);
-      else
-         printf(" %d  -> %s\n", pix_freq[i].intensity, pix_freq[i].code);
-   }
+   PrintHuffmanCode(pix_freq, nodes);
 
    // Calculating Average Bit Length
    float avgbitnum = 0;

@@ -19,7 +19,6 @@ int codelen(char* code)
    return l;
 }
 
-
 void strconcat(char* str, char* parentcode, char add)
 {
     // function to concatenate the words
