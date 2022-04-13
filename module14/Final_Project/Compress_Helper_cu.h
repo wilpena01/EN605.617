@@ -14,10 +14,12 @@
 #include "Exceptions.h"
 #include <npp.h>
 
+using namespace std;
 
-void LoadImagePGM(npp::ImageCPU_8u_C1 &hostImage)
+void LoadImagePGM(int &width, int &height, int** &image)
 {
-    cout<<"Start...\n";
+   int i,j;
+    npp::ImageCPU_8u_C1 &hostImage
     string name = "Lena.pgm";
 
     ifstream inputfile(name.data(), std::ifstream::in);
@@ -34,11 +36,15 @@ void LoadImagePGM(npp::ImageCPU_8u_C1 &hostImage)
         exit(EXIT_FAILURE);
     }
 
-   // declare a host image object for an 8-bit grayscale image
-    
-
     // load gray-scale image from disk
     npp::loadImage(name, hostImage);
+
+    height = hostImage.height();
+    width = hostImage.width();
+
+    for(i=0; i<height; i++)
+      for(j=0; j<width;j++)
+         image[i][j] = static_cast<int>(*hostImage.data(i,j));
 
 }
 
