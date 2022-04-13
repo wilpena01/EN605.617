@@ -23,7 +23,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    string name = "Lena.pgm";
    FILE* inputfile = fopen("Lena.pgm", "rb");
 
-   if (image_file != NULL)
+   if (inputfile != NULL)
    {
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
    }
