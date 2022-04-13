@@ -23,6 +23,9 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    string name = "Lena.pgm";
    
    ifstream inputfile(name.data(), std::ifstream::in);
+
+                     cout<<"\n\nentre aqui<<\n\n";
+
    if (inputfile.good())
    {
 
@@ -36,7 +39,6 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
       exit(EXIT_FAILURE);
    }
 
-                  cout<<"\n\nentre aqui<<\n\n";
 
 
 
