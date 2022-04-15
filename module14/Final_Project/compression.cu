@@ -64,19 +64,19 @@ void compressionDriver_CL()
    huffcode* huffcodes;
    
    LoadImagePGM(width, height, image);
-   ocurrence(hist, image, width, height);
-   nonZero_ocurrence(hist, nodes);
-   minProp(p, hist, width, height);
-   maxcodelen = MaxLength(p) - 3;
+   ocurrence_cu(hist, image, width, height);
+   nonZero_ocurrence_cu(hist, nodes);
+   minProp_cu(p, hist, width, height);
+   maxcodelen = MaxLength_cu(p) - 3;
 
    totalnodes = 2 * nodes - 1;
    pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
 
-   InitStruct(pix_freq, huffcodes, hist, height, width);
-   sortHist(huffcodes, nodes);
-   BuildTree(pix_freq, huffcodes, nodes);
-   AssignCode(pix_freq, nodes, totalnodes);
+   InitStruct_cu(pix_freq, huffcodes, hist, height, width);
+   sortHist_cu(huffcodes, nodes);
+   BuildTree_cu(pix_freq, huffcodes, nodes);
+   AssignCode_cu(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
    delete[] image; image = NULL;

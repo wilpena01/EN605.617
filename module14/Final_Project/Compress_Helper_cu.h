@@ -15,6 +15,23 @@
 #include <npp.h>
 
 using namespace std;
+void strconcat(char* str, char* parentcode, char add)
+{
+       // function to concatenate the words
+   int i = 0;
+   while (*(parentcode + i) != '\0')
+   {
+      *(str + i) = *(parentcode + i);
+      i++;
+   }
+   if (add != '2')
+   {
+      str[i] = add;
+      str[i + 1] = '\0';
+   }
+   else
+      str[i] = '\0';
+}
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -70,6 +87,199 @@ cout<<"\n\nentre aqui<<\n\n";
    fclose(inputfile);
 }
 
+void ocurrence_cu(int* hist, int** image, int width, int height)
+{
+    // Finding the probability
+    // of occurrence
+    int i,j;
+   
+    for (i = 0; i < 256; i++)
+        hist[i] = 0;
+
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+            if(image[i][j]>=256)
+                cout<<"Este es el problema ="<<image[i][j]<<endl;
+            hist[image[i][j]] += 1;
+        }
+    }
+}
+
+void nonZero_ocurrence_cu(int* hist, int &node)
+{
+    // Finding number of
+    // non-zero occurrences
+    node=0;
+    for (int i = 0; i < 256; i++)
+      if (hist[i] != 0)
+         node += 1;
+}
+
+void minProp_cu(float &p, int* hist, int width, int height)
+{
+    // Calculating minimum probability
+    float ptemp;
+    p = 1.0;
+    for (int i = 0; i < 256; i++)
+    {
+        ptemp = (hist[i] / (float)(height * width));
+        if (ptemp > 0 && ptemp <= p)
+            p = ptemp;
+    }
+}
+
+int MaxLength_cu(float p)
+{
+    // Calculating max length
+    // of code word
+    int i = 0;
+    while ((1 / p) > fib(i))
+    {
+        i++;
+    }
+
+    return i;
+}
+
+void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, 
+                int* hist, int height, int width)
+{
+     // Initializing
+   int i; int j=0;
+   int totpix = height * width;
+   float tempprob;
+   for (i = 0; i < 256; i++)
+   {
+      if (hist[i] != 0)
+      {
+
+         // pixel intensity value
+         huffcodes[j].intensity = i;
+         pix_freq[j].intensity = i;
+
+         // location of the node
+         // in the pix_freq array
+         huffcodes[j].arrloc = j;
+
+         // probability of occurrence
+         tempprob = (float)hist[i] / (float)totpix;
+         pix_freq[j].Freq = tempprob;
+         huffcodes[j].Freq = tempprob;
+
+         // Declaring the child of leaf
+         // node as NULL pointer
+         pix_freq[j].left = NULL;
+         pix_freq[j].right = NULL;
+
+         // initializing the code
+         // word as end of line
+         pix_freq[j].code[0] = '\0';
+         j++;
+      }
+   }
+
+}
+
+void sortHist_cu(huffcode* huffcodes, int nodes)
+{
+     // Sorting the histogram
+    int i, j;
+    huffcode temphuff;
+
+    // Sorting w.r.t probability
+    // of occurrence
+    for (i = 0; i < nodes; i++)
+    {
+        for (j = i + 1; j < nodes; j++)
+        {
+            if (huffcodes[i].Freq < huffcodes[j].Freq)
+            {
+                temphuff = huffcodes[i];
+                huffcodes[i] = huffcodes[j];
+                huffcodes[j] = temphuff;
+            }
+        }
+    }
+}
+
+void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
+{
+    // Building Huffman Tree
+    float sumprob;
+    int sumpix,i;
+    int n = 0, k = 0;
+    int nextnode = nodes;
+
+    // Since total number of
+    // nodes in Huffman Tree
+    // is 2*nodes-1
+    while (n < nodes - 1)
+    {
+
+        // Adding the lowest two probabilities
+        sumprob = huffcodes[nodes - n - 1].Freq + huffcodes[nodes - n - 2].Freq;
+        sumpix = huffcodes[nodes - n - 1].intensity + huffcodes[nodes - n - 2].intensity;
+
+        // Appending to the pix_freq Array
+        pix_freq[nextnode].intensity = sumpix;
+        pix_freq[nextnode].Freq = sumprob;
+        pix_freq[nextnode].left = &pix_freq[huffcodes[nodes - n - 2].arrloc];
+        pix_freq[nextnode].right = &pix_freq[huffcodes[nodes - n - 1].arrloc];
+        pix_freq[nextnode].code[0] = '\0';
+        i = 0;
+
+        // Sorting and Updating the
+        // huffcodes array simultaneously
+        // New position of the combined node
+        while (sumprob <= huffcodes[i].Freq)
+            i++;
+
+        // Inserting the new node
+        // in the huffcodes array
+        for (k = nodes; k >= 0; k--)
+        {
+            if (k == i)
+            {
+                huffcodes[k].intensity = sumpix;
+                huffcodes[k].Freq = sumprob;
+                huffcodes[k].arrloc = nextnode;
+            }
+            else if (k > i)
+
+            // Shifting the nodes below
+            // the new node by 1
+            // For inserting the new node
+            // at the updated position k
+            huffcodes[k] = huffcodes[k - 1];
+
+        }
+        n += 1;
+        nextnode += 1;
+    }
+
+
+
+
+
+}
+
+void AssignCode_cu(pixfreq<25> *pix_freq, int nodes, int totalnodes)
+{
+       // Assigning Code through
+    // backtracking
+    int i;
+    char left = '0';
+    char right = '1';
+    for (i = totalnodes - 1; i >= nodes; i--)
+    {
+        if (pix_freq[i].left != NULL)
+            strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
+        if (pix_freq[i].right != NULL)
+            strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
+    }
+}
 
 
 #endif /* COMPRESS_HELPER_CU_H_ */
