@@ -278,7 +278,17 @@ int main(int argc, char** argv)
 	cl_kernel kernel;
 	cl_mem inputSignalBuffer, outputSignalBuffer, maskBuffer;
 
-    
+    setUp(errNum,
+    numPlatforms, numDevices,
+    platformIDs,
+	deviceIDs,
+    context,
+	queue,
+	program,
+	kernel,
+	inputSignalBuffer, 
+    outputSignalBuffer, 
+    maskBuffer);
 
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
     context, errNum);
