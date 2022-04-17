@@ -217,9 +217,6 @@ int main(int argc, char** argv)
 		&errNum);
 	checkErr(errNum, "clCreateKernel");
 
-	createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
-    context, errNum);
-
 	// Pick the first device and create command queue.
 	queue = clCreateCommandQueue(
 		context,
@@ -227,6 +224,9 @@ int main(int argc, char** argv)
 		0,
 		&errNum);
 	checkErr(errNum, "clCreateCommandQueue");
+
+    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
 
     errNum  = clSetKernelArg(kernel, 0, sizeof(cl_mem), &inputSignalBuffer);
 	errNum |= clSetKernelArg(kernel, 1, sizeof(cl_mem), &maskBuffer);
