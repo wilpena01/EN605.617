@@ -18,6 +18,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include "Signal_mask.h"
 
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
