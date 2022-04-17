@@ -59,9 +59,34 @@ void CL_CALLBACK contextCallback(
 	exit(1);
 }
 
-void setupEverything()
+void createBuffer(cl_mem &inputSignalBuffer,
+	cl_mem &outputSignalBuffer,
+	cl_mem &maskBuffer,  cl_context &context, cl_int &errNum)
 {
-    
+    // Now allocate buffers
+	inputSignalBuffer = clCreateBuffer(
+		context,
+		CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+		sizeof(cl_uint) * inputSignalHeight * inputSignalWidth,
+		static_cast<void *>(inputSignal),
+		&errNum);
+	checkErr(errNum, "clCreateBuffer(inputSignal)");
+
+	maskBuffer = clCreateBuffer(
+		context,
+		CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+		sizeof(cl_uint) * maskHeight * maskWidth,
+		static_cast<void *>(mask),
+		&errNum);
+	checkErr(errNum, "clCreateBuffer(mask)");
+
+	outputSignalBuffer = clCreateBuffer(
+		context,
+		CL_MEM_WRITE_ONLY,
+		sizeof(cl_uint) * outputSignalHeight * outputSignalWidth,
+		NULL,
+		&errNum);
+	checkErr(errNum, "clCreateBuffer(outputSignal)");
 }
 
 ///
@@ -192,30 +217,8 @@ int main(int argc, char** argv)
 		&errNum);
 	checkErr(errNum, "clCreateKernel");
 
-	// Now allocate buffers
-	inputSignalBuffer = clCreateBuffer(
-		context,
-		CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-		sizeof(cl_uint) * inputSignalHeight * inputSignalWidth,
-		static_cast<void *>(inputSignal),
-		&errNum);
-	checkErr(errNum, "clCreateBuffer(inputSignal)");
-
-	maskBuffer = clCreateBuffer(
-		context,
-		CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-		sizeof(cl_uint) * maskHeight * maskWidth,
-		static_cast<void *>(mask),
-		&errNum);
-	checkErr(errNum, "clCreateBuffer(mask)");
-
-	outputSignalBuffer = clCreateBuffer(
-		context,
-		CL_MEM_WRITE_ONLY,
-		sizeof(cl_uint) * outputSignalHeight * outputSignalWidth,
-		NULL,
-		&errNum);
-	checkErr(errNum, "clCreateBuffer(outputSignal)");
+	createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
 
 	// Pick the first device and create command queue.
 	queue = clCreateCommandQueue(
