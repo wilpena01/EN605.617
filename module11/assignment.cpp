@@ -35,8 +35,6 @@ const unsigned int outputSignalHeight = 49;
 
 cl_uint outputSignal[outputSignalHeight][outputSignalWidth];
 
-
-
 ///
 // Function to check and handle OpenCL errors
 inline void 
