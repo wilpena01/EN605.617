@@ -222,7 +222,7 @@ int main(int argc, char** argv)
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
     context, errNum);
     exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
-    maskBuffer, queue);
+    maskBuffer, queue); 
 
     // run 50%
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
