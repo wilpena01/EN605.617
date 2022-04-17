@@ -182,6 +182,33 @@ cl_kernel& kernel, cl_int& errNum, cl_command_queue& queue, cl_context& context)
     maskBuffer, queue);
 }
 
+void runNominal75(cl_mem& inputSignalBuffer, cl_mem& outputSignalBuffer, cl_mem& maskBuffer,
+cl_kernel& kernel, cl_int& errNum, cl_command_queue& queue, cl_context& context)
+{
+    createBuffer75(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel75(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+}
+
+void runNominal50(cl_mem& inputSignalBuffer, cl_mem& outputSignalBuffer, cl_mem& maskBuffer,
+cl_kernel& kernel, cl_int& errNum, cl_command_queue& queue, cl_context& context)
+{
+    createBuffer50(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel50(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+}
+
+void runNominal25(cl_mem& inputSignalBuffer, cl_mem& outputSignalBuffer, cl_mem& maskBuffer,
+cl_kernel& kernel, cl_int& errNum, cl_command_queue& queue, cl_context& context)
+{
+    createBuffer25(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel25(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+}
+
 ///
 //	main() for Convoloution example
 //
@@ -203,33 +230,18 @@ int main(int argc, char** argv)
 
     runNominal(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
-   /*
 
-    // run 100%
-    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
-    context, errNum);
-    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
-    maskBuffer, queue);
+    runNominal100(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
+    errNum, queue, context);
 
-    // run 75%
-    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
-    context, errNum);
-    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
-    maskBuffer, queue);
+    runNominal75(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
+    errNum, queue, context);
 
-    // run 50%
-    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
-    context, errNum);
-    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
-    maskBuffer, queue); 
+    runNominal50(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
+    errNum, queue, context);
 
-    // run 50%
-    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
-    context, errNum);
-    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
-    maskBuffer, queue);
-
-*/
+    runNominal25(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
+    errNum, queue, context);
 
     // Output the result buffer
     for (int y = 0; y < outputSignalHeight; y++)
