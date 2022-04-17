@@ -242,6 +242,16 @@ int main(int argc, char** argv)
     auto stop = high_resolution_clock::now(); 
     d1 = duration_cast<microseconds>(stop - start);
 
+    // Output the result buffer
+    for (int y = 0; y < outputSignalHeight; y++)
+	{
+		for (int x = 0; x < outputSignalWidth; x++)
+		{
+			std::cout << outputSignal[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
+
     start = high_resolution_clock::now();
     runNominal100(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
