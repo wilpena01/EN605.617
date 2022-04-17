@@ -34,8 +34,8 @@ using namespace std::chrono;
 #define CL_CALLBACK
 #endif
 
-void outputTime(std::chrono::microseconds, std::chrono::microseconds,
-std::chrono::microseconds, std::chrono::microseconds, std::chrono::microseconds);
+void outputTime(microseconds d1, microseconds d2, microseconds d3, 
+                microseconds d4, microseconds d5);
 
 void setUp(cl_int &errNum,
     cl_uint &numPlatforms, cl_uint &numDevices,
