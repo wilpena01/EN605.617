@@ -264,7 +264,8 @@ int main(int argc, char** argv)
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
     context, errNum);
 
-    
+   exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+   maskBuffer, queue);
 
     // Output the result buffer
     for (int y = 0; y < outputSignalHeight; y++)
