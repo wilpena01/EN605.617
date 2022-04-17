@@ -262,6 +262,14 @@ void setUp(cl_int &errNum,
 }
 
 
+void runNominal(cl_mem& inputSignalBuffer, cl_mem& outputSignalBuffer, cl_mem& maskBuffer,
+cl_kernel& kernel, cl_int& errNum, cl_command_queue& queue, cl_context& context)
+{
+    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+}
 
 ///
 //	main() for Convoloution example
@@ -278,23 +286,39 @@ int main(int argc, char** argv)
 	cl_kernel kernel;
 	cl_mem inputSignalBuffer, outputSignalBuffer, maskBuffer;
 
-    setUp(errNum,
-    numPlatforms, numDevices,
-    platformIDs,
-	deviceIDs,
-    context,
-	queue,
-	program,
-	kernel,
-	inputSignalBuffer, 
-    outputSignalBuffer, 
+    setUp(errNum, numPlatforms, numDevices, platformIDs, deviceIDs,
+    context, queue, program, kernel, inputSignalBuffer, outputSignalBuffer, 
     maskBuffer);
 
+    runNominal(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
+    errNum, queue, context);
+   /*
+
+    // run 100%
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
     context, errNum);
-
     exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
     maskBuffer, queue);
+
+    // run 75%
+    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+
+    // run 50%
+    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+
+    // run 50%
+    createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
+    context, errNum);
+    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
+
+*/
 
     // Output the result buffer
     for (int y = 0; y < outputSignalHeight; y++)
