@@ -89,6 +89,45 @@ void createBuffer(cl_mem &inputSignalBuffer,
 	checkErr(errNum, "clCreateBuffer(outputSignal)");
 }
 
+
+void exeKernel(cl_int &errNum, cl_kernel &kernel, cl_mem &inputSignalBuffer, 
+cl_mem &outputSignalBuffer, cl_mem &maskBuffer, cl_command_queue &queue)
+{
+    errNum  = clSetKernelArg(kernel, 0, sizeof(cl_mem), &inputSignalBuffer);
+	errNum |= clSetKernelArg(kernel, 1, sizeof(cl_mem), &maskBuffer);
+    errNum |= clSetKernelArg(kernel, 2, sizeof(cl_mem), &outputSignalBuffer);
+	errNum |= clSetKernelArg(kernel, 3, sizeof(cl_uint), &inputSignalWidth);
+	errNum |= clSetKernelArg(kernel, 4, sizeof(cl_uint), &maskWidth);
+	checkErr(errNum, "clSetKernelArg");
+
+	const size_t globalWorkSize[2] = { outputSignalWidth, outputSignalHeight };
+    const size_t localWorkSize[2]  = { 1, 1 };
+
+    // Queue the kernel up for execution across the array
+    errNum = clEnqueueNDRangeKernel(
+		queue, 
+		kernel, 
+		2,
+		NULL,
+        globalWorkSize, 
+		localWorkSize,
+        0, 
+		NULL, 
+		NULL);
+	checkErr(errNum, "clEnqueueNDRangeKernel");
+    
+	errNum = clEnqueueReadBuffer(
+		queue, 
+		outputSignalBuffer, 
+		CL_TRUE,
+        0, 
+		sizeof(cl_uint) * outputSignalHeight * outputSignalHeight, 
+		outputSignal,
+        0, 
+		NULL, 
+		NULL);
+	checkErr(errNum, "clEnqueueReadBuffer");
+}
 ///
 //	main() for Convoloution example
 //
@@ -225,40 +264,7 @@ int main(int argc, char** argv)
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
     context, errNum);
 
-    errNum  = clSetKernelArg(kernel, 0, sizeof(cl_mem), &inputSignalBuffer);
-	errNum |= clSetKernelArg(kernel, 1, sizeof(cl_mem), &maskBuffer);
-    errNum |= clSetKernelArg(kernel, 2, sizeof(cl_mem), &outputSignalBuffer);
-	errNum |= clSetKernelArg(kernel, 3, sizeof(cl_uint), &inputSignalWidth);
-	errNum |= clSetKernelArg(kernel, 4, sizeof(cl_uint), &maskWidth);
-	checkErr(errNum, "clSetKernelArg");
-
-	const size_t globalWorkSize[2] = { outputSignalWidth, outputSignalHeight };
-    const size_t localWorkSize[2]  = { 1, 1 };
-
-    // Queue the kernel up for execution across the array
-    errNum = clEnqueueNDRangeKernel(
-		queue, 
-		kernel, 
-		2,
-		NULL,
-        globalWorkSize, 
-		localWorkSize,
-        0, 
-		NULL, 
-		NULL);
-	checkErr(errNum, "clEnqueueNDRangeKernel");
     
-	errNum = clEnqueueReadBuffer(
-		queue, 
-		outputSignalBuffer, 
-		CL_TRUE,
-        0, 
-		sizeof(cl_uint) * outputSignalHeight * outputSignalHeight, 
-		outputSignal,
-        0, 
-		NULL, 
-		NULL);
-	checkErr(errNum, "clEnqueueReadBuffer");
 
     // Output the result buffer
     for (int y = 0; y < outputSignalHeight; y++)
