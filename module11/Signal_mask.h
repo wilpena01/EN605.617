@@ -7,6 +7,8 @@
 #if !defined(CL_CALLBACK)
 #define CL_CALLBACK
 #endif
+#include <iostream>
+
 
 // Constants
 const unsigned int inputSignalWidth  = 49;
