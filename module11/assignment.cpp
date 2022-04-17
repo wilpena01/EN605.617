@@ -59,23 +59,9 @@ void CL_CALLBACK contextCallback(
 	exit(1);
 }
 
-///
-//	main() for Convoloution example
-//
-int main(int argc, char** argv)
+void setupEverything(cl_int &errNum, cl_uint &numPlatforms,cl_kernel &kernel, cl_platform_id* platformIDs,
+cl_device_id* deviceIDs, cl_uint &numDevices, cl_context &context, cl_program &program)
 {
-    cl_int errNum;
-    cl_uint numPlatforms;
-	cl_uint numDevices;
-    cl_platform_id * platformIDs;
-	cl_device_id * deviceIDs;
-    cl_context context = NULL;
-	cl_command_queue queue;
-	cl_program program;
-	cl_kernel kernel;
-	cl_mem inputSignalBuffer;
-	cl_mem outputSignalBuffer;
-	cl_mem maskBuffer;
 
     // First, select an OpenCL platform to run on.  
 	errNum = clGetPlatformIDs(0, NULL, &numPlatforms);
@@ -120,13 +106,6 @@ int main(int argc, char** argv)
 			break;
 	   }
 	}
-
-	// Check to see if we found at least one CPU device, otherwise return
-// 	if (deviceIDs == NULL) {
-// 		std::cout << "No CPU device found" << std::endl;
-// 		exit(-1);
-// 	}
-
     // Next, create an OpenCL context on the selected platform.  
     cl_context_properties contextProperties[] =
     {
@@ -193,6 +172,31 @@ int main(int argc, char** argv)
 		"convolve",
 		&errNum);
 	checkErr(errNum, "clCreateKernel");
+
+}
+
+
+
+///
+//	main() for Convoloution example
+//
+int main(int argc, char** argv)
+{
+    cl_int errNum;
+    cl_uint numPlatforms;
+	cl_uint numDevices;
+    cl_platform_id * platformIDs;
+	cl_device_id * deviceIDs;
+    cl_context context = NULL;
+	cl_command_queue queue;
+	cl_program program;
+	cl_kernel kernel;
+	cl_mem inputSignalBuffer;
+	cl_mem outputSignalBuffer;
+	cl_mem maskBuffer;
+
+    setupEverything(errNum, numPlatforms, kernel, platformIDs, deviceIDs, 
+                    numDevices, context, program);
 
 	// Now allocate buffers
 	inputSignalBuffer = clCreateBuffer(
