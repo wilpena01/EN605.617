@@ -21,6 +21,9 @@
 #include "Signal_mask.h"
 #include <chrono>
 
+using namespace std;
+using namespace std::chrono;
+
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
 #else
@@ -271,9 +274,9 @@ outputTime(std::chrono::microseconds d1, std::chrono::microseconds d2,
 std::chrono::microseconds d3, std::chrono::microseconds d4, std::chrono::microseconds d5)
 {
     std::cout<<"Singal 49x49 and filter 7x7   - Elapse Time = "<<d1.counts()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 24x24 - Elapse Time = "<<d1.counts()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 12x12 - Elapse Time = "<<d1.counts()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 8x8   - Elapse Time = "<<d1.counts()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 6x6   - Elapse Time = "<<d1.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 24x24 - Elapse Time = "<<d2.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 12x12 - Elapse Time = "<<d3.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 8x8   - Elapse Time = "<<d4.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 6x6   - Elapse Time = "<<d5.counts()<<" microsecond\n";
 
 }
