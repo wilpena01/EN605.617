@@ -273,10 +273,10 @@ int main(int argc, char** argv)
 void outputT(microseconds d1, microseconds d2, microseconds d3, 
              microseconds d4, microseconds d5)
 {
-    std::cout<<"Singal 49x49 and filter 7x7   - Elapse Time = "<<d1.count()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 24x24 - Elapse Time = "<<d2.count()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 12x12 - Elapse Time = "<<d3.count()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 8x8   - Elapse Time = "<<d4.count()<<" microsecond\n";
-    std::cout<<"Singal 49x49 and filter 6x6   - Elapse Time = "<<d5.count()<<" microsecond\n";
+    std::cout<<"Signal 49x49 and filter 7x7   - Elapse Time = "<<d1.count()<<" microsecond\n";
+    std::cout<<"Signal 49x49 and filter 24x24 - Elapse Time = "<<d2.count()<<" microsecond\n";
+    std::cout<<"Signal 49x49 and filter 12x12 - Elapse Time = "<<d3.count()<<" microsecond\n";
+    std::cout<<"Signal 49x49 and filter 8x8   - Elapse Time = "<<d4.count()<<" microsecond\n";
+    std::cout<<"Signal 49x49 and filter 6x6   - Elapse Time = "<<d5.count()<<" microsecond\n";
 
 }
