@@ -35,7 +35,7 @@ using namespace std::chrono;
 #endif
 
 void outputT(microseconds d1, microseconds d2, microseconds d3, 
-                microseconds d4, microseconds d5);
+             microseconds d4, microseconds d5);
 
 void setUp(cl_int &errNum,
     cl_uint &numPlatforms, cl_uint &numDevices,
@@ -270,8 +270,8 @@ int main(int argc, char** argv)
 }
 
 
-outputT(std::chrono::microseconds d1, std::chrono::microseconds d2,
-std::chrono::microseconds d3, std::chrono::microseconds d4, std::chrono::microseconds d5)
+void outputT(microseconds d1, microseconds d2, microseconds d3, 
+             microseconds d4, microseconds d5)
 {
     std::cout<<"Singal 49x49 and filter 7x7   - Elapse Time = "<<d1.counts()<<" microsecond\n";
     std::cout<<"Singal 49x49 and filter 24x24 - Elapse Time = "<<d2.counts()<<" microsecond\n";
