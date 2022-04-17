@@ -70,7 +70,7 @@ cl_uint inputSignal[inputSignalHeight][inputSignalWidth] =
 const unsigned int maskWidth  = 7;
 const unsigned int maskHeight = 7;
 
-cl_uint mask[maskHeight][maskWidth] =
+cl_double mask[maskHeight][maskWidth] =
 {
 	{0.25, 0.25, 0.50, 0.50, 0.50, 0.25, 0.25},
     {0.25, 0.50, 0.50, 0.75, 0.50, 0.25, 0.25},
@@ -162,7 +162,7 @@ cl_uint mask25[maskHeight25][maskWidth25] =
 const unsigned int outputSignalWidth  = 49;
 const unsigned int outputSignalHeight = 49;
 
-cl_uint outputSignal[outputSignalHeight][outputSignalWidth];
+cl_double outputSignal[outputSignalHeight][outputSignalWidth];
 
 
 
