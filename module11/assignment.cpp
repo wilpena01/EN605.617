@@ -32,16 +32,6 @@
 #endif
 
 
-const unsigned int outputSignalWidth  = 49;
-const unsigned int outputSignalHeight = 49;
-
-cl_uint outputSignal[outputSignalHeight][outputSignalWidth];
-
-///
-// Function to check and handle OpenCL errors
-
-
-
 void setUp(cl_int &errNum,
     cl_uint &numPlatforms, cl_uint &numDevices,
     cl_platform_id * platformIDs,
