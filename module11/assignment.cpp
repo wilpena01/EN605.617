@@ -34,7 +34,7 @@ using namespace std::chrono;
 #define CL_CALLBACK
 #endif
 
-void outputTime(microseconds d1, microseconds d2, microseconds d3, 
+void outputT(microseconds d1, microseconds d2, microseconds d3, 
                 microseconds d4, microseconds d5);
 
 void setUp(cl_int &errNum,
@@ -262,7 +262,7 @@ int main(int argc, char** argv)
     errNum, queue, context);
     stop = high_resolution_clock::now(); d5 = duration_cast<microseconds>(stop - start);
 
-    outputTime(d1,d2,d3,d4,d5);
+    outputT(d1,d2,d3,d4,d5);
 
     std::cout << std::endl << "Executed program succesfully." << std::endl;
 
@@ -270,7 +270,7 @@ int main(int argc, char** argv)
 }
 
 
-outputTime(std::chrono::microseconds d1, std::chrono::microseconds d2,
+outputT(std::chrono::microseconds d1, std::chrono::microseconds d2,
 std::chrono::microseconds d3, std::chrono::microseconds d4, std::chrono::microseconds d5)
 {
     std::cout<<"Singal 49x49 and filter 7x7   - Elapse Time = "<<d1.counts()<<" microsecond\n";
