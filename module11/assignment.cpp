@@ -128,20 +128,19 @@ cl_mem &outputSignalBuffer, cl_mem &maskBuffer, cl_command_queue &queue)
 		NULL);
 	checkErr(errNum, "clEnqueueReadBuffer");
 }
-///
-//	main() for Convoloution example
-//
-int main(int argc, char** argv)
+
+void setUp(cl_int &errNum,
+    cl_uint &numPlatforms, cl_uint &numDevices,
+    cl_platform_id * platformIDs,
+	cl_device_id * deviceIDs,
+    cl_context &context,
+	cl_command_queue &queue,
+	cl_program &program,
+	cl_kernel &kernel,
+	cl_mem &inputSignalBuffer, 
+    cl_mem &outputSignalBuffer, 
+    cl_mem &maskBuffer)
 {
-    cl_int errNum;
-    cl_uint numPlatforms, numDevices;
-    cl_platform_id * platformIDs;
-	cl_device_id * deviceIDs;
-    cl_context context = NULL;
-	cl_command_queue queue;
-	cl_program program;
-	cl_kernel kernel;
-	cl_mem inputSignalBuffer, outputSignalBuffer, maskBuffer;
 
     // First, select an OpenCL platform to run on.  
 	errNum = clGetPlatformIDs(0, NULL, &numPlatforms);
@@ -260,12 +259,32 @@ int main(int argc, char** argv)
 		0,
 		&errNum);
 	checkErr(errNum, "clCreateCommandQueue");
+}
+
+
+
+///
+//	main() for Convoloution example
+//
+int main(int argc, char** argv)
+{
+    cl_int errNum;
+    cl_uint numPlatforms, numDevices;
+    cl_platform_id * platformIDs;
+	cl_device_id * deviceIDs;
+    cl_context context = NULL;
+	cl_command_queue queue;
+	cl_program program;
+	cl_kernel kernel;
+	cl_mem inputSignalBuffer, outputSignalBuffer, maskBuffer;
+
+    
 
     createBuffer(inputSignalBuffer, outputSignalBuffer, maskBuffer,
     context, errNum);
 
-   exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
-   maskBuffer, queue);
+    exeKernel(errNum, kernel, inputSignalBuffer, outputSignalBuffer, 
+    maskBuffer, queue);
 
     // Output the result buffer
     for (int y = 0; y < outputSignalHeight; y++)
