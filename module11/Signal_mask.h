@@ -64,6 +64,7 @@ cl_uint inputSignal[inputSignalHeight][inputSignalWidth] =
     {5, 9, 8, 1, 8, 1, 1, 1, 5, 9, 8, 1, 8, 1, 1, 1, 5, 9, 8, 1, 8, 1, 1, 1, 5, 9, 8, 1, 8, 1, 1, 1, 5, 9, 8, 1, 8, 1, 1, 1, 5, 9, 8, 1, 8, 1, 1, 1, 0},
 };
 
+
 const unsigned int maskWidth  = 7;
 const unsigned int maskHeight = 7;
 
@@ -155,3 +156,8 @@ cl_uint mask25[maskHeight25][maskWidth25] =
 	{1, 0, 1, 1, 0, 1}, 
 	{1, 1, 1, 1, 1, 1},
 };
+
+const unsigned int outputSignalWidth  = 49;
+const unsigned int outputSignalHeight = 49;
+
+cl_uint outputSignal[outputSignalHeight][outputSignalWidth];
