@@ -231,14 +231,54 @@ int main(int argc, char** argv)
     runNominal(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
 
+       // Output the result buffer
+    for (int y = 0; y < outputSignalHeight; y++)
+	{
+		for (int x = 0; x < outputSignalWidth; x++)
+		{
+			std::cout << outputSignal[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
+
     runNominal100(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+
+       // Output the result buffer
+    for (int y = 0; y < outputSignalHeight; y++)
+	{
+		for (int x = 0; x < outputSignalWidth; x++)
+		{
+			std::cout << outputSignal[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
 
     runNominal75(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
 
+       // Output the result buffer
+    for (int y = 0; y < outputSignalHeight; y++)
+	{
+		for (int x = 0; x < outputSignalWidth; x++)
+		{
+			std::cout << outputSignal[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
+
     runNominal50(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+
+       // Output the result buffer
+    for (int y = 0; y < outputSignalHeight; y++)
+	{
+		for (int x = 0; x < outputSignalWidth; x++)
+		{
+			std::cout << outputSignal[y][x] << " ";
+		}
+		std::cout << std::endl;
+	}
 
     runNominal25(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
