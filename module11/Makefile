@@ -1,2 +1,2 @@
 all: assignment.cpp
-	g++ assignment.cpp -lOpenCL -o assignment.exe
+	mvcc assignment.cpp -lOpenCL -std=c++11 -o assignment.exe
