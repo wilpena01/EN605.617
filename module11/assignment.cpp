@@ -19,6 +19,7 @@
 #include <sstream>
 #include <string>
 #include "Signal_mask.h"
+#include <chrono>
 
 #ifdef __APPLE__
 #include <OpenCL/cl.h>
@@ -30,6 +31,8 @@
 #define CL_CALLBACK
 #endif
 
+void outputTime(std::chrono::microseconds, std::chrono::microseconds,
+std::chrono::microseconds, std::chrono::microseconds, std::chrono::microseconds);
 
 void setUp(cl_int &errNum,
     cl_uint &numPlatforms, cl_uint &numDevices,
@@ -228,72 +231,49 @@ int main(int argc, char** argv)
     context, queue, program, kernel, inputSignalBuffer, outputSignalBuffer, 
     maskBuffer);
 
+    std::chrono::microseconds d1,d2,d3,d4,d5;
+
+    auto start = high_resolution_clock::now();
     runNominal(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+    auto stop = high_resolution_clock::now(); 
+    d1 = duration_cast<microseconds>(stop - start);
 
-       // Output the result buffer
-    for (int y = 0; y < outputSignalHeight; y++)
-	{
-		for (int x = 0; x < outputSignalWidth; x++)
-		{
-			std::cout << outputSignal[y][x] << " ";
-		}
-		std::cout << std::endl;
-	}
-
+    start = high_resolution_clock::now();
     runNominal100(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+    stop = high_resolution_clock::now(); d2 = duration_cast<microseconds>(stop - start);
 
-       // Output the result buffer
-    for (int y = 0; y < outputSignalHeight; y++)
-	{
-		for (int x = 0; x < outputSignalWidth; x++)
-		{
-			std::cout << outputSignal[y][x] << " ";
-		}
-		std::cout << std::endl;
-	}
-
+    start = high_resolution_clock::now();
     runNominal75(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+    stop = high_resolution_clock::now(); d3 = duration_cast<microseconds>(stop - start);
 
-       // Output the result buffer
-    for (int y = 0; y < outputSignalHeight; y++)
-	{
-		for (int x = 0; x < outputSignalWidth; x++)
-		{
-			std::cout << outputSignal[y][x] << " ";
-		}
-		std::cout << std::endl;
-	}
-
+    start = high_resolution_clock::now();
     runNominal50(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+    stop = high_resolution_clock::now(); d4 = duration_cast<microseconds>(stop - start);
 
-       // Output the result buffer
-    for (int y = 0; y < outputSignalHeight; y++)
-	{
-		for (int x = 0; x < outputSignalWidth; x++)
-		{
-			std::cout << outputSignal[y][x] << " ";
-		}
-		std::cout << std::endl;
-	}
-
+    start = high_resolution_clock::now();
     runNominal25(inputSignalBuffer, outputSignalBuffer, maskBuffer, kernel,
     errNum, queue, context);
+    stop = high_resolution_clock::now(); d5 = duration_cast<microseconds>(stop - start);
 
-    // Output the result buffer
-    for (int y = 0; y < outputSignalHeight; y++)
-	{
-		for (int x = 0; x < outputSignalWidth; x++)
-		{
-			std::cout << outputSignal[y][x] << " ";
-		}
-		std::cout << std::endl;
-	}
+    outputTime(d1,d2,d3,d4,d5);
 
     std::cout << std::endl << "Executed program succesfully." << std::endl;
 
 	return 0;
+}
+
+
+outputTime(std::chrono::microseconds d1, std::chrono::microseconds d2,
+std::chrono::microseconds d3, std::chrono::microseconds d4, std::chrono::microseconds d5)
+{
+    std::cout<<"Singal 49x49 and filter 7x7   - Elapse Time = "<<d1.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 24x24 - Elapse Time = "<<d1.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 12x12 - Elapse Time = "<<d1.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 8x8   - Elapse Time = "<<d1.counts()<<" microsecond\n";
+    std::cout<<"Singal 49x49 and filter 6x6   - Elapse Time = "<<d1.counts()<<" microsecond\n";
+
 }
