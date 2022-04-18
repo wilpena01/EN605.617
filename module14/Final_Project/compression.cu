@@ -64,8 +64,14 @@ void compressionDriver_CL()
    huffcode* huffcodes;
    
    LoadImagePGM(width, height, image);
+   initHist_cu(hist);
    ocurrence_cu(hist, image, width, height);
+   
+   node=0; //This is needed to be zero for the next function in the kernel
    nonZero_ocurrence_cu(hist, nodes);
+
+   p = 1.0; //This is needed to be 1.0 for the next function in the kernel
+
    minProp_cu(p, hist, width, height);
    maxcodelen = MaxLength_cu(p) - 3;
 

@@ -87,47 +87,60 @@ cout<<"\n\nentre aqui<<\n\n";
    fclose(inputfile);
 }
 
-void ocurrence_cu(int* hist, int** image, int width, int height)
-{
-    // Finding the probability
-    // of occurrence
-    int i,j;
-   
-    for (i = 0; i < 256; i++)
-        hist[i] = 0;
 
-    for (i = 0; i < height; i++)
-    {
-        for (j = 0; j < width; j++)
-        {
-            if(image[i][j]>=256)
-                cout<<"Este es el problema ="<<image[i][j]<<endl;
-            hist[image[i][j]] += 1;
-        }
-    }
+//done
+__global__ 
+void initHist_cu(int* hist)
+{
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+   hist[idx] = 0;
 }
 
-void nonZero_ocurrence_cu(int* hist, int &node)
+
+//almost done
+__global__
+void ocurrence_cu(int* hist, int** image)
 {
-    // Finding number of
-    // non-zero occurrences
-    node=0;
-    for (int i = 0; i < 256; i++)
-      if (hist[i] != 0)
-         node += 1;
+   // Finding the probability
+   // of occurrence
+   const unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+	const unsigned int idy = (blockIdx.y * blockDim.y) + threadIdx.y;
+	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
+
+   hist[image[thread_idx]] += 1;
+   //make sure to fix the writing to the same memory location problem.
 }
 
+
+//almost done
+__global__
+void nonZero_ocurrence_cu(int* hist, int *node)
+{
+   // Finding number of
+   // non-zero occurrences
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+   if (hist[idx] != 0)
+      *node += 1;
+
+   //make sure to fix the writing to the same memory location problem.
+    __syncthreads();
+
+}
+
+//done
+__global__
 void minProp_cu(float &p, int* hist, int width, int height)
 {
     // Calculating minimum probability
-    float ptemp;
-    p = 1.0;
-    for (int i = 0; i < 256; i++)
-    {
-        ptemp = (hist[i] / (float)(height * width));
-        if (ptemp > 0 && ptemp <= p)
-            p = ptemp;
-    }
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+   float ptemp;
+   p = 1.0;    
+   ptemp = (hist[idx] / (float)(height * width));
+   if (ptemp > 0 && ptemp <= p)
+      p = ptemp;
+   
 }
 
 int MaxLength_cu(float p)
@@ -143,42 +156,45 @@ int MaxLength_cu(float p)
     return i;
 }
 
+//done
+__global__
 void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, 
                 int* hist, int height, int width)
 {
      // Initializing
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
    int i; int j=0;
    int totpix = height * width;
    float tempprob;
-   for (i = 0; i < 256; i++)
+
+   if (hist[idx] != 0)
    {
-      if (hist[i] != 0)
-      {
 
-         // pixel intensity value
-         huffcodes[j].intensity = i;
-         pix_freq[j].intensity = i;
+      // pixel intensity value
+      huffcodes[j].intensity = idx;
+      pix_freq[j].intensity = idx;
 
-         // location of the node
-         // in the pix_freq array
-         huffcodes[j].arrloc = j;
+      // location of the node
+      // in the pix_freq array
+      huffcodes[j].arrloc = j;
 
-         // probability of occurrence
-         tempprob = (float)hist[i] / (float)totpix;
-         pix_freq[j].Freq = tempprob;
-         huffcodes[j].Freq = tempprob;
+      // probability of occurrence
+      tempprob = (float)hist[idx] / (float)totpix;
+      pix_freq[j].Freq = tempprob;
+      huffcodes[j].Freq = tempprob;
 
-         // Declaring the child of leaf
-         // node as NULL pointer
-         pix_freq[j].left = NULL;
-         pix_freq[j].right = NULL;
+      // Declaring the child of leaf
+      // node as NULL pointer
+      pix_freq[j].left = NULL;
+      pix_freq[j].right = NULL;
 
-         // initializing the code
-         // word as end of line
-         pix_freq[j].code[0] = '\0';
-         j++;
-      }
+      // initializing the code
+      // word as end of line
+      pix_freq[j].code[0] = '\0';
+      j++;
    }
+   
 
 }
 
