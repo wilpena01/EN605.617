@@ -13,25 +13,9 @@
 #include "ImageIO.h"
 #include "Exceptions.h"
 #include <npp.h>
+#include "Compress_Helper.h"
 
 using namespace std;
-void strconcat(char* str, char* parentcode, char add)
-{
-       // function to concatenate the words
-   int i = 0;
-   while (*(parentcode + i) != '\0')
-   {
-      *(str + i) = *(parentcode + i);
-      i++;
-   }
-   if (add != '2')
-   {
-      str[i] = add;
-      str[i + 1] = '\0';
-   }
-   else
-      str[i] = '\0';
-}
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
