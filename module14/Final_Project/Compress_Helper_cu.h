@@ -119,7 +119,7 @@ void minProp_cu(float* p, int* hist, int* width, int* height)
 
    float ptemp;
    ptemp = (hist[idx] / (static_cast<float>(*height * *width)));
-   if (ptemp > 0 && ptemp <= p)
+   if (ptemp > 0 && ptemp <= *p)
       *p = ptemp;
 
    __syncthreads();
