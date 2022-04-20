@@ -154,7 +154,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
      // Initializing
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   int i; int j=0;
+   int j=0;
    int totpix = height * width;
    float tempprob;
 
