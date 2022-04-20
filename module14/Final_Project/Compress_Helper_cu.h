@@ -149,13 +149,13 @@ void totalNode(int* totalnode, int* nodes)
 //done
 __global__
 void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, 
-                int* hist, int height, int width)
+                int* hist, int *height, int *width)
 {
      // Initializing
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    int j=0;
-   int totpix = height * width;
+   int totpix = *height * *width;
    float tempprob;
 
    if (hist[idx] != 0)
