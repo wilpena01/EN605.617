@@ -20,7 +20,7 @@ using namespace std;
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
-   string name = "Lena.pgm";
+   string name = "Lena.bmp";
    FILE* inputfile = fopen(name.c_str(), "rb");
 
    if (inputfile == NULL)
@@ -45,11 +45,11 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 
    // declare a host image object for an 8-bit grayscale image
    npp::ImageCPU_8u_C1 hostImage;
-   
+      cout<<"\n\nentre aqui<<\n\n";
+
    // load gray-scale image from disk  
    npp::loadImage(name, hostImage);
   
-   cout<<"\n\nentre aqui<<\n\n";
    height = hostImage.height();
    width = hostImage.width();
 
