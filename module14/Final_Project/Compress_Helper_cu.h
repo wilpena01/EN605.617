@@ -19,6 +19,7 @@ using namespace std;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
+   int i,j;
    string name = "Lena.bmp";
    FILE* inputfile = fopen(name.c_str(), "rb");
 
