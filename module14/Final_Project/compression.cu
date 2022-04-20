@@ -24,7 +24,6 @@ using namespace std;
 // Driver code
 void compressionDriver()
 {
-   int i,j;
    int width, height;
    int** image;
    int hist[256];
