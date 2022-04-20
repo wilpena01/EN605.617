@@ -143,7 +143,7 @@ int MaxLength_cu(float p)
 __global__
 void totalNode(int* totalnode, int* nodes)
 {
-   *totalnodes = 2 * *nodes - 1;
+   *totalnode = 2 * *nodes - 1;
    __syncthreads();
 }
 
