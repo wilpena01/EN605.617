@@ -55,7 +55,6 @@ void compressionDriver()
 void compressionDriver_CL()
 {
    const int HistSize = 256;
-   int i,j;
    int width, height;
    int** image;
    int hist[HistSize];
@@ -94,7 +93,8 @@ void compressionDriver_CL()
    cudaMemcpy(g_width,      width,      sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_height,     height,     sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_hist,       hist,       HistSize*sizeof(int),  cudaMemcpyHostToDevice);
-   cudaMemcpy(g_nodes,      node,       sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_nodes,      nodes,      sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_p,          p,         sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
 
 
@@ -118,6 +118,7 @@ void compressionDriver_CL()
    cudaMemcpy(height,      g_height,     sizeof(int),           cudaMemcpyDeviceToHost);
    cudaMemcpy(hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
    cudaMemcpy(node,        g_nodes,      sizeof(int),           cudaMemcpyDeviceToHost);
+   cudaMemcpy(p,           g_p,          sizeof(int),           cudaMemcpyDeviceToHost);
    cudaMemcpy(totalnodes,  g_totalnodes, sizeof(int),           cudaMemcpyDeviceToHost);
 
 
