@@ -89,12 +89,12 @@ void compressionDriver_CL()
 
 
    cudaMemcpy(g_image,      image,      IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
-   cudaMemcpy(g_width,      width,      sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_height,     height,     sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_hist,       hist,       HistSize*sizeof(int),  cudaMemcpyHostToDevice);
-   cudaMemcpy(g_nodes,      nodes,      sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_p,          p,         sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_totalnodes, totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_height,     &height,     sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_hist,       &hist,       HistSize*sizeof(int),  cudaMemcpyHostToDevice);
+   cudaMemcpy(g_nodes,      &nodes,      sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_p,          &p,         sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
 
 
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
