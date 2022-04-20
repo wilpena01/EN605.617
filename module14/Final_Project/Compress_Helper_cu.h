@@ -97,9 +97,9 @@ void initHist_cu(int* hist)
 }
 
 
-//almost done
+//done i think
 __global__
-void ocurrence_cu(int* hist, int** image)
+void ocurrence_cu(int* hist, int* image)
 {
    // Finding the probability
    // of occurrence
@@ -108,11 +108,11 @@ void ocurrence_cu(int* hist, int** image)
 	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
 
    hist[image[thread_idx]] += 1;
-   //make sure to fix the writing to the same memory location problem.
+   __syncthreads();
 }
 
 
-//almost done
+//done I think
 __global__
 void nonZero_ocurrence_cu(int* hist, int *node)
 {
@@ -122,25 +122,24 @@ void nonZero_ocurrence_cu(int* hist, int *node)
 
    if (hist[idx] != 0)
       *node += 1;
-
-   //make sure to fix the writing to the same memory location problem.
     __syncthreads();
 
 }
 
-//done
+//done i think
 __global__
-void minProp_cu(float &p, int* hist, int width, int height)
+void minProp_cu(float* p, int* hist, int* width, int* height)
 {
     // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    float ptemp;
-   p = 1.0;    
    ptemp = (hist[idx] / (float)(height * width));
    if (ptemp > 0 && ptemp <= p)
-      p = ptemp;
-   
+      *p = ptemp;
+
+   __syncthreads();
+
 }
 
 int MaxLength_cu(float p)
@@ -154,6 +153,14 @@ int MaxLength_cu(float p)
     }
 
     return i;
+}
+
+//done
+__global__
+void totalNode(int* totalnode, int* nodes)
+{
+   *totalnodes = 2 * *nodes - 1;
+   __syncthreads();
 }
 
 //done

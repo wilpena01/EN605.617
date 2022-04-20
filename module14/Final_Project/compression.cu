@@ -54,32 +54,66 @@ void compressionDriver()
 
 void compressionDriver_CL()
 {
+   const int HistSize = 256;
    int i,j;
    int width, height;
    int** image;
-   int hist[256];
-   int nodes, maxcodelen, totalnodes;
+   int hist[HistSize];
+   int nodes = 0;
+   int maxcodelen, totalnodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
+
+   const int hist_num_blocks     = 1;
+   const int hist_num_threads    = HistSize;
+
+   const int image_num_blocks    = 2;
+   const int image_num_threads   = 256;
+
+   int *g_image;
+   int* g_width, g_height, g_hist, g_nodes, g_totalnodes;
+   float* g_p = 1.0;
+   pixfreq<25>* g_pix_freq;
+   huffcode* g_huffcodes;
    
    LoadImagePGM(width, height, image);
-   initHist_cu(hist);
-   ocurrence_cu(hist, image, width, height);
+
+   int IMAGE_SIZE_IN_BYTES = sizeof(int) * width * height;
    
-   node=0; //This is needed to be zero for the next function in the kernel
-   nonZero_ocurrence_cu(hist, nodes);
+   cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
+   cudaMalloc((void **)&g_width,       sizeof(int));
+   cudaMalloc((void **)&g_height,      sizeof(int));
+   cudaMalloc((void **)&g_hist,        HistSize*sizeof(int));
+   cudaMalloc((void **)&g_nodes,       sizeof(int));
+   cudaMalloc((void **)&g_p,           sizeof(float));
+   cudaMalloc((void **)&g_totalnodes,  sizeof(int));
 
-   p = 1.0; //This is needed to be 1.0 for the next function in the kernel
 
-   minProp_cu(p, hist, width, height);
-   maxcodelen = MaxLength_cu(p) - 3;
+   cudaMemcpy(g_image,      image,      IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
+   cudaMemcpy(g_width,      width,      sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_height,     height,     sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_hist,       hist,       HistSize*sizeof(int),  cudaMemcpyHostToDevice);
+   cudaMemcpy(g_nodes,      node,       sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_totalnodes, totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
 
-   totalnodes = 2 * nodes - 1;
-   pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
+
+   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
+   ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist, g_image);
+   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, g_nodes);
+   minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_p, g_hist, g_width, g_height);
+   //maxcodelen = MaxLength_cu(p) - 3;
+   totalNode<<<1,1>>>(g_totalnodes,g_nodes);
+
+   pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
 
-   InitStruct_cu(pix_freq, huffcodes, hist, height, width);
+   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * totalnodes);
+   cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * nodes);
+
+
+
+   InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_hist, g_height, g_width);
    sortHist_cu(huffcodes, nodes);
    BuildTree_cu(pix_freq, huffcodes, nodes);
    AssignCode_cu(pix_freq, nodes, totalnodes);
