@@ -33,7 +33,8 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    {
       cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
    }
-      
+            cout<<"\n\nentre aqui<<\n\n";
+
 
    string result = name;
    std::string::size_type dot = result.rfind('.');
@@ -45,7 +46,6 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 
    // declare a host image object for an 8-bit grayscale image
    npp::ImageCPU_8u_C1 hostImage;
-      cout<<"\n\nentre aqui<<\n\n";
 
    // load gray-scale image from disk  
    npp::loadImage(name, hostImage);
