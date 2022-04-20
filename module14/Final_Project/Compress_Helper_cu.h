@@ -118,7 +118,7 @@ void minProp_cu(float* p, int* hist, int* width, int* height)
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    float ptemp;
-   ptemp = (hist[idx] / (static_cast<float>(height * width)));
+   ptemp = (hist[idx] / (static_cast<float>(*height * *width)));
    if (ptemp > 0 && ptemp <= p)
       *p = ptemp;
 
