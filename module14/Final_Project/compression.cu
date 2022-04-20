@@ -77,6 +77,8 @@ void compressionDriver_CL()
    
    LoadImagePGM(width, height, image);
 
+   cout<<"\n\nentre aqui\n\n";
+
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * width * height;
    
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
