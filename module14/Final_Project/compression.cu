@@ -70,7 +70,7 @@ void compressionDriver_CL()
    const int image_num_threads   = 256;
 
    int *g_image;
-   int* g_width, g_height, g_hist, g_nodes, g_totalnodes;
+   int* g_width, *g_height, *g_hist, *g_nodes, *g_totalnodes;
    float* g_p;
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
