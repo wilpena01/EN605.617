@@ -91,7 +91,6 @@ void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
    __shared__ int p;
    p = image[idx];
    hist[p] += 1;
-  synchronize();
 }
 
 
