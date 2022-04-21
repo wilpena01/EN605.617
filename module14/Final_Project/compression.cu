@@ -128,9 +128,12 @@ void compressionDriver_CL()
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 */
-   ocurrence_cu<<<512,512>>>(g_hist, g_image, g_MaxSize);
-
    cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
+
+   ocurrence(hist, image, width, height)   ;
+   //ocurrence_cu<<<512,512>>>(g_hist, g_image, g_MaxSize);
+
+   //cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
    for(int i=0; i<256; i++)
       cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
