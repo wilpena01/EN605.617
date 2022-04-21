@@ -111,6 +111,8 @@ void readBMPFILE(int &width, int &height, int** &image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[i][j] = temp;
+               if(image[i][j]>200)
+                    cout<<"image ="<<image[i][j]<<"   ";
             }
          }
       }
@@ -131,7 +133,6 @@ void ocurrence(int* hist, int** image, int width, int height)
         for (j = 0; j < width; j++)
         {
             if(image[i][j]>=256)
-                cout<<"Este es el problema ="<<image[i][j]<<endl;
             hist[image[i][j]] += 1;
         }
     }
