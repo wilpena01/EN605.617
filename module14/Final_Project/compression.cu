@@ -81,7 +81,7 @@ void compressionDriver_CL()
    readBMPFILE(width, height, image);
    MaxSize = width * height;
 
-
+/*
    for(int i=0; i<height; i++)
    {
       for(int j=0; j<width; j++)
@@ -90,8 +90,7 @@ void compressionDriver_CL()
             cout<<"image ="<<image[i][j]<<"   ";
       }
    }
-   cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
-
+*/
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
    
@@ -126,8 +125,8 @@ void compressionDriver_CL()
          if(image[i][j]>256)
             cout<<"image ="<<image[i][j]<<"   ";
       }
-      cout<<endl;
    }
+   cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist, g_image, g_MaxSize);
 /*
