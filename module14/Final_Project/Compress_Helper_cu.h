@@ -105,6 +105,7 @@ void ocurrence_cu(int* image, int* MaxSize)
    // Finding the probability
    // of occurrence
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+   add_one_to_hist(image[idx]);
    g_hist[image[idx]] += 1;
     __syncthreads();
 }

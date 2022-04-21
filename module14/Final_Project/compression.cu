@@ -73,7 +73,7 @@ void compressionDriver_CL()
    int *g_image;
    int* g_width, *g_height, *g_nodes, *g_totalnodes;
    int* g_MaxSize;
-   uint32* g_hist1;
+   uint32* g_hist;
    float* g_p;
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
@@ -97,7 +97,7 @@ void compressionDriver_CL()
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
    cudaMalloc((void **)&g_height,      sizeof(int));
-   //cudaMalloc((void **)&g_hist,        HistSize*sizeof(uint32));
+   cudaMalloc((void **)&g_hist,        HistSize*sizeof(uint32));
    cudaMalloc((void **)&g_nodes,       sizeof(int));
    cudaMalloc((void **)&g_p,           sizeof(float));
    cudaMalloc((void **)&g_totalnodes,  sizeof(int));
@@ -115,7 +115,7 @@ void compressionDriver_CL()
 
 
 
-   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(1);
+   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
 /*   
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
@@ -128,7 +128,7 @@ void compressionDriver_CL()
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 */
-   cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
+   cudaMemcpy(hist,        shared_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
 
    for(int i=0; i<256; i++)
       cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
