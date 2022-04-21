@@ -111,6 +111,8 @@ void readBMPFILE(int &width, int &height, int** &image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[i][j] = temp;
+               if(image[i][j]>256)
+                  cout<<"image ="<<image[i][j]<<"   ";
             }
          }
       }
