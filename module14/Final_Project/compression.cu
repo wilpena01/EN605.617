@@ -77,6 +77,15 @@ void compressionDriver_CL()
    
    readBMPFILE(width, height, image);
 
+   for(int i=0; i<height; i++)
+   {
+      for(int j=0; j<width: j++)
+      {
+         cout<<"image = "<<image[i][j];
+      }
+      cout<<endl;
+   }
+
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * width * height;
    
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
@@ -86,7 +95,6 @@ void compressionDriver_CL()
    cudaMalloc((void **)&g_nodes,       sizeof(int));
    cudaMalloc((void **)&g_p,           sizeof(float));
    cudaMalloc((void **)&g_totalnodes,  sizeof(int));
-
 
    cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
    cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
@@ -112,11 +120,11 @@ void compressionDriver_CL()
 
    InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_hist, g_height, g_width);
 
-   cudaMemcpy(image,       g_image,      IMAGE_SIZE_IN_BYTES,   cudaMemcpyDeviceToHost);
+   cudaMemcpy(image,        g_image,      IMAGE_SIZE_IN_BYTES,   cudaMemcpyDeviceToHost);
    cudaMemcpy(&width,       g_width,      sizeof(int),           cudaMemcpyDeviceToHost);
    cudaMemcpy(&height,      g_height,     sizeof(int),           cudaMemcpyDeviceToHost);
    cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
-   cudaMemcpy(&nodes,        g_nodes,      sizeof(int),           cudaMemcpyDeviceToHost);
+   cudaMemcpy(&nodes,       g_nodes,      sizeof(int),           cudaMemcpyDeviceToHost);
    cudaMemcpy(&p,           g_p,          sizeof(int),           cudaMemcpyDeviceToHost);
    cudaMemcpy(&totalnodes,  g_totalnodes, sizeof(int),           cudaMemcpyDeviceToHost);
 
