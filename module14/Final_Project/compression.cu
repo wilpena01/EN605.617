@@ -122,7 +122,7 @@ void compressionDriver_CL()
    {
       for(int j=0; j<height; j++)
       {
-         if(image[i][j]>256)
+         if(image[i][j]>200)
             cout<<"image ="<<image[i][j]<<"   ";
       }
    }
