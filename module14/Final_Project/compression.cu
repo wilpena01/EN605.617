@@ -78,7 +78,7 @@ void compressionDriver_CL()
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
    
-   readBMPFILE_cu(width, height, image);
+   readBMPFILE(width, height, image);
    MaxSize = width * height;
 /*
    for(int i=0; i<width; i++)
