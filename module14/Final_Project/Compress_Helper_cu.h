@@ -89,7 +89,7 @@ void ocurrence_cu(int* hist, int* image, int* width, int* height)
    const unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	const unsigned int idy = (blockIdx.y * blockDim.y) + threadIdx.y;
 	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
-   if((*width * *height) <= thread_idx)
+   if((*width * *height) >= thread_idx)
       hist[image[thread_idx]] += 1;
    __syncthreads();
 }
