@@ -78,6 +78,7 @@ void initHist_cu(uint32* hist)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    hist[idx] = 0;
+   __syncthreads();
 }
 
 
