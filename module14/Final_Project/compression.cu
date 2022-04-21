@@ -75,7 +75,7 @@ void compressionDriver_CL()
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
    
-   LoadImagePGM(width, height, image);
+   readBMPFILE(width, height, image);
 
    cout<<"\n\nentre aqui\n\n";
 
