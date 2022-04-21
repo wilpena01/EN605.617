@@ -74,10 +74,11 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 
 //done
 __global__ 
-void initHist_cu(uint32* hist)
+void initHist_cu(int i)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    hist[idx] = 0;
+   i=idx;
    __syncthreads();
 }
 
