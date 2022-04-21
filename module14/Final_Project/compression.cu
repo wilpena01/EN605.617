@@ -97,7 +97,7 @@ void compressionDriver_CL()
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
    cudaMalloc((void **)&g_height,      sizeof(int));
-   cudaMalloc((void **)&g_hist,        HistSize*sizeof(uint32));
+   //cudaMalloc((void **)&g_hist,        HistSize*sizeof(uint32));
    cudaMalloc((void **)&g_nodes,       sizeof(int));
    cudaMalloc((void **)&g_p,           sizeof(float));
    cudaMalloc((void **)&g_totalnodes,  sizeof(int));

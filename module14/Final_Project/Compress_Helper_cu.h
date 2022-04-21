@@ -17,7 +17,7 @@
 
 using namespace std;
 
-__shared__ uint32* g_hist;
+__shared__ uint32* shared_hist;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -72,11 +72,26 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
    fclose(inputfile);
 }
 
+__device__ 
+void copy_data_to_hist(int value, int idx)
+{
+	//copy from global to shared memory
+	shared_hist[idx] = value;
+}
+
+__device__ 
+void add_one_to_hist(int idx)
+{
+	//copy from global to shared memory
+	shared_hist[idx] += 1;
+}
+
 //done
 __global__ 
-void initHist_cu(int i)
+void initHist_cu(int hist)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+   copy_data_to_hist(0,idx);
    g_hist[idx] = 0;
    i=idx;
    __syncthreads();
