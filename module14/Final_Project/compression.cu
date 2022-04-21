@@ -89,7 +89,7 @@ void compressionDriver_CL()
       cout<<endl;
    }*/
 
-   int IMAGE_SIZE_IN_BYTES = sizeof(int) * width * height;
+   int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
    
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
