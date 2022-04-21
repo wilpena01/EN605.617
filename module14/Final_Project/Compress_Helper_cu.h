@@ -81,7 +81,7 @@ void initHist_cu(uint32* hist)
 
 //done i think
 __global__
-void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
+void ocurrence_cu(__shared__ uint32* hist, int* image, int* MaxSize)
 {
    // Finding the probability
    // of occurrence
