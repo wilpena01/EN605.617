@@ -17,6 +17,8 @@
 
 using namespace std;
 
+__shared__ uint32* g_hist;
+
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
@@ -86,11 +88,8 @@ void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
    // Finding the probability
    // of occurrence
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-
-
-   __shared__ int p;
-   p = image[idx];
-   hist[p] += 1;
+   hist[image[idx]] += 1;
+    __syncthreads();
 }
 
 

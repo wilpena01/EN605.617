@@ -73,7 +73,7 @@ void compressionDriver_CL()
    int *g_image;
    int* g_width, *g_height, *g_nodes, *g_totalnodes;
    int* g_MaxSize;
-   uint32* g_hist;
+   //uint32* g_hist;
    float* g_p;
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
