@@ -98,7 +98,6 @@ void readBMPFILE(int &width, int &height, int** &image)
          {
             image[i] = (int*)malloc(width * sizeof(int*));
          }
-        cout<<"entreeeee"<<endl;
          // Reading the BMP File
          // into Image Array
          for (i = 0; i < height; i++)
@@ -111,8 +110,6 @@ void readBMPFILE(int &width, int &height, int** &image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                image[i][j] = temp;
-               if(image[i][j]>256)
-                  cout<<"image ="<<image[i][j]<<"   ";
             }
          }
       }
