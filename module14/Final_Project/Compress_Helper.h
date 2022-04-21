@@ -116,7 +116,7 @@ void readBMPFILE(int &width, int &height, int** &image)
       fclose(image_file);
 }
 
-void ocurrence(uint32* hist, int** image, int width, int height)
+void ocurrence(int* hist, int** image, int width, int height)
 {
     // Finding the probability
     // of occurrence
