@@ -81,7 +81,7 @@ void compressionDriver_CL()
    {
       for(int j=0; j<width; j++)
       {
-         cout<<"image = "<<image[i][j];
+         cout<<"image = "<<image[i][j]<<" ";
       }
       cout<<endl;
    }
