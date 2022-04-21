@@ -117,8 +117,13 @@ void compressionDriver_CL()
    
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
+   {
       for(int j=0; i<height; j++)
-         cout<<"image ="<<image[i][j]<<"   ";
+      {
+         if(image[i][j]>256)
+            cout<<"image ="<<image[i][j]<<"   ";
+      }
+   }
 
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist, g_image, g_MaxSize);
 /*
