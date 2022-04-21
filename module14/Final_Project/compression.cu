@@ -107,7 +107,7 @@ void compressionDriver_CL()
    cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
    cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_height,     &height,     sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(&hist,        g_hist,      HistSize*sizeof(uint32),  cudaMemcpyHostToDevice);
+   cudaMemcpy(hist,        g_hist,      HistSize*sizeof(uint32),  cudaMemcpyHostToDevice);
    cudaMemcpy(g_nodes,      &nodes,      sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_p,          &p,          sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
@@ -128,15 +128,15 @@ void compressionDriver_CL()
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 */
-   cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
+   cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
 
    for(int i=0; i<256; i++)
       cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
    //ocurrence(hist, image, width, height)   ;
    ocurrence_cu<<<512,512>>>(g_hist, g_image, g_MaxSize);
-cudaDeviceSynchronize();
-   cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
+   cudaDeviceSynchronize();
+   cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
    for(int i=0; i<256; i++)
       cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
