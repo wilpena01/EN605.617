@@ -123,6 +123,7 @@ void compressionDriver_CL()
          if(image[i][j]>256)
             cout<<"image ="<<image[i][j]<<"   ";
       }
+      cout<<endl;
    }
 
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist, g_image, g_MaxSize);
