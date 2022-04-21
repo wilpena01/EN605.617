@@ -80,6 +80,16 @@ void compressionDriver_CL()
    
    readBMPFILE(width, height, image);
    MaxSize = width * height;
+
+     for(int i=0; i<width; i++)
+   {
+      for(int j=0; i<height; j++)
+      {
+         if(image[i][j]>256)
+            cout<<"image ="<<image[i][j]<<"   ";
+      }
+      cout<<endl;
+   }
 /*
    for(int i=0; i<height; i++)
    {
@@ -116,7 +126,7 @@ void compressionDriver_CL()
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
    
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
-   for(int i=0; i<width; i++)
+/*   for(int i=0; i<width; i++)
    {
       for(int j=0; i<height; j++)
       {
@@ -125,7 +135,7 @@ void compressionDriver_CL()
       }
       cout<<endl;
    }
-
+*/
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist, g_image, g_MaxSize);
 /*
    cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
