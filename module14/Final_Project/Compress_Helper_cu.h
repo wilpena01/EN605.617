@@ -81,7 +81,7 @@ void initHist_cu(uint32* hist)
 
 //done i think
 __global__
-void ocurrence_cu(__shared__ uint32* hist, int* image, int* MaxSize)
+void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
 {
    // Finding the probability
    // of occurrence
@@ -91,7 +91,6 @@ void ocurrence_cu(__shared__ uint32* hist, int* image, int* MaxSize)
 
    if(thread_idx<(*MaxSize))
       hist[image[thread_idx]] = hist[image[thread_idx]] + 1;
-   __syncthreads();
 }
 
 
