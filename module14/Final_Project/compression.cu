@@ -91,6 +91,7 @@ void compressionDriver_CL()
             cout<<"image ="<<image[i][j]<<"   ";
       }
    }
+   cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
