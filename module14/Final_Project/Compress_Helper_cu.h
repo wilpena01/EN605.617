@@ -87,7 +87,7 @@ void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
    // of occurrence
    const unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 	const unsigned int idy = (blockIdx.y * blockDim.y) + threadIdx.y;
-	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
+	const unsigned int thread_idx = (idx*512+idy);
 
    __shared__ int p;
    p = image[thread_idx];
