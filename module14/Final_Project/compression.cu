@@ -115,7 +115,7 @@ void compressionDriver_CL()
 
 
 
-   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
+   initHist_cu<<<hist_num_blocks, hist_num_threads>>>();
 /*   
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
