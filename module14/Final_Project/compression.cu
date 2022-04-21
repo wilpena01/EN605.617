@@ -76,15 +76,15 @@ void compressionDriver_CL()
    huffcode* g_huffcodes;
    
    readBMPFILE(width, height, image);
-
+/*
    for(int i=0; i<height; i++)
    {
       for(int j=0; j<width; j++)
       {
-         cout<<"image = "<<image[i][j]<<" ";
+         cout<<"image = "<<image[i][j];
       }
       cout<<endl;
-   }
+   }*/
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * width * height;
    
@@ -106,6 +106,11 @@ void compressionDriver_CL()
 
 
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
+
+   cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
+   for(int i=0; i<256; i++)
+      cout<<"hist ="<<hist[i];
+
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist, g_image);
    nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, g_nodes);
    minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_p, g_hist, g_width, g_height);
