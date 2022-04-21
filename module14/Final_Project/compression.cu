@@ -81,6 +81,8 @@ void compressionDriver_CL()
    readBMPFILE(width, height, image);
    MaxSize = width * height;
 
+   cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
+
    for(int i=0; i<height; i++)
    {
       for(int j=0; i<width; j++)
@@ -91,7 +93,6 @@ void compressionDriver_CL()
       cout<<endl;
    }
 
-   //cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
    
