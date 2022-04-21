@@ -90,7 +90,6 @@ void compressionDriver_CL()
          if(image[i][j]>256)
             cout<<"image ="<<image[i][j]<<"   ";
       }
-      cout<<endl;
    }
 
 
