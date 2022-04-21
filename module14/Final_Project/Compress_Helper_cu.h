@@ -287,6 +287,22 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int nodes, int totalnodes)
     }
 }
 
+void ocurrence(uint32* hist, int** image, int width, int height)
+{
+    // Finding the probability
+    // of occurrence
+    int i,j;
+   
+    for (i = 0; i < 256; i++)
+        hist[i] = 0;
 
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+            hist[image[i][j]] += 1;
+        }
+    }
+}
 
 #endif /* COMPRESS_HELPER_CU_H_ */
