@@ -132,7 +132,7 @@ void ocurrence(int* hist, int** image, int width, int height)
     {
         for (j = 0; j < width; j++)
         {
-            if(image[i][j]>=200)
+            if(image[i][j]>=250)
             hist[image[i][j]] += 1;
         }
     }
