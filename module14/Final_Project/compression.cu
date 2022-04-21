@@ -57,7 +57,7 @@ void compressionDriver_CL()
    int width, height;
    int MaxSize;
    int** image;
-   uint32 hist[HistSize];
+   __shared__ uint32 hist[HistSize];
    int nodes = 0;
    int maxcodelen, totalnodes;
    float p = 1.0; 
