@@ -18,7 +18,7 @@
 using namespace std;
 
 __device__ int shared_hist[256];
-__device__ int shared_node;
+__shared__ int shared_node;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -200,7 +200,7 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 }
 
 
-//done i think
+//done
 __global__
 void ocurrence_cu(int* image)
 {
@@ -215,7 +215,7 @@ void ocurrence_cu(int* image)
    __syncthreads();
 }
 
-//done I think
+//done 
 __global__
 void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
 {
