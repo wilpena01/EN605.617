@@ -248,7 +248,7 @@ void minProp_cu(int* hist, int* width, int* height, int *Result, int *Block, int
       shared_prob = ptemp;
    __syncthreads();
 
-   Result[idx] = shared_prob;
+   Result[idx] = static_cast<int>(shared_prob);
    Block[idx]  = blockIdx.x+9;
 	Thread[idx] = threadIdx.x;
 
