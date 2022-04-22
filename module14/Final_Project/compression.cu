@@ -118,7 +118,7 @@ void compressionDriver_CL()
    cudaMalloc((void **)&gpu_Block,     HistSize_Byte);
    cudaMalloc((void **)&gpu_Thread,    HistSize_Byte);
 
-   cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
+   //cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
    cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_height,     &height,     sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_hist,       hist,        HistSize_Byte,         cudaMemcpyHostToDevice);
@@ -154,14 +154,13 @@ void compressionDriver_CL()
    }*/
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
 
-   cudaMemcpy(hist,        g_hist,       HistSize_Byte,  cudaMemcpyDeviceToHost);
+   //cudaMemcpy(hist,        g_hist,       HistSize_Byte,  cudaMemcpyDeviceToHost);
 
    //for(int i=0; i<256; i++)
    //   cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
    //ocurrence(hist, image, width, height)   ;
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
-
    copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
 
 
