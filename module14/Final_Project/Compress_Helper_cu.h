@@ -201,7 +201,7 @@ __device__
 void add_one_to_shared(int idx)
 {
 	//copy from global to shared memory
-	shared_hist[image[idx]] += 1;
+	shared_hist[idx] += 1;
 }
 
 //done i think
