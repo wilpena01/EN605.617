@@ -117,12 +117,13 @@ void ocurrence_cu(int* hist, int* image, int *Result, int *Block, int *Thread)
    // Finding the probability
    // of occurrence
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+   int thread_idx = image[idx];
 
-   shared_hist[image[idx]] += 1;
-   hist[image[idx]] = shared_hist[image[idx]];
-   Result[image[idx]] = idx;
-   Block[image[idx]]  = blockIdx.x+1;
-	Thread[image[idx]] = threadIdx.x;
+   shared_hist[thread_idx] += 1;
+   hist[thread_idx] = shared_hist[thread_idx];
+   Result[thread_idx] = idx;
+   Block[thread_idx]  = blockIdx.x+1;
+	Thread[thread_idx] = threadIdx.x;
     __syncthreads();
 }
 
