@@ -48,6 +48,7 @@ void compressionDriver()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
+   cout<<"node = "<<nodes<<endl;
    delete[] image; image = NULL;
 }
 
