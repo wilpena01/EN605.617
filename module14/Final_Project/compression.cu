@@ -100,9 +100,9 @@ void compressionDriver_CL()
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
 
-   cudaMallocHost((int **)&cpu_Result, HistSize_Byte);
-   cudaMallocHost((int **)&cpu_Block, HistSize_Byte);
-   cudaMallocHost((int **)&cpu_Thread, HistSize_Byte);
+   cpu_Result = (int *)malloc(HistSize_Byte);
+	cpu_Block = (int *)malloc(HistSize_Byte);
+   cpu_Thread = (int *)malloc(HistSize_Byte);
    
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
