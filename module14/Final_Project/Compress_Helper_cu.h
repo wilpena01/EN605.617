@@ -112,14 +112,15 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 
 //done i think
 __global__
-void ocurrence_cu(int* hist, int* image, int* MaxSize, int *Result, int *Block, int *Thread)
+void ocurrence_cu(int* hist, int* image, int *Result, int *Block, int *Thread)
 {
    // Finding the probability
    // of occurrence
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    shared_hist[image[idx]] += 1;
-   Result[idx] = 0;
+   hist[image[idx]] = shared_hist[image[idx]];
+   Result[idx] = idx;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
     __syncthreads();
