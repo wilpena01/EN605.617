@@ -201,7 +201,7 @@ __device__
 void add_one_to_shared(int idx)
 {
 	//copy from global to shared memory
-	shared_hist[idx] += 1;
+	
 }
 
 //done i think
@@ -211,10 +211,10 @@ void ocurrence_cu(int* image)
    // Finding the probability
    // of occurrence
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-   int thread_idx = image[idx];
-
-   if(thread_idx<256)
-      add_one_to_shared(thread_idx);
+   //int thread_idx = ;
+   shared_hist[image[idx]] += 1;
+   //if(thread_idx<256)
+   //   add_one_to_shared(thread_idx);
 
     __syncthreads();
 }
