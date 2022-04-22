@@ -245,7 +245,7 @@ void minProp_cu(int* hist, int* width, int* height, int *Result, int *Block, int
    float ptemp;
    ptemp = (hist[idx] / (static_cast<float>(*height * *width)));
    if (ptemp > 0)
-      atomicAdd(shared_prob, ptemp);
+      atomicMin(&shared_prob, ptemp);
    __syncthreads();
 
    Result[idx] = shared_prob;
