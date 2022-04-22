@@ -101,8 +101,8 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 
    //copy_data_to_hist(0,idx);
    //copy_data_from_hist(hist,idx);
-   shared_hist[idx] = 0;
-   hist[idx] = 0;
+   //shared_hist[idx] = 0;
+   //hist[idx] = 0;
    Result[idx] = idx;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
