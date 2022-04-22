@@ -104,7 +104,7 @@ void initHist_cu(int* hist, int *Result,
    Result[idx] = idx;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
-   __syncthreads();
+   //__syncthreads();
 }
 
 
