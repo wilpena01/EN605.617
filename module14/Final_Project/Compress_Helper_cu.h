@@ -98,9 +98,9 @@ __global__
 void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-   
-   copy_data_to_hist(0,idx);
-   copy_data_from_hist(hist,idx);
+
+   //copy_data_to_hist(0,idx);
+   //copy_data_from_hist(hist,idx);
    Result[idx] = idx;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
