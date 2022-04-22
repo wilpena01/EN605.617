@@ -146,7 +146,7 @@ void compressionDriver_CL()
    for(int i=0; i<width*height; i++)
    {
          if(image2[i]==231)
-            cout<<"image ="<<image2[i]<<"   ";
+            cout<<"image ="<<image2[i]<<"\n";
       
    }
    //cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
