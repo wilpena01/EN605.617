@@ -58,7 +58,7 @@ void compressionDriver_CL()
    int width, height;
    int MaxSize;
    int** image;
-   uint32 hist[HistSize];
+   int* hist;
    int nodes = 0;
    int maxcodelen, totalnodes;
    float p = 1.0; 
@@ -104,6 +104,7 @@ void compressionDriver_CL()
 	cpu_Block = (int *)malloc(HistSize_Byte);
    cpu_Thread = (int *)malloc(HistSize_Byte);
    int* image2 = (int *)malloc(IMAGE_SIZE_IN_BYTES);
+   hist = (int *)malloc(HistSize_Byte);
    
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
@@ -216,6 +217,8 @@ void compressionDriver_CL()
    delete[] cpu_Result;
 	delete[] cpu_Block;
 	delete[] cpu_Thread;
+   delete[] image2;
+   delete[] hist;
 
 }
 
