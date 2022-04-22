@@ -99,6 +99,7 @@ void compressionDriver_CL()
 */
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
+   g_hist = (int *)malloc(HistSize_Byte);
 
    cpu_Result = (int *)malloc(HistSize_Byte);
 	cpu_Block = (int *)malloc(HistSize_Byte);
