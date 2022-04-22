@@ -244,12 +244,12 @@ void minProp_cu(int* hist, int* width, int* height, int *Result, int *Block, int
 
    float ptemp;
    ptemp = (hist[idx] / (static_cast<float>(*height * *width)));
-   if (ptemp > 0)
-      atomicMin(&shared_prob, ptemp);
+   if (ptemp > 0 && ptemp <= shared_prob)
+      shared_prob = ptemp;
    __syncthreads();
 
-   Result[idx] = shared_prob;
-   Block[idx]  = blockIdx.x+6;
+   Result[idx] = p;
+   Block[idx]  = blockIdx.x+5;
 	Thread[idx] = threadIdx.x;
 
 }
