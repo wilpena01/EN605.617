@@ -157,6 +157,7 @@ void compressionDriver_CL()
    //   cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
    //ocurrence(hist, image, width, height)   ;
+   //ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
    cudaDeviceSynchronize();
 
