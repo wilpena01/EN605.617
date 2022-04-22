@@ -312,7 +312,7 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int nodes, int totalnodes)
             strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
     }
 }
-
+/*
 void ocurrence(int* hist, int** image, int width, int height)
 {
     // Finding the probability
@@ -329,6 +329,6 @@ void ocurrence(int* hist, int** image, int width, int height)
             hist[image[i][j]] += 1;
         }
     }
-}
+}*/
 
 #endif /* COMPRESS_HELPER_CU_H_ */
