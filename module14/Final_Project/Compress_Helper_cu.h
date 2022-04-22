@@ -227,6 +227,10 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
       atomicAdd(&shared_node,1);
     __syncthreads();
 
+   Result[idx] = 0;
+   Block[idx]  = blockIdx.x;
+	Thread[idx] = threadIdx.x;
+
 }
 
 //done i think
