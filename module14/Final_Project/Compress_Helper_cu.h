@@ -226,9 +226,6 @@ void ocurrence_cu(int* hist, int* image, int width, int height)
     // Finding the probability
     // of occurrence
     int i,j;
-   
-    for (i = 0; i < 256; i++)
-        hist[i] = 0;
 
     for (i = 0; i < height; i++)
     {
