@@ -237,13 +237,13 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
 
 //done i think
 __global__
-void minProp_cu(int* hist, int* width, int* height, int *Result, int *Block, int *Thread)
+void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
 {
     // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    float ptemp;
-   ptemp = (hist[idx] / (static_cast<float>(*height * *width)));
+   ptemp = (shared_hist[idx] / (static_cast<float>(*height * *width)));
    if (ptemp > 0 && ptemp <= shared_prob)
       shared_prob = ptemp;
    __syncthreads();
