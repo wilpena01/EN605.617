@@ -95,7 +95,7 @@ void add_one_to_hist(int idx)
 
 //done
 __global__ 
-void initHist_cu(uint32* hist, int *Result,
+void initHist_cu(int* hist, int *Result,
 			 int *Block, int *Thread)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -110,7 +110,7 @@ void initHist_cu(uint32* hist, int *Result,
 
 //done i think
 __global__
-void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
+void ocurrence_cu(int* hist, int* image, int* MaxSize)
 {
    // Finding the probability
    // of occurrence
@@ -123,7 +123,7 @@ void ocurrence_cu(uint32* hist, int* image, int* MaxSize)
 
 //done I think
 __global__
-void nonZero_ocurrence_cu(uint32* hist, int *node)
+void nonZero_ocurrence_cu(int* hist, int *node)
 {
    // Finding number of
    // non-zero occurrences
@@ -137,7 +137,7 @@ void nonZero_ocurrence_cu(uint32* hist, int *node)
 
 //done i think
 __global__
-void minProp_cu(float* p, uint32* hist, int* width, int* height)
+void minProp_cu(float* p, int* hist, int* width, int* height)
 {
     // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -175,7 +175,7 @@ void totalNode(int* totalnode, int* nodes)
 //done
 __global__
 void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, 
-                uint32* hist, int *height, int *width)
+                int* hist, int *height, int *width)
 {
      // Initializing
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -313,7 +313,7 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int nodes, int totalnodes)
     }
 }
 
-void ocurrence(uint32* hist, int** image, int width, int height)
+void ocurrence(int* hist, int** image, int width, int height)
 {
     // Finding the probability
     // of occurrence
