@@ -100,19 +100,19 @@ void compressionDriver_CL()
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
    cudaMalloc((void **)&g_height,      sizeof(int));
-   cudaMalloc((void **)&g_hist,        HistSize*sizeof(uint32));
+   cudaMalloc((void **)&g_hist,        HistSize*sizeof(int));
    cudaMalloc((void **)&g_nodes,       sizeof(int));
    cudaMalloc((void **)&g_p,           sizeof(float));
    cudaMalloc((void **)&g_totalnodes,  sizeof(int));
    cudaMalloc((void **)&g_MaxSize,     sizeof(int));
-   cudaMalloc((void **)&gpu_Result,    HistSize*sizeof(uint32));
-   cudaMalloc((void **)&gpu_Block,     HistSize*sizeof(uint32));
-   cudaMalloc((void **)&gpu_Thread,    HistSize*sizeof(uint32));
+   cudaMalloc((void **)&gpu_Result,    HistSize*sizeof(int));
+   cudaMalloc((void **)&gpu_Block,     HistSize*sizeof(int));
+   cudaMalloc((void **)&gpu_Thread,    HistSize*sizeof(int));
 
    cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
    cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_height,     &height,     sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_hist,       hist,        HistSize*sizeof(uint32),  cudaMemcpyHostToDevice);
+   cudaMemcpy(g_hist,       hist,        HistSize*sizeof(int),  cudaMemcpyHostToDevice);
    cudaMemcpy(g_nodes,      &nodes,      sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_p,          &p,          sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
