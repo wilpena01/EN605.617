@@ -105,7 +105,6 @@ void compressionDriver_CL()
    cpu_Thread = (int *)malloc(HistSize_Byte);
    int* image2 = (int *)malloc(IMAGE_SIZE_IN_BYTES);
    hist = (int *)malloc(HistSize_Byte);
-   cout<<"entre\n\n";
 
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
@@ -118,6 +117,7 @@ void compressionDriver_CL()
    cudaMalloc((void **)&gpu_Result,    HistSize_Byte);
    cudaMalloc((void **)&gpu_Block,     HistSize_Byte);
    cudaMalloc((void **)&gpu_Thread,    HistSize_Byte);
+   cout<<"entre\n\n";
 
    cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
    cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
