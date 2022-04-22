@@ -79,11 +79,17 @@ void copy_data_to_hist(int value, int idx)
 	shared_hist[idx] = value;
 }
 
-__device__ 
-void copy_data_from_hist(int* hist, int idx)
+__global__ 
+void copy_data_from_shared(int* hist, int *Result, int *Block, int *Thread)
 {
 	//copy from global to shared memory
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+
 	hist[idx] = shared_hist[idx];
+   Result[thread_idx] = idx;
+   Block[thread_idx]  = blockIdx.x+1;
+	Thread[thread_idx] = threadIdx.x;
 }
 
 __device__ 
@@ -112,7 +118,7 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 
 //done i think
 __global__
-void ocurrence_cu(int* hist, int* image, int *Result, int *Block, int *Thread)
+void ocurrence_cu(int* image)
 {
    // Finding the probability
    // of occurrence
@@ -120,10 +126,7 @@ void ocurrence_cu(int* hist, int* image, int *Result, int *Block, int *Thread)
    int thread_idx = image[idx];
 
    shared_hist[thread_idx] = shared_hist[thread_idx] + 1;
-   hist[thread_idx] = shared_hist[thread_idx];
-   Result[thread_idx] = idx;
-   Block[thread_idx]  = blockIdx.x+1;
-	Thread[thread_idx] = threadIdx.x;
+
     __syncthreads();
 }
 
