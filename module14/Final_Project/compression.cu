@@ -97,7 +97,6 @@ void compressionDriver_CL()
    }
 
 */
-cout<<"entre\n\n";
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
 
@@ -106,7 +105,8 @@ cout<<"entre\n\n";
    cpu_Thread = (int *)malloc(HistSize_Byte);
    int* image2 = (int *)malloc(IMAGE_SIZE_IN_BYTES);
    hist = (int *)malloc(HistSize_Byte);
-   
+   cout<<"entre\n\n";
+
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
    cudaMalloc((void **)&g_height,      sizeof(int));
