@@ -20,6 +20,7 @@ using namespace std;
 __device__ int shared_hist[256];
 __shared__ int shared_node;
 __shared__ float shared_prob;
+__shared__ shared_temp;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -196,6 +197,7 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
    Result[idx] = 0;
    shared_node = 0;
    shared_prob = 1.0;
+   shared_temp = 1;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
   // __syncthreads();
@@ -242,12 +244,13 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
     // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   float ptemp;
-   ptemp = (shared_hist[idx] / (static_cast<float>(*height * *width)));
-   if (ptemp > 0 && ptemp <= shared_prob)
-      shared_prob = ptemp;
-   __syncthreads();
+   float ptemp = shared_hist[idx] / (static_cast<float>(*height * *width));
+   __shared__ val = static_cast<int>(ptemp * 100);
 
+   if (val > 0)
+      atomicMin(&shared_temp,val);
+   __syncthreads();
+   //shared_prob /= 100; 
    Result[idx] = static_cast<int>(shared_prob);
    Block[idx]  = blockIdx.x+9;
 	Thread[idx] = threadIdx.x;
