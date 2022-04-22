@@ -149,7 +149,7 @@ void compressionDriver_CL()
       }
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
-*/
+*//*
    cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
 
    //for(int i=0; i<256; i++)
@@ -189,7 +189,7 @@ void compressionDriver_CL()
    AssignCode_cu(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
-   delete[] image; image = NULL;
+   delete[] image; image = NULL;*/
 
    cudaFree(g_image);
    cudaFree(g_width);
