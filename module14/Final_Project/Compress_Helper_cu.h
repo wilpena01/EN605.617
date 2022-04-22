@@ -224,7 +224,7 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    if (shared_hist[idx] != 0)
-      atomicAdd(shared_node,1);
+      atomicAdd(&shared_node,1);
     __syncthreads();
 
 }
