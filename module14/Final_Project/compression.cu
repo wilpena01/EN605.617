@@ -134,7 +134,7 @@ void compressionDriver_CL()
 
 
 
-/*
+
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
    {
@@ -145,7 +145,7 @@ void compressionDriver_CL()
       }
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
-*/
+
    cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
 
    //for(int i=0; i<256; i++)
