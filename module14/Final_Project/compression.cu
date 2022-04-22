@@ -87,7 +87,7 @@ void compressionDriver_CL()
    readBMPFILE(width, height, image);
    MaxSize = width * height;
 
-
+/*
    for(int i=0; i<height; i++)
    {
       for(int j=0; j<width; j++)
@@ -97,8 +97,8 @@ void compressionDriver_CL()
       }
    }
 
-
-   int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
+*/
+   int IMAGE_SIZE_IN_BYTES = sizeof(int*) * MaxSize;
 
    cpu_Result = (int *)malloc(HistSize_Byte);
 	cpu_Block = (int *)malloc(HistSize_Byte);
