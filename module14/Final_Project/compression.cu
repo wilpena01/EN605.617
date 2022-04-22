@@ -164,7 +164,7 @@ void compressionDriver_CL()
                outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
-   cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
+   cudaMemcpy(hist,        shared_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
    for(int i=0; i<256; i++)
       cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
