@@ -17,7 +17,7 @@
 
 using namespace std;
 
-__shared__ int* shared_hist;
+__shared__ int shared_hist[256];
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
