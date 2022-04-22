@@ -93,7 +93,7 @@ void copy_data_from_shared(int* hist, int *Result, int *Block, int *Thread)
 }
 
 __device__ 
-void add_one_to_hist(int idx)
+void add_one_to_shared(int idx)
 {
 	//copy from global to shared memory
 	shared_hist[idx] += 1;
@@ -125,7 +125,7 @@ void ocurrence_cu(int* image)
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    int thread_idx = image[idx];
 
-   shared_hist[thread_idx] = shared_hist[thread_idx] + 1;
+   add_one_to_shared(thread_idx);
 
     __syncthreads();
 }
