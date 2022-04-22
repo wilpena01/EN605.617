@@ -158,6 +158,8 @@ void compressionDriver_CL()
 
    //ocurrence(hist, image, width, height)   ;
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
+   cudaDeviceSynchronize();
+
    copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
 
 
@@ -165,9 +167,8 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+               //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
-cudaDeviceSynchronize();
    cudaMemcpy(hist,        g_hist,       HistSize_Byte,  cudaMemcpyDeviceToHost);
    cudaDeviceSynchronize();
    for(int i=0; i<256; i++)
