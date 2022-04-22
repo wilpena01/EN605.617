@@ -214,9 +214,9 @@ void ocurrence_cu(int* image)
 	const unsigned int idy = (blockIdx.y * blockDim.y) + threadIdx.y;
 	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
 
-   int i = image[thread_idx];
-   //shared_hist[image[thread_idx]] += 1;
-   add_one_to_shared(i);
+   //int i = image[thread_idx];
+   shared_hist[image[thread_idx]] += 1;
+   //add_one_to_shared(i);
 
     __syncthreads();
 }
