@@ -245,7 +245,7 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    float ptemp = shared_hist[idx] / (static_cast<float>(*height * *width));
-   __shared__ int val = static_cast<int>(ptemp * 100);
+   int val = static_cast<int>(ptemp * 100);
 
    if (val > 0)
       atomicMin(&shared_temp,val);
