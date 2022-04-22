@@ -54,6 +54,7 @@ void compressionDriver()
 void compressionDriver_CL()
 {
    const int HistSize = 256;
+   const int HistSize_Byte = sizeof(int) * HistSize;
    int width, height;
    int MaxSize;
    int** image;
@@ -79,9 +80,9 @@ void compressionDriver_CL()
    huffcode* g_huffcodes;
 
    int *gpu_Result, *gpu_Block, *gpu_Thread;
-   int cpu_Result[HistSize];
-   int cpu_Block[HistSize];
-   int cpu_Thread[HistSize];
+   int *cpu_Result;
+   int *cpu_Block;
+   int *cpu_Thread;
    
    readBMPFILE(width, height, image);
    MaxSize = width * height;
@@ -98,6 +99,10 @@ void compressionDriver_CL()
 */
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
+
+   cudaMallocHost((int **)&cpu_Result, HistSize_Byte);
+   cudaMallocHost((int **)&cpu_Block, HistSize_Byte);
+   cudaMallocHost((int **)&cpu_Thread, HistSize_Byte);
    
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
