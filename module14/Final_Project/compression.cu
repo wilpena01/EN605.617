@@ -131,7 +131,7 @@ cout<<"entre\n\n";
   // cudaMemcpy(gpu_Thread,   cpu_Thread,  HistSize_Byte,           cudaMemcpyHostToDevice);
 
 
-
+cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
                
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
