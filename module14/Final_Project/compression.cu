@@ -137,12 +137,12 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+              // outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
 
    cudaMemcpy(image2,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
-   /*
+   
    for(int i=0; i<width*height; i++)
    {
          if(image2[i]>240)
@@ -150,7 +150,7 @@ void compressionDriver_CL()
       
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
-*/
+
    //cudaMemcpy(hist,        g_hist,       HistSize_Byte,  cudaMemcpyDeviceToHost);
 
    //for(int i=0; i<256; i++)
