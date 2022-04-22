@@ -132,13 +132,9 @@ void compressionDriver_CL()
 
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
 
-   cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-	cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-   //cudaDeviceSynchronize();
-   outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
-/*   
+
+/*
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
    {
@@ -149,18 +145,24 @@ void compressionDriver_CL()
       }
    }
    cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
-*//*
+*/
    cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
 
    //for(int i=0; i<256; i++)
    //   cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
    //ocurrence(hist, image, width, height)   ;
-   ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist,g_image, g_MaxSize);
-   cudaDeviceSynchronize();
+   ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_hist,g_image, g_MaxSize, gpu_Result, gpu_Block, gpu_Thread);
+
+               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
+               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+
+
    cudaMemcpy(hist,        g_hist,       HistSize*sizeof(uint32),  cudaMemcpyDeviceToHost);
-  // for(int i=0; i<256; i++)
-   //   cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
+   for(int i=0; i<256; i++)
+      cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
 
    nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, g_nodes);
    minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_p, g_hist,g_width,g_height );
@@ -189,7 +191,7 @@ void compressionDriver_CL()
    AssignCode_cu(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
-   delete[] image; image = NULL;*/
+   delete[] image; image = NULL;
 
    cudaFree(g_image);
    cudaFree(g_width);
