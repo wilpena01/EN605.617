@@ -8,7 +8,19 @@
 #ifndef UTILITIES_H_
 #define UTILITIES_H_
 
+#include <iostream>
+using namespace std;
 typedef unsigned int uint32;
+
+struct RESULT
+{
+    //structure used to store the final
+    //result of each mathematical
+    //calculation
+	vector<int> result;
+	vector<int> blockId;
+	vector<int> threadId;
+};
 // Defining Structures pixfreq
 template<unsigned int N>
 struct pixfreq
@@ -74,4 +86,14 @@ void calBitLength(pixfreq<25> *pix_freq, int nodes)
    printf("Average number of bits:: %f", avgbitnum);
 
 }
+
+
+void outputResult(int *Result, int* Block, int* Thread, int idx)
+{
+   for(int i=0; i<idx; i++)
+   {
+      std::cout<<"r = "<<Result[i]<<"\tblock = "<<Block[i]<<"\tThread = "<<Thread[i]<<std::endl;;
+   }  
+}
+
 #endif /* UTILITIES_H_ */
