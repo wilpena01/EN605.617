@@ -87,9 +87,9 @@ void copy_data_from_shared(int* hist, int *Result, int *Block, int *Thread)
 
 
 	hist[idx] = shared_hist[idx];
-   Result[thread_idx] = idx;
-   Block[thread_idx]  = blockIdx.x+1;
-	Thread[thread_idx] = threadIdx.x;
+   Result[idx] = idx;
+   Block[idx]  = blockIdx.x+1;
+	Thread[idx] = threadIdx.x;
 }
 
 __device__ 
