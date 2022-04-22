@@ -126,6 +126,8 @@ void compressionDriver_CL()
 	cudaMemcpy(cpu_Block,  gpu_Block,  HistSize*sizeof(uint32), cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Thread, gpu_Thread, HistSize*sizeof(uint32), cudaMemcpyDeviceToHost);
 
+   outputResult(cpu_Result, cpu_Block, cpu_Thread, 256)
+
 /*   
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
