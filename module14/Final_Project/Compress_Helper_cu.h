@@ -17,7 +17,7 @@
 
 using namespace std;
 
-__shared__ int shared_hist[256];
+__device__ int shared_hist[256];
 __shared__ int shared_node;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
