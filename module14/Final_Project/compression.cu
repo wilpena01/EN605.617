@@ -145,7 +145,7 @@ void compressionDriver_CL()
    {
       for(int j=0; j<height; j++)
       {
-         idx = (i*height) + j;
+         int idx = (i*height) + j;
          if(image2[xid]>256)
             cout<<"image ="<<image[idx]<<"   ";
       }
