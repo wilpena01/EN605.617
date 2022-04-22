@@ -171,8 +171,15 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
                //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
-   for(int i=0; i<256; i++)
-      cout<<"hist["<<i<<"] ="<<hist[i]<<"\n";
+   //for(int i=0; i<256; i++)
+   //   cout<<"hist["<<i<<"] ="<<hist[i]<<"\n";
+
+   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(gpu_Result, gpu_Block, gpu_Thread);
+
+               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
+               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
 
@@ -185,9 +192,6 @@ void compressionDriver_CL()
 
 
 
-
-
-   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, g_nodes);
    minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_p, g_hist,g_width,g_height );
    //maxcodelen = MaxLength_cu(p) - 3;
    totalNode<<<1,1>>>(g_totalnodes,g_nodes);
