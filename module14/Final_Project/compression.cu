@@ -133,7 +133,7 @@ void compressionDriver_CL()
 
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
 
-   cudaMemcpy(gpu_Result, cpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
+   cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
 	cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
    //cudaDeviceSynchronize();
