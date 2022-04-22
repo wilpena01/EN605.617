@@ -218,7 +218,7 @@ void ocurrence_cu(int* image)
    //shared_hist[image[thread_idx]] += 1;
    atomicAdd((shared_hist+255),1);
    //add_one_to_shared(i);
-cudaDeviceSynchronize();
+
    __syncthreads();
 }
 
