@@ -18,7 +18,7 @@
 using namespace std;
 
 __device__ int shared_hist[256];
-__device__ int shared_node = 0;
+__device__ int shared_node;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -193,6 +193,7 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
    shared_hist[idx] = 0;
    hist[idx] = 0;
    Result[idx] = 0;
+   shared_node = 0;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
   // __syncthreads();
@@ -222,8 +223,8 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
    // non-zero occurrences
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   if (share_hist[idx] != 0)
-      *node += 1;
+   if (shared_hist[idx] != 0)
+      atomicAdd(shared_node,1);
     __syncthreads();
 
 }
