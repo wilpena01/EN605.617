@@ -162,7 +162,7 @@ void compressionDriver_CL()
    //ocurrence(hist, image, width, height)   ;
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
 
-   copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread)
+   copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
 
 
 
