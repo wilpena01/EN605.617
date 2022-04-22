@@ -88,7 +88,7 @@ void add_one_to_hist(int idx)
 
 //done
 __global__ 
-void initHist_cu(int* hist)
+void initHist_cu(uint32* hist)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    copy_data_to_hist(0,idx);
