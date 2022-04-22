@@ -65,7 +65,7 @@ void compressionDriver_CL()
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
 
-   const int hist_num_blocks     = 2;
+   const int hist_num_blocks     = 1;
    const int hist_num_threads    = HistSize;
 
    const int image_num_blocks    = 1;
