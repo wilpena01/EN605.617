@@ -150,8 +150,8 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
                // the Image is a
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
-               if(idx>height*width-5)
-               cout<<"idx = "<<idx<<"\t";
+               //if(idx>height*width-5)
+               //cout<<"idx = "<<idx<<"\t";
                image[idx] = static_cast<int>(temp);
             }
          }
@@ -215,7 +215,7 @@ void ocurrence_cu(int* image)
 	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
 
    //int i = image[thread_idx];
-   shared_hist[image[thread_idx]] += 1;
+   shared_hist[image[thread_idx]] = shared_hist[image[thread_idx]] + 1;
    //add_one_to_shared(i);
 
     __syncthreads();
