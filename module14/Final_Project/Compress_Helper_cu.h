@@ -216,7 +216,7 @@ void ocurrence_cu(int* image)
 
    //int i = image[thread_idx];
    ;shared_hist[image[thread_idx]] += 1;
-   atomicMin((shared_hist+image[thread_idx]),1);
+   atomicMin((shared_hist+image[thread_idx]),4);
    //add_one_to_shared(i);
 
     __syncthreads();
