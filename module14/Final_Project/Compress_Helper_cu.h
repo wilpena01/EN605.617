@@ -18,7 +18,7 @@
 using namespace std;
 
 __device__ int shared_hist[256];
-__shared__ int shared_node;
+__device__ int shared_node = 0;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -72,6 +72,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 
    fclose(inputfile);
 }
+
 void readBMPFILE_cu(int &width, int &height, int* &image)
 {
       int i, j;
@@ -197,12 +198,6 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
   // __syncthreads();
 }
 
-__device__ 
-void add_one_to_shared(int idx)
-{
-	//copy from global to shared memory
-	shared_hist[idx] += 1;
-}
 
 //done i think
 __global__
@@ -214,40 +209,20 @@ void ocurrence_cu(int* image)
 	const unsigned int idy = (blockIdx.y * blockDim.y) + threadIdx.y;
 	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
 
-   //int i = image[thread_idx];
-   //shared_hist[image[thread_idx]] += 1;
    atomicAdd((shared_hist+image[thread_idx]),1);
-   //add_one_to_shared(i);
 
    __syncthreads();
 }
 
-void ocurrence_cu(int* hist, int* image, int width, int height)
-{
-    // Finding the probability
-    // of occurrence
-    int i,j;
-
-    for (i = 0; i < height; i++)
-    {
-        for (j = 0; j < width; j++)
-        {
-           int idx = (i*height) + j;
-            hist[image[idx]] += 1;
-        }
-    }
-}
-
-
 //done I think
 __global__
-void nonZero_ocurrence_cu(int* hist, int *node)
+void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
 {
    // Finding number of
    // non-zero occurrences
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   if (hist[idx] != 0)
+   if (share_hist[idx] != 0)
       *node += 1;
     __syncthreads();
 
