@@ -145,7 +145,7 @@ void compressionDriver_CL()
    
    for(int i=0; i<width*height; i++)
    {
-         if(image2[i]==186)
+         if(image2[i]==231)
             cout<<"image ="<<image2[i]<<"   ";
       
    }
@@ -172,8 +172,8 @@ cudaDeviceSynchronize();
 
    cudaMemcpy(hist,        g_hist,       HistSize_Byte,  cudaMemcpyDeviceToHost);
    cudaDeviceSynchronize();
-   for(int i=0; i<256; i++)
-      cout<<"hist["<<i<<"] ="<<hist[i]<<"\n";
+   //for(int i=0; i<256; i++)
+   //   cout<<"hist["<<i<<"] ="<<hist[i]<<"\n";
 
 
 
