@@ -123,7 +123,7 @@ void ocurrence_cu(int* hist, int* image, int *Result, int *Block, int *Thread)
    Result[image[idx]] = idx;
    Block[image[idx]]  = blockIdx.x;
 	Thread[image[idx]] = threadIdx.x;
-    __syncthreads();
+    //__syncthreads();
 }
 
 
