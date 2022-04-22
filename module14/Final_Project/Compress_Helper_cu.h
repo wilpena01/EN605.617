@@ -228,7 +228,7 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
     __syncthreads();
 
    Result[idx] = 0;
-   Block[idx]  = blockIdx.x;
+   Block[idx]  = blockIdx.x+5;
 	Thread[idx] = threadIdx.x;
 
 }
