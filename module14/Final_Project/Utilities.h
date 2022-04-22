@@ -9,6 +9,7 @@
 #define UTILITIES_H_
 
 #include <iostream>
+#include <vector>
 using namespace std;
 typedef unsigned int uint32;
 
