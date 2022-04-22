@@ -53,7 +53,7 @@ void compressionDriver()
 
 void compressionDriver_CL()
 {
-   const int HistSize = 32;
+   const int HistSize = 256;
    const int HistSize_Byte = sizeof(int) * HistSize;
    int width, height;
    int MaxSize;
