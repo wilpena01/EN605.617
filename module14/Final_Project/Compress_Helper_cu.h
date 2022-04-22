@@ -19,6 +19,7 @@ using namespace std;
 
 __device__ int shared_hist[256];
 __shared__ int shared_node;
+__shared__ float shared_prob;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -194,6 +195,7 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
    hist[idx] = 0;
    Result[idx] = 0;
    shared_node = 0;
+   shared_prob = 1.0;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
   // __syncthreads();
@@ -235,17 +237,20 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
 
 //done i think
 __global__
-void minProp_cu(float* p, int* hist, int* width, int* height)
+void minProp_cu(int* hist, int* width, int* height, int *Result, int *Block, int *Thread)
 {
     // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    float ptemp;
    ptemp = (hist[idx] / (static_cast<float>(*height * *width)));
-   if (ptemp > 0 && ptemp <= *p)
-      *p = ptemp;
-
+   if (ptemp > 0)
+      atomicAdd(shared_prob, ptemp);
    __syncthreads();
+
+   Result[idx] = shared_prob;
+   Block[idx]  = blockIdx.x+6;
+	Thread[idx] = threadIdx.x;
 
 }
 
