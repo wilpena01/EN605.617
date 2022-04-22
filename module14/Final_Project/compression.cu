@@ -86,7 +86,7 @@ void compressionDriver_CL()
    
    readBMPFILE_cu(width, height, image);
    MaxSize = width * height;
-
+cout<<"entre\n\n";
 /*
    for(int i=0; i<height; i++)
    {
