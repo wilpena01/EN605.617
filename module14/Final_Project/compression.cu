@@ -79,7 +79,9 @@ void compressionDriver_CL()
    huffcode* g_huffcodes;
 
    int *gpu_Result, *gpu_Block, *gpu_Thread;
-   int *cpu_Result, *cpu_Block, *cpu_Thread;
+   int cpu_Result[HistSize];
+   int cpu_Block[HistSize];
+   int cpu_Thread[HistSize];
    
    readBMPFILE(width, height, image);
    MaxSize = width * height;
