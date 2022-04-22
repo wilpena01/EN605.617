@@ -124,9 +124,9 @@ void compressionDriver_CL()
    cudaMemcpy(g_p,          &p,          sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_MaxSize,    &MaxSize,    sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(gpu_Result,   cpu_Result,  HistSize_Byte,           cudaMemcpyHostToDevice);
-   cudaMemcpy(gpu_Block,    cpu_Block,   HistSize_Byte,           cudaMemcpyHostToDevice);
-   cudaMemcpy(gpu_Thread,   cpu_Thread,  HistSize_Byte,           cudaMemcpyHostToDevice);
+   //cudaMemcpy(gpu_Result,   cpu_Result,  HistSize_Byte,           cudaMemcpyHostToDevice);
+   //cudaMemcpy(gpu_Block,    cpu_Block,   HistSize_Byte,           cudaMemcpyHostToDevice);
+   //cudaMemcpy(gpu_Thread,   cpu_Thread,  HistSize_Byte,           cudaMemcpyHostToDevice);
 
 
 
