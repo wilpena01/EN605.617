@@ -18,7 +18,7 @@
 using namespace std;
 
 __shared__ int shared_hist[256];
-__shared__ int shared_node = 0;
+__shared__ int shared_node;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -136,7 +136,7 @@ void readBMPFILE_cu(int &width, int &height, int* image)
          fseek(image_file, bmpdataoff, SEEK_SET);
 
          // Creating Image array
-         image = (int**)malloc(height * width * sizeof(int));
+         image = (int*)malloc(height * width * sizeof(int));
 
          // Reading the BMP File
          // into Image Array
