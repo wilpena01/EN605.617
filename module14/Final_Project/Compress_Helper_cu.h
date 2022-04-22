@@ -80,7 +80,7 @@ void copy_data_to_hist(int value, int idx)
 }
 
 __device__ 
-void copy_data_from_hist(uint32 hist, int idx)
+void copy_data_from_hist(uint32* hist, int idx)
 {
 	//copy from global to shared memory
 	hist[idx] = shared_hist[idx];
