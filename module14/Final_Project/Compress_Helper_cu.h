@@ -221,6 +221,25 @@ void ocurrence_cu(int* image)
     __syncthreads();
 }
 
+void ocurrence_cu(int* hist, int* image, int width, int height)
+{
+    // Finding the probability
+    // of occurrence
+    int i,j;
+   
+    for (i = 0; i < 256; i++)
+        hist[i] = 0;
+
+    for (i = 0; i < height; i++)
+    {
+        for (j = 0; j < width; j++)
+        {
+           int idx = (i*height) + j;
+            hist[image[idx]] += 1;
+        }
+    }
+}
+
 
 //done I think
 __global__
