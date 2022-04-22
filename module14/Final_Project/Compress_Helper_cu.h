@@ -80,6 +80,13 @@ void copy_data_to_hist(int value, int idx)
 }
 
 __device__ 
+void copy_data_from_hist(uint32 hist, int idx)
+{
+	//copy from global to shared memory
+	hist[idx] = shared_hist[idx];
+}
+
+__device__ 
 void add_one_to_hist(int idx)
 {
 	//copy from global to shared memory
@@ -92,7 +99,7 @@ void initHist_cu(uint32* hist)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    copy_data_to_hist(0,idx);
-   hist[idx] = 0;
+   copy_data_from_hist(hist,idx);
    __syncthreads();
 }
 
