@@ -244,10 +244,10 @@ void compressionDriver_CL()
 int main()
 {
    cout<<"Using Local CPU"<<endl;
-   //compressionDriver();
+   compressionDriver();
 
    cout<<"\n\nUsing GPU"<<endl;
-   compressionDriver_CL();
+   //compressionDriver_CL();
 
    return 0;
 
