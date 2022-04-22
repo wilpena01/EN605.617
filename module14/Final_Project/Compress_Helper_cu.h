@@ -218,7 +218,7 @@ void ocurrence_cu(int* image)
    shared_hist[image[thread_idx]] += 1;
    //add_one_to_shared(i);
 
-    __syncthreads();
+    //__syncthreads();
 }
 
 void ocurrence_cu(int* hist, int* image, int width, int height)
