@@ -118,7 +118,7 @@ void ocurrence_cu(int* hist, int* image, int* MaxSize, int *Result, int *Block, 
    // of occurrence
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   shared_hist[image[idx]] += 1;
+   shared_hist[image[idx] += 1;
    Result[idx] = 0;
    Block[idx]  = 0;
 	Thread[idx] = 0;
