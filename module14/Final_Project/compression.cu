@@ -77,6 +77,9 @@ void compressionDriver_CL()
    float* g_p;
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
+
+   int *gpu_Result, *gpu_Block, *gpu_Thread;
+   int *cpu_Result, *cpu_Block, *cpu_Thread;
    
    readBMPFILE(width, height, image);
    MaxSize = width * height;
@@ -102,7 +105,9 @@ void compressionDriver_CL()
    cudaMalloc((void **)&g_p,           sizeof(float));
    cudaMalloc((void **)&g_totalnodes,  sizeof(int));
    cudaMalloc((void **)&g_MaxSize,     sizeof(int));
-
+   cudaMalloc((void **)&gpu_Result,    HistSize*sizeof(uint32));
+   cudaMalloc((void **)&gpu_Block,     HistSize*sizeof(uint32));
+   cudaMalloc((void **)&gpu_Thread,    HistSize*sizeof(uint32));
 
    cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
    cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
@@ -115,7 +120,12 @@ void compressionDriver_CL()
 
 
 
-   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist);
+   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
+
+   cudaMemcpy(cpu_Result, gpu_Result, HistSize*sizeof(uint32),cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_Block,  gpu_Block,  HistSize*sizeof(uint32), cudaMemcpyDeviceToHost);
+	cudaMemcpy(cpu_Thread, gpu_Thread, HistSize*sizeof(uint32), cudaMemcpyDeviceToHost);
+
 /*   
    cudaMemcpy(image,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
    for(int i=0; i<width; i++)
@@ -179,6 +189,9 @@ void compressionDriver_CL()
    cudaFree(g_huffcodes);
    cudaFree(g_p);
    cudaFree(g_MaxSize);
+   cudaFree(gpu_Result);
+	cudaFree(gpu_Block);
+	cudaFree(gpu_Thread);
 
 }
 
