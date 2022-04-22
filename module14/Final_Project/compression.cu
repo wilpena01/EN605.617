@@ -205,9 +205,9 @@ void compressionDriver_CL()
    cudaFree(gpu_Result);
 	cudaFree(gpu_Block);
 	cudaFree(gpu_Thread);
-   free(cpu_Result);
-	free(cpu_Block);
-	free(cpu_Thread);
+   delete[] cpu_Result;
+	delete[] cpu_Block;
+	delete[] cpu_Thread;
 
 }
 
