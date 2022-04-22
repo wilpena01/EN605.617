@@ -151,7 +151,7 @@ void readBMPFILE_cu(int &width, int &height, int* image)
                // 24-bit BMP Image
                temp = temp & 0x0000FF;
                if(idx>height*width-5)
-               cout<<"aqui\n";
+               cout<<"idx = "<<idx<<"\t";
                image[idx] = static_cast<int>(temp);
             }
          }
