@@ -72,7 +72,7 @@ void LoadImagePGM(int &width, int &height, int** &image_cl)
 
    fclose(inputfile);
 }
-void readBMPFILE_cu(int &width, int &height, int* image)
+void readBMPFILE_cu(int &width, int &height, int* &image)
 {
       int i, j;
       char filename[] = "Lena.bmp";

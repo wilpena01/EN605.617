@@ -71,7 +71,7 @@ void compressionDriver_CL()
    const int image_num_blocks    = 512;
    const int image_num_threads   = 512;
 
-   int *g_image;
+   int* g_image;
    int* g_width, *g_height, *g_nodes, *g_totalnodes;
    int* g_MaxSize;
    int* g_hist;
