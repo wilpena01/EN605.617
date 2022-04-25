@@ -28,7 +28,7 @@ using namespace std::chrono;
 #define DEFAULT_PLATFORM 0
 #define DEFAULT_USE_MAP false
 
-#define NUM_BUFFER_ELEMENTS 16
+int NUM_BUFFER_ELEMENTS = 16;
 #define NUM_SUBBUFFER_ELEMENTS 2
 
 // Function to check and handle OpenCL errors
@@ -57,6 +57,9 @@ int main(int argc, char** argv)
     std::vector<cl_command_queue> queues;
     std::vector<cl_mem> buffers;
     int * inputOutput;
+    int Sum=0;
+    int *sum = &Sum;
+    int *arraySize = &NUM_BUFFER_ELEMENTS;
 
     int platform = DEFAULT_PLATFORM; 
     bool useMap  = DEFAULT_USE_MAP;
@@ -249,8 +252,8 @@ int main(int argc, char** argv)
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&buffers[i]);
-        errNum = clSetKernelArg(kernel, 1, sizeof(int),    (void *)NUM_BUFFER_ELEMENTS);
-        errNum = clSetKernelArg(kernel, 2, sizeof(int),    (void *)0);
+        errNum = clSetKernelArg(kernel, 1, sizeof(int),    (void *)&arraySize);
+        errNum = clSetKernelArg(kernel, 2, sizeof(int),    (void *)&sum);
 
         checkErr(errNum, "clSetKernelArg(average)");
 
