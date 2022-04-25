@@ -20,7 +20,7 @@ __kernel void square(__global * buffer)
 	buffer[id] = buffer[id] * buffer[id];
 }
 
-__kernel void average(__global * buffer, int *totalSize)
+__kernel void average(__global * buffer, int totalSize)
 {
 	size_t id = get_global_id(0);
 	sum += buffer[id] / (*totalSize);
