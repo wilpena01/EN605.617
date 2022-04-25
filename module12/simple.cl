@@ -23,5 +23,5 @@ __kernel void square(__global * buffer)
 __kernel void average(__global * buffer, int totalSize)
 {
 	size_t id = get_global_id(0);
-	sum += buffer[id] / (*totalSize);
+	sum += buffer[id] / (totalSize);
 }
