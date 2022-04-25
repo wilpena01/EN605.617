@@ -389,7 +389,7 @@ int main(int argc, char** argv)
 
         std::cout << std::endl;
     }
-
+    std::cout << "Average = " <<sum<< std::endl;
     std::cout << "Elapse Time = " <<d.count()<< std::endl;
 
     return 0;
