@@ -244,12 +244,12 @@ int main(int argc, char** argv)
 
         cl_kernel kernel = clCreateKernel(
             program,
-            "square",
+            "average",
             &errNum);
-        checkErr(errNum, "clCreateKernel(square)");
+        checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&buffers[i]);
-        checkErr(errNum, "clSetKernelArg(square)");
+        checkErr(errNum, "clSetKernelArg(average)");
 
         kernels.push_back(kernel);
     }
