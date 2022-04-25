@@ -21,6 +21,7 @@
 #include <chrono>
 
 using namespace std;
+using namespace std:chrono;
 
 #include "info.hpp"
 
@@ -368,7 +369,7 @@ int main(int argc, char** argv)
             NULL);
     }
 
-    stop = high_resolution_clock::now(); 
+    auto stop = high_resolution_clock::now(); 
     auto d = duration_cast<microseconds>(stop - start);
 
 
