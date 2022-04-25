@@ -12,8 +12,16 @@
 //
 //    This is a simple example demonstrating buffers and sub-buffer usage
 
+__device__ int sum = 0;
+
 __kernel void square(__global * buffer)
 {
 	size_t id = get_global_id(0);
 	buffer[id] = buffer[id] * buffer[id];
+}
+
+__kernel void average(__global * buffer, int *totalSize)
+{
+	size_t id = get_global_id(0);
+	sum += buffer[id] / (*totalSize);
 }
