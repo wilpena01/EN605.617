@@ -58,8 +58,8 @@ int main(int argc, char** argv)
     std::vector<cl_mem> buffers;
     int * inputOutput;
     int Sum=0;
-    int *sum = &Sum;
-    int *arraySize = &NUM_BUFFER_ELEMENTS;
+    int sum = 0;
+    int arraySize = NUM_BUFFER_ELEMENTS;
 
     int platform = DEFAULT_PLATFORM; 
     bool useMap  = DEFAULT_USE_MAP;
