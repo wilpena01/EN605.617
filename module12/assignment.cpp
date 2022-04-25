@@ -249,6 +249,8 @@ int main(int argc, char** argv)
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem), (void *)&buffers[i]);
+        errNum = clSetKernelArg(kernel, 1, sizeof(int),    (void *)&NUM_BUFFER_ELEMENTS);
+
         checkErr(errNum, "clSetKernelArg(average)");
 
         kernels.push_back(kernel);
