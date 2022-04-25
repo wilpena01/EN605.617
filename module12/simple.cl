@@ -12,7 +12,7 @@
 //
 //    This is a simple example demonstrating buffers and sub-buffer usage
 
-__kernel int sum = 0;
+__global int sum = 0;
 
 __kernel void square(__global * buffer)
 {
