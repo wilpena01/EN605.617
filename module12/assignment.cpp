@@ -18,6 +18,9 @@
 #include <sstream>
 #include <string>
 #include <vector>
+#include <chrono>
+
+using namespace std;
 
 #include "info.hpp"
 
@@ -58,6 +61,8 @@ int main(int argc, char** argv)
     bool useMap  = DEFAULT_USE_MAP;
 
     std::cout << "Simple buffer and sub-buffer Example" << std::endl;
+
+    auto start = high_resolution_clock::now();
 
     for (int i = 1; i < argc; i++)
     {
@@ -363,6 +368,10 @@ int main(int argc, char** argv)
             NULL);
     }
 
+    stop = high_resolution_clock::now(); 
+    auto d = duration_cast<microseconds>(stop - start);
+
+
     // Display output in rows
     for (unsigned i = 0; i < numDevices; i++)
     {
@@ -374,7 +383,7 @@ int main(int argc, char** argv)
         std::cout << std::endl;
     }
 
-    std::cout << "Program completed successfully" << std::endl;
+    std::cout << "Elapse Time = " <<d.count()<< std::endl;
 
     return 0;
 }
