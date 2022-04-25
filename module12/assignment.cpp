@@ -21,7 +21,7 @@
 #include <chrono>
 
 using namespace std;
-using namespace std:chrono;
+using namespace std::chrono;
 
 #include "info.hpp"
 
