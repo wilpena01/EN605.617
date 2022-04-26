@@ -210,6 +210,13 @@ int main(int argc, char** argv)
         sizeof(int),
         0,
         &errNum);
+
+    cl_mem arraySize = clCreateBuffer(
+        context,
+        CL_MEM_READ_WRITE,
+        sizeof(int),
+        0,
+        &errNum);
     //cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_READ_WRITE,
      //                              sizeof(int), NUM_BUFFER_ELEMENTS, NULL);
     checkErr(errNum, "clCreateBuffer");
@@ -253,13 +260,13 @@ int main(int argc, char** argv)
 
         cl_kernel kernel = clCreateKernel(
             program,
-            "squaree",
+            "average",
             &errNum);
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
-        errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    (void *)&sum);
-        //errNum = clSetKernelArg(kernel, 2, sizeof(float),    (void *)&sum[0]);
+        errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    (void *)&arraySize);
+        errNum = clSetKernelArg(kernel, 2, sizeof(cl_mem),    (void *)&sum);
 
         checkErr(errNum, "clSetKernelArg(average)");
 
