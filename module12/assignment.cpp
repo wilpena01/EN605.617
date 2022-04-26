@@ -378,6 +378,7 @@ int main(int argc, char** argv)
     auto stop = high_resolution_clock::now(); 
     auto d = duration_cast<microseconds>(stop - start);
 
+    std::cout << "Average = " <<sum<< std::endl;
 
     // Display output in rows
     for (unsigned i = 0; i < numDevices; i++)
