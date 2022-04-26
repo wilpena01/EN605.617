@@ -59,7 +59,7 @@ int main(int argc, char** argv)
     int * inputOutput;
     float Sum=0;
     float* sum = &Sum;
-    float* arraySize = (float*) &NUM_BUFFER_ELEMENTS;
+    float arraySize = (float) &NUM_BUFFER_ELEMENTS;
 
     int platform = DEFAULT_PLATFORM; 
     bool useMap  = DEFAULT_USE_MAP;
@@ -252,7 +252,7 @@ int main(int argc, char** argv)
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
-        errNum = clSetKernelArg(kernel, 1, sizeof(float*),    (void *)&arraySize);
+        errNum = clSetKernelArg(kernel, 1, sizeof(float),    (void *)&arraySize);
         errNum = clSetKernelArg(kernel, 2, sizeof(float*),    (void *)&sum);
 
         checkErr(errNum, "clSetKernelArg(average)");
