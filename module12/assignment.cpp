@@ -277,12 +277,12 @@ int main(int argc, char** argv)
     {
         errNum = clEnqueueReadBuffer(
             queues[numDevices - 1], 
-            Average, 
-            CL_TRUE,
-            CL_MAP_WRITE,
+            sum, 
+            CL_TRUE,    
             0, 
             sizeof(float), 
-            0,
+            Average,
+            0, 
             NULL, 
             NULL);
 
@@ -306,6 +306,7 @@ int main(int argc, char** argv)
         {
             mapPtr[i] = inputOutput[i];
         }
+        *avePtr = Average;
 
         errNum = clEnqueueUnmapMemObject(
             queues[numDevices - 1],
