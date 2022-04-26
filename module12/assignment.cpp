@@ -275,11 +275,18 @@ int main(int argc, char** argv)
 
     if (useMap) 
     {
-        errNum = clEnqueueReadBuffer(queues[numDevices - 1], sum, CL_TRUE,
-                                 0, sizeof(float), (void *)&Average,
-                                 0, NULL, NULL);
+        errNum = clEnqueueReadBuffer(
+            queues[numDevices - 1], 
+            sum, 
+            CL_TRUE,
+            CL_MAP_WRITE,
+            0, 
+            sizeof(float), 
+            (void *)&Average,     
+            NULL, 
+            NULL);
 
-                                 
+
         cl_int * mapPtr = (cl_int*) clEnqueueMapBuffer(
             queues[numDevices - 1],
             main_buffer,
