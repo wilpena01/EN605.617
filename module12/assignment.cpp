@@ -86,7 +86,7 @@ int main(int argc, char** argv)
         }
     }
 
-useMap = true;
+
     // First, select an OpenCL platform to run on.  
     errNum = clGetPlatformIDs(0, NULL, &numPlatforms);
     checkErr( 
@@ -346,6 +346,17 @@ useMap = true;
             0,
             sizeof(int) * NUM_BUFFER_ELEMENTS * numDevices,
             (void*)inputOutput,
+            0,
+            NULL,
+            NULL);
+
+            errNum = clEnqueueWriteBuffer(
+            queues[numDevices - 1],
+            sum,
+            CL_TRUE,
+            0,
+            sizeof(float),
+            (void*)&Average,
             0,
             NULL,
             NULL);
