@@ -29,7 +29,7 @@ using namespace std::chrono;
 #define DEFAULT_USE_MAP false
 
 int NUM_BUFFER_ELEMENTS = 16;
-#define NUM_SUBBUFFER_ELEMENTS 16
+#define NUM_SUBBUFFER_ELEMENTS 2
 
 // Function to check and handle OpenCL errors
 inline void 
@@ -246,13 +246,13 @@ int main(int argc, char** argv)
 
         cl_kernel kernel = clCreateKernel(
             program,
-            "average",
+            "square",
             &errNum);
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
-        errNum = clSetKernelArg(kernel, 1, sizeof(float),    (void *)&arraySize[0]);
-        errNum = clSetKernelArg(kernel, 2, sizeof(float),    (void *)&sum[0]);
+        //errNum = clSetKernelArg(kernel, 1, sizeof(float),    (void *)&arraySize[0]);
+        //errNum = clSetKernelArg(kernel, 2, sizeof(float),    (void *)&sum[0]);
 
         checkErr(errNum, "clSetKernelArg(average)");
 
