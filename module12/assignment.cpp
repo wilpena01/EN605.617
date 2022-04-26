@@ -29,7 +29,7 @@ using namespace std::chrono;
 #define DEFAULT_USE_MAP false
 
 int NUM_BUFFER_ELEMENTS = 16;
-#define NUM_SUBBUFFER_ELEMENTS 2
+#define NUM_SUBBUFFER_ELEMENTS 16
 
 // Function to check and handle OpenCL errors
 inline void 
