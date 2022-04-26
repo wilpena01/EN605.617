@@ -281,7 +281,7 @@ int main(int argc, char** argv)
             CL_TRUE,    
             0, 
             sizeof(float), 
-            (void *)&Average,
+            &Average,
             0, 
             NULL, 
             NULL);
