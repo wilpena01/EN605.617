@@ -254,7 +254,7 @@ int main(int argc, char** argv)
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
-        errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    (void *)&sum[0]);
+        errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    (void *)&sum);
         //errNum = clSetKernelArg(kernel, 2, sizeof(float),    (void *)&sum[0]);
 
         checkErr(errNum, "clSetKernelArg(average)");
