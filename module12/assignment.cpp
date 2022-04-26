@@ -246,7 +246,7 @@ int main(int argc, char** argv)
 
         cl_kernel kernel = clCreateKernel(
             program,
-            "square",
+            "squaree",
             &errNum);
         checkErr(errNum, "clCreateKernel(average)");
 
