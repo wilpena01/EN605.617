@@ -329,7 +329,7 @@ int main(int argc, char** argv)
         errNum = clEnqueueUnmapMemObject(
             queues[numDevices - 1],
             sum,
-            Average,
+            &Average,
             0,
             NULL,
             NULL);
