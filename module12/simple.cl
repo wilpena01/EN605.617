@@ -18,6 +18,13 @@ __kernel void square(__global int * buffer)
 	buffer[id] = buffer[id] * buffer[id];
 }
 
+__kernel void square(__global int * buffer, __global float *totalSize)
+{
+	size_t id = get_global_id(0);
+	buffer[id] = buffer[id] * buffer[id]/totalSize[0];
+}
+
+
 __kernel void average(__global float *buffer, __global float *totalSize, __global float *sum)
 {
 	size_t id = get_global_id(0);
