@@ -306,7 +306,6 @@ int main(int argc, char** argv)
         {
             mapPtr[i] = inputOutput[i];
         }
-        *avePtr = Average;
 
         errNum = clEnqueueUnmapMemObject(
             queues[numDevices - 1],
