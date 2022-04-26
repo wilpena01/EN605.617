@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     std::vector<cl_command_queue> queues;
     std::vector<cl_mem> buffers;
     int * inputOutput;
-    float sum[1]; sum[0] = 0;
+    float sum[]={0};
     float arraySize[1];  arraySize[0]= (float)NUM_BUFFER_ELEMENTS;
 
     int platform = DEFAULT_PLATFORM; 
@@ -251,7 +251,7 @@ int main(int argc, char** argv)
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
-        errNum = clSetKernelArg(kernel, 1, sizeof(float),    &arraySize[0]);
+        errNum = clSetKernelArg(kernel, 1, sizeof(float),    &sum[0]);
         //errNum = clSetKernelArg(kernel, 2, sizeof(float),    (void *)&sum[0]);
 
         checkErr(errNum, "clSetKernelArg(average)");
