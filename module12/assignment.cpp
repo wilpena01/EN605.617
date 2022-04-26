@@ -275,6 +275,18 @@ int main(int argc, char** argv)
 
     if (useMap) 
     {
+        
+        errNum = clEnqueueReadBuffer(
+            queues[numDevices - 1], 
+            arraySize, 
+            CL_TRUE,    
+            0, 
+            sizeof(float), 
+            (float*)&NUM_BUFFER_ELEMENTS,
+            0, 
+            NULL, 
+            NULL);
+
         errNum = clEnqueueReadBuffer(
             queues[numDevices - 1], 
             sum, 
@@ -286,16 +298,6 @@ int main(int argc, char** argv)
             NULL, 
             NULL);
 
-        errNum = clEnqueueReadBuffer(
-            queues[numDevices - 1], 
-            arraySize, 
-            CL_TRUE,    
-            0, 
-            sizeof(int), 
-            (float*)&NUM_BUFFER_ELEMENTS,
-            0, 
-            NULL, 
-            NULL);
 
 
         cl_int * mapPtr = (cl_int*) clEnqueueMapBuffer(
@@ -328,18 +330,20 @@ int main(int argc, char** argv)
         
         errNum = clEnqueueUnmapMemObject(
             queues[numDevices - 1],
-            sum,
-            &Average,
-            0,
-            NULL,
-            NULL);
-        errNum = clEnqueueUnmapMemObject(
-            queues[numDevices - 1],
             arraySize,
             (float*)&NUM_BUFFER_ELEMENTS,
             0,
             NULL,
             NULL);
+            
+        errNum = clEnqueueUnmapMemObject(
+            queues[numDevices - 1],
+            sum,
+            &Average,
+            0,
+            NULL,
+            NULL);
+
 
         checkErr(errNum, "clEnqueueUnmapMemObject(..)");
     }
@@ -357,6 +361,17 @@ int main(int argc, char** argv)
             NULL,
             NULL);
 
+         errNum = clEnqueueWriteBuffer(
+            queues[numDevices - 1],
+            arraySize,
+            CL_TRUE,
+            0,
+            sizeof(float),
+            (float*)&NUM_BUFFER_ELEMENTS,
+            0,
+            NULL,
+            NULL);
+            
         errNum = clEnqueueWriteBuffer(
             queues[numDevices - 1],
             sum,
@@ -368,16 +383,7 @@ int main(int argc, char** argv)
             NULL,
             NULL);
 
-        errNum = clEnqueueWriteBuffer(
-            queues[numDevices - 1],
-            arraySize,
-            CL_TRUE,
-            0,
-            sizeof(float),
-            (float*)&NUM_BUFFER_ELEMENTS,
-            0,
-            NULL,
-            NULL);
+
     }
 
     std::vector<cl_event> events;
@@ -452,25 +458,27 @@ int main(int argc, char** argv)
 
             clEnqueueReadBuffer(
             queues[numDevices - 1],
-            sum,
-            CL_TRUE,
-            0,
-            sizeof(float),
-            (float*)&Average,
-            0,
-            NULL,
-            NULL);
-
-            clEnqueueReadBuffer(
-            queues[numDevices - 1],
             arraySize,
             CL_TRUE,
             0,
             sizeof(float),
-            (float*)&NUM_BUFFER_ELEMENTS,
+            (void*)&NUM_BUFFER_ELEMENTS,
             0,
             NULL,
             NULL);
+            
+            clEnqueueReadBuffer(
+            queues[numDevices - 1],
+            sum,
+            CL_TRUE,
+            0,
+            sizeof(float),
+            (void*)&Average,
+            0,
+            NULL,
+            NULL);
+
+            
     }
 
     auto stop = high_resolution_clock::now(); 
