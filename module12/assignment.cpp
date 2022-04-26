@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     std::vector<cl_command_queue> queues;
     std::vector<cl_mem> buffers;
     int * inputOutput;
-
+    float Average;
     int platform = DEFAULT_PLATFORM; 
     bool useMap  = DEFAULT_USE_MAP;
 
@@ -286,6 +286,10 @@ int main(int argc, char** argv)
             NULL,
             NULL,
             &errNum);
+
+             errNum = clEnqueueReadBuffer(queues[numDevices - 1], sum, CL_TRUE,
+                                 0, ARRAY_SIZE * sizeof(float), Average,
+                                 0, NULL, NULL);
         checkErr(errNum, "clEnqueueMapBuffer(..)");
 
         for (unsigned int i = 0; i < NUM_BUFFER_ELEMENTS * numDevices; i++)
@@ -402,7 +406,7 @@ int main(int argc, char** argv)
 
         std::cout << std::endl;
     }
-    std::cout << "Average = " <<sum<< std::endl;
+    std::cout << "Average = " <<Average<< std::endl;
     std::cout << "Elapse Time = " <<d.count()<< std::endl;
 
     return 0;
