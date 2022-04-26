@@ -204,9 +204,9 @@ int main(int argc, char** argv)
         NULL,
         &errNum);
 
-    cl_mem sum[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+    cl_mem sum[0] = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_READ_WRITE,
                                    sizeof(float), 0.0, NULL);
-    cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+    cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_READ_WRITE,
                                    sizeof(int), NUM_BUFFER_ELEMENTS, NULL);
     checkErr(errNum, "clCreateBuffer");
 
