@@ -431,6 +431,17 @@ int main(int argc, char** argv)
             0,
             NULL,
             NULL);
+
+            clEnqueueReadBuffer(
+            queues[numDevices - 1],
+            sum,
+            CL_TRUE,
+            0,
+            sizeof(float),
+            (void*)&Average,
+            0,
+            NULL,
+            NULL);
     }
 
     auto stop = high_resolution_clock::now(); 
