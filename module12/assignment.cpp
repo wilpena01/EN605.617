@@ -215,7 +215,7 @@ int main(int argc, char** argv)
         context,
         CL_MEM_READ_WRITE,
         sizeof(int),
-        16,
+        0,
         &errNum);
     //cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_READ_WRITE,
      //                              sizeof(int), NUM_BUFFER_ELEMENTS, NULL);
@@ -282,6 +282,17 @@ int main(int argc, char** argv)
             0, 
             sizeof(float), 
             &Average,
+            0, 
+            NULL, 
+            NULL);
+
+        errNum = clEnqueueReadBuffer(
+            queues[numDevices - 1], 
+            arraySize, 
+            CL_TRUE,    
+            0, 
+            sizeof(int), 
+            &NUM_BUFFER_ELEMENTS,
             0, 
             NULL, 
             NULL);
