@@ -277,12 +277,12 @@ int main(int argc, char** argv)
     {
         errNum = clEnqueueReadBuffer(
             queues[numDevices - 1], 
-            sum, 
+            Average, 
             CL_TRUE,
             CL_MAP_WRITE,
             0, 
             sizeof(float), 
-            (void *)&Average,     
+            0,
             NULL, 
             NULL);
 
