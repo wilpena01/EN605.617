@@ -206,8 +206,8 @@ int main(int argc, char** argv)
 
     cl_mem sum[0] = clCreateBuffer(context, CL_MEM_READ_WRITE | CL_MEM_READ_WRITE,
                                    sizeof(float), 0.0, NULL);
-    cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_READ_WRITE,
-                                   sizeof(int), NUM_BUFFER_ELEMENTS, NULL);
+    //cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_READ_WRITE,
+     //                              sizeof(int), NUM_BUFFER_ELEMENTS, NULL);
     checkErr(errNum, "clCreateBuffer");
 
     // now for all devices other than the first create a sub-buffer
