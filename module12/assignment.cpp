@@ -350,7 +350,7 @@ int main(int argc, char** argv)
             NULL,
             NULL);
 
-            errNum = clEnqueueWriteBuffer(
+        errNum = clEnqueueWriteBuffer(
             queues[numDevices - 1],
             sum,
             CL_TRUE,
@@ -361,7 +361,7 @@ int main(int argc, char** argv)
             NULL,
             NULL);
 
-            errNum = clEnqueueWriteBuffer(
+        errNum = clEnqueueWriteBuffer(
             queues[numDevices - 1],
             arraySize,
             CL_TRUE,
