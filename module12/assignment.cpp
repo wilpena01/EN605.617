@@ -360,6 +360,17 @@ int main(int argc, char** argv)
             0,
             NULL,
             NULL);
+
+            errNum = clEnqueueWriteBuffer(
+            queues[numDevices - 1],
+            arraySize,
+            CL_TRUE,
+            0,
+            sizeof(int),
+            (void*)&NUM_BUFFER_ELEMENTS,
+            0,
+            NULL,
+            NULL);
     }
 
     std::vector<cl_event> events;
