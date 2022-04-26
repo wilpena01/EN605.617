@@ -272,8 +272,6 @@ int main(int argc, char** argv)
 
         kernels.push_back(kernel);
     }
-        //std::cout << "Average = " <<sum[0]<< std::endl;
-
 
     if (useMap) 
     {
@@ -404,7 +402,7 @@ int main(int argc, char** argv)
 
         std::cout << std::endl;
     }
-    std::cout << "Average = " <<sum<< std::endl;
+    std::cout << "Average = " <<sum[0]<< std::endl;
     std::cout << "Elapse Time = " <<d.count()<< std::endl;
 
     return 0;
