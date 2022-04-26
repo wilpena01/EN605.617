@@ -57,8 +57,6 @@ int main(int argc, char** argv)
     std::vector<cl_command_queue> queues;
     std::vector<cl_mem> buffers;
     int * inputOutput;
-    float sum[]={0};
-    float arraySize[1];  arraySize[0]= (float)NUM_BUFFER_ELEMENTS;
 
     int platform = DEFAULT_PLATFORM; 
     bool useMap  = DEFAULT_USE_MAP;
@@ -205,6 +203,11 @@ int main(int argc, char** argv)
         sizeof(int) * NUM_BUFFER_ELEMENTS * numDevices,
         NULL,
         &errNum);
+
+    cl_mem sum[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+                                   sizeof(int) * ARRAY_SIZE, 0, NULL);
+    cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
+                                   sizeof(int) * ARRAY_SIZE, NUM_BUFFER_ELEMENTS, NULL);
     checkErr(errNum, "clCreateBuffer");
 
     // now for all devices other than the first create a sub-buffer
@@ -251,7 +254,7 @@ int main(int argc, char** argv)
         checkErr(errNum, "clCreateKernel(average)");
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
-        errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    sum);
+        errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    &sum);
         //errNum = clSetKernelArg(kernel, 2, sizeof(float),    (void *)&sum[0]);
 
         checkErr(errNum, "clSetKernelArg(average)");
