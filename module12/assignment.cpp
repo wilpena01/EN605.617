@@ -259,7 +259,7 @@ int main(int argc, char** argv)
 
         kernels.push_back(kernel);
     }
-        std::cout << "Average = " <<sum<< std::endl;
+        std::cout << "Average = " <<*sum<< std::endl;
 
 
     if (useMap) 
