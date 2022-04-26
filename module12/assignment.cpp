@@ -333,6 +333,13 @@ int main(int argc, char** argv)
             0,
             NULL,
             NULL);
+        errNum = clEnqueueUnmapMemObject(
+            queues[numDevices - 1],
+            arraySize,
+            &NUM_BUFFER_ELEMENTS,
+            0,
+            NULL,
+            NULL);
 
         checkErr(errNum, "clEnqueueUnmapMemObject(..)");
     }
