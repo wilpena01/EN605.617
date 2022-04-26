@@ -58,7 +58,7 @@ int main(int argc, char** argv)
     std::vector<cl_mem> buffers;
     int * inputOutput;
     float Sum=0;
-    float sum = 0;
+    float sum = &Sum;
     float arraySize = (float) NUM_BUFFER_ELEMENTS;
 
     int platform = DEFAULT_PLATFORM; 
