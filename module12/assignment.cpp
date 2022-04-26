@@ -283,7 +283,7 @@ int main(int argc, char** argv)
             CL_TRUE,    
             0, 
             sizeof(float), 
-            (float*)&NUM_BUFFER_ELEMENTS,
+            &total,
             0, 
             NULL, 
             NULL);
@@ -386,7 +386,6 @@ int main(int argc, char** argv)
 
 
     }
-cout<<"total = "<<total<<endl;
     std::vector<cl_event> events;
     // call kernel for each device
     for (unsigned int i = 0; i < queues.size(); i++)
