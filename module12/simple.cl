@@ -25,7 +25,7 @@ __kernel void squaree(__global int * buffer, __global const float *totalSize)
 }
 
 
-__kernel void average(__global int *buffer, __global int *totalSize, __global float *sum)
+__kernel void average(__global int *buffer, __global float *totalSize, __global float *sum)
 {
 	size_t id = get_global_id(0);
 	sum[0] += buffer[id] / (totalSize[0]);
