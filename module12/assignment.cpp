@@ -325,6 +325,15 @@ int main(int argc, char** argv)
             0,
             NULL,
             NULL);
+        
+        errNum = clEnqueueUnmapMemObject(
+            queues[numDevices - 1],
+            sum,
+            Average,
+            0,
+            NULL,
+            NULL);
+
         checkErr(errNum, "clEnqueueUnmapMemObject(..)");
     }
     else 
