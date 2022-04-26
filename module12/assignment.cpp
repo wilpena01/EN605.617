@@ -367,7 +367,7 @@ int main(int argc, char** argv)
             CL_TRUE,
             0,
             sizeof(float),
-            (float*)&NUM_BUFFER_ELEMENTS,
+            (void*)&NUM_BUFFER_ELEMENTS,
             0,
             NULL,
             NULL);
@@ -378,7 +378,7 @@ int main(int argc, char** argv)
             CL_TRUE,
             0,
             sizeof(float),
-            (float*)&Average,
+            (void*)&Average,
             0,
             NULL,
             NULL);
