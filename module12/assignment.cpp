@@ -463,7 +463,7 @@ cout<<"total = "<<total<<endl;
             CL_TRUE,
             0,
             sizeof(float),
-            (void*)&NUM_BUFFER_ELEMENTS,
+            (void*)&total,
             0,
             NULL,
             NULL);
