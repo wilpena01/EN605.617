@@ -267,7 +267,7 @@ int main(int argc, char** argv)
 
         errNum = clSetKernelArg(kernel, 0, sizeof(cl_mem),    (void *)&buffers[i]); 
         errNum = clSetKernelArg(kernel, 1, sizeof(cl_mem),    (void *)&arraySize);
-        errNum = clSetKernelArg(kernel, 2, sizeof(cl_mem),    (void *)&sum);
+        errNum = clSetKernelArg(kernel, 2, sizeof(cl_mem),    &sum);
 
         checkErr(errNum, "clSetKernelArg(average)");
 
