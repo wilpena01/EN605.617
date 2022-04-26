@@ -459,7 +459,7 @@ int main(int argc, char** argv)
             arraySize,
             CL_TRUE,
             0,
-            sizeof(float),
+            sizeof(int),
             (void*)&NUM_BUFFER_ELEMENTS,
             0,
             NULL,
