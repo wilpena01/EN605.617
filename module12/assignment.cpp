@@ -86,7 +86,7 @@ int main(int argc, char** argv)
         }
     }
 
-
+useMap = true;
     // First, select an OpenCL platform to run on.  
     errNum = clGetPlatformIDs(0, NULL, &numPlatforms);
     checkErr( 
