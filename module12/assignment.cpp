@@ -491,7 +491,7 @@ cout<<"total = "<<total<<endl;
     {
         for (unsigned elems = i * NUM_BUFFER_ELEMENTS; elems < ((i+1) * NUM_BUFFER_ELEMENTS); elems++)
         {
-            //std::cout << " " << inputOutput[elems];
+            std::cout << " " << inputOutput[elems];
         }
 
         std::cout << std::endl;
