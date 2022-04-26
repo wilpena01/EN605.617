@@ -288,7 +288,7 @@ int main(int argc, char** argv)
             &errNum);
 
              errNum = clEnqueueReadBuffer(queues[numDevices - 1], sum, CL_TRUE,
-                                 0, ARRAY_SIZE * sizeof(float), Average,
+                                 0, sizeof(float), Average,
                                  0, NULL, NULL);
         checkErr(errNum, "clEnqueueMapBuffer(..)");
 
