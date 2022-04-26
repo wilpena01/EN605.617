@@ -214,7 +214,7 @@ int main(int argc, char** argv)
     cl_mem arraySize = clCreateBuffer(
         context,
         CL_MEM_READ_WRITE,
-        sizeof(int),
+        sizeof(float),
         0,
         &errNum);
     //cl_mem arraySize[0] = clCreateBuffer(context, CL_MEM_READ_ONLY | CL_MEM_READ_WRITE,
