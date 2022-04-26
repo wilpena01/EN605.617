@@ -386,7 +386,7 @@ int main(int argc, char** argv)
 
 
     }
-
+cout<<"total = "<<total<<endl;
     std::vector<cl_event> events;
     // call kernel for each device
     for (unsigned int i = 0; i < queues.size(); i++)
