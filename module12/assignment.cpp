@@ -367,7 +367,7 @@ int main(int argc, char** argv)
             CL_TRUE,
             0,
             sizeof(float),
-            &NUM_BUFFER_ELEMENTS,
+            16,
             0,
             NULL,
             NULL);
