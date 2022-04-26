@@ -58,6 +58,7 @@ int main(int argc, char** argv)
     std::vector<cl_mem> buffers;
     int * inputOutput;
     float Average;
+    float total = (float)NUM_BUFFER_ELEMENTS;
     int platform = DEFAULT_PLATFORM; 
     bool useMap  = DEFAULT_USE_MAP;
 
@@ -331,7 +332,7 @@ int main(int argc, char** argv)
         errNum = clEnqueueUnmapMemObject(
             queues[numDevices - 1],
             arraySize,
-            (float*)&NUM_BUFFER_ELEMENTS,
+            &total,
             0,
             NULL,
             NULL);
@@ -367,7 +368,7 @@ int main(int argc, char** argv)
             CL_TRUE,
             0,
             sizeof(float),
-            16,
+            (float*)&NUM_BUFFER_ELEMENTS,
             0,
             NULL,
             NULL);
