@@ -20,7 +20,7 @@ using namespace std;
 __device__ int shared_hist[256];
 __shared__ int shared_node;
 __shared__ float shared_prob;
-__device__ int shared_temp;
+__shared__ int shared_temp;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -250,7 +250,7 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
       atomicMin(&shared_temp,ptemp);
    __syncthreads();
    shared_prob = shared_temp/100.0; 
-   Result[idx] = ptemp;
+   Result[idx] = shared_hist[idx] ;
    Block[idx]  = blockIdx.x+10;
 	Thread[idx] = threadIdx.x;
 
