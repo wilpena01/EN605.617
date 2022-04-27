@@ -248,8 +248,8 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
    if (ptemp > 0)
       atomicMin(&shared_temp,ptemp);
    __syncthreads();
-   shared_prob = shared_temp/100.0; 
-   Result[idx] = shared_temp;
+   shared_prob = shared_temp/100000.0; 
+   Result[idx] = shared_prob;
    Block[idx]  = blockIdx.x+10;
 	Thread[idx] = threadIdx.x;
 
