@@ -215,7 +215,6 @@ void ocurrence_cu(int* image)
 	const unsigned int thread_idx = ((gridDim.x * blockDim.x) * idy) + idx;
 
    atomicAdd((shared_hist+image[thread_idx]),1);
-
    __syncthreads();
 }
 
@@ -231,7 +230,7 @@ void nonZero_ocurrence_cu(int *Result, int *Block, int *Thread)
       atomicAdd(&shared_node,1);
     __syncthreads();
 
-   Result[idx] = shared_hist[idx] ;
+   Result[idx] = shared_node;
    Block[idx]  = blockIdx.x+5;
 	Thread[idx] = threadIdx.x;
 
