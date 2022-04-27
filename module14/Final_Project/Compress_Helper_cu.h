@@ -249,7 +249,7 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
       atomicMin(&shared_temp,ptemp);
    __syncthreads();
    shared_prob = shared_temp/100.0; 
-   Result[idx] = *width;
+   Result[idx] = 1000000 * shared_hist[idx] / (*height * *width);
    Block[idx]  = blockIdx.x+10;
 	Thread[idx] = threadIdx.x;
 
