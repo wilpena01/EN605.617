@@ -244,13 +244,14 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
     // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
+   __shared__ float p = 1.0;
    int ptemp = 100 * shared_hist[idx] / (*height * *width);
 
    if (ptemp > 0)
-      atomicMin(&shared_temp,ptemp);
+      atomicMin(&p,ptemp);
    __syncthreads();
-   shared_prob = shared_temp/100.0; 
-   Result[idx] = static_cast<int>(shared_prob);
+   //shared_prob = p/100.0; 
+   Result[idx] = static_cast<int>(p);
    Block[idx]  = blockIdx.x+10;
 	Thread[idx] = threadIdx.x;
 
