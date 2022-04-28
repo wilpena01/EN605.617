@@ -60,8 +60,7 @@ void compressionDriver_CL()
    int MaxSize;
    int* image;
    int* hist;
-   int nodes = 0;
-   int maxcodelen, totalnodes;
+   int maxcodelen, *totalnodes *nodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
@@ -106,6 +105,8 @@ void compressionDriver_CL()
    cpu_Thread = (int *)malloc(HistSize_Byte);
    int* image2 = (int *)malloc(IMAGE_SIZE_IN_BYTES);
    hist = (int *)malloc(HistSize_Byte);
+   totalnodes = (int *)malloc(size(int));
+   nodes = (int *)malloc(size(int));
 
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
@@ -197,8 +198,8 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-              cout<<" node = "<<nodes<<endl;
-              cout<<" totalnodes = "<<totalnodes<<endl;
+              cout<<" node = "<<*nodes<<endl;
+              cout<<" totalnodes = "<<*totalnodes<<endl;
 
    pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
