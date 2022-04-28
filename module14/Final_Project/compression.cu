@@ -190,8 +190,8 @@ void compressionDriver_CL()
 
    //maxcodelen = MaxLength_cu(p) - 3;
    totalNode<<<1,1>>>(g_totalnodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
-   cudaMemcpy(&totalnodes, g_totalnodes, sizeof(int), cudaMemcpyDeviceToHost);
-   cudaMemcpy(&nodes,      g_nodes,      sizeof(int), cudaMemcpyDeviceToHost);
+   cudaMemcpy(totalnodes, g_totalnodes, sizeof(int), cudaMemcpyDeviceToHost);
+   cudaMemcpy(nodes,      g_nodes,      sizeof(int), cudaMemcpyDeviceToHost);
 
 
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
