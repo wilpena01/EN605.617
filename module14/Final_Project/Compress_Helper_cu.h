@@ -338,9 +338,9 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
 
     // Sorting w.r.t probability
     // of occurrence
-    for (i = 0; i < nodes; i++)
+    for (i = 0; i < *nodes; i++)
     {
-        for (j = i + 1; j < nodes; j++)
+        for (j = i + 1; j < *nodes; j++)
         {
             if (huffcodes[i].Freq < huffcodes[j].Freq)
             {
