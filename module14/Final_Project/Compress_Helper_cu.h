@@ -322,7 +322,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       j++;
    }
 
-   Result[idx] = totpix;
+   Result[idx] = static_cast<int>(tempprob*1000000);
    Block[idx]  = blockIdx.x+12;
 	Thread[idx] = threadIdx.x;
 
