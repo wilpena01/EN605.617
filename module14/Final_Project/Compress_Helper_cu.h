@@ -340,7 +340,7 @@ void sortHist_cu(huffcode* huffcodes, int nodes)
     {
         for (j = i + 1; j < nodes; j++)
         {
-            if (huffcodes[i].Freq < huffcodes[j].Freq)
+            if (huffcodes[i]->Freq < huffcodes[j]->Freq)
             {
                 temphuff = huffcodes[i];
                 huffcodes[i] = huffcodes[j];
