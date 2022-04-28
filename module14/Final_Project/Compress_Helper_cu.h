@@ -350,10 +350,12 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
             }
         }
     }
-
-   Result[idx] = 4;
-   Block[idx]  = blockIdx.x+12;
-	Thread[idx] = threadIdx.x;
+   for(i=0;i<*nodes; i++)
+   {
+      Result[idx] = static_cast<int>(huffcodes[i].Freq);
+      Block[idx]  = blockIdx.x+12;
+      Thread[idx] = threadIdx.x;
+   }
 }
 
 void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
