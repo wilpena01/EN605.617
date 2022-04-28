@@ -228,6 +228,13 @@ void compressionDriver_CL()
 
 */
 
+   sortHist_cu<<<1,1>>>(g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
+
+
+               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
+              outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
 
@@ -235,7 +242,8 @@ void compressionDriver_CL()
 
 
 
-   sortHist_cu(huffcodes, *nodes);
+
+
    BuildTree_cu(pix_freq, huffcodes, *nodes);
    AssignCode_cu(pix_freq, *nodes, *totalnodes);
    //PrintHuffmanCode(pix_freq, *nodes);

@@ -328,7 +328,8 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
 }
 
-void sortHist_cu(huffcode &huffcodes, int nodes)
+__gloabl__
+void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *Thread)
 {
      // Sorting the histogram
     int i, j;
@@ -348,6 +349,10 @@ void sortHist_cu(huffcode &huffcodes, int nodes)
             }
         }
     }
+
+   Result[idx] = 4;
+   Block[idx]  = blockIdx.x+12;
+	Thread[idx] = threadIdx.x;
 }
 
 void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
