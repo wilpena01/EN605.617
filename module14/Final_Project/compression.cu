@@ -244,10 +244,10 @@ void compressionDriver_CL()
 
 
 
-   BuildTree_cu(pix_freq, huffcodes, *nodes);
-   AssignCode_cu(pix_freq, *nodes, *totalnodes);
+   //BuildTree_cu(pix_freq, huffcodes, *nodes);
+   //AssignCode_cu(pix_freq, *nodes, *totalnodes);
    //PrintHuffmanCode(pix_freq, *nodes);
-   calBitLength(pix_freq, *nodes);
+   //calBitLength(pix_freq, *nodes);
    delete[] image; image = NULL;
 
    cudaFree(g_image);
