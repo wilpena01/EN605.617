@@ -328,9 +328,10 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
 }
 
-__gloabl__
+__global__
 void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *Thread)
 {
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
      // Sorting the histogram
     int i, j;
     huffcode temphuff;
