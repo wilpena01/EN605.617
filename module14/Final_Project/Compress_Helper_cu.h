@@ -277,7 +277,7 @@ void totalNode(int *Result, int *Block, int *Thread)
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    shared_totalnode = 2 * shared_node - 1;
 
-   Result[idx] = shared_totalnode;
+   Result[idx] = shared_node;
    Block[idx]  = blockIdx.x+10;
 	Thread[idx] = threadIdx.x;
 }
