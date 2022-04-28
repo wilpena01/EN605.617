@@ -39,13 +39,13 @@ struct huffcode
 {
    int intensity, arrloc;
    float Freq;
-
+/*
    void operator=(huffcode v)
    {
       intensity = v.intensity;
       arrloc = v.arrloc;
       Freq = v.Freq;
-   }
+   }*/
 };
 
 // function to find fibonacci number
