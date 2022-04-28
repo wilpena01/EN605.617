@@ -230,8 +230,8 @@ void nonZero_ocurrence_cu(int *node, int *Result, int *Block, int *Thread)
       atomicAdd(&shared_node,1);
     __syncthreads();
 
-   node = shared_node;
-   Result[idx] = node;
+   *node = shared_node;
+   Result[idx] = *node;
    Block[idx]  = blockIdx.x+5;
 	Thread[idx] = threadIdx.x;
 
@@ -272,13 +272,13 @@ int MaxLength_cu(float p)
 
 //done
 __global__
-void totalNode(int *totalnode, int node, int *Result, int *Block, int *Thread)
+void totalNode(int *totalnode, int *node, int *Result, int *Block, int *Thread)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    *node = shared_node;
    *totalnode = 2 * *node - 1;
 
-   Result[idx] = totalnode;
+   Result[idx] = *totalnode;
    Block[idx]  = blockIdx.x+10;
 	Thread[idx] = threadIdx.x;
 }

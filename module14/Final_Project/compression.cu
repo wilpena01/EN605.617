@@ -60,7 +60,7 @@ void compressionDriver_CL()
    int MaxSize;
    int* image;
    int* hist;
-   int maxcodelen, *totalnodes *nodes;
+   int maxcodelen, *totalnodes, *nodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
@@ -105,8 +105,8 @@ void compressionDriver_CL()
    cpu_Thread = (int *)malloc(HistSize_Byte);
    int* image2 = (int *)malloc(IMAGE_SIZE_IN_BYTES);
    hist = (int *)malloc(HistSize_Byte);
-   totalnodes = (int *)malloc(size(int));
-   nodes = (int *)malloc(size(int));
+   totalnodes = (int *)malloc(sizeof(int));
+   nodes = (int *)malloc(sizeof(int));
 
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
@@ -176,7 +176,7 @@ void compressionDriver_CL()
    //for(int i=0; i<256; i++)
    //   cout<<"hist["<<i<<"] ="<<hist[i]<<"\n";
 
-   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(gpu_Result, gpu_Block, gpu_Thread);
+   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_nodes,gpu_Result, gpu_Block, gpu_Thread);
    cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
