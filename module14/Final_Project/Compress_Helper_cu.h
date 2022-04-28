@@ -349,14 +349,14 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
                 huffcodes[j] = temphuff;
             }
         }
-    }
-    
-   for(i=*nodes-1;i>=*nodes; i--)
-   {
       Result[i] = static_cast<int>(huffcodes[i].Freq*1000000);
       Block[i]  = blockIdx.x+15;
       Thread[i] = threadIdx.x;
-   }
+    }
+    
+
+      
+   
 }
 
 void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
