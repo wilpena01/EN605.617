@@ -202,7 +202,7 @@ void compressionDriver_CL()
    cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * totalnodes);
    cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * nodes);
 
-   InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_hist, g_height, 
+   InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_height, 
                                                         g_width, gpu_Result, gpu_Block, gpu_Thread);
 
 
