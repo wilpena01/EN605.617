@@ -201,7 +201,6 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
    shared_temp = 1;
    Block[idx]  = blockIdx.x;
 	Thread[idx] = threadIdx.x;
-  // __syncthreads();
 }
 
 
@@ -285,7 +284,7 @@ void totalNode(int *Result, int *Block, int *Thread)
 //done
 __global__
 void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, 
-                int* hist, int *height, int *width)
+                  int *height, int *width, int *Result, int *Block, int *Thread)
 {
      // Initializing
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
@@ -294,7 +293,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
    int totpix = *height * *width;
    float tempprob;
 
-   if (hist[idx] != 0)
+   if (shared_hist[idx] != 0)
    {
 
       // pixel intensity value
@@ -306,7 +305,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       huffcodes[j].arrloc = j;
 
       // probability of occurrence
-      tempprob = (float)hist[idx] / (float)totpix;
+      tempprob = shared_hist[idx] / (float)totpix;
       pix_freq[j].Freq = tempprob;
       huffcodes[j].Freq = tempprob;
 
@@ -320,7 +319,10 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       pix_freq[j].code[0] = '\0';
       j++;
    }
-   
+
+   Result[idx] = totpix;
+   Block[idx]  = blockIdx.x+10;
+	Thread[idx] = threadIdx.x;
 
 }
 

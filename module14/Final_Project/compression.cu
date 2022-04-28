@@ -194,6 +194,21 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
+              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+
+   pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
+   huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
+
+   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * totalnodes);
+   cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * nodes);
+
+   InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_hist, g_height, 
+                                                        g_width, gpu_Result, gpu_Block, gpu_Thread);
+
+
+               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
@@ -209,14 +224,6 @@ void compressionDriver_CL()
 
 
 
-
-   pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
-   huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
-
-   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * totalnodes);
-   cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * nodes);
-
-   InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_hist, g_height, g_width);
 /*
    cudaMemcpy(image,        g_image,      IMAGE_SIZE_IN_BYTES,   cudaMemcpyDeviceToHost);
    cudaMemcpy(&width,       g_width,      sizeof(int),           cudaMemcpyDeviceToHost);
