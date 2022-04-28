@@ -274,6 +274,7 @@ int MaxLength_cu(float p)
 __global__
 void totalNode(int *Result, int *Block, int *Thread)
 {
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    shared_totalnode = 2 * shared_node - 1;
 
    Result[idx] = shared_totalnode;
