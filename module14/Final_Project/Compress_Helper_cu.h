@@ -328,7 +328,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
 }
 
-void sortHist_cu(huffcode* huffcodes, int nodes)
+void sortHist_cu(huffcode &huffcodes, int nodes)
 {
      // Sorting the histogram
     int i, j;
