@@ -18,9 +18,10 @@
 using namespace std;
 
 __device__ int shared_hist[256];
-__shared__ int shared_node;
 __shared__ float shared_prob;
 __device__ int shared_temp;
+__shared__ int shared_node;
+__shared__ int shared_totalnode;
 
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
@@ -271,10 +272,13 @@ int MaxLength_cu(float p)
 
 //done
 __global__
-void totalNode(int* totalnode, int* nodes)
+void totalNode(int *Result, int *Block, int *Thread)
 {
-   *totalnode = 2 * *nodes - 1;
-   __syncthreads();
+   shared_totalnode = 2 * shared_node - 1;
+
+   Result[idx] = shared_totalnode;
+   Block[idx]  = blockIdx.x+10;
+	Thread[idx] = threadIdx.x;
 }
 
 //done

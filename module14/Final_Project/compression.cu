@@ -185,21 +185,30 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-
-
-
-
-
-
-
-
-
-
+              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
    //maxcodelen = MaxLength_cu(p) - 3;
-   totalNode<<<1,1>>>(g_totalnodes,g_nodes);
+   totalNode<<<1,1>>>(gpu_Result, gpu_Block, gpu_Thread);
+
+               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
+               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
+              outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
    pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
