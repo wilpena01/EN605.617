@@ -201,11 +201,11 @@ void compressionDriver_CL()
               cout<<" node = "<<*nodes<<endl;
               cout<<" totalnodes = "<<*totalnodes<<endl;
 
-   pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
-   huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * nodes);
+   pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * *totalnodes);
+   huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * *nodes);
 
-   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * totalnodes);
-   cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * nodes);
+   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * *totalnodes);
+   cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * *nodes);
 
    InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_height, 
                                                         g_width, gpu_Result, gpu_Block, gpu_Thread);
@@ -239,11 +239,11 @@ void compressionDriver_CL()
    cudaMemcpy(&totalnodes,  g_totalnodes, sizeof(int),           cudaMemcpyDeviceToHost);
 
 */
-   sortHist_cu(huffcodes, nodes);
-   BuildTree_cu(pix_freq, huffcodes, nodes);
-   AssignCode_cu(pix_freq, nodes, totalnodes);
-   PrintHuffmanCode(pix_freq, nodes);
-   calBitLength(pix_freq, nodes);
+   sortHist_cu(huffcodes, *nodes);
+   BuildTree_cu(pix_freq, huffcodes, *nodes);
+   AssignCode_cu(pix_freq, *nodes, *totalnodes);
+   PrintHuffmanCode(pix_freq, *nodes);
+   calBitLength(pix_freq, *nodes);
    delete[] image; image = NULL;
 
    cudaFree(g_image);
