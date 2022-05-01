@@ -292,8 +292,10 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    __shared__ int j;
+
    if(idx == 0)
       j = 0;
+
    int totpix = *height * *width;
    float tempprob;
 
@@ -324,11 +326,11 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       pix_freq[j].code[0] = '\0';
       
    }
-   __syncthreads();
+   
    Result[idx] = j;
    Block[idx]  = blockIdx.x+12;
 	Thread[idx] = threadIdx.x;
-
+__syncthreads();
 }
 
 __global__
