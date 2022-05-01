@@ -298,7 +298,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
    int totpix = *height * *width;
    float tempprob;
-   int j;
+   int j=0;
 
    if (shared_hist[idx] != 0)
    {
