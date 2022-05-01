@@ -24,7 +24,7 @@ __device__ int shared_node;
 __device__ int shared_totalnode;
 
 __device__
-void strconcat(char* str, char* parentcode, char add)
+void strconcat_cu(char* str, char* parentcode, char add)
 {
     // function to concatenate the words
    int i = 0;
@@ -455,9 +455,9 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes)
     for (i = *totalnodes - 1; i >= *nodes; i--)
     {
         if (pix_freq[i].left != NULL)
-            strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
+            strconcat_cu(pix_freq[i].left->code, pix_freq[i].code, left);
         if (pix_freq[i].right != NULL)
-            strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
+            strconcat_cu(pix_freq[i].right->code, pix_freq[i].code, right);
     }
 }
 /*
