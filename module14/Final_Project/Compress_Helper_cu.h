@@ -415,14 +415,14 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
             huffcodes[k] = huffcodes[k - 1];
 
         }
+      Result[n] = 4;
+      Block[n]  = blockIdx.x+54;
+      Thread[n] = threadIdx.x;
         n += 1;
         nextnode += 1;
+
+
     }
-
-
-      Result[idx] = 4;
-      Block[idx]  = blockIdx.x+54;
-      Thread[idx] = threadIdx.x;
 
 
 }
