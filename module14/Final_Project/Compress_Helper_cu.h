@@ -424,14 +424,15 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
 
 }
 
-void AssignCode_cu(pixfreq<25> *pix_freq, int nodes, int totalnodes)
+__global__
+void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes)
 {
        // Assigning Code through
     // backtracking
     int i;
     char left = '0';
     char right = '1';
-    for (i = totalnodes - 1; i >= nodes; i--)
+    for (i = *totalnodes - 1; i >= *nodes; i--)
     {
         if (pix_freq[i].left != NULL)
             strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
