@@ -354,7 +354,7 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
             }
         }
       Result[i] = static_cast<int>(huffcodes[i].Freq*1000000);
-      Block[i]  = blockIdx.x+nodes;
+      Block[i]  = blockIdx.x+*nodes;
       Thread[i] = threadIdx.x;
     }
     
