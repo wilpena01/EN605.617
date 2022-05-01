@@ -302,8 +302,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
    if (shared_hist[idx] != 0)
    {
-      atomicAdd(&jj,1);
-      j = jj;
+      j = atomicAdd(&jj,1);
       // pixel intensity value
       huffcodes[j].intensity = idx;
       pix_freq[j].intensity = idx;
