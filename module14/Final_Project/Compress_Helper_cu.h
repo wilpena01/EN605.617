@@ -371,9 +371,7 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
     int sumpix,i;
     int n = 0, k = 0;
     int nextnode = *nodes;
-Result[n] = n;
-      Block[n]  = blockIdx.x+84;
-      Thread[n] = threadIdx.x;
+
     // Since total number of
     // nodes in Huffman Tree
     // is 2*nodes-1
@@ -423,6 +421,7 @@ Result[n] = n;
 
         n += 1;
         nextnode += 1;
+
     }
 
 
