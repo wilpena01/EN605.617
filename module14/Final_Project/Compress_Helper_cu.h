@@ -363,6 +363,9 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
 __global__
 void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *Result, int *Block, int *Thread)
 {
+
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;   
+
     // Building Huffman Tree
     float sumprob;
     int sumpix,i;
@@ -417,9 +420,9 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
     }
 
 
-      Result[i] = 4;
-      Block[i]  = blockIdx.x+54;
-      Thread[i] = threadIdx.x;
+      Result[idx] = 4;
+      Block[idx]  = blockIdx.x+54;
+      Thread[idx] = threadIdx.x;
 
 
 }
