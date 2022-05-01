@@ -293,7 +293,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
    __shared__ int j;
    if(idx == 0)
-      j = -1;
+      j = 0;
    int totpix = *height * *width;
    float tempprob;
 
