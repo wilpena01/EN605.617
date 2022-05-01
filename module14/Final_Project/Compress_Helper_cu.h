@@ -23,6 +23,26 @@ __device__ int shared_temp;
 __device__ int shared_node;
 __device__ int shared_totalnode;
 
+__device__
+void strconcat(char* str, char* parentcode, char add)
+{
+    // function to concatenate the words
+   int i = 0;
+   while (*(parentcode + i) != '\0')
+   {
+      *(str + i) = *(parentcode + i);
+      i++;
+   }
+   if (add != '2')
+   {
+      str[i] = add;
+      str[i + 1] = '\0';
+   }
+   else
+      str[i] = '\0';
+}
+
+
 void LoadImagePGM(int &width, int &height, int** &image_cl)
 {
    int i,j;
