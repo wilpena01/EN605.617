@@ -291,18 +291,19 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
      // Initializing
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   __shared__ int j;
+   __shared__ int jj;
 
-   if(idx == 0)
-      j = 0;
+   if(idx == 24)
+      jj = 0;
 
    int totpix = *height * *width;
    float tempprob;
+   int j;
 
    if (shared_hist[idx] != 0)
    {
-      atomicAdd(&j,1);
-
+      atomicAdd(&jj,1);
+      j = jj;
       // pixel intensity value
       huffcodes[j].intensity = idx;
       pix_freq[j].intensity = idx;
