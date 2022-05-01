@@ -356,14 +356,11 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
       Result[i] = static_cast<int>(huffcodes[i].Freq*1000000);
       Block[i]  = blockIdx.x+i;
       Thread[i] = threadIdx.x;
-    }
-    
-
-      
+    } 
    
 }
 
-void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
+void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes, int *Result, int *Block, int *Thread)
 {
     // Building Huffman Tree
     float sumprob;
@@ -419,7 +416,9 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
     }
 
 
-
+      Result[i] = 4;
+      Block[i]  = blockIdx.x+54;
+      Thread[i] = threadIdx.x;
 
 
 }
