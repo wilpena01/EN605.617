@@ -291,12 +291,13 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
      // Initializing
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   int j=0;
+   __shared__ int j=-1;
    int totpix = *height * *width;
    float tempprob;
 
    if (shared_hist[idx] != 0)
    {
+      atomicAdd(&j,1);
 
       // pixel intensity value
       huffcodes[j].intensity = idx;
@@ -319,10 +320,10 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       // initializing the code
       // word as end of line
       pix_freq[j].code[0] = '\0';
-      j++;
+      __syncthreads();
    }
 
-   Result[idx] = static_cast<int>(tempprob*1000000);
+   Result[idx] = static_cast<int>(pix_freq[j].Freq*1000000);
    Block[idx]  = blockIdx.x+12;
 	Thread[idx] = threadIdx.x;
 
