@@ -295,7 +295,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
    if(idx == 24)
       jj = 0;
-
+   __syncthreads();
    int totpix = *height * *width;
    float tempprob;
    int j=0;
