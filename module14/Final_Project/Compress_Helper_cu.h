@@ -322,13 +322,13 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       // initializing the code
       // word as end of line
       pix_freq[j].code[0] = '\0';
-      __syncthreads();
+      
    }
 
-   Result[idx] = static_cast<int>(pix_freq[j].Freq*1000000);
+   Result[idx] = j;
    Block[idx]  = blockIdx.x+12;
 	Thread[idx] = threadIdx.x;
-
+__syncthreads();
 }
 
 __global__
