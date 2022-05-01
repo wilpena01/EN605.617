@@ -330,7 +330,6 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
    Result[idx] = j;
    Block[idx]  = blockIdx.x+12;
 	Thread[idx] = threadIdx.x;
-__syncthreads();
 }
 
 __global__
