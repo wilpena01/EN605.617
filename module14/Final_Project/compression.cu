@@ -244,8 +244,8 @@ void compressionDriver_CL()
               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
 
-cudaGetLastError();
-
+cuda_error_check("Error ",
+					" returned from literal startup  kernel!");
 
 
 
