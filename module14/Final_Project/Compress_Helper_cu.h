@@ -463,9 +463,9 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Resu
             strconcat_cu(pix_freq[idx].right->code, pix_freq[idx].code, right);
     }
 
-   Result[i] = idx;
-   Block[i]  = blockIdx.x+900;
-   Thread[i] = threadIdx.x;
+   Result[idx] = idx;
+   Block[idx]  = blockIdx.x+900;
+   Thread[idx] = threadIdx.x;
 }
 /*
 void ocurrence(int* hist, int** image, int width, int height)
