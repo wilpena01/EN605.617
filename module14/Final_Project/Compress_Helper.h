@@ -305,6 +305,7 @@ void AssignCode(pixfreq<25> *pix_freq, int nodes, int totalnodes)
             strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
         if (pix_freq[i].right != NULL)
             strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
+        cout<<" i = "<<i<<endl;
     }
 }
 
