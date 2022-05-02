@@ -452,15 +452,15 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes)
 {
        // Assigning Code through
     // backtracking
-    int i;
+    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
     char left = '0';
     char right = '1';
-    for (i = *totalnodes - 1; i >= *nodes; i--)
+    if (idx >= *nodes)
     {
-        if (pix_freq[i].left != NULL)
-            strconcat_cu(pix_freq[i].left->code, pix_freq[i].code, left);
-        if (pix_freq[i].right != NULL)
-            strconcat_cu(pix_freq[i].right->code, pix_freq[i].code, right);
+        if (pix_freq[idx].left != NULL)
+            strconcat_cu(pix_freq[idx].left->code, pix_freq[idx].code, left);
+        if (pix_freq[idx].right != NULL)
+            strconcat_cu(pix_freq[idx].right->code, pix_freq[idx].code, right);
     }
 }
 /*
