@@ -235,6 +235,7 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
               //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+              cout<<" error :  "<<cudaGetLastError()<<endl;
 
    BuildTree_cu<<<1,1>>>(g_pix_freq, g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
 
