@@ -204,7 +204,7 @@ void compressionDriver_CL()
    pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * *totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * *nodes);
 
-   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>*) * *totalnodes);
+   cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>) * *totalnodes);
    cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * *nodes);
 
    InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_height, 
@@ -237,7 +237,7 @@ void compressionDriver_CL()
               //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
               cout<<" error :  "<<cudaGetLastError()<<endl;
 
-   cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>*) * *totalnodes, cudaMemcpyDeviceToHost);
+   cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
    cudaMemcpy(huffcodes,  g_huffcodes, sizeof(struct huffcode) * *nodes, cudaMemcpyDeviceToHost);
 
 /*
