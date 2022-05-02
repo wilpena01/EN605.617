@@ -243,9 +243,7 @@ void compressionDriver_CL()
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
-​cudaError_t err;
-	err = cudaGetLastError ();
-   cout<<" error :  "<<cudaGetErrorString(err)<<endl;
+   cout<<" error :  "<<cudaGetLastError()<<endl;
 
 
 
