@@ -255,6 +255,7 @@ void compressionDriver_CL()
 
 
 int tt = *totalnodes - 1;
+
    AssignCode_cu<<<1,tt>>>(g_pix_freq, g_nodes, g_totalnodes, gpu_Result, gpu_Block, gpu_Thread);
                cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
 
@@ -262,12 +263,13 @@ int tt = *totalnodes - 1;
                cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
                cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
               outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
+              cout<<"total = "<<totalnodes<<endl;
 
    //BuildTree(pix_freq, huffcodes, *nodes);
    //AssignCode(pix_freq, *nodes, *totalnodes);
    cout<<" aqui"<<endl;
 
-   PrintHuffmanCode(pix_freq, *nodes);
+   //PrintHuffmanCode(pix_freq, *nodes);
    calBitLength(pix_freq, *nodes);
    delete[] image; image = NULL;
 
