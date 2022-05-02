@@ -255,7 +255,7 @@ void compressionDriver_CL()
 
 
 
-   AssignCode_cu<<<1,1>>>(g_pix_freq, g_nodes, g_totalnodes);
+   AssignCode_cu<<<1,*totalnodes - 1>>>(g_pix_freq, g_nodes, g_totalnodes);
                cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
 
 
