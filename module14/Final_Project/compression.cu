@@ -63,7 +63,7 @@ void compressionDriver_CL()
    int maxcodelen, *totalnodes, *nodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
-   huffcode* huffcodes;
+   huffcode *huffcodes;
 
    const int hist_num_blocks     = 1;
    const int hist_num_threads    = HistSize;
@@ -237,7 +237,7 @@ void compressionDriver_CL()
               //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
               cout<<" error :  "<<cudaGetLastError()<<endl;
 
-   cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
+   cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>*) * *totalnodes, cudaMemcpyDeviceToHost);
    cudaMemcpy(huffcodes,  g_huffcodes, sizeof(struct huffcode) * *nodes, cudaMemcpyDeviceToHost);
 
 /*
