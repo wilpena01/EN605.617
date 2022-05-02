@@ -260,9 +260,7 @@ void compressionDriver_CL()
 
 */
    BuildTree(pix_freq, huffcodes, *nodes);
-   int ii;
-cin>>ii;
-cout<<ii<<endl;
+   sleep_for(300ms);
    AssignCode(pix_freq, *nodes, *totalnodes);
    cout<<" aqui"<<endl;
 
