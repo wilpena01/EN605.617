@@ -464,7 +464,7 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Resu
     }
 
    Result[idx] = idx;
-   Block[idx]  = blockIdx.x+900;
+   Block[idx]  = blockIdx.x+90;
    Thread[idx] = threadIdx.x;
 }
 /*
