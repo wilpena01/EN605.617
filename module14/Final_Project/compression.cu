@@ -237,6 +237,10 @@ void compressionDriver_CL()
               //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
               cout<<" error :  "<<cudaGetLastError()<<endl;
 
+   cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
+   cudaMemcpy(huffcodes,  g_huffcodes, sizeof(struct huffcode) * *nodes, cudaMemcpyDeviceToHost);
+
+/*
    BuildTree_cu<<<1,1>>>(g_pix_freq, g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
 
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
@@ -254,6 +258,9 @@ void compressionDriver_CL()
    AssignCode_cu<<<1,1>>>(g_pix_freq, g_nodes, g_totalnodes);
                cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
 
+*/
+   BuildTree(pix_freq, huffcodes, *nodes);
+   AssignCode(pix_freq, *nodes, *totalnodes);
 
    //PrintHuffmanCode(pix_freq, *nodes);
    //calBitLength(pix_freq, *nodes);
