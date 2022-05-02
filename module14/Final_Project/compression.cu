@@ -261,8 +261,8 @@ void compressionDriver_CL()
 */
    BuildTree(pix_freq, huffcodes, *nodes);
 
-   cout<<" aqui"<<endl;
    AssignCode(pix_freq, *nodes, *totalnodes);
+   cout<<" aqui"<<endl;
 
    PrintHuffmanCode(pix_freq, *nodes);
    calBitLength(pix_freq, *nodes);
