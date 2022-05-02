@@ -448,9 +448,9 @@ void strconcat_cu(char* str, char* parentcode, char add)
 }
 
 __global__
-void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes)
+void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Result, int *Block, int *Thread)
 {
-       // Assigning Code through
+    // Assigning Code through
     // backtracking
     int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
     char left = '0';
@@ -462,6 +462,10 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes)
         if (pix_freq[idx].right != NULL)
             strconcat_cu(pix_freq[idx].right->code, pix_freq[idx].code, right);
     }
+
+   Result[i] = idx;
+   Block[i]  = blockIdx.x+900;
+   Thread[i] = threadIdx.x;
 }
 /*
 void ocurrence(int* hist, int** image, int width, int height)
