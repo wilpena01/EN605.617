@@ -81,7 +81,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
       // load bmp image
       int i, j;
       char file[] = "Lena.bmp";
-      int offset, bpp = 0;
+      int offset = 2, bpp = 0;
       long bmpS = 0, bmpoff = 0;
       int temp = 0;
       FILE* inputImage;
@@ -89,22 +89,11 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
       inputImage = fopen(file, "rb");
       if (inputImage == NULL)
       {
-         printf("Error Opening File!!");
+         printf("Error input File!!");
          exit(1);
       }
       else
       {
-
-         // Set file position of the
-         // stream to the beginning
-         // Contains file signature
-         // or ID "BM"
-         offset = 0;
-
-         // Set offset to 2, which
-         // contains size of BMP File
-         offset = 2;
-
          fseek(inputImage, offset, SEEK_SET);
 
          // Getting size of BMP File
@@ -112,31 +101,16 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
 
          // Getting offset where the
          // pixel array starts
-         // Since the information is
-         // at offset 10 from the start,
-         // as given in BMP Header
          offset = 10;
-
          fseek(inputImage, offset, SEEK_SET);
 
          // Bitmap data offset
          fread(&bmpoff, 4, 1, inputImage);
-
-         // Getting height and width of the image
-         // Width is stored at offset 18 and
-         // height at offset 22, each of 4 bytes
          fseek(inputImage, 18, SEEK_SET);
-
          fread(&width, 4, 1, inputImage);
-
          fread(&height, 4, 1, inputImage);
-
-         // Number of bits per pixel
          fseek(inputImage, 2, SEEK_CUR);
-
          fread(&bpp, 2, 1, inputImage);
-
-         // Setting offset to start of pixel data
          fseek(inputImage, bmpoff, SEEK_SET);
 
          // Creating Image array
@@ -150,12 +124,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
             {
                int idx = (i*height) + j;
                fread(&temp, 3, 1, inputImage);
-
-               // the Image is a
-               // 24-bit BMP Image
                temp = temp & 0x0000FF;
-               //if(idx>height*width-5)
-               //cout<<"idx = "<<idx<<"\t";
                image[idx] = static_cast<int>(temp);
             }
          }
