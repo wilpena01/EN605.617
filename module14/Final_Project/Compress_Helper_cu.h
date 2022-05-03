@@ -82,7 +82,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
       int i, j;
       char file[] = "Lena.bmp";
       int offset, bpp = 0;
-      long bmpsize = 0, bmpdataoff = 0;
+      long bmpS = 0, bmpoff = 0;
       int temp = 0;
       FILE* inputImage;
 
@@ -108,7 +108,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
          fseek(inputImage, offset, SEEK_SET);
 
          // Getting size of BMP File
-         fread(&bmpsize, 4, 1, inputImage);
+         fread(&bmpS, 4, 1, inputImage);
 
          // Getting offset where the
          // pixel array starts
@@ -120,7 +120,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
          fseek(inputImage, offset, SEEK_SET);
 
          // Bitmap data offset
-         fread(&bmpdataoff, 4, 1, inputImage);
+         fread(&bmpoff, 4, 1, inputImage);
 
          // Getting height and width of the image
          // Width is stored at offset 18 and
@@ -137,7 +137,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
          fread(&bpp, 2, 1, inputImage);
 
          // Setting offset to start of pixel data
-         fseek(inputImage, bmpdataoff, SEEK_SET);
+         fseek(inputImage, bmpoff, SEEK_SET);
 
          // Creating Image array
          image = (int*)malloc(height * width * sizeof(int));
