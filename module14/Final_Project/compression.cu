@@ -52,7 +52,7 @@ void compressionDriver()
    delete[] image; image = NULL;
 }
 
-void compressionDriver_CL()
+void compressionDriver_cu()
 {
    const int HistSize = 256;
    const int HistSize_Byte = sizeof(int) * HistSize;
@@ -297,10 +297,10 @@ int tt = *totalnodes - 1;
 int main()
 {
    cout<<"Using Local CPU"<<endl;
-   compressionDriver();
+   //compressionDriver();
 
    cout<<"\n\nUsing GPU"<<endl;
-   //compressionDriver_CL();
+   compressionDriver_cu();
 
    return 0;
 
