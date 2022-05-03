@@ -269,7 +269,7 @@ int tt = *totalnodes - 1;
    //AssignCode(pix_freq, *nodes, *totalnodes);
    cout<<" aqui"<<endl;
 
-   //PrintHuffmanCode(pix_freq, *nodes);
+   PrintHuffmanCode(pix_freq, *nodes);
    calBitLength(pix_freq, *nodes);
    delete[] image; image = NULL;
 
@@ -297,7 +297,7 @@ int tt = *totalnodes - 1;
 int main()
 {
    cout<<"Using Local CPU"<<endl;
-   compressionDriver();
+   //compressionDriver();
 
    cout<<"\n\nUsing GPU"<<endl;
    compressionDriver_CL();
