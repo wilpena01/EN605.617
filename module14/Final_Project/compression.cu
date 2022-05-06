@@ -88,13 +88,12 @@ void compressionDriver_cu()
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
 
-   cpu_Result = (int *)malloc(HistSize_Byte);
-	cpu_Block = (int *)malloc(HistSize_Byte);
-   cpu_Thread = (int *)malloc(HistSize_Byte);
-   int* image2 = (int *)malloc(IMAGE_SIZE_IN_BYTES);
-   hist = (int *)malloc(HistSize_Byte);
-   totalnodes = (int *)malloc(sizeof(int));
-   nodes = (int *)malloc(sizeof(int));
+   cpu_Result  = (int *)malloc(HistSize_Byte);
+	cpu_Block   = (int *)malloc(HistSize_Byte);
+   cpu_Thread  = (int *)malloc(HistSize_Byte);
+   hist        = (int *)malloc(HistSize_Byte);
+   totalnodes  = (int *)malloc(sizeof(int));
+   nodes       = (int *)malloc(sizeof(int));
 
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));
@@ -140,20 +139,18 @@ void compressionDriver_cu()
    AssignCode_cu<<<1,*totalnodes - 1>>>(g_pix_freq, g_nodes, g_totalnodes, gpu_Result, gpu_Block, gpu_Thread);
    
    cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
-
    PrintHuffmanCode(pix_freq, *nodes);
    calBitLength(pix_freq, *nodes);
-   delete[] image; image = NULL;
 
-   cudaFree(g_image);  cudaFree(g_width);
-   cudaFree(g_height); cudaFree(g_hist);
-   cudaFree(g_nodes);  cudaFree(g_totalnodes);
+   cudaFree(g_image);    cudaFree(g_width);
+   cudaFree(g_height);   cudaFree(g_hist);
+   cudaFree(g_nodes);    cudaFree(g_totalnodes);
    cudaFree(g_pix_freq); cudaFree(g_huffcodes);
-   cudaFree(g_MaxSize);   cudaFree(g_p);
+   cudaFree(g_MaxSize);  cudaFree(g_p);
    cudaFree(gpu_Result); cudaFree(gpu_Block);
 	cudaFree(gpu_Thread); free(hist);
-   free(cpu_Result); free(cpu_Block);
-	free(cpu_Thread); free(image2);
+   free(cpu_Result);     free(cpu_Block);
+	free(cpu_Thread);     free(image);
 
 }
 
