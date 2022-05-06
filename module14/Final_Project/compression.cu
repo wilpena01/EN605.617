@@ -62,15 +62,12 @@ void compressionDriver_cu()
 
    int width, height, MaxSize, *image, *hist, *totalnodes, *nodes;
    int* g_image, *g_width, *g_height, *g_nodes, *g_totalnodes, *g_hist;
-   
-   pixfreq<25> *pix_freq;
-   pixfreq<25>* g_pix_freq;
-   huffcode* g_huffcodes;
-
    int *gpu_Result, *gpu_Block, *gpu_Thread;
-   int *cpu_Result;
-   int *cpu_Block;
-   int *cpu_Thread;
+   int *cpu_Result, *cpu_Block, *cpu_Thread;
+
+   pixfreq<25> *pix_freq;
+   pixfreq<25> *g_pix_freq;
+   huffcode    *g_huffcodes;
    
    readBMPFILE_cu(width, height, image);
    MaxSize = width * height;
@@ -94,18 +91,26 @@ void compressionDriver_cu()
    cudaMalloc((void **)&gpu_Block,     HistSize_Byte);
    cudaMalloc((void **)&gpu_Thread,    HistSize_Byte);
 
-   cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES,   cudaMemcpyHostToDevice);
-   cudaMemcpy(g_width,      &width,      sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_height,     &height,     sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_hist,       hist,        HistSize_Byte,         cudaMemcpyHostToDevice);
-   cudaMemcpy(g_nodes,      &nodes,      sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
+   cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+   cudaMemcpy(g_width,      &width,      sizeof(int),         cudaMemcpyHostToDevice);
+   cudaMemcpy(g_height,     &height,     sizeof(int),         cudaMemcpyHostToDevice);
+   cudaMemcpy(g_hist,       hist,        HistSize_Byte,       cudaMemcpyHostToDevice);
+   cudaMemcpy(g_nodes,      &nodes,      sizeof(int),         cudaMemcpyHostToDevice);
+   cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),         cudaMemcpyHostToDevice);
 
-   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
+   initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, 
+                                                      gpu_Block, gpu_Thread);
+
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
-   copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
-   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_nodes,gpu_Result, gpu_Block, gpu_Thread);
-   minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_width, g_height, gpu_Result, gpu_Block, gpu_Thread);
+
+   copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, 
+                                                               gpu_Block, gpu_Thread);
+
+   nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_nodes,gpu_Result, 
+                                                               gpu_Block, gpu_Thread);
+
+   minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_width, g_height, gpu_Result, 
+                                                     gpu_Block, gpu_Thread);
 
    //maxcodelen = MaxLength_cu(p) - 3;
    totalNode<<<1,1>>>(g_totalnodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
@@ -118,10 +123,16 @@ void compressionDriver_cu()
    cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * *nodes);
 
    InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_height, 
-                                                        g_width, gpu_Result, gpu_Block, gpu_Thread);
+                                                        g_width, gpu_Result, gpu_Block, 
+                                                        gpu_Thread);
+
    sortHist_cu<<<1,1>>>(g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
-   BuildTree_cu<<<1,1>>>(g_pix_freq, g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
-   AssignCode_cu<<<1,*totalnodes - 1>>>(g_pix_freq, g_nodes, g_totalnodes, gpu_Result, gpu_Block, gpu_Thread);
+
+   BuildTree_cu<<<1,1>>>(g_pix_freq, g_huffcodes, g_nodes, gpu_Result, gpu_Block, 
+                         gpu_Thread);
+                         
+   AssignCode_cu<<<1,*totalnodes - 1>>>(g_pix_freq, g_nodes, g_totalnodes, gpu_Result, 
+                                        gpu_Block, gpu_Thread);
    
    cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
    PrintHuffmanCode(pix_freq, *nodes);
