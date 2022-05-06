@@ -20,9 +20,10 @@
 using namespace std;
 using namespace std::chrono;
 
-// Driver code
+
 void compressionDriver()
 {
+   // Driver code without CUDA
    int width, height;
    int** image;
    int hist[256];
@@ -52,6 +53,7 @@ void compressionDriver()
 
 void compressionDriver_cu()
 {
+   // Driver code with CUDA
    const int HistSize            = 256;
    const int image_num_blocks    = 512;
    const int image_num_threads   = 512;
@@ -135,7 +137,6 @@ int main()
 {
    // Main Driver
    
-  
    cout<<"Using Local CPU"<<endl;
    auto start = high_resolution_clock::now();
    compressionDriver();
@@ -149,7 +150,7 @@ int main()
    compressionDriver_cu();
    end = high_resolution_clock::now();
    duration = chrono::duration<double>(end-start);
-   cout<<"Elapse Time with CUDA = "<<duration.count()<<"microseconds"<<endl;
+   cout<<"\nElapse Time with CUDA = "<<duration.count()<<"microseconds"<<endl;
    return 0;
 
 }

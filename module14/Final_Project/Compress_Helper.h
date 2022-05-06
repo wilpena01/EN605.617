@@ -10,22 +10,22 @@
 
 using namespace std;
 
-void strconcat(char* str, char* parentcode, char add)
+void strconcat(char* strptr, char* pcode, char add)
 {
     // function to concatenate the words
    int i = 0;
-   while (*(parentcode + i) != '\0')
+   while (*(pcode + i) != '\0')
    {
-      *(str + i) = *(parentcode + i);
+      *(strptr + i) = *(pcode + i);
       i++;
    }
    if (add != '2')
    {
-      str[i] = add;
-      str[i + 1] = '\0';
+      strptr[i] = add;
+      strptr[i + 1] = '\0';
    }
    else
-      str[i] = '\0';
+      strptr[i] = '\0';
 }
 
 void readBMPFILE(int &width, int &height, int** &image)
