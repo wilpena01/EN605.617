@@ -124,4 +124,16 @@ void allocDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist,
    cudaMalloc((void **)&gpu_Block,     HistSize_Byte);
    cudaMalloc((void **)&gpu_Thread,    HistSize_Byte);
 }
+
+void HostToDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist, 
+                  int* &g_nodes, int* &g_totalnodes, int IMAGE_SIZE_IN_BYTES, 
+                  int HistSize_Byte)
+{
+   cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
+   cudaMemcpy(g_width,      &width,      sizeof(int),         cudaMemcpyHostToDevice);
+   cudaMemcpy(g_height,     &height,     sizeof(int),         cudaMemcpyHostToDevice);
+   cudaMemcpy(g_hist,       hist,        HistSize_Byte,       cudaMemcpyHostToDevice);
+   cudaMemcpy(g_nodes,      &nodes,      sizeof(int),         cudaMemcpyHostToDevice);
+   cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),         cudaMemcpyHostToDevice);
+}
 #endif /* UTILITIES_H_ */
