@@ -27,7 +27,7 @@ void compressionDriver()
    int width, height;
    int** image;
    int hist[256];
-   int maxcodelen, nodes, totalnodes;
+   int nodes, totalnodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
@@ -36,7 +36,7 @@ void compressionDriver()
    ocurrence(hist, image, width, height);
    nonZero_ocurrence(hist, nodes);
    minProp(p, hist, width, height);
-   maxcodelen = MaxLength(p) - 3;
+   //maxcodelen = MaxLength(p) - 3; in this case 25
 
    totalnodes = 2 * nodes - 1;
    pix_freq = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * totalnodes);
@@ -48,8 +48,7 @@ void compressionDriver()
    AssignCode(pix_freq, nodes, totalnodes);
    PrintHuffmanCode(pix_freq, nodes);
    calBitLength(pix_freq, nodes);
-   //cout<<"\nnode = "<<nodes<<endl;
-   delete[] image; image = NULL;
+   free(image);
 }
 
 void compressionDriver_cu()
