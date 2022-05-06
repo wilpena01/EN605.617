@@ -82,6 +82,7 @@ void compressionDriver_cu()
                HistSize_Byte);
 
    HostToDevice(g_image, g_width, g_height, g_hist, g_nodes, g_totalnodes,
+                image, width, height, hist, nodes, totalnodes,
                 IMAGE_SIZE_IN_BYTES, HistSize_Byte);
 
 
