@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void strconcat(char* strptr, char* pcode, char add)
+void stradd(char* strptr, char* pcode, char add)
 {
     // function to concatenate the words
    int i = 0;
@@ -303,13 +303,11 @@ void AssignCode(pixfreq<25> *&pix_freq, int nodes, int totalnodes)
     {
         if (pix_freq[i].left != NULL)
         {
-            strconcat(pix_freq[i].left->code, pix_freq[i].code, left);
-            cout<<"left code = "<<pix_freq[i].left->code<<"\tcode = "<<pix_freq[i].code<<"\tleft = "<<left<<"\t i = "<<i<<endl;
+            stradd(pix_freq[i].left->code, pix_freq[i].code, left);
         }
         if (pix_freq[i].right != NULL)
         {
-            strconcat(pix_freq[i].right->code, pix_freq[i].code, right);
-            cout<<"right code = "<<pix_freq[i].right->code<<"\tcode = "<<pix_freq[i].code<<"\tright = "<<right<<"\t i = "<<i<<endl;
+            stradd(pix_freq[i].right->code, pix_freq[i].code, right);
         }
     }
 }
