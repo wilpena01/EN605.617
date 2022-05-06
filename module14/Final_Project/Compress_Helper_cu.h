@@ -166,11 +166,11 @@ void ocurrence_cu(int* image)
 __global__
 void copy_data_from_shared(int *hist, int *Result, int *Block, int *Thread)
 {
-   const unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-   hist[idx] = shared_hist[idx];
+   unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
+   hist[idx]   = shared_hist[idx];
    Result[idx] = hist[idx];
-   Block[idx] = blockIdx.x;
+   Block[idx]  = blockIdx.x;
    Thread[idx] = threadIdx.x;
 }
 

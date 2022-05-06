@@ -119,45 +119,15 @@ void compressionDriver_cu()
    cudaMemcpy(g_MaxSize,    &MaxSize,    sizeof(int),           cudaMemcpyHostToDevice);
 
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
-
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
-
    copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
-
-
-
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-               //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-
-   //for(int i=0; i<256; i++)
-   //   cout<<"hist["<<i<<"] ="<<hist[i]<<"\n";
-
    nonZero_ocurrence_cu<<<hist_num_blocks, hist_num_threads>>>(g_nodes,gpu_Result, gpu_Block, gpu_Thread);
-   cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
    minProp_cu<<<hist_num_blocks, hist_num_threads>>>(g_width, g_height, gpu_Result, gpu_Block, gpu_Thread);
-
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
    //maxcodelen = MaxLength_cu(p) - 3;
    totalNode<<<1,1>>>(g_totalnodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
    cudaMemcpy(totalnodes, g_totalnodes, sizeof(int), cudaMemcpyDeviceToHost);
    cudaMemcpy(nodes,      g_nodes,      sizeof(int), cudaMemcpyDeviceToHost);
-
-
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-              //cout<<" node = "<<*nodes<<endl;
-              //cout<<" totalnodes = "<<*totalnodes<<endl;
 
    pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * *totalnodes);
    huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * *nodes);
@@ -167,38 +137,7 @@ void compressionDriver_cu()
 
    InitStruct_cu<<<hist_num_blocks, hist_num_threads>>>(g_pix_freq, g_huffcodes, g_height, 
                                                         g_width, gpu_Result, gpu_Block, gpu_Thread);
-
-
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-
-
-/*
-   cudaMemcpy(image,        g_image,      IMAGE_SIZE_IN_BYTES,   cudaMemcpyDeviceToHost);
-   cudaMemcpy(&width,       g_width,      sizeof(int),           cudaMemcpyDeviceToHost);
-   cudaMemcpy(&height,      g_height,     sizeof(int),           cudaMemcpyDeviceToHost);
-   cudaMemcpy(&hist,        g_hist,       HistSize*sizeof(int),  cudaMemcpyDeviceToHost);
-   cudaMemcpy(&nodes,       g_nodes,      sizeof(int),           cudaMemcpyDeviceToHost);
-   cudaMemcpy(&p,           g_p,          sizeof(int),           cudaMemcpyDeviceToHost);
-   cudaMemcpy(&totalnodes,  g_totalnodes, sizeof(int),           cudaMemcpyDeviceToHost);
-
-*/
-
    sortHist_cu<<<1,1>>>(g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
-
-
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              //outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-              cout<<" error :  "<<cudaGetLastError()<<endl;
-
-   //cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
-   //cudaMemcpy(huffcodes,  g_huffcodes, sizeof(struct huffcode) * *nodes, cudaMemcpyDeviceToHost);
-
-
    BuildTree_cu<<<1,1>>>(g_pix_freq, g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
 
                cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
