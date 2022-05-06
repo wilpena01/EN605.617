@@ -27,7 +27,7 @@ void compressionDriver()
    int width, height;
    int** image;
    int hist[256];
-   int nodes, maxcodelen, totalnodes;
+   int nodes, totalnodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
    huffcode* huffcodes;
@@ -60,10 +60,9 @@ void compressionDriver_cu()
    int MaxSize;
    int* image;
    int* hist;
-   int maxcodelen, *totalnodes, *nodes;
+   int *totalnodes, *nodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
-   huffcode *huffcodes;
 
    const int hist_num_blocks     = 1;
    const int hist_num_threads    = HistSize;
