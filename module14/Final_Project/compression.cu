@@ -140,17 +140,8 @@ void compressionDriver_cu()
    sortHist_cu<<<1,1>>>(g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
    BuildTree_cu<<<1,1>>>(g_pix_freq, g_huffcodes, g_nodes, gpu_Result, gpu_Block, gpu_Thread);
    AssignCode_cu<<<1,*totalnodes - 1>>>(g_pix_freq, g_nodes, g_totalnodes, gpu_Result, gpu_Block, gpu_Thread);
-               cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
-
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
-              cout<<"total = "<<*totalnodes<<endl;
-
-   //BuildTree(pix_freq, huffcodes, *nodes);
-   //AssignCode(pix_freq, *nodes, *totalnodes);
-   cout<<" aqui"<<endl;
+   
+   cudaMemcpy(pix_freq,  g_pix_freq, sizeof(pixfreq<25>) * *totalnodes, cudaMemcpyDeviceToHost);
 
    PrintHuffmanCode(pix_freq, *nodes);
    calBitLength(pix_freq, *nodes);
