@@ -23,59 +23,6 @@ __device__ int shared_temp;
 __device__ int shared_node;
 __device__ int shared_totalnode;
 
-void LoadImagePGM(int &width, int &height, int** &image_cl)
-{
-   int i,j;
-   string name = "Lena.bmp";
-   FILE* inputfile = fopen(name.c_str(), "rb");
-
-   if (inputfile == NULL)
-   {
-      cout << "assignmentNPP unable to open: <" << name.data() << ">" << endl;
-      fclose(inputfile);
-      exit(EXIT_FAILURE);
-   }
-   else
-   {
-      cout << "assignmentNPP opened: <" << name.data() << "> successfully!" << endl;
-   }
-            cout<<"\n\nentre aqui<<\n\n";
-
-
-   string result = name;
-   std::string::size_type dot = result.rfind('.');
-
-   if (dot != std::string::npos)
-   {
-      result = result.substr(0, dot);
-   }
-
-   // declare a host image object for an 8-bit grayscale image
-   npp::ImageCPU_8u_C1 hostImage;
-
-   // load gray-scale image from disk  
-   npp::loadImage(name, hostImage);
-  
-   height = hostImage.height();
-   width = hostImage.width();
-
-
-   cout<<"height = "<<height<<"\twidth"<<width<<endl;
-   // Creating Image array
-   image_cl = (int**)malloc(height * sizeof(int*));
-
-   for (i = 0; i < height; i++)
-   {
-      image_cl[i] = (int*)malloc(width * sizeof(int*));
-   }
-
-   for(i=0; i<height; i++)
-      for(j=0; j<width;j++)
-         image_cl[i][j] = static_cast<int>(*hostImage.data(i,j));
-
-   fclose(inputfile);
-}
-
 void readBMPFILE_cu(int &width, int &height, int* &image)
 {
       // load bmp image
