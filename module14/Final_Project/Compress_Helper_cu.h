@@ -135,6 +135,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
 __global__ 
 void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 {
+   //Initialized all global variables on the device.
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    shared_hist[idx] = 0;
@@ -160,6 +161,17 @@ void ocurrence_cu(int* image)
 
    atomicAdd((shared_hist+image[thread_idx]),1);
    __syncthreads();
+}
+
+__global__
+void copy_data_from_shared(int *hist, int *Result, int *Block, int *Thread)
+{
+   const unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+   hist[idx] = shared_hist[idx];
+
+   Result[idx] = hist[idx];
+   Block[idx] = blockIdx.x;
+   Thread[idx] = threadIdx.x;
 }
 
 //done 
