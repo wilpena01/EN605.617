@@ -126,8 +126,8 @@ void allocDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist,
 }
 
 void HostToDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist,
-                  int* &image, int &width, int &height, int* &hist, 
-                  int* &g_nodes, int* &g_totalnodes, int* &nodes, int* &totalnodes, 
+                  int* &g_nodes, int* &g_totalnodes, int* &image, int &width, 
+                  int &height, int* &hist, int* &nodes, int* &totalnodes, 
                   int IMAGE_SIZE_IN_BYTES, int HistSize_Byte)
 {
    cudaMemcpy(g_image,      image,       IMAGE_SIZE_IN_BYTES, cudaMemcpyHostToDevice);
