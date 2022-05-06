@@ -86,17 +86,6 @@ void compressionDriver_cu()
    
    readBMPFILE_cu(width, height, image);
    MaxSize = width * height;
-/*
-   for(int i=0; i<height; i++)
-   {
-      for(int j=0; j<width; j++)
-      {
-         if(image[i][j]>256)
-            cout<<"image ="<<image[i][j]<<"   ";
-      }
-   }
-
-*/
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
 
@@ -128,41 +117,10 @@ void compressionDriver_cu()
    cudaMemcpy(g_p,          &p,          sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_MaxSize,    &MaxSize,    sizeof(int),           cudaMemcpyHostToDevice);
-   //cudaMemcpy(gpu_Result,   cpu_Result,  HistSize_Byte,           cudaMemcpyHostToDevice);
-   //cudaMemcpy(gpu_Block,    cpu_Block,   HistSize_Byte,           cudaMemcpyHostToDevice);
-  // cudaMemcpy(gpu_Thread,   cpu_Thread,  HistSize_Byte,           cudaMemcpyHostToDevice);
 
-
-  // cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
    initHist_cu<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
-               
-               cudaMemcpy(cpu_Result, gpu_Result, HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Block,  gpu_Block,  HistSize_Byte, cudaMemcpyDeviceToHost);
-               cudaMemcpy(cpu_Thread, gpu_Thread, HistSize_Byte, cudaMemcpyDeviceToHost);
-              // outputResult(cpu_Result, cpu_Block, cpu_Thread, 256);
 
-
-
-   cudaMemcpy(image2,        g_image,       IMAGE_SIZE_IN_BYTES,  cudaMemcpyDeviceToHost);
-   /*
-   for(int i=0; i<width*height; i++)
-   {
-         if(image2[i]==241)
-            cout<<"image = "<<image2[i]<<"\n";
-      
-   }*/
-   //cout<<"heiht = "<<height<<"\twidth = "<<width<<endl;
-
-   //cudaMemcpy(hist,        g_hist,       HistSize_Byte,  cudaMemcpyDeviceToHost);
-
-   //for(int i=0; i<256; i++)
-   //   cout<<"hist["<<i<<"] ="<<hist[i]<<"   ";
-
-   //ocurrence_cu(hist, image, width, height)   ;
    ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
-   //ocurrence_cu<<<image_num_blocks,image_num_threads>>>(g_image);
-   cudaDeviceSynchronize();
-   //cudaMemcpy(g_hist,       hist,        HistSize_Byte,         cudaMemcpyHostToDevice);
 
    copy_data_from_shared<<<hist_num_blocks, hist_num_threads>>>(g_hist, gpu_Result, gpu_Block, gpu_Thread);
 

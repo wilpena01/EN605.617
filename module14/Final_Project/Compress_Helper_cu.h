@@ -132,36 +132,11 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
       fclose(inputImage);
 }
 
-__device__ 
-void copy_data_to_hist(int value, int idx)
-{
-	//copy from global to shared memory
-	shared_hist[idx] = value;
-}
-
-__global__ 
-void copy_data_from_shared(int* hist, int *Result, int *Block, int *Thread)
-{
-	//copy from global to shared memory
-   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-
-
-	hist[idx] = shared_hist[idx];
-   Result[idx] = idx;
-   Block[idx]  = blockIdx.x+1;
-	Thread[idx] = threadIdx.x;
-}
-
-
-
-//done
 __global__ 
 void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
-   //copy_data_to_hist(0,idx);
-   //copy_data_from_hist(hist,idx);
    shared_hist[idx] = 0;
    hist[idx] = 0;
    Result[idx] = 0;
