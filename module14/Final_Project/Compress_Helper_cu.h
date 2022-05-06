@@ -25,58 +25,58 @@ __device__ int shared_totalnode;
 
 void readBMPFILE_cu(int &width, int &height, int* &image)
 {
-      // load bmp image
-      int i, j;
-      char file[] = "Lena.bmp";
-      int offset = 2, bpp = 0;
-      long bmpS = 0, bmpoff = 0;
-      int temp = 0;
-      FILE* inputImage;
+   // load bmp image
+   int i, j;
+   char file[] = "Lena.bmp";
+   int offset = 2, bpp = 0;
+   long bmpS = 0, bmpoff = 0;
+   int temp = 0;
+   FILE* inputImage;
 
-      inputImage = fopen(file, "rb");
-      if (inputImage == NULL)
+   inputImage = fopen(file, "rb");
+   if (inputImage == NULL)
+   {
+      printf("Error input File!!");
+      exit(1);
+   }
+   else
+   {
+      fseek(inputImage, offset, SEEK_SET);
+
+      // Getting size of BMP File
+      fread(&bmpS, 4, 1, inputImage);
+
+      // Getting offset where the
+      // pixel array starts
+      offset = 10;
+      fseek(inputImage, offset, SEEK_SET);
+
+      // Bitmap data offset
+      fread(&bmpoff, 4, 1, inputImage);
+      fseek(inputImage, 18, SEEK_SET);
+      fread(&width, 4, 1, inputImage);
+      fread(&height, 4, 1, inputImage);
+      fseek(inputImage, 2, SEEK_CUR);
+      fread(&bpp, 2, 1, inputImage);
+      fseek(inputImage, bmpoff, SEEK_SET);
+
+      // Creating Image array
+      image = (int*)malloc(height * width * sizeof(int));
+
+      // Reading the BMP File
+      // into Image Array
+      for (i = 0; i < height; i++)
       {
-         printf("Error input File!!");
-         exit(1);
-      }
-      else
-      {
-         fseek(inputImage, offset, SEEK_SET);
-
-         // Getting size of BMP File
-         fread(&bmpS, 4, 1, inputImage);
-
-         // Getting offset where the
-         // pixel array starts
-         offset = 10;
-         fseek(inputImage, offset, SEEK_SET);
-
-         // Bitmap data offset
-         fread(&bmpoff, 4, 1, inputImage);
-         fseek(inputImage, 18, SEEK_SET);
-         fread(&width, 4, 1, inputImage);
-         fread(&height, 4, 1, inputImage);
-         fseek(inputImage, 2, SEEK_CUR);
-         fread(&bpp, 2, 1, inputImage);
-         fseek(inputImage, bmpoff, SEEK_SET);
-
-         // Creating Image array
-         image = (int*)malloc(height * width * sizeof(int));
-
-         // Reading the BMP File
-         // into Image Array
-         for (i = 0; i < height; i++)
+         for (j = 0; j < width; j++)
          {
-            for (j = 0; j < width; j++)
-            {
-               int idx = (i*height) + j;
-               fread(&temp, 3, 1, inputImage);
-               temp = temp & 0x0000FF;
-               image[idx] = static_cast<int>(temp);
-            }
+            int idx = (i*height) + j;
+            fread(&temp, 3, 1, inputImage);
+            temp = temp & 0x0000FF;
+            image[idx] = static_cast<int>(temp);
          }
       }
-      fclose(inputImage);
+   }
+   fclose(inputImage);
 }
 
 __global__ 

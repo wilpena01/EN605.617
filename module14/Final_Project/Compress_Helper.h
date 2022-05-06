@@ -10,110 +10,93 @@
 
 using namespace std;
 
-void stradd(char* strptr, char* pcode, char add)
-{
-    // function to concatenate the words
-   int i = 0;
-   while (*(pcode + i) != '\0')
-   {
-      *(strptr + i) = *(pcode + i);
-      i++;
-   }
-   if (add != '2')
-   {
-      strptr[i] = add;
-      strptr[i + 1] = '\0';
-   }
-   else
-      strptr[i] = '\0';
-}
-
 void readBMPFILE(int &width, int &height, int** &image)
 {
-      int i, j;
-      char filename[] = "Lena.bmp";
-      int offset, bpp = 0;
-      long bmpsize = 0, bmpdataoff = 0;
-      int temp = 0;
-   // Reading the BMP File
-      FILE* image_file;
+    // load bmp image
+    int i, j;
+    char file[] = "Lena.bmp";
+    int offset, bpp = 0;
+    long bmpsize = 0, bmpdataoff = 0;
+    int temp = 0;
+    // Reading the BMP File
+    FILE* image_file;
 
-      image_file = fopen(filename, "rb");
-      if (image_file == NULL)
-      {
-         printf("Error Opening File!!");
-         exit(1);
-      }
-      else
-      {
+    image_file = fopen(file, "rb");
+    if (image_file == NULL)
+    {
+        printf("Error Opening File!!");
+        exit(1);
+    }
+    else
+    {
 
-         // Set file position of the
-         // stream to the beginning
-         // Contains file signature
-         // or ID "BM"
-         offset = 0;
+        // Set file position of the
+        // stream to the beginning
+        // Contains file signature
+        // or ID "BM"
+        offset = 0;
 
-         // Set offset to 2, which
-         // contains size of BMP File
-         offset = 2;
+        // Set offset to 2, which
+        // contains size of BMP File
+        offset = 2;
 
-         fseek(image_file, offset, SEEK_SET);
+        fseek(image_file, offset, SEEK_SET);
 
-         // Getting size of BMP File
-         fread(&bmpsize, 4, 1, image_file);
+        // Getting size of BMP File
+        fread(&bmpsize, 4, 1, image_file);
 
-         // Getting offset where the
-         // pixel array starts
-         // Since the information is
-         // at offset 10 from the start,
-         // as given in BMP Header
-         offset = 10;
+        // Getting offset where the
+        // pixel array starts
+        // Since the information is
+        // at offset 10 from the start,
+        // as given in BMP Header
+        offset = 10;
 
-         fseek(image_file, offset, SEEK_SET);
+        fseek(image_file, offset, SEEK_SET);
 
-         // Bitmap data offset
-         fread(&bmpdataoff, 4, 1, image_file);
+        // Bitmap data offset
+        fread(&bmpdataoff, 4, 1, image_file);
 
-         // Getting height and width of the image
-         // Width is stored at offset 18 and
-         // height at offset 22, each of 4 bytes
-         fseek(image_file, 18, SEEK_SET);
+        // Getting height and width of the image
+        // Width is stored at offset 18 and
+        // height at offset 22, each of 4 bytes
+        fseek(image_file, 18, SEEK_SET);
 
-         fread(&width, 4, 1, image_file);
+        fread(&width, 4, 1, image_file);
 
-         fread(&height, 4, 1, image_file);
+        fread(&height, 4, 1, image_file);
 
-         // Number of bits per pixel
-         fseek(image_file, 2, SEEK_CUR);
+        // Number of bits per pixel
+        fseek(image_file, 2, SEEK_CUR);
 
-         fread(&bpp, 2, 1, image_file);
+        fread(&bpp, 2, 1, image_file);
 
-         // Setting offset to start of pixel data
-         fseek(image_file, bmpdataoff, SEEK_SET);
+        // Setting offset to start of pixel data
+        fseek(image_file, bmpdataoff, SEEK_SET);
 
-         // Creating Image array
-         image = (int**)malloc(height * sizeof(int*));
+        // Creating Image array
+        image = (int**)malloc(height * sizeof(int*));
 
-         for (i = 0; i < height; i++)
-         {
-            image[i] = (int*)malloc(width * sizeof(int*));
-         }
-         // Reading the BMP File
-         // into Image Array
-         for (i = 0; i < height; i++)
-         {
-            for (j = 0; j < width; j++)
-            {
-               fread(&temp, 3, 1, image_file);
+        for (i = 0; i < height; i++)
+        {
+        image[i] = (int*)malloc(width * sizeof(int*));
+        }
+        // Reading the BMP File
+        // into Image Array
+        for (i = 0; i < height; i++)
+        {
+        for (j = 0; j < width; j++)
+        {
+            fread(&temp, 3, 1, image_file);
 
-               // the Image is a
-               // 24-bit BMP Image
-               temp = temp & 0x0000FF;
-               image[i][j] = static_cast<int>(temp);
-            }
-         }
-      }
-      fclose(image_file);
+            // the Image is a
+            // 24-bit BMP Image
+            temp = temp & 0x0000FF;
+            image[i][j] = static_cast<int>(temp);
+        }
+        }
+    }
+    fclose(image_file);
 }
 
 void ocurrence(int* hist, int** image, int width, int height)
@@ -290,6 +273,24 @@ void BuildTree(pixfreq<25> *&pix_freq, huffcode* &huffcodes, int nodes)
 
 
 
+}
+
+void stradd(char* strptr, char* pcode, char add)
+{
+    // function to concatenate the words
+   int i = 0;
+   while (*(pcode + i) != '\0')
+   {
+      *(strptr + i) = *(pcode + i);
+      i++;
+   }
+   if (add != '2')
+   {
+      strptr[i] = add;
+      strptr[i + 1] = '\0';
+   }
+   else
+      strptr[i] = '\0';
 }
 
 void AssignCode(pixfreq<25> *&pix_freq, int nodes, int totalnodes)
