@@ -18,10 +18,10 @@ void readBMPFILE(int &width, int &height, int** &image)
     long bmpS = 0, bmpoff = 0;
 
     // Reading the BMP File
-    FILE* image_file;
+    FILE* inputImage;
 
-    image_file = fopen(file, "rb");
-    if (image_file == NULL)
+    inputImage = fopen(file, "rb");
+    if (inputImage == NULL)
     {
         printf("Error Opening File!!");
         exit(1);
@@ -29,40 +29,40 @@ void readBMPFILE(int &width, int &height, int** &image)
     else
     {
 
-        fseek(image_file, offset, SEEK_SET);
-        fread(&bmpS, 4, 1, image_file); offset = 10;
-        fseek(image_file, offset, SEEK_SET);
-        fread(&bmpoff, 4, 1, image_file);
-        fseek(image_file, 18, SEEK_SET);
-        fread(&width, 4, 1, image_file);
-        fread(&height, 4, 1, image_file);
-        fseek(image_file, 2, SEEK_CUR);
-        fread(&bpp, 2, 1, image_file);
-        fseek(image_file, bmpoff, SEEK_SET);
+        fseek(inputImage, offset, SEEK_SET);
+        fread(&bmpS, 4, 1, inputImage); offset = 10;
+        fseek(inputImage, offset, SEEK_SET);
+        fread(&bmpoff, 4, 1, inputImage);
+        fseek(inputImage, 18, SEEK_SET);
+        fread(&width, 4, 1, inputImage);
+        fread(&height, 4, 1, inputImage);
+        fseek(inputImage, 2, SEEK_CUR);
+        fread(&bpp, 2, 1, inputImage);
+        fseek(inputImage, bmpoff, SEEK_SET);
 
         // Creating Image array
         image = (int**)malloc(height * sizeof(int*));
 
         for (i = 0; i < height; i++)
         {
-        image[i] = (int*)malloc(width * sizeof(int*));
+            image[i] = (int*)malloc(width * sizeof(int*));
         }
         // Reading the BMP File
         // into Image Array
         for (i = 0; i < height; i++)
         {
-        for (j = 0; j < width; j++)
-        {
-            fread(&temp, 3, 1, image_file);
+            for (j = 0; j < width; j++)
+            {
+                fread(&temp, 3, 1, inputImage);
 
-            // the Image is a
-            // 24-bit BMP Image
-            temp = temp & 0x0000FF;
-            image[i][j] = static_cast<int>(temp);
-        }
+                // the Image is a
+                // 24-bit BMP Image
+                temp = temp & 0x0000FF;
+                image[i][j] = static_cast<int>(temp);
+            }
         }
     }
-    fclose(image_file);
+    fclose(inputImage);
 }
 
 void ocurrence(int* hist, int** image, int width, int height)
