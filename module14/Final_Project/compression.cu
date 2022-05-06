@@ -148,6 +148,7 @@ int main()
    start = high_resolution_clock::now();
    compressionDriver_cu();
    end = high_resolution_clock::now();
+   duration = chrono::duration<double>(end-start);
    cout<<"Elapse Time with CUDA = "<<duration.count()<<"microseconds"<<endl;
    return 0;
 
