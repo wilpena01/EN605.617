@@ -13,11 +13,10 @@ using namespace std;
 void readBMPFILE(int &width, int &height, int** &image)
 {
     // load bmp image
-    int i, j;
+    int i, j, temp = 0, offset = 2, bpp = 0;
     char file[] = "Lena.bmp";
-    int offset =2, bpp = 0;
     long bmpS = 0, bmpoff = 0;
-    int temp = 0;
+
     // Reading the BMP File
     FILE* image_file;
 

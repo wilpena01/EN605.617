@@ -17,20 +17,18 @@
 
 using namespace std;
 
-__device__ int shared_hist[256];
+__device__ int   shared_hist[256];
 __device__ float shared_prob;
-__device__ int shared_temp;
-__device__ int shared_node;
-__device__ int shared_totalnode;
+__device__ int   shared_temp;
+__device__ int   shared_node;
+__device__ int   shared_totalnode;
 
 void readBMPFILE_cu(int &width, int &height, int* &image)
 {
    // load bmp image
-   int i, j;
+   int i, j, temp = 0, offset = 2, bpp = 0;
    char file[] = "Lena.bmp";
-   int offset = 2, bpp = 0;
    long bmpS = 0, bmpoff = 0;
-   int temp = 0;
    FILE* inputImage;
 
    inputImage = fopen(file, "rb");
