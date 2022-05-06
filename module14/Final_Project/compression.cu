@@ -63,7 +63,6 @@ void compressionDriver_cu()
    int *totalnodes, *nodes;
    float p = 1.0; 
    pixfreq<25> *pix_freq;
-   huffcode* huffcodes;
 
    const int hist_num_blocks     = 1;
    const int hist_num_threads    = HistSize;
@@ -130,7 +129,6 @@ void compressionDriver_cu()
    cudaMemcpy(nodes,      g_nodes,      sizeof(int), cudaMemcpyDeviceToHost);
 
    pix_freq  = (pixfreq<25>*)malloc(sizeof(pixfreq<25>) * *totalnodes);
-   huffcodes = (struct huffcode*)malloc(sizeof(struct huffcode) * *nodes);
 
    cudaMalloc((void **)&g_pix_freq,   sizeof(pixfreq<25>) * *totalnodes);
    cudaMalloc((void **)&g_huffcodes,  sizeof(struct huffcode) * *nodes);
