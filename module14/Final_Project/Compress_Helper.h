@@ -170,7 +170,7 @@ int MaxLength(float p)
     return i;
 }
 
-void InitStruct(pixfreq<25> *pix_freq, huffcode* huffcodes, 
+void InitStruct(pixfreq<25> *&pix_freq, huffcode* &huffcodes, 
                 int* hist, int height, int width)
 {
      // Initializing
@@ -209,7 +209,7 @@ void InitStruct(pixfreq<25> *pix_freq, huffcode* huffcodes,
 
 }
 
-void sortHist(huffcode* huffcodes, int nodes)
+void sortHist(huffcode* &huffcodes, int nodes)
 {
      // Sorting the histogram
     int i, j;
@@ -231,7 +231,7 @@ void sortHist(huffcode* huffcodes, int nodes)
     }
 }
 
-void BuildTree(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
+void BuildTree(pixfreq<25> *&pix_freq, huffcode* &huffcodes, int nodes)
 {
     // Building Huffman Tree
     float sumprob;
@@ -292,7 +292,7 @@ void BuildTree(pixfreq<25> *pix_freq, huffcode* huffcodes, int nodes)
 
 }
 
-void AssignCode(pixfreq<25> *pix_freq, int nodes, int totalnodes)
+void AssignCode(pixfreq<25> *&pix_freq, int nodes, int totalnodes)
 {
     // Assigning Code through
     // backtracking
