@@ -142,11 +142,13 @@ int main()
    auto end = high_resolution_clock::now();
    auto duration = chrono::duration<double>(end-start);
 
-   cout<<" Elapse Time without CUDA = "<<duration.count()<<endl;
+   cout<<"\nElapse Time without CUDA = "<<duration.count()<<"microseconds"<<endl;
 
    cout<<"\n\nUsing GPU"<<endl;
+   start = high_resolution_clock::now();
    compressionDriver_cu();
-
+   end = high_resolution_clock::now();
+   cout<<"Elapse Time with CUDA = "<<duration.count()<<"microseconds"<<endl;
    return 0;
 
 }
