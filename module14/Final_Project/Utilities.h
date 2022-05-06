@@ -98,8 +98,8 @@ void outputResult(int *Result, int* Block, int* Thread, int idx)
    }  
 }
 
-void  allocHost(int *cpu_Result,int *cpu_Block,int *cpu_Thread,int *hist, 
-                int *totalnodes,int *nodes, int HistSize_Byte)
+void  allocHost(int *&cpu_Result,int *&cpu_Block,int *&cpu_Thread,int *&hist, 
+                int *&totalnodes,int *&nodes, const int &HistSize_Byte)
 {
    cpu_Result  = (int *)malloc(HistSize_Byte);
 	cpu_Block   = (int *)malloc(HistSize_Byte);
