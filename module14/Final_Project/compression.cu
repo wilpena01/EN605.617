@@ -145,24 +145,15 @@ void compressionDriver_cu()
    calBitLength(pix_freq, *nodes);
    delete[] image; image = NULL;
 
-   cudaFree(g_image);
-   cudaFree(g_width);
-   cudaFree(g_height);
-   cudaFree(g_hist);
-   cudaFree(g_nodes);
-   cudaFree(g_totalnodes);
-   cudaFree(g_pix_freq);
-   cudaFree(g_huffcodes);
-   cudaFree(g_p);
-   cudaFree(g_MaxSize);
-   cudaFree(gpu_Result);
-	cudaFree(gpu_Block);
-	cudaFree(gpu_Thread);
-   delete[] cpu_Result;
-	delete[] cpu_Block;
-	delete[] cpu_Thread;
-   delete[] image2;
-   delete[] hist;
+   cudaFree(g_image);  cudaFree(g_width);
+   cudaFree(g_height); cudaFree(g_hist);
+   cudaFree(g_nodes);  cudaFree(g_totalnodes);
+   cudaFree(g_pix_freq); cudaFree(g_huffcodes);
+   cudaFree(g_MaxSize);   cudaFree(g_p);
+   cudaFree(gpu_Result); cudaFree(gpu_Block);
+	cudaFree(gpu_Thread); free(hist);
+   free(cpu_Result); free(cpu_Block);
+	free(cpu_Thread); free(image2);
 
 }
 
