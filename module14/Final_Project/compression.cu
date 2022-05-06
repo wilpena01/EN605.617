@@ -53,24 +53,17 @@ void compressionDriver()
 
 void compressionDriver_cu()
 {
-   const int HistSize = 256;
-   const int HistSize_Byte = sizeof(int) * HistSize;
-   int width, height;
-   int MaxSize;
-   int* image;
-   int* hist;
-   int *totalnodes, *nodes;
-   pixfreq<25> *pix_freq;
-
-   const int hist_num_blocks     = 1;
-   const int hist_num_threads    = HistSize;
-
+   const int HistSize            = 256;
    const int image_num_blocks    = 512;
    const int image_num_threads   = 512;
+   const int hist_num_blocks     = 1;
+   const int hist_num_threads    = HistSize;
+   const int HistSize_Byte       = sizeof(int) * HistSize;
 
-   int* g_image;
-   int* g_width, *g_height, *g_nodes, *g_totalnodes;
-   int* g_hist;
+   int width, height, MaxSize, *image, *hist, *totalnodes, *nodes;
+   int* g_image, *g_width, *g_height, *g_nodes, *g_totalnodes, *g_hist;
+   
+   pixfreq<25> *pix_freq;
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
 
