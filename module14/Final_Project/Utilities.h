@@ -137,4 +137,19 @@ void HostToDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist,
    cudaMemcpy(g_nodes,      &nodes,      sizeof(int),         cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),         cudaMemcpyHostToDevice);
 }
+
+void freeMem(int* &g_image,int* &g_width, int* &g_height, int* &g_hist, int* &g_nodes, 
+             int* &g_totalnodes, int* &g_pix_freq, int* &g_huffcodes, int* &gpu_Result, 
+             int* &gpu_Block, int* &gpu_Thread, int* &hist, int* &cpu_Result, 
+             int* &cpu_Block, int* &cpu_Thread, int* &image)
+{
+   cudaFree(g_image);    cudaFree(g_width);
+   cudaFree(g_height);   cudaFree(g_hist);
+   cudaFree(g_nodes);    cudaFree(g_totalnodes);
+   cudaFree(g_pix_freq); cudaFree(g_huffcodes);
+   cudaFree(gpu_Result); cudaFree(gpu_Block);
+	cudaFree(gpu_Thread); free(hist);
+   free(cpu_Result);     free(cpu_Block);
+	free(cpu_Thread);     free(image);
+}
 #endif /* UTILITIES_H_ */

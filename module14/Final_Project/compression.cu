@@ -126,14 +126,9 @@ void compressionDriver_cu()
    PrintHuffmanCode(pix_freq, *nodes);
    calBitLength(pix_freq, *nodes);
 
-   cudaFree(g_image);    cudaFree(g_width);
-   cudaFree(g_height);   cudaFree(g_hist);
-   cudaFree(g_nodes);    cudaFree(g_totalnodes);
-   cudaFree(g_pix_freq); cudaFree(g_huffcodes);
-   cudaFree(gpu_Result); cudaFree(gpu_Block);
-	cudaFree(gpu_Thread); free(hist);
-   free(cpu_Result);     free(cpu_Block);
-	free(cpu_Thread);     free(image);
+   freeMem(g_image,g_width, g_height, g_hist, g_nodes, g_totalnodes,
+           g_pix_freq, g_huffcodes, gpu_Result, gpu_Block, gpu_Thread,
+           hist, cpu_Result, cpu_Block, cpu_Thread, image);
 
 }
 
