@@ -15,8 +15,8 @@ void readBMPFILE(int &width, int &height, int** &image)
     // load bmp image
     int i, j;
     char file[] = "Lena.bmp";
-    int offset, bpp = 0;
-    long bmpS = 0, bmpdataoff = 0;
+    int offset =2, bpp = 0;
+    long bmpS = 0, bmpoff = 0;
     int temp = 0;
     // Reading the BMP File
     FILE* image_file;
@@ -30,49 +30,16 @@ void readBMPFILE(int &width, int &height, int** &image)
     else
     {
 
-        // Set file position of the
-        // stream to the beginning
-        // Contains file signature
-        // or ID "BM"
-        offset = 0;
-
-        // Set offset to 2, which
-        // contains size of BMP File
-        offset = 2;
-
         fseek(image_file, offset, SEEK_SET);
-
-        // Getting size of BMP File
-        fread(&bmpS, 4, 1, image_file);
-
-        // Getting offset where the
-        // pixel array starts
-        // Since the information is
-        // at offset 10 from the start,
-        // as given in BMP Header
-        offset = 10;
-
+        fread(&bmpS, 4, 1, image_file); offset = 10;
         fseek(image_file, offset, SEEK_SET);
-
-        // Bitmap data offset
-        fread(&bmpdataoff, 4, 1, image_file);
-
-        // Getting height and width of the image
-        // Width is stored at offset 18 and
-        // height at offset 22, each of 4 bytes
+        fread(&bmpoff, 4, 1, image_file);
         fseek(image_file, 18, SEEK_SET);
-
         fread(&width, 4, 1, image_file);
-
         fread(&height, 4, 1, image_file);
-
-        // Number of bits per pixel
         fseek(image_file, 2, SEEK_CUR);
-
         fread(&bpp, 2, 1, image_file);
-
-        // Setting offset to start of pixel data
-        fseek(image_file, bmpdataoff, SEEK_SET);
+        fseek(image_file, bmpoff, SEEK_SET);
 
         // Creating Image array
         image = (int**)malloc(height * sizeof(int*));

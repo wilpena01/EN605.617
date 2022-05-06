@@ -42,16 +42,8 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
    else
    {
       fseek(inputImage, offset, SEEK_SET);
-
-      // Getting size of BMP File
-      fread(&bmpS, 4, 1, inputImage);
-
-      // Getting offset where the
-      // pixel array starts
-      offset = 10;
+      fread(&bmpS, 4, 1, inputImage); offset = 10;
       fseek(inputImage, offset, SEEK_SET);
-
-      // Bitmap data offset
       fread(&bmpoff, 4, 1, inputImage);
       fseek(inputImage, 18, SEEK_SET);
       fread(&width, 4, 1, inputImage);
