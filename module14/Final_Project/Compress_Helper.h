@@ -16,7 +16,7 @@ void readBMPFILE(int &width, int &height, int** &image)
     int i, j;
     char file[] = "Lena.bmp";
     int offset, bpp = 0;
-    long bmpsize = 0, bmpdataoff = 0;
+    long bmpS = 0, bmpdataoff = 0;
     int temp = 0;
     // Reading the BMP File
     FILE* image_file;
@@ -43,7 +43,7 @@ void readBMPFILE(int &width, int &height, int** &image)
         fseek(image_file, offset, SEEK_SET);
 
         // Getting size of BMP File
-        fread(&bmpsize, 4, 1, image_file);
+        fread(&bmpS, 4, 1, image_file);
 
         // Getting offset where the
         // pixel array starts

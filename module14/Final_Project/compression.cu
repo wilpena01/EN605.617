@@ -136,7 +136,6 @@ void compressionDriver_cu()
 int main()
 {
    // Main Driver
-   
    cout<<"Using Local CPU"<<endl;
    auto start = high_resolution_clock::now();
    compressionDriver();
@@ -150,6 +149,7 @@ int main()
    compressionDriver_cu();
    end = high_resolution_clock::now();
    duration = chrono::duration<double>(end-start);
+   
    cout<<"\nElapse Time with CUDA = "<<duration.count()<<"microseconds"<<endl;
    return 0;
 
