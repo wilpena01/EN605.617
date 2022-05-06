@@ -108,4 +108,20 @@ void  allocHost(int *&cpu_Result,int *&cpu_Block,int *&cpu_Thread,int *&hist,
    totalnodes  = (int *)malloc(sizeof(int));
    nodes       = (int *)malloc(sizeof(int));
 }
+
+void allocDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist, 
+                 int* &g_nodes, int* &g_totalnodes, int* &gpu_Result, 
+                 int* &gpu_Block, int* &gpu_Thread, int IMAGE_SIZE_IN_BYTES,
+                 int HistSize_Byte)
+{
+   cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
+   cudaMalloc((void **)&g_width,       sizeof(int));
+   cudaMalloc((void **)&g_height,      sizeof(int));
+   cudaMalloc((void **)&g_hist,        HistSize_Byte);
+   cudaMalloc((void **)&g_nodes,       sizeof(int));
+   cudaMalloc((void **)&g_totalnodes,  sizeof(int));
+   cudaMalloc((void **)&gpu_Result,    HistSize_Byte);
+   cudaMalloc((void **)&gpu_Block,     HistSize_Byte);
+   cudaMalloc((void **)&gpu_Thread,    HistSize_Byte);
+}
 #endif /* UTILITIES_H_ */
