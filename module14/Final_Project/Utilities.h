@@ -139,9 +139,9 @@ void HostToDevice(int* &g_image, int* &g_width, int* &g_height, int* &g_hist,
 }
 
 void freeMem(int* &g_image,int* &g_width, int* &g_height, int* &g_hist, int* &g_nodes, 
-             int* &g_totalnodes, int* &g_pix_freq, int* &g_huffcodes, int* &gpu_Result, 
-             int* &gpu_Block, int* &gpu_Thread, int* &hist, int* &cpu_Result, 
-             int* &cpu_Block, int* &cpu_Thread, int* &image)
+             int* &g_totalnodes, pixfreq<25>* &g_pix_freq, huffcode* &g_huffcodes, 
+             int* &gpu_Result, int* &gpu_Block, int* &gpu_Thread, int* &hist, 
+             int* &cpu_Result, int* &cpu_Block, int* &cpu_Thread, int* &image)
 {
    cudaFree(g_image);    cudaFree(g_width);
    cudaFree(g_height);   cudaFree(g_hist);
