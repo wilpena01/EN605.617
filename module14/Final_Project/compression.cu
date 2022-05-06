@@ -74,12 +74,8 @@ void compressionDriver_cu()
 
    int IMAGE_SIZE_IN_BYTES = sizeof(int) * MaxSize;
 
-   cpu_Result  = (int *)malloc(HistSize_Byte);
-	cpu_Block   = (int *)malloc(HistSize_Byte);
-   cpu_Thread  = (int *)malloc(HistSize_Byte);
-   hist        = (int *)malloc(HistSize_Byte);
-   totalnodes  = (int *)malloc(sizeof(int));
-   nodes       = (int *)malloc(sizeof(int));
+   allocHost(cpu_Result, cpu_Block, cpu_Thread, hist, totalnodes, nodes,
+             HistSize_Byte);
 
    cudaMalloc((void **)&g_image,       IMAGE_SIZE_IN_BYTES);
    cudaMalloc((void **)&g_width,       sizeof(int));

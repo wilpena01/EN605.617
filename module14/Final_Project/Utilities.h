@@ -39,13 +39,7 @@ struct huffcode
 {
    int intensity, arrloc;
    float Freq;
-/*
-   void operator=(huffcode v)
-   {
-      intensity = v.intensity;
-      arrloc = v.arrloc;
-      Freq = v.Freq;
-   }*/
+
 };
 
 // function to find fibonacci number
@@ -104,4 +98,14 @@ void outputResult(int *Result, int* Block, int* Thread, int idx)
    }  
 }
 
+void  allocHost(int *cpu_Result,int *cpu_Block,int *cpu_Thread,int *hist, 
+                int *totalnodes,int *nodes, int HistSize_Byte)
+{
+   cpu_Result  = (int *)malloc(HistSize_Byte);
+	cpu_Block   = (int *)malloc(HistSize_Byte);
+   cpu_Thread  = (int *)malloc(HistSize_Byte);
+   hist        = (int *)malloc(HistSize_Byte);
+   totalnodes  = (int *)malloc(sizeof(int));
+   nodes       = (int *)malloc(sizeof(int));
+}
 #endif /* UTILITIES_H_ */
