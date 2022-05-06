@@ -23,7 +23,7 @@ void readBMPFILE(int &width, int &height, int** &image)
     inputImage = fopen(file, "rb");
     if (inputImage == NULL)
     {
-        printf("Error Opening File!!");
+        cout<<"Error input File!!"<<endl;
         exit(1);
     }
     else
@@ -47,8 +47,8 @@ void readBMPFILE(int &width, int &height, int** &image)
         {
             image[i] = (int*)malloc(width * sizeof(int*));
         }
-        // Reading the BMP File
-        // into Image Array
+        // Reading the inputImage
+        // into the Image Array
         for (i = 0; i < height; i++)
         {
             for (j = 0; j < width; j++)
@@ -69,16 +69,16 @@ void ocurrence(int* hist, int** image, int width, int height)
 {
     // Finding the probability
     // of occurrence
-    int i,j;
+    int n,k;
    
-    for (i = 0; i < 256; i++)
-        hist[i] = 0;
+    for (n = 0; n < 256; n++)
+        hist[n] = 0;
 
-    for (i = 0; i < height; i++)
+    for (n = 0; n < height; n++)
     {
-        for (j = 0; j < width; j++)
+        for (k = 0; k < width; k++)
         {
-            hist[image[i][j]] += 1;
+            hist[image[n][k]] += 1;
         }
     }
 }

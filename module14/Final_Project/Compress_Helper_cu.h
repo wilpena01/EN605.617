@@ -34,7 +34,7 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
    inputImage = fopen(file, "rb");
    if (inputImage == NULL)
    {
-      printf("Error input File!!");
+      cout<<"Error input File!!"<<endl;
       exit(1);
    }
    else
@@ -53,8 +53,8 @@ void readBMPFILE_cu(int &width, int &height, int* &image)
       // Creating Image array
       image = (int*)malloc(height * width * sizeof(int));
 
-      // Reading the BMP File
-      // into Image Array
+      // Reading the inputImage
+      // into the Image Array
       for (i = 0; i < height; i++)
       {
          for (j = 0; j < width; j++)
@@ -85,8 +85,6 @@ void initHist_cu(int* hist, int *Result, int *Block, int *Thread)
 	Thread[idx] = threadIdx.x;
 }
 
-
-//done
 __global__
 void ocurrence_cu(int* image)
 {
