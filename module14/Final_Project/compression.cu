@@ -139,7 +139,7 @@ int main()
    
    cout<<"Using Local CPU"<<endl;
    auto start = high_resolution_clock::now();
-   //compressionDriver();
+   compressionDriver();
    auto end = high_resolution_clock::now();
    auto duration = chrono::duration<double>(end-start);
 
