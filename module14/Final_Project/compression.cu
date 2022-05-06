@@ -6,7 +6,7 @@
 #include "Utilities.h"
 #include <string>
 #include <fstream>
-
+#include <chrono>
 
 #include "ImagesCPU.h"
 #include "ImagesNPP.h"
@@ -14,12 +14,11 @@
 #include "Exceptions.h"
 #include <npp.h>
 
-
 #include "Compress_Helper.h"
 #include "Compress_Helper_cu.h"
 
-
 using namespace std;
+using namespace std::chrono;
 
 // Driver code
 void compressionDriver()
@@ -134,8 +133,16 @@ void compressionDriver_cu()
 
 int main()
 {
+   // Main Driver
+   
+  
    cout<<"Using Local CPU"<<endl;
-   //compressionDriver();
+   auto start = high_resolution_clock::now();
+   compressionDriver();
+   auto end = high_resolution_clock::now();
+   auto duration = chrono::duration<double>(end-start);
+
+   cout<<" Elapse Time without CUDA = "<<duration.count()<<endl;
 
    cout<<"\n\nUsing GPU"<<endl;
    compressionDriver_cu();
