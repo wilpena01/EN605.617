@@ -60,7 +60,6 @@ void compressionDriver_cu()
    int* image;
    int* hist;
    int *totalnodes, *nodes;
-   float p = 1.0; 
    pixfreq<25> *pix_freq;
 
    const int hist_num_blocks     = 1;
@@ -73,7 +72,6 @@ void compressionDriver_cu()
    int* g_width, *g_height, *g_nodes, *g_totalnodes;
    int* g_MaxSize;
    int* g_hist;
-   float* g_p;
    pixfreq<25>* g_pix_freq;
    huffcode* g_huffcodes;
 
@@ -99,7 +97,6 @@ void compressionDriver_cu()
    cudaMalloc((void **)&g_height,      sizeof(int));
    cudaMalloc((void **)&g_hist,        HistSize_Byte);
    cudaMalloc((void **)&g_nodes,       sizeof(int));
-   cudaMalloc((void **)&g_p,           sizeof(float));
    cudaMalloc((void **)&g_totalnodes,  sizeof(int));
    cudaMalloc((void **)&g_MaxSize,     sizeof(int));
    cudaMalloc((void **)&gpu_Result,    HistSize_Byte);
@@ -111,7 +108,6 @@ void compressionDriver_cu()
    cudaMemcpy(g_height,     &height,     sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_hist,       hist,        HistSize_Byte,         cudaMemcpyHostToDevice);
    cudaMemcpy(g_nodes,      &nodes,      sizeof(int),           cudaMemcpyHostToDevice);
-   cudaMemcpy(g_p,          &p,          sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_totalnodes, &totalnodes, sizeof(int),           cudaMemcpyHostToDevice);
    cudaMemcpy(g_MaxSize,    &MaxSize,    sizeof(int),           cudaMemcpyHostToDevice);
 
@@ -145,7 +141,7 @@ void compressionDriver_cu()
    cudaFree(g_height);   cudaFree(g_hist);
    cudaFree(g_nodes);    cudaFree(g_totalnodes);
    cudaFree(g_pix_freq); cudaFree(g_huffcodes);
-   cudaFree(g_MaxSize);  cudaFree(g_p);
+   cudaFree(g_MaxSize);  
    cudaFree(gpu_Result); cudaFree(gpu_Block);
 	cudaFree(gpu_Thread); free(hist);
    free(cpu_Result);     free(cpu_Block);
@@ -156,7 +152,7 @@ void compressionDriver_cu()
 int main()
 {
    cout<<"Using Local CPU"<<endl;
-   compressionDriver();
+   //compressionDriver();
 
    cout<<"\n\nUsing GPU"<<endl;
    compressionDriver_cu();
