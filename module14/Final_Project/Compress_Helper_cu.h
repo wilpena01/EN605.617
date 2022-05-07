@@ -292,7 +292,7 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
 __device__
 void stradd_cu(char* strptr, char* pcode, char add)
 {
-    // function to concatenate the words
+    // function to add the words
    int i = 0;
    while (*(pcode + i) != '\0')
    {
@@ -311,22 +311,21 @@ void stradd_cu(char* strptr, char* pcode, char add)
 __global__
 void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Result, int *Block, int *Thread)
 {
-       // Assigning Code through
-    // backtracking
-    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-    int n;
-    char left = '0';
-    char right = '1';
-    for (n = *totalnodes - 1; n >= *nodes; n--)
-    {
-        if (pix_freq[n].left != NULL)
-            stradd_cu(pix_freq[n].left->code, pix_freq[n].code, left);
-        if (pix_freq[n].right != NULL)
-            stradd_cu(pix_freq[n].right->code, pix_freq[n].code, right);
-      Result[n] = n;
-      Block[n]  = blockIdx.x+44;
-      Thread[n] = threadIdx.x;
-    }
+   // Assigning Code
+   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+   int n;
+   char left = '0';
+   char right = '1';
+   for (n = *totalnodes - 1; n >= *nodes; n--)
+   {
+      if (pix_freq[n].left != NULL)
+         stradd_cu(pix_freq[n].left->code, pix_freq[n].code, left);
+      if (pix_freq[n].right != NULL)
+         stradd_cu(pix_freq[n].right->code, pix_freq[n].code, right);
+   Result[n] = n;
+   Block[n]  = blockIdx.x+44;
+   Thread[n] = threadIdx.x;
+   }
     
 }
 

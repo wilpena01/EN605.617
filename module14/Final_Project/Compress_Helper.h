@@ -229,7 +229,7 @@ void BuildTree(pixfreq<25> *&pix_freq, huffcode* &huffcodes, int nodes)
 
 void stradd(char* strptr, char* pcode, char add)
 {
-    // function to concatenate the words
+    // function to add the words
    int i = 0;
    while (*(pcode + i) != '\0')
    {
