@@ -175,33 +175,21 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
    if(idx == 24)
       jj = 0;
    __syncthreads();
-   int totpix = *height * *width;
-   float tempprob;
+   int MaxSize = *height * *width;
+   float currProb;
    int j=0;
 
    if (shared_hist[idx] != 0)
    {
       j = atomicAdd(&jj,1);
-      // pixel intensity value
       huffcodes[j].intensity = idx;
       pix_freq[j].intensity = idx;
-
-      // location of the node
-      // in the pix_freq array
       huffcodes[j].arrloc = j;
-
-      // probability of occurrence
-      tempprob = shared_hist[idx] / (float)totpix;
-      pix_freq[j].Freq = tempprob;
-      huffcodes[j].Freq = tempprob;
-
-      // Declaring the child of leaf
-      // node as NULL pointer
+      currProb = shared_hist[idx] / (float)MaxSize;
+      pix_freq[j].Freq = currProb;
+      huffcodes[j].Freq = currProb;
       pix_freq[j].left = NULL;
       pix_freq[j].right = NULL;
-
-      // initializing the code
-      // word as end of line
       pix_freq[j].code[0] = '\0';
       
    }
