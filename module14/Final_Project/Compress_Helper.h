@@ -247,20 +247,19 @@ void stradd(char* strptr, char* pcode, char add)
 
 void AssignCode(pixfreq<25> *&pix_freq, int nodes, int totalnodes)
 {
-    // Assigning Code through
-    // backtracking
-    int i;
+    // Assigning Code 
+    int n;
     char left = '0';
     char right = '1';
-    for (i = totalnodes - 1; i >= nodes; i--)
+    for (n = totalnodes - 1; n >= nodes; n--)
     {
-        if (pix_freq[i].left != NULL)
+        if (pix_freq[n].left != NULL)
         {
-            stradd(pix_freq[i].left->code, pix_freq[i].code, left);
+            stradd(pix_freq[n].left->code, pix_freq[n].code, left);
         }
-        if (pix_freq[i].right != NULL)
+        if (pix_freq[n].right != NULL)
         {
-            stradd(pix_freq[i].right->code, pix_freq[i].code, right);
+            stradd(pix_freq[n].right->code, pix_freq[n].code, right);
         }
     }
 }

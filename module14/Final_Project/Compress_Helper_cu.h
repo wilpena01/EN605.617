@@ -314,18 +314,18 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Resu
        // Assigning Code through
     // backtracking
     int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-    int i;
+    int n;
     char left = '0';
     char right = '1';
-    for (i = *totalnodes - 1; i >= *nodes; i--)
+    for (n = *totalnodes - 1; n >= *nodes; n--)
     {
-        if (pix_freq[i].left != NULL)
-            stradd_cu(pix_freq[i].left->code, pix_freq[i].code, left);
-        if (pix_freq[i].right != NULL)
-            stradd_cu(pix_freq[i].right->code, pix_freq[i].code, right);
-      Result[i] = i;
-      Block[i]  = blockIdx.x+44;
-      Thread[i] = threadIdx.x;
+        if (pix_freq[n].left != NULL)
+            stradd_cu(pix_freq[n].left->code, pix_freq[n].code, left);
+        if (pix_freq[n].right != NULL)
+            stradd_cu(pix_freq[n].right->code, pix_freq[n].code, right);
+      Result[n] = n;
+      Block[n]  = blockIdx.x+44;
+      Thread[n] = threadIdx.x;
     }
     
 }
