@@ -88,21 +88,23 @@ void nonZero_ocurrence(int* hist, int &node)
     // Finding number of
     // non-zero occurrences
     node=0;
-    for (int i = 0; i < 256; i++)
-      if (hist[i] != 0)
-         node += 1;
+    int n;
+    for (n = 0; n < 256; n++)
+      if (hist[n] != 0)
+         node = node + 1;
 }
 
 void minProp(float &p, int* hist, int width, int height)
 {
     // Calculating minimum probability
-    float ptemp;
-    p = 1.0;
-    for (int i = 0; i < 256; i++)
+    float currProb;
+    int n;
+    prob = 1.0;
+    for (n = 0; n < 256; n++)
     {
-        ptemp = (hist[i] / (float)(height * width));
-        if (ptemp > 0 && ptemp <= p)
-            p = ptemp;
+        currProb = (hist[n] / (float)(height * width));
+        if (currProb > 0 && currProb <= prob)
+            prob = currProb;
     }
 }
 

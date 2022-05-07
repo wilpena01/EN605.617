@@ -99,18 +99,6 @@ void ocurrence_cu(int* image)
 }
 
 __global__
-void copy_data_from_shared(int *hist, int *Result, int *Block, int *Thread)
-{
-   unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-
-   hist[idx]   = shared_hist[idx];
-   Result[idx] = hist[idx];
-   Block[idx]  = blockIdx.x;
-   Thread[idx] = threadIdx.x;
-}
-
-//done 
-__global__
 void nonZero_ocurrence_cu(int *node, int *Result, int *Block, int *Thread)
 {
    // Finding number of
@@ -358,6 +346,17 @@ void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Resu
       Thread[i] = threadIdx.x;
     }
     
+}
+
+__global__
+void copy_data_from_shared(int *hist, int *Result, int *Block, int *Thread)
+{
+   unsigned int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
+
+   hist[idx]   = shared_hist[idx];
+   Result[idx] = hist[idx];
+   Block[idx]  = blockIdx.x;
+   Thread[idx] = threadIdx.x;
 }
 /*
 void ocurrence(int* hist, int** image, int width, int height)
