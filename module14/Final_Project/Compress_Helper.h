@@ -108,53 +108,53 @@ void minProp(float &prob, int* hist, int width, int height)
     }
 }
 
-int MaxLength(float p)
+int MaxLength(float prob)
 {
     // Calculating max length
     // of code word
-    int i = 0;
-    while ((1 / p) > fib(i))
+    int n = 0;
+    while ((1 / prob) > fib(n))
     {
-        i++;
+        n++;
     }
 
-    return i;
+    return n;
 }
 
 void InitStruct(pixfreq<25> *&pix_freq, huffcode* &huffcodes, 
                 int* hist, int height, int width)
 {
      // Initializing
-   int i; int j=0;
+   int n; int k=0;
    int totpix = height * width;
    float tempprob;
-   for (i = 0; i < 256; i++)
+   for (n = 0; n < 256; n++)
    {
-      if (hist[i] != 0)
+      if (hist[n] != 0)
       {
 
          // pixel intensity value
-         huffcodes[j].intensity = i;
-         pix_freq[j].intensity = i;
+         huffcodes[k].intensity = n;
+         pix_freq[k].intensity = n;
 
          // location of the node
          // in the pix_freq array
-         huffcodes[j].arrloc = j;
+         huffcodes[k].arrloc = k;
 
          // probability of occurrence
-         tempprob = (float)hist[i] / (float)totpix;
-         pix_freq[j].Freq = tempprob;
-         huffcodes[j].Freq = tempprob;
+         tempprob = (float)hist[n] / (float)totpix;
+         pix_freq[k].Freq = tempprob;
+         huffcodes[k].Freq = tempprob;
 
          // Declaring the child of leaf
          // node as NULL pointer
-         pix_freq[j].left = NULL;
-         pix_freq[j].right = NULL;
+         pix_freq[k].left = NULL;
+         pix_freq[k].right = NULL;
 
          // initializing the code
          // word as end of line
-         pix_freq[j].code[0] = '\0';
-         j++;
+         pix_freq[k].code[0] = '\0';
+         k++;
       }
    }
 
