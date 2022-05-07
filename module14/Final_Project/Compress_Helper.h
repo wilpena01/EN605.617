@@ -172,55 +172,52 @@ void sortHist(huffcode* &huffcodes, int nodes)
 void BuildTree(pixfreq<25> *&pix_freq, huffcode* &huffcodes, int nodes)
 {
     // Building Huffman Tree
-    float sumprob;
-    int sumpix,i;
-    int n = 0, k = 0;
+    float totalprob;
+    int totalpix, z;
+    int i = 0, j = 0;
     int nextnode = nodes;
 
-    // Since total number of
-    // nodes in Huffman Tree
-    // is 2*nodes-1
-    while (n < nodes - 1)
+    while (i < nodes - 1)
     {
 
         // Adding the lowest two probabilities
-        sumprob = huffcodes[nodes - n - 1].Freq + huffcodes[nodes - n - 2].Freq;
-        sumpix = huffcodes[nodes - n - 1].intensity + huffcodes[nodes - n - 2].intensity;
+        totalprob = huffcodes[nodes - i - 1].Freq + huffcodes[nodes - i - 2].Freq;
+        totalpix  = huffcodes[nodes - i - 1].intensity + huffcodes[nodes - i - 2].intensity;
 
         // Appending to the pix_freq Array
-        pix_freq[nextnode].intensity = sumpix;
-        pix_freq[nextnode].Freq = sumprob;
-        pix_freq[nextnode].left = &pix_freq[huffcodes[nodes - n - 2].arrloc];
-        pix_freq[nextnode].right = &pix_freq[huffcodes[nodes - n - 1].arrloc];
-        pix_freq[nextnode].code[0] = '\0';
-        i = 0;
+        pix_freq[nextnode].intensity = totalpix;
+        pix_freq[nextnode].Freq      = totalprob;
+        pix_freq[nextnode].left      = &pix_freq[huffcodes[nodes - i - 2].arrloc];
+        pix_freq[nextnode].right     = &pix_freq[huffcodes[nodes - i - 1].arrloc];
+        pix_freq[nextnode].code[0]   = '\0';
+        z = 0;
 
         // Sorting and Updating the
         // huffcodes array simultaneously
         // New position of the combined node
-        while (sumprob <= huffcodes[i].Freq)
-            i++;
+        while (totalprob <= huffcodes[z].Freq)
+            z++;
 
         // Inserting the new node
         // in the huffcodes array
-        for (k = nodes; k >= 0; k--)
+        for (j = nodes; j >= 0; j--)
         {
-            if (k == i)
+            if (j == z)
             {
-                huffcodes[k].intensity = sumpix;
-                huffcodes[k].Freq = sumprob;
-                huffcodes[k].arrloc = nextnode;
+                huffcodes[j].intensity = totalpix;
+                huffcodes[j].Freq = totalprob;
+                huffcodes[j].arrloc = nextnode;
             }
-            else if (k > i)
+            else if (j > z)
 
             // Shifting the nodes below
             // the new node by 1
             // For inserting the new node
             // at the updated position k
-            huffcodes[k] = huffcodes[k - 1];
+            huffcodes[j] = huffcodes[j - 1];
 
         }
-        n += 1;
+        i = i + 1;
         nextnode += 1;
     }
 

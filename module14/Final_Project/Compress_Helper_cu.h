@@ -205,8 +205,7 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
     int n, k;
     huffcode huff;
 
-    // Sorting w.r.t probability
-    // of occurrence
+    // Sorting probability
     for (n = 0; n < *nodes; n++)
     {
         for (k = n + 1; k < *nodes; k++)
@@ -237,9 +236,6 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
     int n = 0, k = 0;
     int nextnode = *nodes;
 
-    // Since total number of
-    // nodes in Huffman Tree
-    // is 2*nodes-1
     while (n < *nodes - 1)
     {
 
