@@ -234,7 +234,7 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
     float sumprob;
     int sumpix,i;
     int n = 0, k = 0;
-    int nextnode = *nodes;
+    int n_node = *nodes;
 
     while (n < *nodes - 1)
     {
@@ -244,11 +244,11 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
         sumpix = huffcodes[*nodes - n - 1].intensity + huffcodes[*nodes - n - 2].intensity;
 
         // Appending to the pix_freq Array
-        pix_freq[nextnode].intensity = sumpix;
-        pix_freq[nextnode].Freq = sumprob;
-        pix_freq[nextnode].left = &pix_freq[huffcodes[*nodes - n - 2].arrloc];
-        pix_freq[nextnode].right = &pix_freq[huffcodes[*nodes - n - 1].arrloc];
-        pix_freq[nextnode].code[0] = '\0';
+        pix_freq[n_node].intensity = sumpix;
+        pix_freq[n_node].Freq = sumprob;
+        pix_freq[n_node].left = &pix_freq[huffcodes[*nodes - n - 2].arrloc];
+        pix_freq[n_node].right = &pix_freq[huffcodes[*nodes - n - 1].arrloc];
+        pix_freq[n_node].code[0] = '\0';
         i = 0;
 
         // Sorting and Updating the
@@ -265,7 +265,7 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
             {
                 huffcodes[k].intensity = sumpix;
                 huffcodes[k].Freq = sumprob;
-                huffcodes[k].arrloc = nextnode;
+                huffcodes[k].arrloc = n_node;
             }
             else if (k > i)
 
@@ -280,8 +280,8 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
       Block[n]  = blockIdx.x+84;
       Thread[n] = threadIdx.x;
 
-        n += 1;
-        nextnode += 1;
+        n = n + 1;
+        n_node = n_node + 1;
 
     }
 
