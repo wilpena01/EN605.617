@@ -219,7 +219,7 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
                 huffcodes[k] = huff;
             }
         }
-      Result[n] = static_cast<int>(huffcodes[i].Freq*1000000);
+      Result[n] = static_cast<int>(huffcodes[n].Freq*1000000);
       Block[n]  = blockIdx.x+i;
       Thread[n] = threadIdx.x;
     } 
