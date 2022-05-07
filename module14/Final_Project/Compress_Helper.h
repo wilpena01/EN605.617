@@ -150,21 +150,20 @@ void InitStruct(pixfreq<25> *&pix_freq, huffcode* &huffcodes,
 
 void sortHist(huffcode* &huffcodes, int nodes)
 {
-     // Sorting the histogram
-    int i, j;
-    huffcode temphuff;
+    // Sorting the histogram
+    int n, k;
+    huffcode huff;
 
-    // Sorting w.r.t probability
-    // of occurrence
-    for (i = 0; i < nodes; i++)
+    // Sorting probability
+    for (n = 0; n < nodes; n++)
     {
-        for (j = i + 1; j < nodes; j++)
+        for (k = n + 1; k < nodes; k++)
         {
-            if (huffcodes[i].Freq < huffcodes[j].Freq)
+            if (huffcodes[n].Freq < huffcodes[k].Freq)
             {
-                temphuff = huffcodes[i];
-                huffcodes[i] = huffcodes[j];
-                huffcodes[j] = temphuff;
+                huff = huffcodes[n];
+                huffcodes[n] = huffcodes[k];
+                huffcodes[k] = huff;
             }
         }
     }

@@ -162,7 +162,6 @@ void totalNode(int *totalnode, int *node, int *Result, int *Block, int *Thread)
 	Thread[idx] = threadIdx.x;
 }
 
-//done
 __global__
 void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, 
                   int *height, int *width, int *Result, int *Block, int *Thread)
@@ -204,25 +203,25 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
 {
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
      // Sorting the histogram
-    int i, j;
-    huffcode temphuff;
+    int n, k;
+    huffcode huff;
 
     // Sorting w.r.t probability
     // of occurrence
-    for (i = 0; i < *nodes; i++)
+    for (n = 0; n < *nodes; k++)
     {
-        for (j = i + 1; j < *nodes; j++)
+        for (k = n + 1; k < *nodes; k++)
         {
-            if (huffcodes[i].Freq < huffcodes[j].Freq)
+            if (huffcodes[n].Freq < huffcodes[k].Freq)
             {
-                temphuff = huffcodes[i];
-                huffcodes[i] = huffcodes[j];
-                huffcodes[j] = temphuff;
+                huff = huffcodes[n];
+                huffcodes[n] = huffcodes[k];
+                huffcodes[k] = huff;
             }
         }
-      Result[i] = static_cast<int>(huffcodes[i].Freq*1000000);
-      Block[i]  = blockIdx.x+i;
-      Thread[i] = threadIdx.x;
+      Result[n] = static_cast<int>(huffcodes[i].Freq*1000000);
+      Block[n]  = blockIdx.x+i;
+      Thread[n] = threadIdx.x;
     } 
    
 }
