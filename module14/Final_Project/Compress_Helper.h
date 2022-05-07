@@ -94,7 +94,7 @@ void nonZero_ocurrence(int* hist, int &node)
          node = node + 1;
 }
 
-void minProp(float &p, int* hist, int width, int height)
+void minProp(float &prob, int* hist, int width, int height)
 {
     // Calculating minimum probability
     float currProb;
