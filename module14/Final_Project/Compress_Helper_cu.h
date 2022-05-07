@@ -193,7 +193,7 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
       
    }
    
-   Result[idx] = j;
+   Result[idx] = k;
    Block[idx]  = blockIdx.x+12;
 	Thread[idx] = threadIdx.x;
 }
