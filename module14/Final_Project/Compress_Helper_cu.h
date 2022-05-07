@@ -119,7 +119,7 @@ void nonZero_ocurrence_cu(int *node, int *Result, int *Block, int *Thread)
 __global__
 void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
 {
-    // Calculating minimum probability
+   // Calculating minimum probability
    int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
 
    int ptemp = 100000 * shared_hist[idx] / (*height * *width);
@@ -137,15 +137,14 @@ void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
 
 int MaxLength_cu(float p)
 {
-    // Calculating max length
-    // of code word
-    int i = 0;
-    while ((1 / p) > fib(i))
-    {
-        i++;
-    }
+   // Calculating max length
+   int i = 0;
+   while ((1 / p) > fib(i))
+   {
+      i++;
+   }
 
-    return i;
+   return i;
 }
 
 //done
@@ -200,90 +199,86 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
 __global__
 void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *Thread)
 {
-   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
-     // Sorting the histogram
-    int n, k;
-    huffcode huff;
+   // Sorting the histogram
+   int n, k;
+   huffcode huff;
 
-    // Sorting probability
-    for (n = 0; n < *nodes; n++)
-    {
-        for (k = n + 1; k < *nodes; k++)
-        {
-            if (huffcodes[n].Freq < huffcodes[k].Freq)
-            {
-                huff = huffcodes[n];
-                huffcodes[n] = huffcodes[k];
-                huffcodes[k] = huff;
-            }
-        }
-      Result[n] = static_cast<int>(huffcodes[n].Freq*1000000);
-      Block[n]  = blockIdx.x+n;
-      Thread[n] = threadIdx.x;
-    } 
+   // Sorting probability
+   for (n = 0; n < *nodes; n++)
+   {
+      for (k = n + 1; k < *nodes; k++)
+      {
+         if (huffcodes[n].Freq < huffcodes[k].Freq)
+         {
+               huff = huffcodes[n];
+               huffcodes[n] = huffcodes[k];
+               huffcodes[k] = huff;
+         }
+      }
+   Result[n] = static_cast<int>(huffcodes[n].Freq*1000000);
+   Block[n]  = blockIdx.x+n;
+   Thread[n] = threadIdx.x;
+} 
    
 }
 
 __global__
 void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *Result, int *Block, int *Thread)
 {
+   // Building Huffman Tree
+   float totalprob;
+   int totalpix,z;
+   int i = 0, j = 0;
+   int n_node = *nodes;
 
-   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;   
+   while (i < *nodes - 1)
+   {
 
-    // Building Huffman Tree
-    float totalprob;
-    int totalpix,z;
-    int i = 0, j = 0;
-    int n_node = *nodes;
+      // Adding the lowest two probabilities
+      totalprob = huffcodes[*nodes - i - 1].Freq + huffcodes[*nodes - i - 2].Freq;
+      totalpix = huffcodes[*nodes - i - 1].intensity + huffcodes[*nodes - i - 2].intensity;
 
-    while (i < *nodes - 1)
-    {
+      // Appending to the pix_freq Array
+      pix_freq[n_node].intensity = totalpix;
+      pix_freq[n_node].Freq = totalprob;
+      pix_freq[n_node].left = &pix_freq[huffcodes[*nodes - i - 2].arrloc];
+      pix_freq[n_node].right = &pix_freq[huffcodes[*nodes - i - 1].arrloc];
+      pix_freq[n_node].code[0] = '\0';
+      z = 0;
 
-        // Adding the lowest two probabilities
-        totalprob = huffcodes[*nodes - i - 1].Freq + huffcodes[*nodes - i - 2].Freq;
-        totalpix = huffcodes[*nodes - i - 1].intensity + huffcodes[*nodes - i - 2].intensity;
+      // Sorting and Updating the
+      // huffcodes array simultaneously
+      // New position of the combined node
+      while (totalprob <= huffcodes[z].Freq)
+         z++;
 
-        // Appending to the pix_freq Array
-        pix_freq[n_node].intensity = totalpix;
-        pix_freq[n_node].Freq = totalprob;
-        pix_freq[n_node].left = &pix_freq[huffcodes[*nodes - i - 2].arrloc];
-        pix_freq[n_node].right = &pix_freq[huffcodes[*nodes - i - 1].arrloc];
-        pix_freq[n_node].code[0] = '\0';
-        z = 0;
+      // Inserting the new node
+      // in the huffcodes array
+      for (j = *nodes; j >= 0; j--)
+      {
+         if (j == z)
+         {
+               huffcodes[j].intensity = totalpix;
+               huffcodes[j].Freq = totalprob;
+               huffcodes[j].arrloc = n_node;
+         }
+         else if (j > z)
 
-        // Sorting and Updating the
-        // huffcodes array simultaneously
-        // New position of the combined node
-        while (totalprob <= huffcodes[z].Freq)
-            z++;
+         // Shifting the nodes below
+         // the new node by 1
+         // For inserting the new node
+         // at the updated position k
+         huffcodes[j] = huffcodes[j - 1];
 
-        // Inserting the new node
-        // in the huffcodes array
-        for (j = *nodes; j >= 0; j--)
-        {
-            if (j == z)
-            {
-                huffcodes[j].intensity = totalpix;
-                huffcodes[j].Freq = totalprob;
-                huffcodes[j].arrloc = n_node;
-            }
-            else if (j > z)
+      }
+   Result[i] = i;
+   Block[i]  = blockIdx.x+84;
+   Thread[i] = threadIdx.x;
 
-            // Shifting the nodes below
-            // the new node by 1
-            // For inserting the new node
-            // at the updated position k
-            huffcodes[j] = huffcodes[j - 1];
+   i = i + 1;
+   n_node = n_node + 1;
 
-        }
-      Result[i] = i;
-      Block[i]  = blockIdx.x+84;
-      Thread[i] = threadIdx.x;
-
-        i = i + 1;
-        n_node = n_node + 1;
-
-    }
+   }
 
 
 }
@@ -292,7 +287,7 @@ void BuildTree_cu(pixfreq<25> *pix_freq, huffcode* huffcodes, int *nodes, int *R
 __device__
 void stradd_cu(char* strptr, char* pcode, char add)
 {
-    // function to add the words
+   // function to add the words
    int i = 0;
    while (*(pcode + i) != '\0')
    {
@@ -312,7 +307,6 @@ __global__
 void AssignCode_cu(pixfreq<25> *pix_freq, int *nodes, int *totalnodes, int *Result, int *Block, int *Thread)
 {
    // Assigning Code
-   int idx = (blockIdx.x * blockDim.x) + threadIdx.x;
    int n;
    char left = '0';
    char right = '1';
