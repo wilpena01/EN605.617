@@ -116,7 +116,6 @@ void nonZero_ocurrence_cu(int *node, int *Result, int *Block, int *Thread)
 
 }
 
-//done i think
 __global__
 void minProp_cu(int* width, int* height, int *Result, int *Block, int *Thread)
 {
@@ -208,7 +207,7 @@ void sortHist_cu(huffcode *huffcodes, int* nodes, int *Result, int *Block, int *
 
     // Sorting w.r.t probability
     // of occurrence
-    for (n = 0; n < *nodes; k++)
+    for (n = 0; n < *nodes; n++)
     {
         for (k = n + 1; k < *nodes; k++)
         {
