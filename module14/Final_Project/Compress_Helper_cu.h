@@ -177,20 +177,20 @@ void InitStruct_cu(pixfreq<25> *pix_freq, huffcode* huffcodes,
    __syncthreads();
    int MaxSize = *height * *width;
    float currProb;
-   int j=0;
+   int k=0;
 
    if (shared_hist[idx] != 0)
    {
-      j = atomicAdd(&jj,1);
-      huffcodes[j].intensity = idx;
-      pix_freq[j].intensity = idx;
-      huffcodes[j].arrloc = j;
+      k = atomicAdd(&jj,1);
+      huffcodes[k].intensity = idx;
+      pix_freq[k].intensity = idx;
+      huffcodes[k].arrloc = k;
       currProb = shared_hist[idx] / (float)MaxSize;
-      pix_freq[j].Freq = currProb;
-      huffcodes[j].Freq = currProb;
-      pix_freq[j].left = NULL;
-      pix_freq[j].right = NULL;
-      pix_freq[j].code[0] = '\0';
+      pix_freq[k].Freq = currProb;
+      huffcodes[k].Freq = currProb;
+      pix_freq[k].left = NULL;
+      pix_freq[k].right = NULL;
+      pix_freq[k].code[0] = '\0';
       
    }
    
