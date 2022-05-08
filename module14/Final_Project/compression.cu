@@ -142,7 +142,7 @@ int main()
    auto end = high_resolution_clock::now();
    auto duration = chrono::duration<double>(end-start);
 
-   cout<<"\nElapse Time without CUDA = "<<duration.count()<<"microseconds "<<endl;
+   cout<<"\nElapse Time without CUDA = "<<duration.count()<<" microseconds "<<endl;
 
    cout<<"\n\nUsing GPU"<<endl;
    start = high_resolution_clock::now();
@@ -150,7 +150,7 @@ int main()
    end = high_resolution_clock::now();
    duration = chrono::duration<double>(end-start);
 
-   cout<<"\nElapse Time with CUDA = "<<duration.count()<<"microseconds"<<endl;
+   cout<<"\nElapse Time with CUDA = "<<duration.count()<<" microseconds"<<endl;
    return 0;
 
 }
