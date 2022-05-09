@@ -135,7 +135,11 @@ void compressionDriver_cu()
 
 int main()
 {
+   int cu = 0;
    // Main Driver
+   cout<<"Run with CUDE? enter 1 for yes, 0 otherwise"<<endl;
+   cin>>cu;
+   if(cu == 0)
    cout<<"Using Local CPU"<<endl;
    auto start = high_resolution_clock::now();
    compressionDriver();
