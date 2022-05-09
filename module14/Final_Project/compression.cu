@@ -136,52 +136,30 @@ void compressionDriver_cu()
 int main()
 {
    int cu = 0;
+   
    // Main Driver
    cout<<"Run with CUDE? enter 1 for yes, 0 otherwise"<<endl;
    cin>>cu;
-   if(cu == 0)
-   cout<<"Using Local CPU"<<endl;
-   auto start = high_resolution_clock::now();
-   compressionDriver();
-   auto end = high_resolution_clock::now();
-   auto duration = chrono::duration<double>(end-start);
-cout<<endl;
-  // cout<<"\nElapse Time without CUDA = "<<duration.count()<<" microseconds "<<endl;
-
-   //cout<<"\n\nUsing GPU"<<endl;
-   start = high_resolution_clock::now();
-   //compressionDriver_cu();
-   end = high_resolution_clock::now();
-   duration = chrono::duration<double>(end-start);
-
-   //cout<<"\nElapse Time with CUDA = "<<duration.count()<<" microseconds"<<endl;
+   
+   if(cu == 1)
+   {
+      cout<<"\n\nUsing GPU"<<endl;
+      auto start = high_resolution_clock::now();
+      compressionDriver_cu();
+      auto end = high_resolution_clock::now();
+      auto duration = chrono::duration<double>(end-start);
+      cout<<"\nElapse Time with CUDA = "<<duration.count()<<" microseconds"<<endl;
+   }
+   else
+   {
+      cout<<"Using Local CPU"<<endl;
+      auto start = high_resolution_clock::now();
+      compressionDriver();
+      auto end = high_resolution_clock::now();
+      auto duration = chrono::duration<double>(end-start);
+      cout<<"\nElapse Time without CUDA = "<<duration.count()<<" microseconds "<<endl;
+   }
+      cout<<endl;
    return 0;
 
 }
-
-   // Encode the Image
-   //int pix_val;
-   //int l;
-
-   // Writing the Huffman encoded
-   // Image into a text file
-
-   /*ofstream imagehuff; 
-   imagehuff.open ("encoded_image.bin", ios::out | ios::app | ios::binary);
-   cout<<"bien aqui<"<<endl;
-
-   for (i = 0; i < height; i++)
-   {
-   for (j = 0; j < width; j++)
-   {
-      pix_val = image[i][j];
-      cout<<"image[" <<i<<"]["<<j<<"] ="<<image[i][j]<<" ";
-      for (l = 0; l < nodes; l++)
-      {
-         if (pix_val == pix_freq[l].intensity)
-            imagehuff<< pix_freq[l].code;
-      }
-   }
-   cout<<endl;
-   }
-   */
